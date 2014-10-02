@@ -1,0 +1,427 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C1E4584319DE0C5B001A5627 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E4584219DE0C5B001A5627 /* main.m */; };
+		C1E4584619DE0C5B001A5627 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E4584519DE0C5B001A5627 /* AppDelegate.m */; };
+		C1E4584919DE0C5B001A5627 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E4584819DE0C5B001A5627 /* ViewController.m */; };
+		C1E4584C19DE0C5B001A5627 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1E4584A19DE0C5B001A5627 /* Main.storyboard */; };
+		C1E4584E19DE0C5B001A5627 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1E4584D19DE0C5B001A5627 /* Images.xcassets */; };
+		C1E4585119DE0C5B001A5627 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1E4584F19DE0C5B001A5627 /* LaunchScreen.xib */; };
+		C1E4585D19DE0C5B001A5627 /* vBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E4585C19DE0C5B001A5627 /* vBoxTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C1E4585719DE0C5B001A5627 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1E4583519DE0C5B001A5627 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C1E4583C19DE0C5B001A5627;
+			remoteInfo = vBox;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C1E4583D19DE0C5B001A5627 /* vBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1E4584119DE0C5B001A5627 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1E4584219DE0C5B001A5627 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C1E4584419DE0C5B001A5627 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C1E4584519DE0C5B001A5627 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C1E4584719DE0C5B001A5627 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		C1E4584819DE0C5B001A5627 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C1E4584B19DE0C5B001A5627 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C1E4584D19DE0C5B001A5627 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C1E4585019DE0C5B001A5627 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		C1E4585619DE0C5B001A5627 /* vBoxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vBoxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1E4585B19DE0C5B001A5627 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1E4585C19DE0C5B001A5627 /* vBoxTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = vBoxTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C1E4583A19DE0C5B001A5627 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1E4585319DE0C5B001A5627 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C1E4583419DE0C5B001A5627 = {
+			isa = PBXGroup;
+			children = (
+				C1E4583F19DE0C5B001A5627 /* vBox */,
+				C1E4585919DE0C5B001A5627 /* vBoxTests */,
+				C1E4583E19DE0C5B001A5627 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C1E4583E19DE0C5B001A5627 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C1E4583D19DE0C5B001A5627 /* vBox.app */,
+				C1E4585619DE0C5B001A5627 /* vBoxTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C1E4583F19DE0C5B001A5627 /* vBox */ = {
+			isa = PBXGroup;
+			children = (
+				C1E4584419DE0C5B001A5627 /* AppDelegate.h */,
+				C1E4584519DE0C5B001A5627 /* AppDelegate.m */,
+				C1E4584719DE0C5B001A5627 /* ViewController.h */,
+				C1E4584819DE0C5B001A5627 /* ViewController.m */,
+				C1E4584A19DE0C5B001A5627 /* Main.storyboard */,
+				C1E4584D19DE0C5B001A5627 /* Images.xcassets */,
+				C1E4584F19DE0C5B001A5627 /* LaunchScreen.xib */,
+				C1E4584019DE0C5B001A5627 /* Supporting Files */,
+			);
+			path = vBox;
+			sourceTree = "<group>";
+		};
+		C1E4584019DE0C5B001A5627 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C1E4584119DE0C5B001A5627 /* Info.plist */,
+				C1E4584219DE0C5B001A5627 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C1E4585919DE0C5B001A5627 /* vBoxTests */ = {
+			isa = PBXGroup;
+			children = (
+				C1E4585C19DE0C5B001A5627 /* vBoxTests.m */,
+				C1E4585A19DE0C5B001A5627 /* Supporting Files */,
+			);
+			path = vBoxTests;
+			sourceTree = "<group>";
+		};
+		C1E4585A19DE0C5B001A5627 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C1E4585B19DE0C5B001A5627 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C1E4583C19DE0C5B001A5627 /* vBox */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1E4586019DE0C5B001A5627 /* Build configuration list for PBXNativeTarget "vBox" */;
+			buildPhases = (
+				C1E4583919DE0C5B001A5627 /* Sources */,
+				C1E4583A19DE0C5B001A5627 /* Frameworks */,
+				C1E4583B19DE0C5B001A5627 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = vBox;
+			productName = vBox;
+			productReference = C1E4583D19DE0C5B001A5627 /* vBox.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C1E4585519DE0C5B001A5627 /* vBoxTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1E4586319DE0C5B001A5627 /* Build configuration list for PBXNativeTarget "vBoxTests" */;
+			buildPhases = (
+				C1E4585219DE0C5B001A5627 /* Sources */,
+				C1E4585319DE0C5B001A5627 /* Frameworks */,
+				C1E4585419DE0C5B001A5627 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C1E4585819DE0C5B001A5627 /* PBXTargetDependency */,
+			);
+			name = vBoxTests;
+			productName = vBoxTests;
+			productReference = C1E4585619DE0C5B001A5627 /* vBoxTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C1E4583519DE0C5B001A5627 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = rosbelSanroman;
+				TargetAttributes = {
+					C1E4583C19DE0C5B001A5627 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					C1E4585519DE0C5B001A5627 = {
+						CreatedOnToolsVersion = 6.0.1;
+						TestTargetID = C1E4583C19DE0C5B001A5627;
+					};
+				};
+			};
+			buildConfigurationList = C1E4583819DE0C5B001A5627 /* Build configuration list for PBXProject "vBox" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C1E4583419DE0C5B001A5627;
+			productRefGroup = C1E4583E19DE0C5B001A5627 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C1E4583C19DE0C5B001A5627 /* vBox */,
+				C1E4585519DE0C5B001A5627 /* vBoxTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C1E4583B19DE0C5B001A5627 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1E4584C19DE0C5B001A5627 /* Main.storyboard in Resources */,
+				C1E4585119DE0C5B001A5627 /* LaunchScreen.xib in Resources */,
+				C1E4584E19DE0C5B001A5627 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1E4585419DE0C5B001A5627 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C1E4583919DE0C5B001A5627 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1E4584919DE0C5B001A5627 /* ViewController.m in Sources */,
+				C1E4584619DE0C5B001A5627 /* AppDelegate.m in Sources */,
+				C1E4584319DE0C5B001A5627 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1E4585219DE0C5B001A5627 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1E4585D19DE0C5B001A5627 /* vBoxTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C1E4585819DE0C5B001A5627 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C1E4583C19DE0C5B001A5627 /* vBox */;
+			targetProxy = C1E4585719DE0C5B001A5627 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C1E4584A19DE0C5B001A5627 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C1E4584B19DE0C5B001A5627 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C1E4584F19DE0C5B001A5627 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C1E4585019DE0C5B001A5627 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C1E4585E19DE0C5B001A5627 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C1E4585F19DE0C5B001A5627 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C1E4586119DE0C5B001A5627 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = vBox/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C1E4586219DE0C5B001A5627 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = vBox/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		C1E4586419DE0C5B001A5627 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = vBoxTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vBox.app/vBox";
+			};
+			name = Debug;
+		};
+		C1E4586519DE0C5B001A5627 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = vBoxTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vBox.app/vBox";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C1E4583819DE0C5B001A5627 /* Build configuration list for PBXProject "vBox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1E4585E19DE0C5B001A5627 /* Debug */,
+				C1E4585F19DE0C5B001A5627 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1E4586019DE0C5B001A5627 /* Build configuration list for PBXNativeTarget "vBox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1E4586119DE0C5B001A5627 /* Debug */,
+				C1E4586219DE0C5B001A5627 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C1E4586319DE0C5B001A5627 /* Build configuration list for PBXNativeTarget "vBoxTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1E4586419DE0C5B001A5627 /* Debug */,
+				C1E4586519DE0C5B001A5627 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C1E4583519DE0C5B001A5627 /* Project object */;
+}
