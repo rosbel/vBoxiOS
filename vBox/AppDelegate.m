@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <GoogleMaps/GoogleMaps.h>
 
 @interface AppDelegate ()
 
@@ -17,6 +18,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// Override point for customization after application launch.
+	[GMSServices provideAPIKey:@"AIzaSyBdHnG4e7HZkd3RpXGWU6Sl0T2QL79kkyU"];
+	
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	BOOL startWithMap = [defaults boolForKey:@"InitMapView"];
+	if(startWithMap)
+	{
+		UIStoryboard *storyboard = self.window.rootViewController.storyboard;
+		UIViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"GoogleMapsViewController"];
+		self.window.rootViewController = rootViewController;
+		[self.window makeKeyAndVisible];
+	}
+	
 	return YES;
 }
 
@@ -32,6 +45,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
 	// Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+	
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
