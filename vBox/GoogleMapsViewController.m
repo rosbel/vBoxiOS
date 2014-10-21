@@ -170,6 +170,7 @@
 	if([newestLocation distanceFromLocation:prevLocation] > 500)
 	{
 		return; //ignore distances greater than 500
+				// this causes things to stop working after one time 500m+ difference between location updates
 	}
 	
 	[pastLocations addObject:newestLocation];

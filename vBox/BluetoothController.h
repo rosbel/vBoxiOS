@@ -17,6 +17,7 @@
 -(void)didConnectToPeripheral;
 -(void)didDisconnectPeripheral;
 -(void)bluetoothStateChangedTo:(NSString *)state;
+-(void)didStartScanningForPeripheral;
 
 @required
 -(void)didUpdateDiagnosticForKey:(NSString *)key withValue:(float)value;

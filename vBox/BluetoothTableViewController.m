@@ -87,6 +87,10 @@
 	[self.tableView reloadData];
 }
 
+-(void)didStartScanningForPeripheral
+{
+	[spinner startAnimating];
+}
 -(void)didDisconnectPeripheral
 {
 	self.navigationItem.title = @"Disconnected";
@@ -114,7 +118,6 @@
 
 - (IBAction)startButtonPressed:(id)sender
 {
-	[spinner startAnimating];
 	if(!self.bluetoothController)
 	{
 		self.bluetoothController = [[BluetoothController alloc] init];
@@ -135,7 +138,6 @@
 
 - (IBAction)pauseBarButtonPressed:(id)sender
 {
-	[spinner stopAnimating];
 	[self.bluetoothController disconnect];
 	self.startBarButton.enabled = YES;
 	self.pauseBarButton.enabled = NO;

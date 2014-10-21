@@ -66,6 +66,11 @@
 {
 	[self.centralManager scanForPeripheralsWithServices:self.OBDServices options:nil];
 	[self notifyDelegateBluetoothStatusChangedTo:@"Scanning.."];
+	
+	if([self.delegate respondsToSelector:@selector(didStartScanningForPeripheral)])
+	{
+		[self.delegate didStartScanningForPeripheral];
+	}
 }
 
 -(void)reconnectPeripheral:(CBPeripheral *)peripheral
@@ -135,6 +140,7 @@
 		peripheral.delegate = self;
 		[self.centralManager connectPeripheral:peripheral options:nil];
 	}
+	
 	if([self.delegate respondsToSelector:@selector(didFindPeripheral)])
 	{
 		[self.delegate didFindPeripheral];
