@@ -15,24 +15,39 @@
 
 @implementation GoogleMapsViewController{
 	GMSCameraPosition *camera;
-	NSMutableArray *markers;
 	GMSMutablePath *completePath;
+	GMSPolyline* polyline;
 	NSMutableArray *pastLocations;
-	NSMutableArray *polylines;
+	NSMutableArray *markers;
 	bool followMe;
 	float currentZoom;
+	AppDelegate *appDelegate;
+	NSManagedObjectContext *context;
+	Trip *currentTrip;
 }
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
+	appDelegate = [[UIApplication sharedApplication] delegate];
+	context = [appDelegate managedObjectContext];
+	currentTrip = [NSEntityDescription insertNewObjectForEntityForName:@"Trip" inManagedObjectContext:context];
+	[currentTrip setStartTime:[NSDate date]];
+	
+	
 	currentZoom = 15;
 	followMe = YES;
 	
-	markers = [[NSMutableArray alloc] init];
+	markers = [NSMutableArray array];
 	completePath = [GMSMutablePath path];
-	polylines = [[NSMutableArray alloc] init];
-	pastLocations = [[NSMutableArray alloc] init];
+	
+	polyline = [GMSPolyline polylineWithPath:completePath];
+	polyline.strokeColor = [UIColor redColor];
+	polyline.strokeWidth = 5.0;
+	polyline.geodesic = YES;
+	polyline.map = self.MapView;
+	
+	pastLocations = [NSMutableArray array];
 	
 	_locationManager = [[CLLocationManager alloc] init];
 	[_locationManager setDelegate:self];
@@ -68,6 +83,10 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
 	[_locationManager stopUpdatingLocation];
+	[currentTrip setEndTime:[NSDate date]];
+	[[appDelegate drivingHistory] addTripsObject:currentTrip];
+	
+	[appDelegate saveContext];
 }
 
 #pragma mark - Google Maps View Delegate
@@ -102,46 +121,9 @@
 
 -(void)insertPolylineInMap:(GMSMapView *)myMapView fromLocation:(CLLocation *)lastLocation toLocation:(CLLocation *)curLocation
 {
-	GMSMutablePath *path = [GMSMutablePath path];
-	CLLocationSpeed speed = [curLocation speed];
-	int speedMPH = speed * 2.236936284;
-	
-	self.speedLabel.text = [NSString stringWithFormat:@"%d mph",speedMPH > 0 ? speedMPH : 0];
-	
-	if(lastLocation != nil)
-	{
-		[path addCoordinate:lastLocation.coordinate];
-	}else
-	{
-		[path addCoordinate:lastLocation.coordinate];
-	}
-	[path addCoordinate:curLocation.coordinate];
-	
 	[completePath addCoordinate:curLocation.coordinate];
-	
-	GMSPolyline* polyline = [GMSPolyline polylineWithPath:path];
-	polyline.strokeWidth = 5.0;
-	polyline.geodesic = YES;
-	
-	if(speedMPH >= 85)
-	{
-		polyline.strokeColor = [UIColor blueColor];
-		if(speedMPH < 86 && (lastLocation.speed <  curLocation.speed)) //only set marker at 85-86 and speeding up
-			[self insertMarkerInMap:myMapView withLocation:curLocation andSnippet:@"85! Slow Down!"];
-	}
-	else if(speedMPH >= 60 && speedMPH < 85)
-	{
-		polyline.strokeColor = [UIColor greenColor];
-	}else if(speedMPH >= 30 && speedMPH < 60)
-	{
-		polyline.strokeColor = [UIColor yellowColor];
-	}else
-	{
-		polyline.strokeColor = [UIColor redColor];
-	}
-	[polylines addObject:polyline];
-	
-	polyline.map = myMapView;
+
+	[polyline setPath:completePath];
 }
 
 #pragma mark - CLLocation Delegate
@@ -150,7 +132,6 @@
 {
 	CLLocation *newestLocation = [locations lastObject];
 	CLLocation *prevLocation;
-	
 	
 	unsigned long objCount = [locations count];
 	unsigned long prevCount = [pastLocations count];
@@ -166,6 +147,12 @@
 		prevLocation = newestLocation;
 	}
 	
+	//Update speed Label
+	int speedMPH = [newestLocation speed] * 2.236936284;
+	
+	self.speedLabel.text = [NSString stringWithFormat:@"%d mph",speedMPH > 0 ? speedMPH : 0];
+	
+
 	//If distance between two points is greater than 200 m, then don't do anything
 	if([newestLocation distanceFromLocation:prevLocation] > 500)
 	{
@@ -173,8 +160,9 @@
 				// this causes things to stop working after one time 500m+ difference between location updates
 	}
 	
-	[pastLocations addObject:newestLocation];
-
+	[self logLocation:newestLocation persistent:YES];
+//	[pastLocations addObject:newestLocation];
+	
 	if(newestLocation.speed > 60)
 	{
 		currentZoom = 10.0;
@@ -190,6 +178,7 @@
 		[_MapView animateWithCameraUpdate:[GMSCameraUpdate setTarget:newestLocation.coordinate zoom:currentZoom]];
 	}
 }
+
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
@@ -222,6 +211,30 @@
 	{
 		[v1 addConstraint:[NSLayoutConstraint constraintWithItem:v1 attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:v2 attribute:NSLayoutAttributeTop multiplier:1.0 constant:0]];
 	}
+}
+
+#pragma mark - Core Data
+
+-(void)logLocation:(CLLocation *)location persistent:(Boolean)persist
+{
+	double lat = location.coordinate.latitude;
+	double lng = location.coordinate.longitude;
+	double speed = location.speed;
+	NSDate *time = location.timestamp;
+	
+	if(persist)
+	{
+		GPSLocation *newLocation = [NSEntityDescription insertNewObjectForEntityForName:@"GPSLocation" inManagedObjectContext:context];
+		[newLocation setLatitude:[NSNumber numberWithDouble:lat]];
+		[newLocation setLongitude:[NSNumber numberWithDouble:lng]];
+		[newLocation setSpeed:[NSNumber numberWithDouble:speed]];
+		[newLocation setTimestamp:time];
+		[newLocation setTripInfo:currentTrip];
+		
+		[appDelegate saveContext];
+	}
+	
+	[pastLocations addObject:location];
 }
 
 @end

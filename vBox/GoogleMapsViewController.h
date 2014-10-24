@@ -10,6 +10,10 @@
 #import <CoreLocation/CoreLocation.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import "UICountingLabel.h"
+#import "AppDelegate.h"
+#import "GPSLocation.h"
+#import "DrivingHistory.h"
+#import "Trip.h"
 
 @interface GoogleMapsViewController : UIViewController <CLLocationManagerDelegate, GMSMapViewDelegate>
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14A388a" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="DrivingHistory" representedClassName="DrivingHistory" syncable="YES">
+        <relationship name="trips" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Trip" inverseName="drivingHistory" inverseEntity="Trip" syncable="YES"/>
+    </entity>
+    <entity name="GPSLocation" representedClassName="GPSLocation" syncable="YES">
+        <attribute name="latitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="speed" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="timestamp" attributeType="Date" indexed="YES" syncable="YES"/>
+        <relationship name="tripInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="gpsLocations" inverseEntity="Trip" syncable="YES"/>
+    </entity>
+    <entity name="Trip" representedClassName="Trip" syncable="YES">
+        <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="startTime" attributeType="Date" indexed="YES" syncable="YES"/>
+        <relationship name="drivingHistory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DrivingHistory" inverseName="trips" inverseEntity="DrivingHistory" syncable="YES"/>
+        <relationship name="gpsLocations" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="GPSLocation" inverseName="tripInfo" inverseEntity="GPSLocation" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="DrivingHistory" positionX="-155" positionY="-441" width="128" height="58"/>
+        <element name="GPSLocation" positionX="-558" positionY="-496" width="126" height="118"/>
+        <element name="Trip" positionX="-342" positionY="-466" width="128" height="103"/>
+    </elements>
+</model>
