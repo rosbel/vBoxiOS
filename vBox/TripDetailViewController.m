@@ -15,15 +15,14 @@
 @end
 
 @implementation TripDetailViewController
-{
-	
-}
 
 @synthesize  camera;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+	self.speedColors = @[[UIColor redColor],[UIColor orangeColor],[UIColor yellowColor],[UIColor greenColor]];
+
 	[self setUpGoogleMaps];
 }
 
@@ -37,14 +36,29 @@
 {
 	GMSMutablePath *path = [GMSMutablePath path];
 	
+	NSArray *colorDivisions = [self calculateSpeedBoundaries];
+	
+	NSMutableArray *spanStyles = [NSMutableArray array];
+	
 	for(GPSLocation *gpsLoc in self.trip.gpsLocations)
 	{
 		[path addLatitude:[gpsLoc.latitude doubleValue] longitude:[gpsLoc.longitude doubleValue]];
+		
+		for(NSNumber *bound in colorDivisions)
+		{
+			UIColor *color = nil;
+			if(gpsLoc.speed.doubleValue <= bound.doubleValue)
+			{
+				color = [self.speedColors objectAtIndex:[colorDivisions indexOfObject:bound]];
+				[spanStyles addObject:[GMSStyleSpan spanWithColor:color]];
+				break;
+			}
+		}
 	}
 	
 	GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
 	polyline.strokeWidth = 5;
-	polyline.strokeColor = [UIColor greenColor];
+	polyline.spans = spanStyles;
 	polyline.geodesic = YES;
 	polyline.map = self.mapView;
 	
@@ -57,49 +71,39 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
+ // Find the points to divide the line by color
+ var color_division = [];
+ for (i = 0; i < colors.length - 1; i++) {
+ color_division[i] = min + (i + 1) * (max - min) / colors.length;
+ }
+ color_division[color_division.length] = max;
 */
-
 
 #pragma mark - Helper Methods
 
--(UIColor *)colorBasedOnMPHSpeed:(int)speed
+
+-(NSArray *)calculateSpeedBoundaries
 {
-	if(speed >= 85)
+	double max = self.trip.maxSpeed.doubleValue;
+	NSMutableArray *colorDivision = [NSMutableArray array];
+	for(int i = 0; i < self.speedColors.count-1; i++)
 	{
-		return [UIColor blueColor];
+		double bound = (i+1) * max / self.speedColors.count;
+		[colorDivision addObject:[NSNumber numberWithDouble:bound]];
 	}
-	else if(speed >= 60 && speed < 85)
-	{
-		return [UIColor greenColor];
-	}
-	else if(speed >= 40 && speed < 60)
-	{
-		return [UIColor colorWithRed:0 green:0.5 blue:0 alpha:1];
-	}
-	else if(speed >= 30 && speed < 40)
-	{
-		return [UIColor yellowColor];
-	}
-	else if(speed >= 20 && speed < 30)
-	{
-		return [UIColor orangeColor];
-	}
-	else if(speed >= 1 && speed < 20)
-	{
-		return [UIColor redColor];
-	}
-	else
-	{
-		return [UIColor blackColor];
-	}
+	[colorDivision addObject:self.trip.maxSpeed];
+	return colorDivision;
 }
+
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - PNChart Delegates
 /**
