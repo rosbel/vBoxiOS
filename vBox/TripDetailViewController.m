@@ -11,18 +11,23 @@
 @interface TripDetailViewController ()
 
 @property (nonatomic,strong) GMSCameraPosition *camera;
+@property (strong, nonatomic) NSArray *speedDivisions;
 
 @end
 
-@implementation TripDetailViewController
+@implementation TripDetailViewController{
+	GMSCoordinateBounds *bounds;
+}
 
 @synthesize  camera;
+@synthesize speedDivisions;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 	self.speedColors = @[[UIColor redColor],[UIColor orangeColor],[UIColor yellowColor],[UIColor greenColor]];
 
+	self.speedDivisions = [self calculateSpeedBoundaries];
 	[self setUpGoogleMaps];
 }
 
@@ -36,21 +41,32 @@
 {
 	GMSMutablePath *path = [GMSMutablePath path];
 	
-	NSArray *colorDivisions = [self calculateSpeedBoundaries];
-	
 	NSMutableArray *spanStyles = [NSMutableArray array];
 	
+	double segments = 1;
+	UIColor *color = nil;
+	UIColor *newColor = nil;
 	for(GPSLocation *gpsLoc in self.trip.gpsLocations)
 	{
 		[path addLatitude:[gpsLoc.latitude doubleValue] longitude:[gpsLoc.longitude doubleValue]];
 		
-		for(NSNumber *bound in colorDivisions)
+		for(NSNumber *bound in self.speedDivisions)
 		{
-			UIColor *color = nil;
 			if(gpsLoc.speed.doubleValue <= bound.doubleValue)
 			{
-				color = [self.speedColors objectAtIndex:[colorDivisions indexOfObject:bound]];
-				[spanStyles addObject:[GMSStyleSpan spanWithColor:color]];
+				newColor = [self.speedColors objectAtIndex:[self.speedDivisions indexOfObject:bound]];
+				if([newColor isEqual:color])
+				{
+					segments++;
+				}else
+				{
+//					GMSStrokeStyle *style = [GMSStrokeStyle gradientFromColor:color toColor:newColor];
+//					[spanStyles addObject:[GMSStyleSpan spanWithStyle:style segments:segments]];
+					[spanStyles addObject:[GMSStyleSpan spanWithColor:color segments:segments]];
+					segments = 1;
+				}
+				color = newColor;
+				
 				break;
 			}
 		}
@@ -62,12 +78,23 @@
 	polyline.geodesic = YES;
 	polyline.map = self.mapView;
 	
-	GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithPath:path];
+	bounds = [[GMSCoordinateBounds alloc] initWithPath:path];
 	camera = [self.mapView cameraForBounds:bounds insets:UIEdgeInsetsMake(30, 150, 30, 150)];
 	
 	[self.mapView setCamera:camera];
 	self.mapView.settings.compassButton = YES;
+	self.mapView.settings.myLocationButton = YES;
+	self.mapView.myLocationEnabled = NO;
 	[self.mapView setDelegate:self];
+}
+
+#pragma mark - Google MapView Delegate Methods
+
+-(BOOL)didTapMyLocationButtonForMapView:(GMSMapView *)mapView
+{
+	GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds];
+	[_mapView animateWithCameraUpdate:update];
+	return YES;
 }
 
 /*

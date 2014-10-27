@@ -20,7 +20,7 @@
 @interface TripDetailViewController : UIViewController <GMSMapViewDelegate, PNChartDelegate>
 
 @property (strong, nonatomic) IBOutlet GMSMapView *mapView;
-@property (nonatomic,strong) NSArray *speedColors;
+@property (strong, nonatomic) NSArray *speedColors;
 @property (strong, nonatomic) Trip *trip;
 
 @end
