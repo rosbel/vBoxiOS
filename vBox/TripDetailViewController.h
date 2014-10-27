@@ -21,6 +21,5 @@
 
 @property (strong, nonatomic) IBOutlet GMSMapView *mapView;
 @property (strong, nonatomic) Trip *trip;
-@property (strong, nonatomic) IBOutlet PNLineChart *speedChart;
 
 @end

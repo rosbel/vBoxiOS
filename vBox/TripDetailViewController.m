@@ -10,59 +10,36 @@
 
 @interface TripDetailViewController ()
 
+@property (nonatomic,strong) GMSCameraPosition *camera;
+
 @end
 
 @implementation TripDetailViewController
 {
-	GMSCameraPosition *camera;
+	
 }
+
+@synthesize  camera;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-	for(GPSLocation *gpsLoc in self.trip.gpsLocations)
-	{
-		NSLog(@"Speed = %@",gpsLoc.speed);
-	}
-	
-	GPSLocation *middle = [self.trip.gpsLocations objectAtIndex:[self.trip.gpsLocations count]/2];
-	camera = [GMSCameraPosition cameraWithLatitude:[middle.latitude doubleValue]
-										 longitude:[middle.longitude doubleValue]
-											  zoom:13];
-	
-	[self.mapView setCamera:camera];
-	self.mapView.settings.compassButton = YES;
-	[self.mapView setDelegate:self];
-	
+	[self setUpGoogleMaps];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+	NSLog(@"Memory Warning!");
+}
+
+- (void) setUpGoogleMaps
+{
 	GMSMutablePath *path = [GMSMutablePath path];
 	
-	NSMutableArray *speeds = [NSMutableArray array];
-	NSMutableArray *time = [NSMutableArray array];
-	NSDate *startTime = self.trip.startTime;
-	
-	
-	NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-	[formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-	[formatter setMaximumFractionDigits:3];
-	[formatter setRoundingMode: NSNumberFormatterRoundUp];
-	
-	int totalLabels = 5;
-	int x = (int)[self.trip.gpsLocations count];
-	int segments = totalLabels / totalLabels;
-	
-	int i = 0;
 	for(GPSLocation *gpsLoc in self.trip.gpsLocations)
 	{
 		[path addLatitude:[gpsLoc.latitude doubleValue] longitude:[gpsLoc.longitude doubleValue]];
-		[speeds addObject:gpsLoc.speed];
-		
-		
-		NSNumber *secondsFromStart = [NSNumber numberWithDouble:[gpsLoc.timestamp timeIntervalSinceDate:startTime]];
-		if(i % segments == 0)
-		{
-			[time addObject:[formatter stringFromNumber:secondsFromStart]];
-		}
-		i++;
 	}
 	
 	GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
@@ -71,43 +48,12 @@
 	polyline.geodesic = YES;
 	polyline.map = self.mapView;
 	
-	[self setUpLineChartwithData:speeds andTimeArray:time];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(void)setUpLineChartwithData:(NSArray *)array andTimeArray:(NSArray *)time
-{
-	PNLineChart * lineChart = self.speedChart;
-	lineChart.yLabelFormat = @"%1.1f";
-	lineChart.backgroundColor = [UIColor clearColor];
-	[lineChart setXLabels:time];
-	//        lineChart.showCoordinateAxis = YES;
+	GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithPath:path];
+	camera = [self.mapView cameraForBounds:bounds insets:UIEdgeInsetsMake(30, 150, 30, 150)];
 	
-	// Line Chart Nr.1
-
-	PNLineChartData *data01 = [PNLineChartData new];
-	data01.color = PNFreshGreen;
-	data01.itemCount = array.count;
-	data01.inflexionPointStyle = PNLineChartPointStyleCycle;
-	data01.getData = ^(NSUInteger index) {
-		CGFloat yValue = [array[index] floatValue];
-		return [PNLineChartDataItem dataItemWithY:yValue];
-	};
-	
-	lineChart.chartData = @[data01];
-	[lineChart strokeChart];
-	
-	lineChart.delegate = self;
-	
-//	[viewController.view addSubview:lineChartLabel];
-//	[viewController.view addSubview:lineChart];
-	
-//	viewController.title = @"Line Chart";
-
+	[self.mapView setCamera:camera];
+	self.mapView.settings.compassButton = YES;
+	[self.mapView setDelegate:self];
 }
 
 /*

@@ -2,7 +2,7 @@
 //  Trip.h
 //  vBox
 //
-//  Created by Rosbel Sanroman on 10/23/14.
+//  Created by Rosbel Sanroman on 10/27/14.
 //  Copyright (c) 2014 rosbelSanroman. All rights reserved.
 //
 
@@ -15,6 +15,8 @@
 
 @property (nonatomic, retain) NSDate * endTime;
 @property (nonatomic, retain) NSDate * startTime;
+@property (nonatomic, retain) NSNumber * avgSpeed;
+@property (nonatomic, retain) NSNumber * maxSpeed;
 @property (nonatomic, retain) DrivingHistory *drivingHistory;
 @property (nonatomic, retain) NSOrderedSet *gpsLocations;
 @end

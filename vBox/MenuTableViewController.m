@@ -14,6 +14,13 @@
 
 @implementation MenuTableViewController
 
+
+-(void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Uncomment the following line to preserve selection between presentations.

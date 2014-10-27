@@ -21,6 +21,7 @@
 
 -(void)saveContext;
 -(NSURL *)applicationDocumentsDirectory;
+- (void)forgetDrivingHistory;
 
 
 @end

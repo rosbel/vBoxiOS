@@ -16,22 +16,27 @@
 @implementation DrivingHistoryViewController
 {
 	NSDateFormatter *formatter;
-	DrivingHistory *drivingHistory;
 	AppDelegate *appDelegate;
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 }
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
     // Do any additional setup after loading the view.
 	appDelegate = [[UIApplication sharedApplication] delegate];
-	drivingHistory = [appDelegate drivingHistory];
 	
 	formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateStyle:NSDateFormatterShortStyle];
 	[formatter setTimeStyle:NSDateFormatterMediumStyle];
 	[formatter setTimeZone:[NSTimeZone localTimeZone]];
 	
-	self.trips = drivingHistory.trips;
+	self.trips = [[appDelegate drivingHistory] trips];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,9 +53,8 @@
     // Pass the selected object to the new view controller.
 	if([segue.identifier  isEqualToString:@"tripDetailSegue"])
 	{
-		Trip *trip = (Trip *)[self.trips objectAtIndex:[self.tableView indexPathForSelectedRow].row];
 		TripDetailViewController* destination = (TripDetailViewController *)segue.destinationViewController;
-		destination.trip = trip;
+		destination.trip = (Trip *)[self.trips objectAtIndex:[self.tableView indexPathForSelectedRow].row];
 	}
 }
 
@@ -74,6 +78,7 @@
 	[formatter setDateStyle:NSDateFormatterNoStyle];
 	NSString *endTimeText = [formatter stringFromDate:trip.endTime];
 	cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@",startTimeText,endTimeText];
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"avg: %.2f mph - max: %.2f mph",trip.avgSpeed.doubleValue,trip.maxSpeed.doubleValue];
 	return cell;
 }
 

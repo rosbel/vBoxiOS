@@ -24,6 +24,8 @@
 	AppDelegate *appDelegate;
 	NSManagedObjectContext *context;
 	Trip *currentTrip;
+	double sumSpeed;
+	double maxSpeed;
 }
 
 - (void)viewDidLoad {
@@ -31,42 +33,24 @@
 	
 	appDelegate = [[UIApplication sharedApplication] delegate];
 	context = [appDelegate managedObjectContext];
+	
 	currentTrip = [NSEntityDescription insertNewObjectForEntityForName:@"Trip" inManagedObjectContext:context];
 	[currentTrip setStartTime:[NSDate date]];
 	
-	
+	sumSpeed = 0;
+	maxSpeed = 0;
 	currentZoom = 15;
 	followMe = YES;
 	
 	markers = [NSMutableArray array];
 	completePath = [GMSMutablePath path];
-	
-	polyline = [GMSPolyline polylineWithPath:completePath];
-	polyline.strokeColor = [UIColor redColor];
-	polyline.strokeWidth = 5.0;
-	polyline.geodesic = YES;
-	polyline.map = self.MapView;
-	
 	pastLocations = [NSMutableArray array];
 	
-	_locationManager = [[CLLocationManager alloc] init];
-	[_locationManager setDelegate:self];
-	_locationManager.distanceFilter = 20;
-	_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+	[self setUpLocationManager];
 	
-	[_locationManager requestWhenInUseAuthorization];
-	[_locationManager requestAlwaysAuthorization];
-	[_locationManager startUpdatingLocation];
 	
-	camera = [GMSCameraPosition cameraWithLatitude:39.490179
-										 longitude:-98.081992
-											  zoom:currentZoom];
+	[self setUpGoogleMaps];
 	
-	[_MapView setCamera:camera];
-	_MapView.myLocationEnabled = YES;
-	_MapView.settings.myLocationButton = YES;
-	_MapView.settings.compassButton = YES;
-	[_MapView setDelegate:self];
 	
 	UIBlurEffect* blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
 	UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
@@ -80,12 +64,51 @@
 	[self.view insertSubview:blurView belowSubview:self.stopRecordingButton];
 }
 
+-(void)setUpLocationManager
+{
+	
+	polyline = [GMSPolyline polylineWithPath:completePath];
+	polyline.strokeColor = [UIColor redColor];
+	polyline.strokeWidth = 5.0;
+	polyline.geodesic = YES;
+	polyline.map = self.MapView;
+	
+	_locationManager = [[CLLocationManager alloc] init];
+	[_locationManager setDelegate:self];
+	_locationManager.distanceFilter = 20;
+	_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+	
+	[_locationManager requestWhenInUseAuthorization];
+	[_locationManager requestAlwaysAuthorization];
+	[_locationManager startUpdatingLocation];
+}
+
+-(void)setUpGoogleMaps
+{
+	
+	
+	camera = [GMSCameraPosition cameraWithLatitude:39.490179
+										 longitude:-98.081992
+											  zoom:currentZoom];
+	
+	[_MapView setCamera:camera];
+	_MapView.myLocationEnabled = YES;
+	_MapView.settings.myLocationButton = YES;
+	_MapView.settings.compassButton = YES;
+	[_MapView setDelegate:self];
+}
+
 -(void)viewWillDisappear:(BOOL)animated
 {
+	[_MapView clear];
+	_MapView = nil;
 	[_locationManager stopUpdatingLocation];
 	[currentTrip setEndTime:[NSDate date]];
+	unsigned long count = currentTrip.gpsLocations.count;
+	double avgSpeed = count > 0 ? sumSpeed / count : 0;
+	[currentTrip setAvgSpeed:[NSNumber numberWithInt:avgSpeed]];
+	[currentTrip setMaxSpeed:[NSNumber numberWithInt:maxSpeed]];
 	[[appDelegate drivingHistory] addTripsObject:currentTrip];
-	
 	[appDelegate saveContext];
 }
 
@@ -148,11 +171,17 @@
 	}
 	
 	//Update speed Label
-	int speedMPH = [newestLocation speed] * 2.236936284;
+	double speedMPH = ([newestLocation speed] * 2.236936284);
+	speedMPH = speedMPH >= 0 ? speedMPH : 0;
 	
-	self.speedLabel.text = [NSString stringWithFormat:@"%d mph",speedMPH > 0 ? speedMPH : 0];
+	if(speedMPH > maxSpeed)
+	{
+		maxSpeed = speedMPH;
+	}
+	sumSpeed += speedMPH;
 	
-
+	self.speedLabel.text = [NSString stringWithFormat:@"%.2f mph",speedMPH > 0 ? speedMPH : 0];
+	
 	//If distance between two points is greater than 200 m, then don't do anything
 	if([newestLocation distanceFromLocation:prevLocation] > 500)
 	{
@@ -161,14 +190,13 @@
 	}
 	
 	[self logLocation:newestLocation persistent:YES];
-//	[pastLocations addObject:newestLocation];
 	
-	if(newestLocation.speed > 60)
+	if(speedMPH > 60)
 	{
 		currentZoom = 10.0;
-	}else if (newestLocation.speed < 60)
+	}else if (speedMPH < 60)
 	{
-		currentZoom = 15;
+		currentZoom = 13;
 	}
 	
 	[self insertPolylineInMap:self.MapView fromLocation:prevLocation toLocation:newestLocation];
@@ -219,7 +247,7 @@
 {
 	double lat = location.coordinate.latitude;
 	double lng = location.coordinate.longitude;
-	double speed = location.speed;
+	double speedMPH = location.speed * 2.236936284;
 	NSDate *time = location.timestamp;
 	
 	if(persist)
@@ -227,7 +255,7 @@
 		GPSLocation *newLocation = [NSEntityDescription insertNewObjectForEntityForName:@"GPSLocation" inManagedObjectContext:context];
 		[newLocation setLatitude:[NSNumber numberWithDouble:lat]];
 		[newLocation setLongitude:[NSNumber numberWithDouble:lng]];
-		[newLocation setSpeed:[NSNumber numberWithDouble:speed]];
+		[newLocation setSpeed:[NSNumber numberWithDouble:speedMPH]];
 		[newLocation setTimestamp:time];
 		[newLocation setTripInfo:currentTrip];
 		

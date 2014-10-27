@@ -13,7 +13,7 @@
 
 @interface DrivingHistoryViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 
-@property (strong,nonatomic) NSOrderedSet *trips;
+@property (strong, nonatomic) NSOrderedSet *trips;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

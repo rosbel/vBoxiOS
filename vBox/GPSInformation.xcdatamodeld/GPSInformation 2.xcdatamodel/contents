@@ -11,14 +11,16 @@
         <relationship name="tripInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="gpsLocations" inverseEntity="Trip" syncable="YES"/>
     </entity>
     <entity name="Trip" representedClassName="Trip" syncable="YES">
+        <attribute name="avgSpeed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="maxSpeed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="startTime" attributeType="Date" indexed="YES" syncable="YES"/>
         <relationship name="drivingHistory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DrivingHistory" inverseName="trips" inverseEntity="DrivingHistory" syncable="YES"/>
         <relationship name="gpsLocations" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="GPSLocation" inverseName="tripInfo" inverseEntity="GPSLocation" syncable="YES"/>
     </entity>
     <elements>
-        <element name="DrivingHistory" positionX="-155" positionY="-441" width="128" height="58"/>
-        <element name="GPSLocation" positionX="-558" positionY="-496" width="126" height="118"/>
-        <element name="Trip" positionX="-342" positionY="-466" width="128" height="105"/>
+        <element name="DrivingHistory" positionX="-155" positionY="-409" width="128" height="58"/>
+        <element name="GPSLocation" positionX="-558" positionY="-459" width="126" height="118"/>
+        <element name="Trip" positionX="-342" positionY="-466" width="128" height="133"/>
     </elements>
 </model>
