@@ -75,8 +75,8 @@
 	
 	_locationManager = [[CLLocationManager alloc] init];
 	[_locationManager setDelegate:self];
-	_locationManager.distanceFilter = 20;
-	_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+	_locationManager.distanceFilter = 10.0f;
+	_locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
 	
 	[_locationManager requestWhenInUseAuthorization];
 	[_locationManager requestAlwaysAuthorization];
@@ -169,6 +169,11 @@
 	{
 		prevLocation = newestLocation;
 	}
+	NSLog(@"Accuracy = %f",newestLocation.horizontalAccuracy);
+	if(newestLocation.horizontalAccuracy > 30)
+	{
+		return;
+	}
 	
 	//Update speed Label
 	double speedMPH = ([newestLocation speed] * 2.236936284);
@@ -193,10 +198,10 @@
 	
 	if(speedMPH > 60)
 	{
-		currentZoom = 10.0;
+		currentZoom = 13.0;
 	}else if (speedMPH < 60)
 	{
-		currentZoom = 13;
+		currentZoom = 15;
 	}
 	
 	[self insertPolylineInMap:self.MapView fromLocation:prevLocation toLocation:newestLocation];

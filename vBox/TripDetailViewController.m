@@ -62,7 +62,7 @@
 				{
 //					GMSStrokeStyle *style = [GMSStrokeStyle gradientFromColor:color toColor:newColor];
 //					[spanStyles addObject:[GMSStyleSpan spanWithStyle:style segments:segments]];
-					[spanStyles addObject:[GMSStyleSpan spanWithColor:color segments:segments]];
+					[spanStyles addObject:[GMSStyleSpan spanWithColor:color?color:newColor segments:segments]];
 					segments = 1;
 				}
 				color = newColor;
@@ -83,19 +83,10 @@
 	
 	[self.mapView setCamera:camera];
 	self.mapView.settings.compassButton = YES;
-	self.mapView.settings.myLocationButton = YES;
 	self.mapView.myLocationEnabled = NO;
 	[self.mapView setDelegate:self];
 }
 
-#pragma mark - Google MapView Delegate Methods
-
--(BOOL)didTapMyLocationButtonForMapView:(GMSMapView *)mapView
-{
-	GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds];
-	[_mapView animateWithCameraUpdate:update];
-	return YES;
-}
 
 /*
  // Find the points to divide the line by color
