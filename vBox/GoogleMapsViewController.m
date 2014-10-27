@@ -169,11 +169,6 @@
 	{
 		prevLocation = newestLocation;
 	}
-	NSLog(@"Accuracy = %f",newestLocation.horizontalAccuracy);
-	if(newestLocation.horizontalAccuracy > 30)
-	{
-		return;
-	}
 	
 	//Update speed Label
 	double speedMPH = ([newestLocation speed] * 2.236936284);
@@ -232,18 +227,6 @@
 -(BOOL)prefersStatusBarHidden
 {
 	return NO;
-}
-
-#pragma mark - Helper functions
--(void) applyEqualSizeConstraintsFromView:(UIView *)v1 toView:(UIView *)v2 includingTop:(BOOL)includeTop
-{
-	[v1 addConstraint:[NSLayoutConstraint constraintWithItem:v1 attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:v2 attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0]];
-	[v1 addConstraint:[NSLayoutConstraint constraintWithItem:v1 attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:v2 attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
-	[v1 addConstraint:[NSLayoutConstraint constraintWithItem:v1 attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:v2 attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
-	if(includeTop)
-	{
-		[v1 addConstraint:[NSLayoutConstraint constraintWithItem:v1 attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:v2 attribute:NSLayoutAttributeTop multiplier:1.0 constant:0]];
-	}
 }
 
 #pragma mark - Core Data
