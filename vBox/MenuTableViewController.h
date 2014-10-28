@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "BluetoothController.h"
+#include "GoogleMapsViewController.h"
 
-@interface MenuTableViewController : UITableViewController
+@interface MenuTableViewController : UITableViewController <GoogleMapsViewControllerDelegate>
 
 @property (strong,nonatomic)UIViewController *googleViewController;
 @property (strong,nonatomic)BluetoothController *bluetoothController;

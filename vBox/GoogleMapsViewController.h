@@ -15,6 +15,12 @@
 #import "DrivingHistory.h"
 #import "Trip.h"
 
+@protocol GoogleMapsViewControllerDelegate <NSObject>
+
+-(void)didTapStopRecordingButton;
+
+@end
+
 @interface GoogleMapsViewController : UIViewController <CLLocationManagerDelegate, GMSMapViewDelegate>
 
 @property (strong,nonatomic) CLLocationManager *locationManager;
@@ -22,6 +28,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *stopRecordingButton;
 @property (strong, nonatomic) IBOutlet UICountingLabel *countingLabel;
 @property (strong, nonatomic) IBOutlet UILabel *speedLabel;
+@property (weak  , nonatomic) id delegate;
 
 @end
 

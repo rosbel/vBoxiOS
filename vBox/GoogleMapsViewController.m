@@ -28,6 +28,12 @@
 	double maxSpeed;
 }
 
+- (IBAction)stopRecordingButtonTapped:(id)sender {
+	
+	[self.navigationController popViewControllerAnimated:YES];
+	[self.delegate didTapStopRecordingButton];
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
@@ -66,7 +72,6 @@
 
 -(void)setUpLocationManager
 {
-	
 	polyline = [GMSPolyline polylineWithPath:completePath];
 	polyline.strokeColor = [UIColor redColor];
 	polyline.strokeWidth = 5.0;
@@ -85,8 +90,6 @@
 
 -(void)setUpGoogleMaps
 {
-	
-	
 	camera = [GMSCameraPosition cameraWithLatitude:39.490179
 										 longitude:-98.081992
 											  zoom:currentZoom];
