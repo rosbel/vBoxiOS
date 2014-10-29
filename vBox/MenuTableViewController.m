@@ -103,7 +103,7 @@
     // Pass the selected object to the new view controller.
 	if([segue.identifier isEqualToString:@"googleMapsSegue"])
 	{
-		GoogleMapsViewController *googleMaps = segue.destinationViewController;
+		__weak GoogleMapsViewController *googleMaps = segue.destinationViewController;
 		googleMaps.delegate = self;
 	}
 }

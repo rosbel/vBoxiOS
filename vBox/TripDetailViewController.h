@@ -12,12 +12,8 @@
 #import "Trip.h"
 #import "GPSLocation.h"
 #import "DrivingHistory.h"
-#import "PNLineChart.h"
-#import "PNLineChartData.h"
-#import "PNLineChartDataItem.h"
-#import "PNColor.h"
 
-@interface TripDetailViewController : UIViewController <GMSMapViewDelegate, PNChartDelegate>
+@interface TripDetailViewController : UIViewController <GMSMapViewDelegate>
 
 @property (strong, nonatomic) IBOutlet GMSMapView *mapView;
 @property (strong, nonatomic) NSArray *speedColors;

@@ -12,7 +12,4 @@
 
 @interface MenuTableViewController : UITableViewController <GoogleMapsViewControllerDelegate>
 
-@property (strong,nonatomic)UIViewController *googleViewController;
-@property (strong,nonatomic)BluetoothController *bluetoothController;
-
 @end

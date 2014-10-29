@@ -18,7 +18,6 @@
 	GMSMutablePath *completePath;
 	GMSPolyline* polyline;
 	NSMutableArray *pastLocations;
-	NSMutableArray *markers;
 	bool followMe;
 	float currentZoom;
 	AppDelegate *appDelegate;
@@ -48,7 +47,6 @@
 	currentZoom = 15;
 	followMe = YES;
 	
-	markers = [NSMutableArray array];
 	completePath = [GMSMutablePath path];
 	pastLocations = [NSMutableArray array];
 	
@@ -134,16 +132,6 @@
 
 #pragma mark - Helper Methods
 
--(void)insertMarkerInMap:(GMSMapView *)myMapView withLocation:(CLLocation *)location andSnippet:(NSString *)snippet
-{
-	GMSMarker *marker = [[GMSMarker alloc]init];
-	marker.position = location.coordinate;
-	marker.appearAnimation = kGMSMarkerAnimationPop;
-	marker.map = myMapView;
-	marker.snippet = snippet;
-	
-	[markers addObject:marker];
-}
 
 -(void)insertPolylineInMap:(GMSMapView *)myMapView fromLocation:(CLLocation *)lastLocation toLocation:(CLLocation *)curLocation
 {

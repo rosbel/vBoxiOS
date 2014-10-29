@@ -24,10 +24,9 @@
 @interface GoogleMapsViewController : UIViewController <CLLocationManagerDelegate, GMSMapViewDelegate>
 
 @property (strong,nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) IBOutlet GMSMapView *MapView;
-@property (strong, nonatomic) IBOutlet UIButton *stopRecordingButton;
-@property (strong, nonatomic) IBOutlet UICountingLabel *countingLabel;
-@property (strong, nonatomic) IBOutlet UILabel *speedLabel;
+@property (weak  , nonatomic) IBOutlet GMSMapView *MapView;
+@property (weak  , nonatomic) IBOutlet UIButton *stopRecordingButton;
+@property (weak  , nonatomic) IBOutlet UILabel *speedLabel;
 @property (weak  , nonatomic) id delegate;
 
 @end

@@ -12,13 +12,16 @@
 
 @property (nonatomic,strong) GMSCameraPosition *camera;
 @property (strong, nonatomic) NSArray *speedDivisions;
-
+@property (strong, nonatomic) NSOrderedSet *GPSLocationsForTrip;
+@property (strong, nonatomic) GMSMutablePath *pathForTrip;
 @end
 
 @implementation TripDetailViewController{
 	GMSCoordinateBounds *bounds;
 }
 
+@synthesize pathForTrip;
+@synthesize GPSLocationsForTrip;
 @synthesize  camera;
 @synthesize speedDivisions;
 
@@ -26,7 +29,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 	self.speedColors = @[[UIColor redColor],[UIColor orangeColor],[UIColor yellowColor],[UIColor greenColor]];
-
 	self.speedDivisions = [self calculateSpeedBoundaries];
 	[self setUpGoogleMaps];
 }
@@ -39,16 +41,18 @@
 
 - (void) setUpGoogleMaps
 {
-	GMSMutablePath *path = [GMSMutablePath path];
+	GPSLocationsForTrip = self.trip.gpsLocations;
+	
+	pathForTrip = [GMSMutablePath path];
 	
 	NSMutableArray *spanStyles = [NSMutableArray array];
-	
 	double segments = 1;
 	UIColor *color = nil;
 	UIColor *newColor = nil;
-	for(GPSLocation *gpsLoc in self.trip.gpsLocations)
+	
+	for(GPSLocation *gpsLoc in GPSLocationsForTrip)
 	{
-		[path addLatitude:[gpsLoc.latitude doubleValue] longitude:[gpsLoc.longitude doubleValue]];
+		[pathForTrip addLatitude:[gpsLoc.latitude doubleValue] longitude:[gpsLoc.longitude doubleValue]];
 		
 		for(NSNumber *bound in self.speedDivisions)
 		{
@@ -60,8 +64,6 @@
 					segments++;
 				}else
 				{
-//					GMSStrokeStyle *style = [GMSStrokeStyle gradientFromColor:color toColor:newColor];
-//					[spanStyles addObject:[GMSStyleSpan spanWithStyle:style segments:segments]];
 					[spanStyles addObject:[GMSStyleSpan spanWithColor:color?color:newColor segments:segments]];
 					segments = 1;
 				}
@@ -72,13 +74,13 @@
 		}
 	}
 	
-	GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
+	GMSPolyline *polyline = [GMSPolyline polylineWithPath:pathForTrip];
 	polyline.strokeWidth = 5;
 	polyline.spans = spanStyles;
 	polyline.geodesic = YES;
 	polyline.map = self.mapView;
 	
-	bounds = [[GMSCoordinateBounds alloc] initWithPath:path];
+	bounds = [[GMSCoordinateBounds alloc] initWithPath:pathForTrip];
 	camera = [self.mapView cameraForBounds:bounds insets:UIEdgeInsetsMake(30, 150, 30, 150)];
 	
 	[self.mapView setCamera:camera];
@@ -87,18 +89,16 @@
 	[self.mapView setDelegate:self];
 }
 
-
-/*
- // Find the points to divide the line by color
- var color_division = [];
- for (i = 0; i < colors.length - 1; i++) {
- color_division[i] = min + (i + 1) * (max - min) / colors.length;
- }
- color_division[color_division.length] = max;
-*/
-
 #pragma mark - Helper Methods
 
+-(void)insertMarkerInMap:(GMSMapView *)myMapView withGPSLocation:(GPSLocation *)gpsLoc
+{
+	GMSMarker *marker = [[GMSMarker alloc]init];
+	marker.position = CLLocationCoordinate2DMake(gpsLoc.latitude.doubleValue, gpsLoc.longitude.doubleValue);
+	marker.appearAnimation = kGMSMarkerAnimationPop;
+	marker.map = myMapView;
+	marker.snippet = [NSString stringWithFormat:@"Time: %@\nSpeed: %.2f",gpsLoc.timestamp,gpsLoc.speed.doubleValue];
+}
 
 -(NSArray *)calculateSpeedBoundaries
 {
@@ -122,33 +122,34 @@
  // Pass the selected object to the new view controller.
  }
  */
+#pragma mark - Google MapView Delegate Methods
 
-#pragma mark - PNChart Delegates
-/**
- * When user click on the chart line
- *
- */
-- (void)userClickedOnLinePoint:(CGPoint)point lineIndex:(NSInteger)lineIndex
+-(void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
 {
+	//Proceed only if Tap is in path
+	NSLog(@"%f",mapView.camera.zoom);
+	if(!GMSGeometryIsLocationOnPath(coordinate, pathForTrip, NO,1000.0))
+		return;
 	
-}
-
-/**
- * When user click on the chart line key point
- *
- */
-- (void)userClickedOnLineKeyPoint:(CGPoint)point lineIndex:(NSInteger)lineIndex andPointIndex:(NSInteger)pointIndex
-{
+	NSLog(@"SUCCESS");
+	NSLog(@"Count = %lu",(unsigned long)pathForTrip.count);
 	
-}
-
-/**
- * When user click on a chart bar
- *
- */
-- (void)userClickedOnBarCharIndex:(NSInteger)barIndex
-{
+	GPSLocation *closestLocation = nil;
+	CLLocationDistance closestDistance = CLLocationDistanceMax;
 	
+	for(GPSLocation *location in GPSLocationsForTrip)
+	{
+		CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(location.latitude.doubleValue, location.longitude.doubleValue);
+		CLLocationDistance distance = GMSGeometryDistance(coord, coordinate);
+		if(distance < closestDistance)
+		{
+			closestDistance = distance;
+			closestLocation = location;
+		}
+	}
+	if(closestLocation)
+		[self insertMarkerInMap:mapView withGPSLocation:closestLocation];
+	NSLog(@"Closest location = (%@,%@) - speed = %@ (%@) mph",closestLocation.latitude,closestLocation.longitude,closestLocation.speed,closestLocation.timestamp);
 }
 
 @end
