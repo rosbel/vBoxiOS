@@ -10,10 +10,12 @@
 
 @interface TripDetailViewController ()
 
-@property (nonatomic,strong) GMSCameraPosition *camera;
+@property (strong, nonatomic) GMSCameraPosition *camera;
 @property (strong, nonatomic) NSArray *speedDivisions;
 @property (strong, nonatomic) NSOrderedSet *GPSLocationsForTrip;
 @property (strong, nonatomic) GMSMutablePath *pathForTrip;
+@property (strong, nonatomic) GMSMarker *markerForSlider;
+
 @end
 
 @implementation TripDetailViewController{
@@ -22,15 +24,21 @@
 
 @synthesize pathForTrip;
 @synthesize GPSLocationsForTrip;
-@synthesize  camera;
+@synthesize camera;
 @synthesize speedDivisions;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+	
 	self.speedColors = @[[UIColor redColor],[UIColor orangeColor],[UIColor yellowColor],[UIColor greenColor]];
 	self.speedDivisions = [self calculateSpeedBoundaries];
+	
 	[self setUpGoogleMaps];
+	
+	[self.tripSlider setMaximumValue:self.trip.gpsLocations.count-1];
+	[self.tripSlider setValue:self.trip.gpsLocations.count/2 animated:NO];
+	
 }
 
 - (void)didReceiveMemoryWarning {
@@ -90,6 +98,20 @@
 }
 
 #pragma mark - Helper Methods
+-(void)updateMarkerForSliderWithLocation:(GPSLocation *)location
+{
+	if(!self.markerForSlider)
+	{
+		self.markerForSlider = [GMSMarker markerWithPosition:CLLocationCoordinate2DMake(location.latitude.doubleValue, location.longitude.doubleValue)];
+		[self.markerForSlider setMap:self.mapView];
+	}else
+	{
+		[CATransaction begin];
+		[CATransaction setAnimationDuration:0.01];
+		[self.markerForSlider setPosition:CLLocationCoordinate2DMake(location.latitude.doubleValue, location.longitude.doubleValue)];
+		[CATransaction commit];
+	}
+}
 
 -(void)insertMarkerInMap:(GMSMapView *)myMapView withGPSLocation:(GPSLocation *)gpsLoc
 {
@@ -122,6 +144,16 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+#pragma mark - Slider Event
+- (IBAction)sliderValueChanged:(UISlider *)sender
+{
+	unsigned long value = lround(sender.value);
+	GPSLocation *loc = [self.trip.gpsLocations objectAtIndex:value];
+	self.speedLabel.text = [NSString stringWithFormat:@"Speed = %.2f",loc.speed.doubleValue];
+	[self updateMarkerForSliderWithLocation:loc];
+}
+
 #pragma mark - Google MapView Delegate Methods
 
 -(void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate

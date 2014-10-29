@@ -15,8 +15,10 @@
 
 @interface TripDetailViewController : UIViewController <GMSMapViewDelegate>
 
-@property (strong, nonatomic) IBOutlet GMSMapView *mapView;
+@property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (strong, nonatomic) NSArray *speedColors;
 @property (strong, nonatomic) Trip *trip;
+@property (weak, nonatomic) IBOutlet UISlider *tripSlider;
+@property (weak, nonatomic) IBOutlet UILabel *speedLabel;
 
 @end

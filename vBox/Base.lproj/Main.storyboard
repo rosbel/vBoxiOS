@@ -289,17 +289,39 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="4QK-s9-THF">
+                                <rect key="frame" x="14" y="466" width="572" height="31"/>
+                                <connections>
+                                    <action selector="sliderValueChanged:" destination="ekS-UR-SFw" eventType="valueChanged" id="R02-bJ-3p7"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed = " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fZ-An-d2f">
+                                <rect key="frame" x="216" y="404" width="169" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="169" id="kh2-2e-vTe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="4QK-s9-THF" firstAttribute="trailing" secondItem="Fok-lZ-fok" secondAttribute="trailingMargin" id="4XW-QZ-vfg"/>
                             <constraint firstItem="CfI-It-6d2" firstAttribute="top" secondItem="s2B-Xd-nYe" secondAttribute="bottom" priority="999" id="C8D-At-Wlb"/>
                             <constraint firstAttribute="centerX" secondItem="CfI-It-6d2" secondAttribute="centerX" id="XvM-c5-eiq"/>
+                            <constraint firstItem="4QK-s9-THF" firstAttribute="leading" secondItem="Fok-lZ-fok" secondAttribute="leadingMargin" id="e1l-xQ-agM"/>
+                            <constraint firstAttribute="centerX" secondItem="4fZ-An-d2f" secondAttribute="centerX" constant="-0.5" id="f9G-vB-w9C"/>
+                            <constraint firstItem="4QK-s9-THF" firstAttribute="top" secondItem="CfI-It-6d2" secondAttribute="bottom" constant="102" id="jHq-7a-c6f"/>
                             <constraint firstItem="CfI-It-6d2" firstAttribute="height" secondItem="Fok-lZ-fok" secondAttribute="height" multiplier="1:2" id="o4E-f7-bFc"/>
                             <constraint firstItem="CfI-It-6d2" firstAttribute="width" secondItem="Fok-lZ-fok" secondAttribute="width" id="sOM-fu-kYk"/>
+                            <constraint firstItem="4QK-s9-THF" firstAttribute="top" secondItem="4fZ-An-d2f" secondAttribute="bottom" constant="41" id="wRj-ZQ-IRx"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="CfI-It-6d2" id="FHk-sq-g6e"/>
+                        <outlet property="speedLabel" destination="4fZ-An-d2f" id="4yh-T6-UDD"/>
+                        <outlet property="tripSlider" destination="4QK-s9-THF" id="CQy-qh-Glg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qie-J6-20O" userLabel="First Responder" sceneMemberID="firstResponder"/>
