@@ -59,6 +59,11 @@
 	
 	blurView.layer.cornerRadius = 5.0;
 	
+	UIView *blurredLabel = [self.view viewWithTag:3];
+	
+	blurredLabel.layer.masksToBounds = YES;
+	blurredLabel.layer.cornerRadius = 5.0;
+	
 	blurView.frame = self.stopRecordingButton.frame;
 	
 	[self.view insertSubview:blurView belowSubview:self.stopRecordingButton];
@@ -89,9 +94,12 @@
 	polyline.map = self.MapView;
 	
 	_locationManager = [[CLLocationManager alloc] init];
+	
 	[_locationManager setDelegate:self];
-	_locationManager.distanceFilter = 10.0f;
+	_locationManager.distanceFilter = kCLDistanceFilterNone; //Best Accuracy
 	_locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+	_locationManager.activityType = CLActivityTypeAutomotiveNavigation;
+	_locationManager.pausesLocationUpdatesAutomatically = YES;//help save battery life when user is stopped
 	
 	[_locationManager requestWhenInUseAuthorization];
 	[_locationManager requestAlwaysAuthorization];
@@ -124,8 +132,8 @@
 -(BOOL)didTapMyLocationButtonForMapView:(GMSMapView *)mapView
 {
 	followMe = YES;
-	[_MapView animateWithCameraUpdate:[GMSCameraUpdate setTarget:((CLLocation *)[pastLocations lastObject]).coordinate zoom:15]];
-	return YES;
+//	[_MapView animateWithCameraUpdate:[GMSCameraUpdate setTarget:((CLLocation *)[pastLocations lastObject]).coordinate zoom:15]];
+	return NO;
 }
 
 #pragma mark - Helper Methods
@@ -168,6 +176,7 @@
 	}
 	
 	//Update speed Label
+	
 	double speedMPH = ([newestLocation speed] * 2.236936284);
 	speedMPH = speedMPH >= 0 ? speedMPH : 0;
 	
@@ -232,7 +241,7 @@
 {
 	double lat = location.coordinate.latitude;
 	double lng = location.coordinate.longitude;
-	double speedMPH = location.speed * 2.236936284;
+	double speedMPH = location.speed >= 0 ? location.speed * 2.236936284 : 0;
 	NSDate *time = location.timestamp;
 	
 	if(persist)
@@ -243,7 +252,6 @@
 		[newLocation setSpeed:[NSNumber numberWithDouble:speedMPH]];
 		[newLocation setTimestamp:time];
 		[newLocation setTripInfo:currentTrip];
-		
 		[appDelegate saveContext];
 	}
 	
