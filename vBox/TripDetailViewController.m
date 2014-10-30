@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSOrderedSet *GPSLocationsForTrip;
 @property (strong, nonatomic) GMSMutablePath *pathForTrip;
 @property (strong, nonatomic) GMSMarker *markerForSlider;
+@property (strong, nonatomic) GMSMarker *markerForTap;
 
 @end
 
@@ -27,6 +28,8 @@
 @synthesize camera;
 @synthesize speedDivisions;
 
+#pragma mark - Initialization
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -37,14 +40,6 @@
 	[self setUpGoogleMaps];
 	
 	[self.tripSlider setMaximumValue:self.trip.gpsLocations.count-1];
-	[self.tripSlider setValue:self.trip.gpsLocations.count/2 animated:NO];
-	
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-	NSLog(@"Memory Warning!");
 }
 
 - (void) setUpGoogleMaps
@@ -57,6 +52,20 @@
 	double segments = 1;
 	UIColor *color = nil;
 	UIColor *newColor = nil;
+	
+	GPSLocation *start = [GPSLocationsForTrip objectAtIndex:0];
+	GPSLocation *end = [GPSLocationsForTrip objectAtIndex:[GPSLocationsForTrip count]-1];
+	GMSMarker *startMarker = [GMSMarker markerWithPosition:CLLocationCoordinate2DMake(start.latitude.doubleValue, start.longitude.doubleValue)];
+	GMSMarker *endMarker =[GMSMarker markerWithPosition:CLLocationCoordinate2DMake(end.latitude.doubleValue, end.longitude.doubleValue)];
+	
+	[startMarker setGroundAnchor:CGPointMake(0.5, 0.5)];
+	[endMarker setGroundAnchor:CGPointMake(0.5, 0.5)];
+	
+	[startMarker setMap:self.mapView];
+	[endMarker setMap:self.mapView];
+	
+	[startMarker setIcon:[UIImage imageNamed:@"startPosition"]];
+	[endMarker setIcon:[UIImage imageNamed:@"endPosition"]];
 	
 	for(GPSLocation *gpsLoc in GPSLocationsForTrip)
 	{
@@ -103,6 +112,8 @@
 	if(!self.markerForSlider)
 	{
 		self.markerForSlider = [GMSMarker markerWithPosition:CLLocationCoordinate2DMake(location.latitude.doubleValue, location.longitude.doubleValue)];
+		[self.markerForSlider setIcon:[UIImage imageNamed:@"currentLocation"]];
+		[self.markerForSlider setGroundAnchor:CGPointMake(0.5, 0.5)];
 		[self.markerForSlider setMap:self.mapView];
 	}else
 	{
@@ -113,13 +124,16 @@
 	}
 }
 
--(void)insertMarkerInMap:(GMSMapView *)myMapView withGPSLocation:(GPSLocation *)gpsLoc
+-(void)updateTapMarkerInMap:(GMSMapView *)myMapView withGPSLocation:(GPSLocation *)gpsLoc
 {
-	GMSMarker *marker = [[GMSMarker alloc]init];
-	marker.position = CLLocationCoordinate2DMake(gpsLoc.latitude.doubleValue, gpsLoc.longitude.doubleValue);
-	marker.appearAnimation = kGMSMarkerAnimationPop;
-	marker.map = myMapView;
-	marker.snippet = [NSString stringWithFormat:@"Time: %@\nSpeed: %.2f",gpsLoc.timestamp,gpsLoc.speed.doubleValue];
+	if(!self.markerForTap)
+	{
+		self.markerForTap = [GMSMarker markerWithPosition:CLLocationCoordinate2DMake(gpsLoc.latitude.doubleValue, gpsLoc.longitude.doubleValue)];
+		[self.markerForTap setMap:myMapView];
+		[self.markerForTap setAppearAnimation:kGMSMarkerAnimationPop];
+	}
+	self.markerForTap.position = CLLocationCoordinate2DMake(gpsLoc.latitude.doubleValue, gpsLoc.longitude.doubleValue);
+	self.markerForTap.snippet = [NSString stringWithFormat:@"Time: %@\nSpeed: %.2f",gpsLoc.timestamp,gpsLoc.speed.doubleValue];
 }
 
 -(NSArray *)calculateSpeedBoundaries
@@ -146,25 +160,35 @@
  */
 
 #pragma mark - Slider Event
+
 - (IBAction)sliderValueChanged:(UISlider *)sender
 {
 	unsigned long value = lround(sender.value);
+	
 	GPSLocation *loc = [self.trip.gpsLocations objectAtIndex:value];
-	self.speedLabel.text = [NSString stringWithFormat:@"Speed = %.2f",loc.speed.doubleValue];
+	
+	NSTimeInterval timeSinceStart = [loc.timestamp timeIntervalSinceDate:self.trip.startTime];
+	
+	NSInteger ti = (NSInteger)timeSinceStart;
+	NSInteger seconds = ti % 60;
+	NSInteger minutes = (ti / 60) % 60;
+	NSInteger hours = (ti / 3600);
+	
+	self.speedLabel.text = [NSString stringWithFormat:@"%.2f mph",loc.speed.doubleValue];
+	self.timeLabel.text = [NSString stringWithFormat:@"%02li:%02li:%02li",(long)hours,(long)minutes,(long)seconds];
+	
 	[self updateMarkerForSliderWithLocation:loc];
 }
 
-#pragma mark - Google MapView Delegate Methods
+#pragma mark - GoogleMapViewDelegate
 
 -(void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
 {
 	//Proceed only if Tap is in path
-	NSLog(@"%f",mapView.camera.zoom);
-	if(!GMSGeometryIsLocationOnPath(coordinate, pathForTrip, NO,1000.0))
-		return;
+	float tolerance = powf(10.0,(-0.301*mapView.camera.zoom)+9.0731) / 500;
 	
-	NSLog(@"SUCCESS");
-	NSLog(@"Count = %lu",(unsigned long)pathForTrip.count);
+	if(!GMSGeometryIsLocationOnPath(coordinate, pathForTrip, NO,tolerance))
+		return;
 	
 	GPSLocation *closestLocation = nil;
 	CLLocationDistance closestDistance = CLLocationDistanceMax;
@@ -180,8 +204,17 @@
 		}
 	}
 	if(closestLocation)
-		[self insertMarkerInMap:mapView withGPSLocation:closestLocation];
-	NSLog(@"Closest location = (%@,%@) - speed = %@ (%@) mph",closestLocation.latitude,closestLocation.longitude,closestLocation.speed,closestLocation.timestamp);
+	{
+		[self updateTapMarkerInMap:mapView withGPSLocation:closestLocation];
+	}
+}
+
+#pragma mark - Memory Management
+
+- (void)didReceiveMemoryWarning {
+	[super didReceiveMemoryWarning];
+	// Dispose of any resources that can be recreated.
+	NSLog(@"Memory Warning!");
 }
 
 @end

@@ -281,52 +281,83 @@
                         <viewControllerLayoutGuide type="top" id="s2B-Xd-nYe"/>
                         <viewControllerLayoutGuide type="bottom" id="qbi-X0-EBo"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Fok-lZ-fok">
+                    <view key="view" tag="1" contentMode="scaleToFill" id="Fok-lZ-fok">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CfI-It-6d2" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="64" width="600" height="300"/>
+                                <rect key="frame" x="0.0" y="63" width="600" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="4QK-s9-THF">
-                                <rect key="frame" x="14" y="466" width="572" height="31"/>
-                                <connections>
-                                    <action selector="sliderValueChanged:" destination="ekS-UR-SFw" eventType="valueChanged" id="R02-bJ-3p7"/>
-                                </connections>
-                            </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed = " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fZ-An-d2f">
-                                <rect key="frame" x="216" y="404" width="169" height="21"/>
+                            <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HXR-Qr-QiH" userLabel="InformationView">
+                                <rect key="frame" x="0.0" y="363" width="600" height="237"/>
+                                <subviews>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="NZi-nR-mzI">
+                                        <rect key="frame" x="35" y="103" width="531" height="31"/>
+                                        <color key="minimumTrackTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="sliderValueChanged:" destination="ekS-UR-SFw" eventType="valueChanged" id="0UN-u8-I6z"/>
+                                        </connections>
+                                    </slider>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qSa-b1-XVc" userLabel="ViewForLabels">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="26"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fZ-An-d2f" userLabel="timeLabel">
+                                                <rect key="frame" x="266" y="3" width="67" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mph" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Guy-7V-Jyu" userLabel="speedLabel">
+                                                <rect key="frame" x="10" y="3" width="34.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="26" id="9Hf-bq-9FI"/>
+                                            <constraint firstItem="4fZ-An-d2f" firstAttribute="centerX" secondItem="qSa-b1-XVc" secondAttribute="centerX" id="HXR-jy-mYw"/>
+                                            <constraint firstAttribute="centerY" secondItem="Guy-7V-Jyu" secondAttribute="centerY" id="ITe-1U-PKS"/>
+                                            <constraint firstItem="Guy-7V-Jyu" firstAttribute="leading" secondItem="qSa-b1-XVc" secondAttribute="leading" constant="10" id="iyh-3f-YwO"/>
+                                            <constraint firstAttribute="centerY" secondItem="4fZ-An-d2f" secondAttribute="centerY" id="t2o-iE-aqW"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="169" id="kh2-2e-vTe"/>
+                                    <constraint firstAttribute="centerX" secondItem="qSa-b1-XVc" secondAttribute="centerX" id="AwS-i9-xEq"/>
+                                    <constraint firstAttribute="width" secondItem="qSa-b1-XVc" secondAttribute="width" id="aM0-Ic-x9k"/>
+                                    <constraint firstItem="NZi-nR-mzI" firstAttribute="leading" secondItem="HXR-Qr-QiH" secondAttribute="leading" constant="37" id="ck2-Sc-4vc"/>
+                                    <constraint firstAttribute="centerX" secondItem="NZi-nR-mzI" secondAttribute="centerX" constant="-0.5" id="uKp-16-eAO"/>
+                                    <constraint firstItem="qSa-b1-XVc" firstAttribute="top" secondItem="HXR-Qr-QiH" secondAttribute="top" id="v4K-7o-kLb"/>
+                                    <constraint firstItem="NZi-nR-mzI" firstAttribute="centerY" secondItem="HXR-Qr-QiH" secondAttribute="centerY" id="v7i-o2-Tvy"/>
+                                    <constraint firstAttribute="bottom" secondItem="qSa-b1-XVc" secondAttribute="bottom" constant="211" id="zK7-Sk-ohX"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="4QK-s9-THF" firstAttribute="trailing" secondItem="Fok-lZ-fok" secondAttribute="trailingMargin" id="4XW-QZ-vfg"/>
                             <constraint firstItem="CfI-It-6d2" firstAttribute="top" secondItem="s2B-Xd-nYe" secondAttribute="bottom" priority="999" id="C8D-At-Wlb"/>
+                            <constraint firstItem="HXR-Qr-QiH" firstAttribute="top" secondItem="CfI-It-6d2" secondAttribute="bottom" id="TrE-VD-UB0"/>
                             <constraint firstAttribute="centerX" secondItem="CfI-It-6d2" secondAttribute="centerX" id="XvM-c5-eiq"/>
-                            <constraint firstItem="4QK-s9-THF" firstAttribute="leading" secondItem="Fok-lZ-fok" secondAttribute="leadingMargin" id="e1l-xQ-agM"/>
-                            <constraint firstAttribute="centerX" secondItem="4fZ-An-d2f" secondAttribute="centerX" constant="-0.5" id="f9G-vB-w9C"/>
-                            <constraint firstItem="4QK-s9-THF" firstAttribute="top" secondItem="CfI-It-6d2" secondAttribute="bottom" constant="102" id="jHq-7a-c6f"/>
+                            <constraint firstItem="qbi-X0-EBo" firstAttribute="top" secondItem="HXR-Qr-QiH" secondAttribute="bottom" id="bLC-I3-Y4v"/>
+                            <constraint firstItem="CfI-It-6d2" firstAttribute="width" secondItem="HXR-Qr-QiH" secondAttribute="width" id="lbi-W8-k0E"/>
                             <constraint firstItem="CfI-It-6d2" firstAttribute="height" secondItem="Fok-lZ-fok" secondAttribute="height" multiplier="1:2" id="o4E-f7-bFc"/>
                             <constraint firstItem="CfI-It-6d2" firstAttribute="width" secondItem="Fok-lZ-fok" secondAttribute="width" id="sOM-fu-kYk"/>
-                            <constraint firstItem="4QK-s9-THF" firstAttribute="top" secondItem="4fZ-An-d2f" secondAttribute="bottom" constant="41" id="wRj-ZQ-IRx"/>
+                            <constraint firstAttribute="centerX" secondItem="HXR-Qr-QiH" secondAttribute="centerX" id="yqn-pC-D7c"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="CfI-It-6d2" id="FHk-sq-g6e"/>
-                        <outlet property="speedLabel" destination="4fZ-An-d2f" id="4yh-T6-UDD"/>
-                        <outlet property="tripSlider" destination="4QK-s9-THF" id="CQy-qh-Glg"/>
+                        <outlet property="speedLabel" destination="Guy-7V-Jyu" id="Fvg-U3-ODw"/>
+                        <outlet property="timeLabel" destination="4fZ-An-d2f" id="hVz-Rx-bhG"/>
+                        <outlet property="tripSlider" destination="NZi-nR-mzI" id="amQ-YA-RYG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qie-J6-20O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2111" y="-458"/>
+            <point key="canvasLocation" x="2108" y="-458"/>
         </scene>
         <!--Google Maps View Controller-->
         <scene sceneID="ufC-wZ-h7g">

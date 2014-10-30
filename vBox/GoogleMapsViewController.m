@@ -27,11 +27,7 @@
 	double maxSpeed;
 }
 
-- (IBAction)stopRecordingButtonTapped:(id)sender {
-	
-	[self.navigationController popViewControllerAnimated:YES];
-	[self.delegate didTapStopRecordingButton];
-}
+#pragma mark - UIView
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -68,6 +64,22 @@
 	[self.view insertSubview:blurView belowSubview:self.stopRecordingButton];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+	[_MapView clear];
+	_MapView = nil;
+	[_locationManager stopUpdatingLocation];
+	[currentTrip setEndTime:[NSDate date]];
+	unsigned long count = currentTrip.gpsLocations.count;
+	double avgSpeed = count > 0 ? sumSpeed / count : 0;
+	[currentTrip setAvgSpeed:[NSNumber numberWithInt:avgSpeed]];
+	[currentTrip setMaxSpeed:[NSNumber numberWithInt:maxSpeed]];
+	[[appDelegate drivingHistory] addTripsObject:currentTrip];
+	[appDelegate saveContext];
+}
+
+#pragma mark - Initialization
+
 -(void)setUpLocationManager
 {
 	polyline = [GMSPolyline polylineWithPath:completePath];
@@ -99,20 +111,6 @@
 	[_MapView setDelegate:self];
 }
 
--(void)viewWillDisappear:(BOOL)animated
-{
-	[_MapView clear];
-	_MapView = nil;
-	[_locationManager stopUpdatingLocation];
-	[currentTrip setEndTime:[NSDate date]];
-	unsigned long count = currentTrip.gpsLocations.count;
-	double avgSpeed = count > 0 ? sumSpeed / count : 0;
-	[currentTrip setAvgSpeed:[NSNumber numberWithInt:avgSpeed]];
-	[currentTrip setMaxSpeed:[NSNumber numberWithInt:maxSpeed]];
-	[[appDelegate drivingHistory] addTripsObject:currentTrip];
-	[appDelegate saveContext];
-}
-
 #pragma mark - Google Maps View Delegate
 
 -(void)mapView:(GMSMapView *)mapView willMove:(BOOL)gesture
@@ -138,6 +136,14 @@
 	[completePath addCoordinate:curLocation.coordinate];
 
 	[polyline setPath:completePath];
+}
+
+#pragma mark - Button Action
+
+- (IBAction)stopRecordingButtonTapped:(id)sender {
+	
+	[self.navigationController popViewControllerAnimated:YES];
+	[self.delegate didTapStopRecordingButton];
 }
 
 #pragma mark - CLLocation Delegate

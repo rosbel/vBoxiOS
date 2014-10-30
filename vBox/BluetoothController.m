@@ -8,6 +8,8 @@
 
 #import "BluetoothController.h"
 
+#pragma mark - PIDs
+
 #define PID_SPEED 0x10D
 #define PID_FUEL_LEVEL 0x12F
 #define PID_COOLANT_TEMP 0x105
@@ -31,6 +33,8 @@
 #define PID_ACC 0xF020
 #define PID_GYRO 0xF021
 
+#pragma mark - Interface
+
 @interface BluetoothController()
 
 @end
@@ -47,6 +51,8 @@
 
 @synthesize delegate;
 
+#pragma mark - Initialization
+
 -(id)init
 {
 	self = [super init];
@@ -62,6 +68,7 @@
 }
 
 #pragma mark Helper Methods
+
 -(void)scanForOBDPeripheral
 {
 	[self.centralManager scanForPeripheralsWithServices:self.OBDServices options:nil];
