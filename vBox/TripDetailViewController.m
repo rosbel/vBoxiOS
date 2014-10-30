@@ -10,7 +10,7 @@
 
 @interface TripDetailViewController ()
 
-@property (strong, nonatomic) GMSCameraPosition *camera;
+//@property (strong, nonatomic) GMSCameraPosition *camera;
 @property (strong, nonatomic) NSArray *speedDivisions;
 @property (strong, nonatomic) NSOrderedSet *GPSLocationsForTrip;
 @property (strong, nonatomic) GMSMutablePath *pathForTrip;
@@ -20,12 +20,13 @@
 @end
 
 @implementation TripDetailViewController{
-	GMSCoordinateBounds *bounds;
+	GMSCoordinateBounds *cameraBounds;
+	GPSLocation *startLocation;
 }
 
 @synthesize pathForTrip;
 @synthesize GPSLocationsForTrip;
-@synthesize camera;
+//@synthesize camera;
 @synthesize speedDivisions;
 
 #pragma mark - Initialization
@@ -37,9 +38,18 @@
 	self.speedColors = @[[UIColor redColor],[UIColor orangeColor],[UIColor yellowColor],[UIColor greenColor]];
 	self.speedDivisions = [self calculateSpeedBoundaries];
 	
+	startLocation = [self.trip.gpsLocations objectAtIndex:0];
+	
 	[self setUpGoogleMaps];
 	
 	[self.tripSlider setMaximumValue:self.trip.gpsLocations.count-1];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:cameraBounds withPadding:40];
+	[self.mapView animateWithCameraUpdate:update];
 }
 
 - (void) setUpGoogleMaps
@@ -97,10 +107,10 @@
 	polyline.geodesic = YES;
 	polyline.map = self.mapView;
 	
-	bounds = [[GMSCoordinateBounds alloc] initWithPath:pathForTrip];
-	camera = [self.mapView cameraForBounds:bounds insets:UIEdgeInsetsMake(30, 150, 30, 150)];
+	cameraBounds = [[GMSCoordinateBounds alloc] initWithPath:pathForTrip];
+	GMSCameraPosition *camera = [self.mapView cameraForBounds:cameraBounds insets:UIEdgeInsetsZero];
 	
-	[self.mapView setCamera:camera];
+	self.mapView.camera = [GMSCameraPosition cameraWithLatitude:start.latitude.doubleValue longitude:start.longitude.doubleValue zoom:camera.zoom>5?camera.zoom-4:camera.zoom bearing:120 viewingAngle:25];
 	self.mapView.settings.compassButton = YES;
 	self.mapView.myLocationEnabled = NO;
 	[self.mapView setDelegate:self];
@@ -176,6 +186,7 @@
 	
 	self.speedLabel.text = [NSString stringWithFormat:@"%.2f mph",loc.speed.doubleValue];
 	self.timeLabel.text = [NSString stringWithFormat:@"%02li:%02li:%02li",(long)hours,(long)minutes,(long)seconds];
+	self.distanceLabel.text = [NSString stringWithFormat:@""];
 	
 	[self updateMarkerForSliderWithLocation:loc];
 }

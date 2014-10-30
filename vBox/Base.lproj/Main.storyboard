@@ -281,11 +281,11 @@
                         <viewControllerLayoutGuide type="top" id="s2B-Xd-nYe"/>
                         <viewControllerLayoutGuide type="bottom" id="qbi-X0-EBo"/>
                     </layoutGuides>
-                    <view key="view" tag="1" contentMode="scaleToFill" id="Fok-lZ-fok">
+                    <view key="view" contentMode="scaleToFill" id="Fok-lZ-fok">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CfI-It-6d2" customClass="GMSMapView">
+                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CfI-It-6d2" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="63" width="600" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -295,37 +295,48 @@
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="NZi-nR-mzI">
                                         <rect key="frame" x="35" y="103" width="531" height="31"/>
                                         <color key="minimumTrackTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="maximumTrackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <action selector="sliderValueChanged:" destination="ekS-UR-SFw" eventType="valueChanged" id="0UN-u8-I6z"/>
                                         </connections>
                                     </slider>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qSa-b1-XVc" userLabel="ViewForLabels">
+                                    <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qSa-b1-XVc" userLabel="ViewForLabels">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="26"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fZ-An-d2f" userLabel="timeLabel">
-                                                <rect key="frame" x="266" y="3" width="67" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                <rect key="frame" x="523" y="3" width="67" height="20"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mph" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Guy-7V-Jyu" userLabel="speedLabel">
-                                                <rect key="frame" x="10" y="3" width="34.5" height="20.5"/>
+                                                <rect key="frame" x="10" y="3" width="35" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="nzQ-Ip-1Xx">
+                                                <rect key="frame" x="500" y="3" width="21" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="nzQ-Ip-1Xx" secondAttribute="height" multiplier="1:1" id="8A9-Dy-fUO"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.98039215686274506" green="0.41176470588235292" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="26" id="9Hf-bq-9FI"/>
-                                            <constraint firstItem="4fZ-An-d2f" firstAttribute="centerX" secondItem="qSa-b1-XVc" secondAttribute="centerX" id="HXR-jy-mYw"/>
+                                            <constraint firstItem="nzQ-Ip-1Xx" firstAttribute="centerY" secondItem="4fZ-An-d2f" secondAttribute="centerY" id="9Zg-nf-IaM"/>
+                                            <constraint firstItem="nzQ-Ip-1Xx" firstAttribute="height" secondItem="qSa-b1-XVc" secondAttribute="height" constant="-5" id="EDE-Kk-Qr8"/>
                                             <constraint firstAttribute="centerY" secondItem="Guy-7V-Jyu" secondAttribute="centerY" id="ITe-1U-PKS"/>
+                                            <constraint firstAttribute="trailing" secondItem="4fZ-An-d2f" secondAttribute="trailing" constant="10" id="JUk-Tx-cTS"/>
+                                            <constraint firstItem="4fZ-An-d2f" firstAttribute="leading" secondItem="nzQ-Ip-1Xx" secondAttribute="trailing" constant="2" id="NOi-4x-RUg"/>
                                             <constraint firstItem="Guy-7V-Jyu" firstAttribute="leading" secondItem="qSa-b1-XVc" secondAttribute="leading" constant="10" id="iyh-3f-YwO"/>
                                             <constraint firstAttribute="centerY" secondItem="4fZ-An-d2f" secondAttribute="centerY" id="t2o-iE-aqW"/>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="qSa-b1-XVc" secondAttribute="centerX" id="AwS-i9-xEq"/>
                                     <constraint firstAttribute="width" secondItem="qSa-b1-XVc" secondAttribute="width" id="aM0-Ic-x9k"/>
@@ -372,7 +383,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view opaque="NO" clearsContextBeforeDrawing="NO" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ski-ZJ-D74" customClass="GMSMapView">
-                                <rect key="frame" x="-0.5" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <visualEffectView opaque="NO" tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3eW-h8-PRz">
@@ -382,7 +393,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mph" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IeI-Jk-IwB">
-                                            <rect key="frame" x="43" y="2" width="34.5" height="20.5"/>
+                                            <rect key="frame" x="43" y="2" width="35" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -450,6 +461,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mGQ-yC-Xcz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.41176470588235292" green="0.82352941176470584" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -461,4 +476,7 @@
             <point key="canvasLocation" x="519" y="432"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="timeIcon" width="48" height="48"/>
+    </resources>
 </document>

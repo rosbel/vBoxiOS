@@ -21,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UISlider *tripSlider;
 @property (weak, nonatomic) IBOutlet UILabel *speedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 
 @end
