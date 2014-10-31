@@ -37,6 +37,10 @@
 	[formatter setTimeZone:[NSTimeZone localTimeZone]];
 	
 	self.trips = [[appDelegate drivingHistory] trips];
+	
+	NSDate *startDate = [self dateAtBeginningOfDayForDate:[NSDate date]];
+	NSDate *endDate = [self dateByAddingYears:1 toDate:startDate];
+	
 }
 
 - (void)didReceiveMemoryWarning {
@@ -98,6 +102,40 @@
 		
 		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 	}
+}
+
+#pragma mark - Helper Methods
+
+- (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate
+{
+	// Use the user's current calendar and time zone
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
+	[calendar setTimeZone:timeZone];
+	
+	// Selectively convert the date components (year, month, day) of the input date
+	NSDateComponents *dateComps = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth	| NSCalendarUnitDay fromDate:inputDate];
+	
+	// Set the time components manually
+	[dateComps setHour:0];
+	[dateComps setMinute:0];
+	[dateComps setSecond:0];
+	
+	// Convert back
+	NSDate *beginningOfDay = [calendar dateFromComponents:dateComps];
+	return beginningOfDay;
+}
+
+- (NSDate *)dateByAddingYears:(NSInteger)numberOfYears toDate:(NSDate *)inputDate
+{
+	// Use the user's current calendar
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	
+	NSDateComponents *dateComps = [[NSDateComponents alloc] init];
+	[dateComps setYear:numberOfYears];
+	
+	NSDate *newDate = [calendar dateByAddingComponents:dateComps toDate:inputDate options:0];
+	return newDate;
 }
 
 @end

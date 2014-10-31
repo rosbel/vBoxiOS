@@ -11,21 +11,10 @@
 		C11318CC19EDCC700023A45C /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C11318CB19EDCC700023A45C /* logo.png */; };
 		C11318CE19EDD3580023A45C /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = C11318CD19EDD3580023A45C /* settings.plist */; };
 		C11D52D619F3339B00FF7542 /* CarDiagnostics.m in Sources */ = {isa = PBXBuildFile; fileRef = C11D52D519F3339B00FF7542 /* CarDiagnostics.m */; };
-		C122323619F33EA4002318DF /* PNBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C122322119F33EA4002318DF /* PNBar.m */; };
-		C122323719F33EA4002318DF /* PNBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C122322319F33EA4002318DF /* PNBarChart.m */; };
-		C122323819F33EA4002318DF /* PNChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C122322719F33EA4002318DF /* PNChartLabel.m */; };
-		C122323919F33EA4002318DF /* PNCircleChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C122322919F33EA4002318DF /* PNCircleChart.m */; };
-		C122323A19F33EA4002318DF /* PNColor.m in Sources */ = {isa = PBXBuildFile; fileRef = C122322B19F33EA4002318DF /* PNColor.m */; };
-		C122323B19F33EA4002318DF /* PNLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C122322D19F33EA4002318DF /* PNLineChart.m */; };
-		C122323C19F33EA4002318DF /* PNLineChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = C122322F19F33EA4002318DF /* PNLineChartData.m */; };
-		C122323D19F33EA4002318DF /* PNLineChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C122323119F33EA4002318DF /* PNLineChartDataItem.m */; };
-		C122323E19F33EA4002318DF /* PNPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = C122323319F33EA4002318DF /* PNPieChart.m */; };
-		C122323F19F33EA4002318DF /* PNPieChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C122323519F33EA4002318DF /* PNPieChartDataItem.m */; };
 		C122324619F33FB7002318DF /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C122324519F33FB7002318DF /* SWRevealViewController.m */; };
 		C122324819F34021002318DF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C122324719F34021002318DF /* CoreGraphics.framework */; };
 		C122324A19F34030002318DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C122324919F34030002318DF /* UIKit.framework */; };
 		C122324C19F34052002318DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C122324B19F34052002318DF /* Foundation.framework */; };
-		C122324F19F3448E002318DF /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C122324E19F3448E002318DF /* UICountingLabel.m */; };
 		C180A30E19F0A04000DE880C /* DebugBluetoothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C180A30D19F0A04000DE880C /* DebugBluetoothViewController.m */; };
 		C181F44419EEA98500FC1D8A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C181F44319EEA98500FC1D8A /* Settings.bundle */; };
 		C186A72719FEB69200016E99 /* GPSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C186A72619FEB69200016E99 /* GPSLocation.m */; };
@@ -77,35 +66,11 @@
 		C11318CD19EDD3580023A45C /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
 		C11D52D419F3339B00FF7542 /* CarDiagnostics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDiagnostics.h; sourceTree = "<group>"; };
 		C11D52D519F3339B00FF7542 /* CarDiagnostics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDiagnostics.m; sourceTree = "<group>"; };
-		C122322019F33EA4002318DF /* PNBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBar.h; sourceTree = "<group>"; };
-		C122322119F33EA4002318DF /* PNBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNBar.m; sourceTree = "<group>"; };
-		C122322219F33EA4002318DF /* PNBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBarChart.h; sourceTree = "<group>"; };
-		C122322319F33EA4002318DF /* PNBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNBarChart.m; sourceTree = "<group>"; };
-		C122322419F33EA4002318DF /* PNChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChart.h; sourceTree = "<group>"; };
-		C122322519F33EA4002318DF /* PNChartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChartDelegate.h; sourceTree = "<group>"; };
-		C122322619F33EA4002318DF /* PNChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChartLabel.h; sourceTree = "<group>"; };
-		C122322719F33EA4002318DF /* PNChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNChartLabel.m; sourceTree = "<group>"; };
-		C122322819F33EA4002318DF /* PNCircleChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNCircleChart.h; sourceTree = "<group>"; };
-		C122322919F33EA4002318DF /* PNCircleChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNCircleChart.m; sourceTree = "<group>"; };
-		C122322A19F33EA4002318DF /* PNColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNColor.h; sourceTree = "<group>"; };
-		C122322B19F33EA4002318DF /* PNColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNColor.m; sourceTree = "<group>"; };
-		C122322C19F33EA4002318DF /* PNLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChart.h; sourceTree = "<group>"; };
-		C122322D19F33EA4002318DF /* PNLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChart.m; sourceTree = "<group>"; };
-		C122322E19F33EA4002318DF /* PNLineChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChartData.h; sourceTree = "<group>"; };
-		C122322F19F33EA4002318DF /* PNLineChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChartData.m; sourceTree = "<group>"; };
-		C122323019F33EA4002318DF /* PNLineChartDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChartDataItem.h; sourceTree = "<group>"; };
-		C122323119F33EA4002318DF /* PNLineChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChartDataItem.m; sourceTree = "<group>"; };
-		C122323219F33EA4002318DF /* PNPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNPieChart.h; sourceTree = "<group>"; };
-		C122323319F33EA4002318DF /* PNPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNPieChart.m; sourceTree = "<group>"; };
-		C122323419F33EA4002318DF /* PNPieChartDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNPieChartDataItem.h; sourceTree = "<group>"; };
-		C122323519F33EA4002318DF /* PNPieChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNPieChartDataItem.m; sourceTree = "<group>"; };
 		C122324419F33FB7002318DF /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		C122324519F33FB7002318DF /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		C122324719F34021002318DF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C122324919F34030002318DF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C122324B19F34052002318DF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		C122324D19F3448E002318DF /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
-		C122324E19F3448E002318DF /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
 		C180A30C19F0A04000DE880C /* DebugBluetoothViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugBluetoothViewController.h; sourceTree = "<group>"; };
 		C180A30D19F0A04000DE880C /* DebugBluetoothViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugBluetoothViewController.m; sourceTree = "<group>"; };
 		C181F44319EEA98500FC1D8A /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -199,35 +164,6 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		C122321F19F33EA4002318DF /* PNChart */ = {
-			isa = PBXGroup;
-			children = (
-				C122322019F33EA4002318DF /* PNBar.h */,
-				C122322119F33EA4002318DF /* PNBar.m */,
-				C122322219F33EA4002318DF /* PNBarChart.h */,
-				C122322319F33EA4002318DF /* PNBarChart.m */,
-				C122322419F33EA4002318DF /* PNChart.h */,
-				C122322519F33EA4002318DF /* PNChartDelegate.h */,
-				C122322619F33EA4002318DF /* PNChartLabel.h */,
-				C122322719F33EA4002318DF /* PNChartLabel.m */,
-				C122322819F33EA4002318DF /* PNCircleChart.h */,
-				C122322919F33EA4002318DF /* PNCircleChart.m */,
-				C122322A19F33EA4002318DF /* PNColor.h */,
-				C122322B19F33EA4002318DF /* PNColor.m */,
-				C122322C19F33EA4002318DF /* PNLineChart.h */,
-				C122322D19F33EA4002318DF /* PNLineChart.m */,
-				C122322E19F33EA4002318DF /* PNLineChartData.h */,
-				C122322F19F33EA4002318DF /* PNLineChartData.m */,
-				C122323019F33EA4002318DF /* PNLineChartDataItem.h */,
-				C122323119F33EA4002318DF /* PNLineChartDataItem.m */,
-				C122323219F33EA4002318DF /* PNPieChart.h */,
-				C122323319F33EA4002318DF /* PNPieChart.m */,
-				C122323419F33EA4002318DF /* PNPieChartDataItem.h */,
-				C122323519F33EA4002318DF /* PNPieChartDataItem.m */,
-			);
-			path = PNChart;
-			sourceTree = "<group>";
-		};
 		C122324019F33F2E002318DF /* SlideOutMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,21 +173,10 @@
 			name = SlideOutMenu;
 			sourceTree = "<group>";
 		};
-		C122325019F34493002318DF /* UICountingLabel */ = {
-			isa = PBXGroup;
-			children = (
-				C122324D19F3448E002318DF /* UICountingLabel.h */,
-				C122324E19F3448E002318DF /* UICountingLabel.m */,
-			);
-			name = UICountingLabel;
-			sourceTree = "<group>";
-		};
 		C122325119F3449F002318DF /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				C122321F19F33EA4002318DF /* PNChart */,
 				C122324019F33F2E002318DF /* SlideOutMenu */,
-				C122325019F34493002318DF /* UICountingLabel */,
 			);
 			name = ThirdParty;
 			sourceTree = "<group>";
@@ -499,15 +424,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C122323919F33EA4002318DF /* PNCircleChart.m in Sources */,
-				C122323A19F33EA4002318DF /* PNColor.m in Sources */,
 				C1E4584919DE0C5B001A5627 /* GoogleMapsViewController.m in Sources */,
-				C122323B19F33EA4002318DF /* PNLineChart.m in Sources */,
 				C103E2BD19EF04070071B659 /* MenuTableViewController.m in Sources */,
 				C122324619F33FB7002318DF /* SWRevealViewController.m in Sources */,
-				C122323E19F33EA4002318DF /* PNPieChart.m in Sources */,
-				C122324F19F3448E002318DF /* UICountingLabel.m in Sources */,
-				C122323F19F33EA4002318DF /* PNPieChartDataItem.m in Sources */,
 				C1B82C3F19F0664C002E6EA4 /* BluetoothController.m in Sources */,
 				C1A87CCE19F98EFC00845C7E /* DrivingHistoryViewController.m in Sources */,
 				C1E4584619DE0C5B001A5627 /* AppDelegate.m in Sources */,
@@ -516,14 +435,9 @@
 				C186A72D19FEB69200016E99 /* DrivingHistory.m in Sources */,
 				C1CEF69A19FA04D600D6E46D /* TripDetailViewController.m in Sources */,
 				C186A72A19FEB69200016E99 /* Trip.m in Sources */,
-				C122323C19F33EA4002318DF /* PNLineChartData.m in Sources */,
-				C122323819F33EA4002318DF /* PNChartLabel.m in Sources */,
 				C1D6CA5019F41A5A003FF61C /* BluetoothTableViewController.m in Sources */,
-				C122323619F33EA4002318DF /* PNBar.m in Sources */,
 				C186A72719FEB69200016E99 /* GPSLocation.m in Sources */,
-				C122323D19F33EA4002318DF /* PNLineChartDataItem.m in Sources */,
 				C1E4584319DE0C5B001A5627 /* main.m in Sources */,
-				C122323719F33EA4002318DF /* PNBarChart.m in Sources */,
 				C180A30E19F0A04000DE880C /* DebugBluetoothViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
