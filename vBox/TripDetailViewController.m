@@ -54,6 +54,7 @@
 
 - (void) setUpGoogleMaps
 {
+	[self.mapView setPadding:UIEdgeInsetsMake(10, 0, 0, 0)];
 	GPSLocationsForTrip = self.trip.gpsLocations;
 	
 	pathForTrip = [GMSMutablePath path];

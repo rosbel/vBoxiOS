@@ -27,7 +27,7 @@
 	
 	[[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName, nil]];
 	[[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-	
+	[[UINavigationBar appearance] setBarStyle:UIBarStyleBlackTranslucent];
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	BOOL startWithMap = [defaults boolForKey:@"InitMapView"];
 	if(startWithMap)
