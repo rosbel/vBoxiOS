@@ -21,7 +21,6 @@
 		C186A72A19FEB69200016E99 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = C186A72919FEB69200016E99 /* Trip.m */; };
 		C186A72D19FEB69200016E99 /* DrivingHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = C186A72C19FEB69200016E99 /* DrivingHistory.m */; };
 		C1A87CCE19F98EFC00845C7E /* DrivingHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A87CCD19F98EFC00845C7E /* DrivingHistoryViewController.m */; };
-		C1B82C3F19F0664C002E6EA4 /* BluetoothController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B82C3E19F0664C002E6EA4 /* BluetoothController.m */; };
 		C1B82C4319F0808E002E6EA4 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1B82C4219F0808E002E6EA4 /* CoreBluetooth.framework */; };
 		C1CEF69A19FA04D600D6E46D /* TripDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1CEF69919FA04D600D6E46D /* TripDetailViewController.m */; };
 		C1D6CA5019F41A5A003FF61C /* BluetoothTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D6CA4F19F41A5A003FF61C /* BluetoothTableViewController.m */; };
@@ -47,6 +46,7 @@
 		C1E4588019DE1087001A5627 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C1E4587F19DE1087001A5627 /* GoogleMaps.bundle */; };
 		C1E4588219DE1262001A5627 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E4588119DE1262001A5627 /* CoreLocation.framework */; };
 		C1FAEA5019F890C3009C623C /* GPSInformation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C1FAEA4E19F890C3009C623C /* GPSInformation.xcdatamodeld */; };
+		C1FE69D01A041A1200DA15BD /* BLEManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C1FE69CF1A041A1200DA15BD /* BLEManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,8 +83,6 @@
 		C186A72E19FEBD9F00016E99 /* GPSInformation 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "GPSInformation 2.xcdatamodel"; sourceTree = "<group>"; };
 		C1A87CCC19F98EFC00845C7E /* DrivingHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrivingHistoryViewController.h; sourceTree = "<group>"; };
 		C1A87CCD19F98EFC00845C7E /* DrivingHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrivingHistoryViewController.m; sourceTree = "<group>"; };
-		C1B82C3D19F0664C002E6EA4 /* BluetoothController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothController.h; sourceTree = "<group>"; };
-		C1B82C3E19F0664C002E6EA4 /* BluetoothController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothController.m; sourceTree = "<group>"; };
 		C1B82C4219F0808E002E6EA4 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		C1CEF69819FA04D600D6E46D /* TripDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripDetailViewController.h; sourceTree = "<group>"; };
 		C1CEF69919FA04D600D6E46D /* TripDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripDetailViewController.m; sourceTree = "<group>"; };
@@ -118,6 +116,8 @@
 		C1E4587F19DE1087001A5627 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		C1E4588119DE1262001A5627 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C1FAEA4F19F890C3009C623C /* GPSInformation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GPSInformation.xcdatamodel; sourceTree = "<group>"; };
+		C1FE69CE1A041A1200DA15BD /* BLEManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEManager.h; sourceTree = "<group>"; };
+		C1FE69CF1A041A1200DA15BD /* BLEManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,8 +217,8 @@
 		C1B82C4119F06664002E6EA4 /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
-				C1B82C3D19F0664C002E6EA4 /* BluetoothController.h */,
-				C1B82C3E19F0664C002E6EA4 /* BluetoothController.m */,
+				C1FE69CE1A041A1200DA15BD /* BLEManager.h */,
+				C1FE69CF1A041A1200DA15BD /* BLEManager.m */,
 			);
 			name = Bluetooth;
 			sourceTree = "<group>";
@@ -427,7 +427,6 @@
 				C1E4584919DE0C5B001A5627 /* GoogleMapsViewController.m in Sources */,
 				C103E2BD19EF04070071B659 /* MenuTableViewController.m in Sources */,
 				C122324619F33FB7002318DF /* SWRevealViewController.m in Sources */,
-				C1B82C3F19F0664C002E6EA4 /* BluetoothController.m in Sources */,
 				C1A87CCE19F98EFC00845C7E /* DrivingHistoryViewController.m in Sources */,
 				C1E4584619DE0C5B001A5627 /* AppDelegate.m in Sources */,
 				C11D52D619F3339B00FF7542 /* CarDiagnostics.m in Sources */,
@@ -438,6 +437,7 @@
 				C1D6CA5019F41A5A003FF61C /* BluetoothTableViewController.m in Sources */,
 				C186A72719FEB69200016E99 /* GPSLocation.m in Sources */,
 				C1E4584319DE0C5B001A5627 /* main.m in Sources */,
+				C1FE69D01A041A1200DA15BD /* BLEManager.m in Sources */,
 				C180A30E19F0A04000DE880C /* DebugBluetoothViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

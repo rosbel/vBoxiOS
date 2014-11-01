@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BluetoothController.h"
+#import "BLEManager.h"
 
-@interface DebugBluetoothViewController : UIViewController <UITextViewDelegate, BluetoothControllerDelegate>
+@interface DebugBluetoothViewController : UIViewController <UITextViewDelegate, BLEManagerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextView *textView;
-@property (strong, nonatomic) BluetoothController *bluetoothController;
+@property (strong, nonatomic) BLEManager *bluetoothController;
 
 @end

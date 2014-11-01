@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-	self.bluetoothController = [[BluetoothController alloc] init];
+	self.bluetoothController = [[BLEManager alloc] init];
 	self.bluetoothController.delegate = self;
 }
 
@@ -26,7 +26,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)didUpdateLogWithString:(NSString *)string
+-(void)didUpdateDebugLogWithString:(NSString *)string
 {
 	self.textView.text = [self.textView.text stringByAppendingString:@"\n"];
 	self.textView.text = [self.textView.text stringByAppendingString:string];
@@ -40,6 +40,25 @@
 -(void)didUpdateDiagnosticForKey:(NSString *)key withValue:(float)value
 {
 	
+}
+
+-(void)didUpdateDiagnosticForKey:(NSString *)key withMultipleValues:(float [])values
+{
+	
+}
+
+-(void)didChangeBluetoothState:(BLEState)state
+{
+	switch(state)
+	{
+		case BLEStateOn:
+			[self didUpdateDebugLogWithString:@"State changed to: On"];
+			[self.bluetoothController scanForPeripheralType:PeripheralTypeOBDAdapter];
+			break;
+		default:
+			[self didUpdateDebugLogWithString:@"State is not On"];
+			break;
+	}
 }
 
 /*

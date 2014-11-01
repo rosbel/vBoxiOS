@@ -20,9 +20,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 	self.pauseBarButton.enabled = NO;
+	self.diagnostics = [NSMutableDictionary dictionary];
+	self.bluetoothController = [[BLEManager alloc] init];
+	
 	spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 	UIBarButtonItem *navBarButton = [[UIBarButtonItem alloc] initWithCustomView:spinner];
-	[self navigationItem].rightBarButtonItem = navBarButton;
+	self.navigationItem.rightBarButtonItem = navBarButton;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,10 +45,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-	if(self.bluetoothController.OBDAdapter)
-	{
-		[self.bluetoothController.centralManager cancelPeripheralConnection:self.bluetoothController.OBDAdapter];
-	}
+	[self.bluetoothController disconnect];
 }
 
 
@@ -68,12 +68,18 @@
 	}
 	
 	NSArray *keys = [self.diagnostics allKeys];
-	NSString *key = (NSString *)[keys objectAtIndex:indexPath.row];
-	NSMutableArray *values = (NSMutableArray *)[self.diagnostics objectForKey:key];
-	NSArray *timeStampedValue = (NSArray *)[values lastObject];
-	NSNumber *value = (NSNumber *)timeStampedValue[1];
-	
-	NSString *text = [NSString stringWithFormat:@"%@ - %@ count:%lu",key,value,(unsigned long)[values count]];
+	NSString *key = [keys objectAtIndex:indexPath.row];
+	NSString *text = [key stringByAppendingString:@" - "];
+	if([key isEqualToString:@"Accelerometer"])
+	{
+		NSNumber *value = [keys valueForKey:key];
+		[text stringByAppendingString:value.description];
+	}
+	else
+	{
+		NSArray *values = [keys valueForKey:key];
+		[text stringByAppendingString:values.description];
+	}
 	
 	cell.textLabel.text = text;
 	
@@ -84,6 +90,22 @@
 
 -(void)didUpdateDiagnosticForKey:(NSString *)key withValue:(float)value
 {
+	[self.diagnostics setObject:[NSNumber numberWithFloat:value] forKey:key];
+	
+	//insert into core data?
+	
+	[self.tableView reloadData];
+}
+
+-(void)didUpdateDiagnosticForKey:(NSString *)key withMultipleValues:(float [])values
+{
+	NSNumber *x = [NSNumber numberWithFloat:values[0]];
+	NSNumber *y = [NSNumber numberWithFloat:values[1]];
+	NSNumber *z = [NSNumber numberWithFloat:values[2]];
+	[self.diagnostics setObject:@[x,y,z] forKey:key];
+	
+	//insert into core data?
+	
 	[self.tableView reloadData];
 }
 
@@ -91,6 +113,7 @@
 {
 	[spinner startAnimating];
 }
+
 -(void)didDisconnectPeripheral
 {
 	self.navigationItem.title = @"Disconnected";
@@ -103,44 +126,51 @@
 	[spinner stopAnimating];
 }
 
--(void)didFindPeripheral
+-(void)didChangeBluetoothState:(BLEState)state
 {
-	self.navigationItem.title = @"Discovered OBD Adapter";
-	[spinner stopAnimating];
-}
-
--(void)bluetoothStateChangedTo:(NSString *)state
-{
-	self.navigationItem.title = state;
+	NSString *title;
+	switch(state)
+	{
+		case BLEStateOn:
+			title = @"Bluetooth On";
+			break;
+		case BLEStateOff:
+			title = @"Bluetooth Off";
+			break;
+		case BLEStateResetting:
+			title = @"Bluetooth Resetting";
+			break;
+		case BLEStateUnauthorized:
+			title = @"Bluetooth Unauthorized";
+			break;
+		case BLEStateUnkown:
+			title = @"Bluetooth Unkown";
+			break;
+		case BLEStateUnsupported:
+			title = @"Bluetooth Unsupported";
+			break;
+	}
+	self.navigationItem.title = title;
 }
 
 #pragma mark Toolbar Button Actions
 
 - (IBAction)startButtonPressed:(id)sender
 {
-	if(!self.bluetoothController)
+	if(self.bluetoothController.connected)
 	{
-		self.bluetoothController = [[BluetoothController alloc] init];
-		self.bluetoothController.delegate = self;
-		self.diagnostics = self.bluetoothController.diagnostics;
-	}else
-	{
-		if(self.bluetoothController.OBDAdapter)
-			[self.bluetoothController reconnectPeripheral:self.bluetoothController.OBDAdapter];
-		else
-		{
-			[self.bluetoothController scanForOBDPeripheral];
-		}
+		[self.bluetoothController setNotifyValue:YES];
 	}
-	self.startBarButton.enabled = NO;
-	self.pauseBarButton.enabled = YES;
+	else
+	{
+		//Enable User to Choose type
+		[self.bluetoothController scanForPeripheralType:PeripheralTypeOBDAdapter];
+	}
 }
 
 - (IBAction)pauseBarButtonPressed:(id)sender
 {
-	[self.bluetoothController disconnect];
-	self.startBarButton.enabled = YES;
-	self.pauseBarButton.enabled = NO;
+	[self.bluetoothController setNotifyValue:NO];
 }
 
 

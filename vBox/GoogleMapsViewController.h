@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <GoogleMaps/GoogleMaps.h>
-#import "UICountingLabel.h"
 #import "AppDelegate.h"
 #import "GPSLocation.h"
 #import "DrivingHistory.h"

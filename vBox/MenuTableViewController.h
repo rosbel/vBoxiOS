@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BluetoothController.h"
 #include "GoogleMapsViewController.h"
 
 @interface MenuTableViewController : UITableViewController <GoogleMapsViewControllerDelegate>
