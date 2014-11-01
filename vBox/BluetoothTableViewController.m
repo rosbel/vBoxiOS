@@ -92,9 +92,9 @@
 #pragma mark Bluetooth Delegate Methods
 
 //Bluetooth Thread
--(void)didUpdateDiagnosticForKey:(NSString *)key withValue:(float)value
+-(void)didUpdateDiagnosticForKey:(NSString *)key withValue:(NSNumber *)value
 {
-	[self.diagnostics setObject:[NSNumber numberWithFloat:value] forKey:key];
+	[self.diagnostics setObject:value forKey:key];
 	
 	//insert into core data?
 	[self.tableView reloadData];
@@ -102,12 +102,9 @@
 }
 
 //BluetoothThread
--(void)didUpdateDiagnosticForKey:(NSString *)key withMultipleValues:(float [])values
+-(void)didUpdateDiagnosticForKey:(NSString *)key withMultipleValues:(NSArray *)values
 {
-	NSNumber *x = [NSNumber numberWithFloat:values[0]];
-	NSNumber *y = [NSNumber numberWithFloat:values[1]];
-	NSNumber *z = [NSNumber numberWithFloat:values[2]];
-	[self.diagnostics setObject:@[x,y,z] forKey:key];
+	[self.diagnostics setObject:values forKey:key];
 	
 	//insert into core data?
 	[self.tableView reloadData];

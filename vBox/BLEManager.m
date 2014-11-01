@@ -132,7 +132,7 @@
 	switch(central.state)
 	{
 		case CBCentralManagerStatePoweredOff:
-			if(central )
+			if(central)
 			self.state =  BLEStateOff;
 			break;
 		case CBCentralManagerStatePoweredOn:
@@ -350,14 +350,15 @@
 		return;
 	
 //	[self asyncToMainThread:^{
-		[self.delegate didUpdateDiagnosticForKey:key withValue:value];
+	[self.delegate didUpdateDiagnosticForKey:key withValue:[NSNumber numberWithFloat:value]];
 //	}];
 }
 
 -(void) asyncUpdateDiagnosticForKey:(NSString *)key withMultipleValues:(float[])values
 {
 //	[self asyncToMainThread:^{
-		[self.delegate didUpdateDiagnosticForKey:key withMultipleValues:values];
+	NSArray *array = @[[NSNumber numberWithFloat:values[0]],[NSNumber numberWithFloat:values[0]],[NSNumber numberWithFloat:values[0]]];
+	[self.delegate didUpdateDiagnosticForKey:key withMultipleValues:array];
 //	}];
 }
 
