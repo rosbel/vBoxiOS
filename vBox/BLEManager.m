@@ -62,8 +62,8 @@
 	self = [super init];
 	if(self)
 	{
-//		dispatch_queue_t centralManagerQueue = dispatch_queue_create("bluetoothThread",DISPATCH_QUEUE_SERIAL); //Performance Enhancement?
-		_centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+		dispatch_queue_t centralManagerQueue = dispatch_queue_create("bluetoothThread",DISPATCH_QUEUE_SERIAL); //Performance Enhancement?
+		_centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:centralManagerQueue];
 		_connected = NO;
 	}
 	return self;
@@ -152,9 +152,9 @@
 			self.state = BLEStateUnsupported;
 			break;
 	}
-//	[self asyncToMainThread:^{
+	[self asyncToMainThread:^{
 		[self.delegate didChangeBluetoothState:self.state];
-//	}];
+	}];
 }
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
@@ -165,9 +165,9 @@
 	[peripheral setDelegate:self];
 	[peripheral discoverServices:nil];
 	if([self.delegate respondsToSelector:@selector(didConnectPeripheral)])
-//		[self asyncToMainThread:^{
+		[self asyncToMainThread:^{
 			[self.delegate didConnectPeripheral];
-//		}];
+		}];
 	_connected = YES;
 }
 
@@ -175,16 +175,16 @@
 {
 	_connected = NO;
 	if([self.delegate respondsToSelector:@selector(didDisconnectPeripheral)])
-//	   [self asyncToMainThread:^{
+	   [self asyncToMainThread:^{
 		   [self.delegate didDisconnectPeripheral];
-//	   }];
+	   }];
 }
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
-//	[self asyncToMainThread:^{
+	[self asyncToMainThread:^{
 		[self.delegate didUpdateDebugLogWithString:@"Discovered Peripheral"];
-//	}];
+	}];
 	NSString *localName = [advertisementData objectForKey:CBAdvertisementDataLocalNameKey];
 	
 	if([localName length] > 0)
@@ -203,53 +203,53 @@
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
-//	[self asyncToMainThread:^{
+	[self asyncToMainThread:^{
 		[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Service count = %lu",(unsigned long)peripheral.services.count]];
-//	}];
+	}];
 	
 	for(CBService *service in peripheral.services)
 	{
-//		[self asyncToMainThread:^{
+		[self asyncToMainThread:^{
 			[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Service UUID = %@",service.UUID]];
-//		}];
+		}];
 		[peripheral discoverCharacteristics:nil forService:service];
 	}
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
-//	[self asyncToMainThread:^{
+	[self asyncToMainThread:^{
 		[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Characteristic count = %lu",(unsigned long)service.characteristics.count]];
-//	}];
+	}];
 	
 	for(CBCharacteristic *characteristic in service.characteristics)
 	{
 		[peripheral setNotifyValue:YES forCharacteristic:characteristic];
 //		[peripheral readValueForCharacteristic:characteristic];
-//		[self asyncToMainThread:^{
+		[self asyncToMainThread:^{
 			[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Characteristic UUID = %@",characteristic.UUID]];
-//		}];
+		}];
 	}
 }
 
 -(void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
-	struct BLE_DATA receivedData;
+	struct BLE_DATA receivedData20;
 	struct BLE_DATA receivedData12;
 	[characteristic.value getBytes:&receivedData12 length:12];
-	[characteristic.value getBytes:&receivedData length:20];
+	[characteristic.value getBytes:&receivedData20 length:20];
 	uint8_t prevCheckSum12 = receivedData12.checksum;
-	uint8_t prevCheckSum = receivedData.checksum;
+	uint8_t prevCheckSum = receivedData20.checksum;
 	receivedData12.checksum = 0;
-	receivedData.checksum = 0;
+	receivedData20.checksum = 0;
 	uint8_t checkSum12 = [self getCheckSum:(char *)&receivedData12 length:12];
-	uint8_t checkSum = [self getCheckSum:(char *)&receivedData length:20];
+	uint8_t checkSum = [self getCheckSum:(char *)&receivedData20 length:20];
 	
 	struct BLE_DATA correctData;
 	
 	if(prevCheckSum == checkSum)
 	{
-		correctData = receivedData;
+		correctData = receivedData20;
 	}
 	else if(prevCheckSum12 == checkSum12)
 	{
@@ -376,17 +376,17 @@
 	if(value > limit)//don't do anything if value is above limit
 		return;
 	
-//	[self asyncToMainThread:^{
+	[self asyncToMainThread:^{
 	[self.delegate didUpdateDiagnosticForKey:key withValue:[NSNumber numberWithFloat:value]];
-//	}];
+	}];
 }
 
 -(void) asyncUpdateDiagnosticForKey:(NSString *)key withMultipleValues:(float[])values
 {
-//	[self asyncToMainThread:^{
+	[self asyncToMainThread:^{
 	NSArray *array = @[[NSNumber numberWithFloat:values[0]],[NSNumber numberWithFloat:values[1]],[NSNumber numberWithFloat:values[2]]];
 	[self.delegate didUpdateDiagnosticForKey:key withMultipleValues:array];
-//	}];
+	}];
 }
 
 -(void) asyncToMainThread:(void(^)(void)) codeBlock
