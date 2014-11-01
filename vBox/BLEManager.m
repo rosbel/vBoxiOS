@@ -242,8 +242,8 @@
 	uint8_t prevCheckSum = receivedData.checksum;
 	receivedData12.checksum = 0;
 	receivedData.checksum = 0;
-	uint8_t checkSum12 = [self getCheckSum:&receivedData12 length:12];
-	uint8_t checkSum = [self getCheckSum:&receivedData length:20];
+	uint8_t checkSum12 = [self getCheckSum:(char *)&receivedData12 length:12];
+	uint8_t checkSum = [self getCheckSum:(char *)&receivedData length:20];
 	
 	struct BLE_DATA correctData;
 	
