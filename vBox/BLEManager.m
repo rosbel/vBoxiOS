@@ -51,7 +51,6 @@
 	};
 	
 	CBUUID *uid;
-	dispatch_queue_t centralManagerQueue;
 }
 
 
@@ -62,8 +61,8 @@
 	self = [super init];
 	if(self)
 	{
-		centralManagerQueue = dispatch_queue_create("bluetoothThread",DISPATCH_QUEUE_SERIAL);
-		_centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:centralManagerQueue];
+//		dispatch_queue_t centralManagerQueue = dispatch_queue_create("bluetoothThread",DISPATCH_QUEUE_SERIAL); //Performance Enhancement?
+		_centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
 		_connected = NO;
 	}
 	return self;
@@ -96,6 +95,14 @@
 }
 
 //Main Thread
+-(void)stopScanning
+{
+	[self.centralManager stopScan];
+	if([self.delegate respondsToSelector:@selector(didStopScanning)])
+		[self.delegate didStopScanning];
+}
+
+//Main Thread
 -(void)disconnect
 {
 	if(self.peripheral)
@@ -125,6 +132,7 @@
 	switch(central.state)
 	{
 		case CBCentralManagerStatePoweredOff:
+			if(central )
 			self.state =  BLEStateOff;
 			break;
 		case CBCentralManagerStatePoweredOn:
@@ -143,18 +151,18 @@
 			self.state = BLEStateUnsupported;
 			break;
 	}
-	[self asyncToMainThread:^{
+//	[self asyncToMainThread:^{
 		[self.delegate didChangeBluetoothState:self.state];
-	}];
+//	}];
 }
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
 	[self.peripheral discoverServices:nil]; //Discover all services
 	if([self.delegate respondsToSelector:@selector(didConnectPeripheral)])
-		[self asyncToMainThread:^{
+//		[self asyncToMainThread:^{
 			[self.delegate didConnectPeripheral];
-		}];
+//		}];
 	_connected = YES;
 }
 
@@ -162,9 +170,9 @@
 {
 	_connected = NO;
 	if([self.delegate respondsToSelector:@selector(didDisconnectPeripheral)])
-	   [self asyncToMainThread:^{
+//	   [self asyncToMainThread:^{
 		   [self.delegate didDisconnectPeripheral];
-	   }];
+//	   }];
 }
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
@@ -177,11 +185,12 @@
 	if([localName length] > 0)
 	{
 		[self.centralManager stopScan];
-		
+		if([self.delegate respondsToSelector:@selector(didStopScanning)])
+			[self.delegate didStopScanning];
 		_peripheral = peripheral;
 		_peripheral.delegate = self;
 		
-		[self.centralManager connectPeripheral:_peripheral options:nil];
+		[self.centralManager connectPeripheral:_peripheral options:@{CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES,CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES}];
 	}
 }
 
@@ -318,9 +327,9 @@
 			break;
 		default:
 			if([self.delegate respondsToSelector:@selector(didUpdateDebugLogWithString:)])
-				[self asyncToMainThread:^{
+//				[self asyncToMainThread:^{
 					[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Unkown PID: %x - Val: %f",receivedData.pid,receivedData.value[0]]];
-				}];
+//				}];
 			break;
 	}
 	if(error)
@@ -340,16 +349,16 @@
 	if(value > limit)//don't do anything if value is above limit
 		return;
 	
-	[self asyncToMainThread:^{
+//	[self asyncToMainThread:^{
 		[self.delegate didUpdateDiagnosticForKey:key withValue:value];
-	}];
+//	}];
 }
 
 -(void) asyncUpdateDiagnosticForKey:(NSString *)key withMultipleValues:(float[])values
 {
-	[self asyncToMainThread:^{
+//	[self asyncToMainThread:^{
 		[self.delegate didUpdateDiagnosticForKey:key withMultipleValues:values];
-	}];
+//	}];
 }
 
 -(void) asyncToMainThread:(void(^)(void)) codeBlock
