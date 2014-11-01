@@ -34,12 +34,15 @@
 #define PID_ACC 0xF020
 #define PID_GYRO 0xF021
 
+#pragma mark - Interface
 @interface BLEManager() <CBCentralManagerDelegate,CBPeripheralDelegate>
 
 @property (nonatomic, strong, readonly) CBCentralManager *centralManager;
 @property (nonatomic, strong, readonly) CBPeripheral *peripheral;
 
 @end
+
+#pragma mark - Implementation 
 
 @implementation BLEManager{
 	struct BLE_DATA{
@@ -177,9 +180,9 @@
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
-	[self asyncToMainThread:^{
+//	[self asyncToMainThread:^{
 		[self.delegate didUpdateDebugLogWithString:@"Discovered Peripheral"];
-	}];
+//	}];
 	NSString *localName = [advertisementData objectForKey:CBAdvertisementDataLocalNameKey];
 	
 	if([localName length] > 0)
@@ -198,39 +201,44 @@
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
-	[self asyncToMainThread:^{
+//	[self asyncToMainThread:^{
 		[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Service count = %lu",(unsigned long)peripheral.services.count]];
-	}];
+//	}];
 	
 	for(CBService *service in peripheral.services)
 	{
-		[self asyncToMainThread:^{
+//		[self asyncToMainThread:^{
 			[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Service UUID = %@",service.UUID]];
-		}];
+//		}];
 		[peripheral discoverCharacteristics:nil forService:service];
 	}
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
-	[self asyncToMainThread:^{
+//	[self asyncToMainThread:^{
 		[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Characteristic count = %lu",(unsigned long)service.characteristics.count]];
-	}];
+//	}];
 	
 	for(CBCharacteristic *characteristic in service.characteristics)
 	{
 		[peripheral setNotifyValue:YES forCharacteristic:characteristic];
-		[self asyncToMainThread:^{
+//		[self asyncToMainThread:^{
 			[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Characteristic UUID = %@",characteristic.UUID]];
-		}];
+//		}];
 	}
 }
 
 -(void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
 	struct BLE_DATA receivedData;
-	
+	struct BLE_DATA receivedData12;
+	[characteristic.value getBytes:&receivedData12 length:12];
 	[characteristic.value getBytes:&receivedData length:20];
+	
+	uint8_t checkSum12 = [self getCheckSum:&receivedData12 size:12];
+	uint8_t checkSum20 = [self getCheckSum:&receivedData size:20];
+	
 	float value;
 	switch(receivedData.pid)
 	{
@@ -335,9 +343,9 @@
 	if(error)
 	{
 		if([self.delegate respondsToSelector:@selector(didUpdateDebugLogWithString:)])
-			[self asyncToMainThread:^{
+//			[self asyncToMainThread:^{
 				[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Received error: %@",error]];
-			}];
+//			}];
 	}
 }
 
@@ -365,6 +373,17 @@
 -(void) asyncToMainThread:(void(^)(void)) codeBlock
 {
 	dispatch_async(dispatch_get_main_queue(), codeBlock);
+}
+
+#pragma mark - Checksum
+
+-(uint8_t)getCheckSum:(char *)buffer size:(size_t)len
+{
+	uint8_t checksum = 0;
+	for (Byte i = 0; i < len; i++) {
+		checksum ^= buffer[i];
+	}
+	return checksum;
 }
 
 

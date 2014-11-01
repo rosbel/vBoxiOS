@@ -37,12 +37,12 @@
 	[self.bluetoothController disconnect];
 }
 
--(void)didUpdateDiagnosticForKey:(NSString *)key withValue:(float)value
+-(void)didUpdateDiagnosticForKey:(NSString *)key withValue:(NSNumber *)value
 {
 	
 }
 
--(void)didUpdateDiagnosticForKey:(NSString *)key withMultipleValues:(float [])values
+-(void)didUpdateDiagnosticForKey:(NSString *)key withMultipleValues:(NSArray *)values
 {
 	
 }
