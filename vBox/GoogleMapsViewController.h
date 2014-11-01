@@ -13,6 +13,7 @@
 #import "GPSLocation.h"
 #import "DrivingHistory.h"
 #import "Trip.h"
+#import "BLEManager.h"
 
 @protocol GoogleMapsViewControllerDelegate <NSObject>
 
@@ -20,13 +21,16 @@
 
 @end
 
-@interface GoogleMapsViewController : UIViewController <CLLocationManagerDelegate, GMSMapViewDelegate>
+@interface GoogleMapsViewController : UIViewController <CLLocationManagerDelegate, GMSMapViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, BLEManagerDelegate>
 
 @property (strong,nonatomic) CLLocationManager *locationManager;
-@property (weak  , nonatomic) IBOutlet GMSMapView *MapView;
-@property (weak  , nonatomic) IBOutlet UIButton *stopRecordingButton;
-@property (weak  , nonatomic) IBOutlet UILabel *speedLabel;
-@property (weak  , nonatomic) id delegate;
+@property (weak, nonatomic) IBOutlet GMSMapView *MapView;
+@property (weak, nonatomic) IBOutlet UIButton *stopRecordingButton;
+@property (weak, nonatomic) IBOutlet UILabel *speedLabel;
+@property (weak, nonatomic) id delegate;
+@property (strong, nonatomic) BLEManager *bluetoothManager;
+@property (strong, nonatomic) NSMutableDictionary *bluetoothDiagnostics;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
 

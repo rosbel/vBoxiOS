@@ -384,7 +384,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view opaque="NO" clearsContextBeforeDrawing="NO" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ski-ZJ-D74" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="451"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <visualEffectView opaque="NO" tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3eW-h8-PRz">
@@ -394,7 +394,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mph" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IeI-Jk-IwB">
-                                            <rect key="frame" x="43" y="2" width="35" height="21"/>
+                                            <rect key="frame" x="43" y="2" width="34.5" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -422,29 +422,90 @@
                                     <action selector="stopRecordingButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Xqa-4t-eKJ"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TVK-E4-JeR" userLabel="InfoView">
+                                <rect key="frame" x="0.0" y="451" width="600" height="149"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lGm-lw-1sE">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="149"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sPg-z0-Y8m">
+                                            <size key="itemSize" width="120" height="40"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionCell" id="MBv-7q-kLh">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="40"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="headTruncation" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="1CD-R0-KHd">
+                                                            <rect key="frame" x="8" y="19" width="104" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <color key="textColor" red="0.98039215686274506" green="0.41176470588235292" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fRl-Uk-vpo">
+                                                            <rect key="frame" x="8" y="0.0" width="104" height="21"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                                            <color key="textColor" red="0.98039215690000003" green="0.41176470590000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <size key="customSize" width="120" height="40"/>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="vXZ-lx-hvc" id="b6T-KR-n06"/>
+                                            <outlet property="delegate" destination="vXZ-lx-hvc" id="X6U-gK-dso"/>
+                                        </connections>
+                                    </collectionView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bluetooth Requried for Car Diagnostics" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGp-35-jsB">
+                                        <rect key="frame" x="149.5" y="64.5" width="301" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.8784313725490196" green="0.89411764705882357" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="lGm-lw-1sE" firstAttribute="height" secondItem="TVK-E4-JeR" secondAttribute="height" id="MID-zQ-D9W"/>
+                                    <constraint firstAttribute="centerY" secondItem="CGp-35-jsB" secondAttribute="centerY" id="aD1-s7-G7X"/>
+                                    <constraint firstItem="lGm-lw-1sE" firstAttribute="width" secondItem="TVK-E4-JeR" secondAttribute="width" id="o5i-kz-qik"/>
+                                    <constraint firstAttribute="centerX" secondItem="lGm-lw-1sE" secondAttribute="centerX" id="t34-Fk-68G"/>
+                                    <constraint firstAttribute="centerX" secondItem="CGp-35-jsB" secondAttribute="centerX" id="u4F-oz-x0m"/>
+                                    <constraint firstAttribute="centerY" secondItem="lGm-lw-1sE" secondAttribute="centerY" id="xYy-yg-vBd"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" secondItem="ski-ZJ-D74" secondAttribute="height" id="1nD-0s-XhX"/>
+                            <constraint firstItem="ski-ZJ-D74" firstAttribute="height" secondItem="kh9-bI-dsS" secondAttribute="height" multiplier="3:4" constant="1" id="68m-3h-9jv"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3eW-h8-PRz" secondAttribute="trailing" id="Bch-VX-cAa"/>
                             <constraint firstItem="X8t-vy-3hi" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Fhz-HS-nVt"/>
                             <constraint firstAttribute="width" secondItem="ski-ZJ-D74" secondAttribute="width" id="HAD-qC-Maj"/>
                             <constraint firstItem="X8t-vy-3hi" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="MOD-NJ-5Yw"/>
-                            <constraint firstItem="X8t-vy-3hi" firstAttribute="width" secondItem="3eW-h8-PRz" secondAttribute="width" id="XMZ-LI-gWP"/>
-                            <constraint firstAttribute="centerY" secondItem="ski-ZJ-D74" secondAttribute="centerY" id="dq7-IH-fLR"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="TVK-E4-JeR" secondAttribute="bottom" id="RRK-oX-vXq"/>
+                            <constraint firstItem="ski-ZJ-D74" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="-20" id="ezT-Yq-gXp"/>
                             <constraint firstItem="X8t-vy-3hi" firstAttribute="top" secondItem="3eW-h8-PRz" secondAttribute="top" id="gUO-rv-Kbp"/>
                             <constraint firstItem="X8t-vy-3hi" firstAttribute="height" secondItem="3eW-h8-PRz" secondAttribute="height" id="nxr-lp-WbT"/>
+                            <constraint firstItem="TVK-E4-JeR" firstAttribute="top" secondItem="ski-ZJ-D74" secondAttribute="bottom" id="scS-O3-Nsc"/>
                             <constraint firstItem="X8t-vy-3hi" firstAttribute="width" secondItem="3eW-h8-PRz" secondAttribute="width" constant="10" id="tmU-sb-5U7"/>
+                            <constraint firstAttribute="centerX" secondItem="TVK-E4-JeR" secondAttribute="centerX" id="u6e-Hs-H7T"/>
                             <constraint firstAttribute="centerX" secondItem="ski-ZJ-D74" secondAttribute="centerX" id="vHx-YZ-GEq"/>
+                            <constraint firstAttribute="width" secondItem="TVK-E4-JeR" secondAttribute="width" id="zLV-j9-VAH"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="XMZ-LI-gWP"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="MapView" destination="ski-ZJ-D74" id="cd6-fS-k3X"/>
+                        <outlet property="bluetoothRequiredLabel" destination="CGp-35-jsB" id="jvm-GW-aty"/>
+                        <outlet property="collectionView" destination="lGm-lw-1sE" id="rOS-wq-sQI"/>
+                        <outlet property="infoView" destination="TVK-E4-JeR" id="iU3-0M-HDj"/>
                         <outlet property="speedLabel" destination="IeI-Jk-IwB" id="7FZ-Aw-U83"/>
                         <outlet property="stopRecordingButton" destination="X8t-vy-3hi" id="7Ug-eS-Ekk"/>
                     </connections>

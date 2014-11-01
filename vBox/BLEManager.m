@@ -88,7 +88,8 @@
 			_uid = [CBUUID UUIDWithString:BeagleBoneServiceUID];
 			break;
 	}
-	[self.delegate didUpdateDebugLogWithString:@"Scanning for peripheral"];
+	if([self.delegate respondsToSelector:@selector(didUpdateDebugLogWithString:)])
+		[self.delegate didUpdateDebugLogWithString:@"Scanning for peripheral"];
 	[self.centralManager scanForPeripheralsWithServices:@[self.uid] options:nil];
 	if([self.delegate respondsToSelector:@selector(didBeginScanningForPeripheral)])
 		[self.delegate didBeginScanningForPeripheral];
@@ -183,7 +184,8 @@
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
 	[self asyncToMainThread:^{
-		[self.delegate didUpdateDebugLogWithString:@"Discovered Peripheral"];
+		if([self.delegate respondsToSelector:@selector(didUpdateDebugLogWithString:)])
+			[self.delegate didUpdateDebugLogWithString:@"Discovered Peripheral"];
 	}];
 	NSString *localName = [advertisementData objectForKey:CBAdvertisementDataLocalNameKey];
 	

@@ -11,6 +11,9 @@
 
 @interface GoogleMapsViewController ()
 
+@property (strong, nonatomic) IBOutlet UILabel *bluetoothRequiredLabel;
+@property (weak, nonatomic) IBOutlet UIView *infoView;
+
 @end
 
 @implementation GoogleMapsViewController{
@@ -42,6 +45,10 @@
 	maxSpeed = 0;
 	currentZoom = 15;
 	followMe = YES;
+	
+	self.bluetoothManager = [[BLEManager alloc] init];
+	self.bluetoothManager.delegate = self;
+	self.bluetoothDiagnostics = [NSMutableDictionary dictionary];
 	
 	completePath = [GMSMutablePath path];
 	pastLocations = [NSMutableArray array];
@@ -112,6 +119,7 @@
 										 longitude:-98.081992
 											  zoom:currentZoom];
 	
+	[_MapView setPadding:UIEdgeInsetsMake(40, 0, 0, 0)];
 	[_MapView setCamera:camera];
 	_MapView.myLocationEnabled = YES;
 	_MapView.settings.myLocationButton = YES;
@@ -233,6 +241,71 @@
 -(BOOL)prefersStatusBarHidden
 {
 	return NO;
+}
+
+#pragma mark - UICollection View Delegate
+
+
+#pragma mark - UICollection Data Source Delegate
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+	return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+	return self.bluetoothDiagnostics.count;
+}
+
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+	UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionCell" forIndexPath:indexPath];
+	UILabel *key = (UILabel *)[cell viewWithTag:1];
+	UILabel *val = (UILabel *)[cell viewWithTag:2];
+	
+	NSArray *keys = [[self.bluetoothDiagnostics allKeys] sortedArrayUsingSelector:@selector(compare:)];
+	key.text = [keys objectAtIndex:indexPath.row];
+	
+	val.text = [NSString stringWithFormat:@"%@",(NSNumber *)[self.bluetoothDiagnostics objectForKey:key.text]];
+
+	return cell;
+}
+
+#pragma mark - BLEManager Delegate
+
+-(void)didChangeBluetoothState:(BLEState)state
+{
+	if(state == BLEStateOn)
+	{
+		[self.bluetoothRequiredLabel removeFromSuperview];
+		if(self.bluetoothManager.connected)
+		{
+			[self.bluetoothManager setNotifyValue:YES];
+		}
+		else
+		{
+			[self.bluetoothManager scanForPeripheralType:PeripheralTypeOBDAdapter];
+		}
+	}else
+	{
+		[self.infoView addSubview:self.bluetoothRequiredLabel];
+	}
+}
+
+-(void)didUpdateDebugLogWithString:(NSString *)string
+{
+	
+}
+-(void)didUpdateDiagnosticForKey:(NSString *)key withValue:(NSNumber *)value
+{
+	[self.bluetoothDiagnostics setObject:value forKey:key];
+	[self.collectionView reloadData];
+}
+-(void)didUpdateDiagnosticForKey:(NSString *)key withMultipleValues:(NSArray *)values
+{
+	
 }
 
 #pragma mark - Core Data
