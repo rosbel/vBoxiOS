@@ -12,6 +12,7 @@
 #import "Trip.h"
 #import "GPSLocation.h"
 #import "DrivingHistory.h"
+#import "BluetoothData.h"
 
 @interface TripDetailViewController : UIViewController <GMSMapViewDelegate>
 
@@ -22,5 +23,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *speedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *RPMLabel;
 
 @end

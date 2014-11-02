@@ -13,6 +13,7 @@
 #import "GPSLocation.h"
 #import "DrivingHistory.h"
 #import "Trip.h"
+#include "BluetoothData.h"
 #import "BLEManager.h"
 
 @protocol GoogleMapsViewControllerDelegate <NSObject>

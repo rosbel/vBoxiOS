@@ -22,7 +22,6 @@
 	GMSPolyline* polyline;
 	NSMutableArray *pastLocations;
 	bool followMe;
-	float currentZoom;
 	AppDelegate *appDelegate;
 	NSManagedObjectContext *context;
 	Trip *currentTrip;
@@ -30,7 +29,7 @@
 	double maxSpeed;
 }
 
-#pragma mark - UIView
+#pragma mark - UIView Delegate Methods
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -41,39 +40,22 @@
 	currentTrip = [NSEntityDescription insertNewObjectForEntityForName:@"Trip" inManagedObjectContext:context];
 	[currentTrip setStartTime:[NSDate date]];
 	
+	completePath = [GMSMutablePath path];
+	pastLocations = [NSMutableArray array];
+	
 	sumSpeed = 0;
 	maxSpeed = 0;
-	currentZoom = 15;
 	followMe = YES;
 	
 	self.bluetoothManager = [[BLEManager alloc] init];
 	self.bluetoothManager.delegate = self;
 	self.bluetoothDiagnostics = [NSMutableDictionary dictionary];
 	
-	completePath = [GMSMutablePath path];
-	pastLocations = [NSMutableArray array];
-	
 	[self setUpLocationManager];
-	
 	
 	[self setUpGoogleMaps];
 	
-	
-	UIBlurEffect* blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-	UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-	
-	blurView.layer.masksToBounds = YES;
-	
-	blurView.layer.cornerRadius = 5.0;
-	
-	UIView *blurredLabel = [self.view viewWithTag:3];
-	
-	blurredLabel.layer.masksToBounds = YES;
-	blurredLabel.layer.cornerRadius = 5.0;
-	
-	blurView.frame = self.stopRecordingButton.frame;
-	
-	[self.view insertSubview:blurView belowSubview:self.stopRecordingButton];
+	[self setUpUIButtons];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -90,16 +72,10 @@
 	[appDelegate saveContext];
 }
 
-#pragma mark - Initialization
+#pragma mark - SetUp Methods
 
 -(void)setUpLocationManager
 {
-	polyline = [GMSPolyline polylineWithPath:completePath];
-	polyline.strokeColor = [UIColor redColor];
-	polyline.strokeWidth = 5.0;
-	polyline.geodesic = YES;
-	polyline.map = self.MapView;
-	
 	_locationManager = [[CLLocationManager alloc] init];
 	
 	[_locationManager setDelegate:self];
@@ -117,7 +93,7 @@
 {
 	camera = [GMSCameraPosition cameraWithLatitude:39.490179
 										 longitude:-98.081992
-											  zoom:currentZoom];
+											  zoom:14];
 	
 	[_MapView setPadding:UIEdgeInsetsMake(40, 0, 0, 0)];
 	[_MapView setCamera:camera];
@@ -125,6 +101,32 @@
 	_MapView.settings.myLocationButton = YES;
 	_MapView.settings.compassButton = YES;
 	[_MapView setDelegate:self];
+	
+	
+	polyline = [GMSPolyline polylineWithPath:completePath];
+	polyline.strokeColor = [UIColor grayColor];
+	polyline.strokeWidth = 5.0;
+	polyline.geodesic = YES;
+	polyline.map = self.MapView;
+}
+
+-(void)setUpUIButtons
+{
+	UIBlurEffect* blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+	UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+	
+	blurView.layer.masksToBounds = YES;
+	
+	blurView.layer.cornerRadius = 5.0;
+	
+	UIView *blurredLabel = [self.view viewWithTag:3];
+	
+	blurredLabel.layer.masksToBounds = YES;
+	blurredLabel.layer.cornerRadius = 5.0;
+	
+	blurView.frame = self.stopRecordingButton.frame;
+	
+	[self.view insertSubview:blurView belowSubview:self.stopRecordingButton];
 }
 
 #pragma mark - Google Maps View Delegate
@@ -140,19 +142,9 @@
 -(BOOL)didTapMyLocationButtonForMapView:(GMSMapView *)mapView
 {
 	followMe = YES;
-//	[_MapView animateWithCameraUpdate:[GMSCameraUpdate setTarget:((CLLocation *)[pastLocations lastObject]).coordinate zoom:15]];
 	return NO;
 }
 
-#pragma mark - Helper Methods
-
-
--(void)insertPolylineInMap:(GMSMapView *)myMapView fromLocation:(CLLocation *)lastLocation toLocation:(CLLocation *)curLocation
-{
-	[completePath addCoordinate:curLocation.coordinate];
-
-	[polyline setPath:completePath];
-}
 
 #pragma mark - Button Action
 
@@ -205,19 +197,18 @@
 	
 	[self logLocation:newestLocation persistent:YES];
 	
-	if(speedMPH > 60)
-	{
-		currentZoom = 13.0;
-	}else if (speedMPH < 60)
-	{
-		currentZoom = 15;
-	}
+	[completePath addCoordinate:newestLocation.coordinate];
 	
-	[self insertPolylineInMap:self.MapView fromLocation:prevLocation toLocation:newestLocation];
+	[polyline setPath:completePath];
+	
+	NSArray *styles = @[[GMSStrokeStyle solidColor:[UIColor colorWithRed:68.0/255.0 green:119.0/255.0 blue:153.0/255.0 alpha:1]],[GMSStrokeStyle solidColor:[UIColor colorWithRed:170.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1]]];
+	int tolerance = (int)powf(10.0,(-0.301*self.MapView.camera.zoom)+9.0731) / 2500;
+	NSArray *lengths = @[@(tolerance),@(tolerance*1.5)];
+	polyline.spans = GMSStyleSpans(polyline.path, styles, lengths, kGMSLengthGeodesic);
 	
 	if(followMe)
 	{
-		[_MapView animateWithCameraUpdate:[GMSCameraUpdate setTarget:newestLocation.coordinate zoom:currentZoom]];
+		[_MapView animateWithCameraUpdate:[GMSCameraUpdate setTarget:newestLocation.coordinate]];
 	}
 }
 
@@ -242,9 +233,6 @@
 {
 	return NO;
 }
-
-#pragma mark - UICollection View Delegate
-
 
 #pragma mark - UICollection Data Source Delegate
 
@@ -279,7 +267,6 @@
 {
 	if(state == BLEStateOn)
 	{
-//		[self.bluetoothRequiredLabel removeFromSuperview];
 		self.bluetoothRequiredLabel.hidden = YES;
 		if(self.bluetoothManager.connected)
 		{
@@ -292,7 +279,6 @@
 	}else
 	{
 		self.bluetoothRequiredLabel.hidden = NO;
-//		[self.infoView addSubview:self.bluetoothRequiredLabel];
 	}
 }
 
@@ -327,7 +313,26 @@
 		[newLocation setSpeed:[NSNumber numberWithDouble:speedMPH]];
 		[newLocation setTimestamp:time];
 		[newLocation setTripInfo:currentTrip];
+		
+		if(self.bluetoothManager.connected)
+		{
+			
+			BluetoothData *bleData = [NSEntityDescription insertNewObjectForEntityForName:@"BluetoothData" inManagedObjectContext:context];
+			[bleData setSpeed:[self.bluetoothDiagnostics objectForKey:@"Speed"]];
+			[bleData setAmbientTemp:[self.bluetoothDiagnostics objectForKey:@"Ambient Temp"]];
+			[bleData setBarometric:[self.bluetoothDiagnostics objectForKey:@"Barometric"]];
+			[bleData setRpm:[self.bluetoothDiagnostics objectForKey:@"RPM"]];
+			[bleData setIntakeTemp:[self.bluetoothDiagnostics objectForKey:@"Intake Temp"]];
+			[bleData setFuel:[self.bluetoothDiagnostics objectForKey:@"Fuel"]];
+			[bleData setEngineLoad:[self.bluetoothDiagnostics objectForKey:@"Engine Load"]];
+			[bleData setDistance:[self.bluetoothDiagnostics objectForKey:@"Distance"]];
+			[bleData setCoolantTemp:[self.bluetoothDiagnostics objectForKey:@"Coolant Temp"]];
+			[bleData setThrottle:[self.bluetoothDiagnostics objectForKey:@"Throttle"]];
+			//Set AccelX,Y,Z
+			[newLocation setBluetoothInfo:bleData];
+		}
 		[appDelegate saveContext];
+		//Check if Bluetooth is on, and populate DB with recent values
 	}
 	
 	[pastLocations addObject:location];

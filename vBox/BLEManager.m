@@ -305,7 +305,7 @@
 			break;
 		case PID_AMBIENT_TEMP:
 			value = correctData.value[0];
-			[self asyncUpdateDiagnosticForKey:@"Ambien Temp" withValue:value ifUnderLimit:1000.0];
+			[self asyncUpdateDiagnosticForKey:@"Ambient Temp" withValue:value ifUnderLimit:1000.0];
 			break;
 		case PID_THROTTLE:
 			value = correctData.value[0];

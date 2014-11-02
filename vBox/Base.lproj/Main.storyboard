@@ -350,6 +350,16 @@
                                             <constraint firstAttribute="centerY" secondItem="4fZ-An-d2f" secondAttribute="centerY" id="t2o-iE-aqW"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gl8-ZV-1Ia" userLabel="RPMLabel">
+                                        <rect key="frame" x="42" y="51" width="73" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="kd4-rO-euf"/>
+                                            <constraint firstAttribute="width" constant="73" id="yWI-jn-15u"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.8784313725490196" green="0.89411764705882357" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -358,7 +368,9 @@
                                     <constraint firstAttribute="centerX" secondItem="NZi-nR-mzI" secondAttribute="centerX" id="HB6-N0-UT4"/>
                                     <constraint firstAttribute="centerY" secondItem="NZi-nR-mzI" secondAttribute="centerY" id="bb0-dr-Xux"/>
                                     <constraint firstAttribute="centerX" secondItem="qSa-b1-XVc" secondAttribute="centerX" id="bbm-tu-wur"/>
+                                    <constraint firstItem="Gl8-ZV-1Ia" firstAttribute="top" secondItem="HXR-Qr-QiH" secondAttribute="top" constant="51" id="kg4-qn-dZq"/>
                                     <constraint firstItem="NZi-nR-mzI" firstAttribute="width" secondItem="HXR-Qr-QiH" secondAttribute="width" multiplier="5:6" id="lFE-3b-uzX"/>
+                                    <constraint firstItem="Gl8-ZV-1Ia" firstAttribute="leading" secondItem="HXR-Qr-QiH" secondAttribute="leading" constant="42" id="oFA-JP-Agt"/>
                                     <constraint firstItem="qSa-b1-XVc" firstAttribute="top" secondItem="HXR-Qr-QiH" secondAttribute="top" id="y1Q-yE-eNL"/>
                                 </constraints>
                             </view>
@@ -383,6 +395,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="RPMLabel" destination="Gl8-ZV-1Ia" id="w2b-aJ-U4a"/>
                         <outlet property="mapView" destination="CfI-It-6d2" id="FHk-sq-g6e"/>
                         <outlet property="myLocationButton" destination="4Ui-V1-gXW" id="XLG-DM-XqA"/>
                         <outlet property="speedLabel" destination="Guy-7V-Jyu" id="Fvg-U3-ODw"/>
