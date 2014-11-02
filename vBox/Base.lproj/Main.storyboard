@@ -291,6 +291,20 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ui-V1-gXW">
+                                <rect key="frame" x="26" y="74" width="30" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.65000000000000002" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="02y-cr-smg"/>
+                                    <constraint firstAttribute="width" constant="30" id="7O9-Xs-I4L"/>
+                                </constraints>
+                                <state key="normal" image="myLocationIcon">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="myLocationButtonTapped:" destination="ekS-UR-SFw" eventType="touchUpInside" id="Nl8-1s-WbA"/>
+                                </connections>
+                            </button>
                             <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HXR-Qr-QiH" userLabel="InformationView">
                                 <rect key="frame" x="0.0" y="364" width="600" height="236"/>
                                 <subviews>
@@ -306,7 +320,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="26"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fZ-An-d2f" userLabel="timeLabel">
-                                                <rect key="frame" x="523.5" y="3" width="66.5" height="20"/>
+                                                <rect key="frame" x="523" y="3" width="66.5" height="20"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -318,7 +332,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="nzQ-Ip-1Xx">
-                                                <rect key="frame" x="500.5" y="3" width="21" height="21"/>
+                                                <rect key="frame" x="500" y="3" width="21" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="nzQ-Ip-1Xx" secondAttribute="height" multiplier="1:1" id="8A9-Dy-fUO"/>
                                                 </constraints>
@@ -354,14 +368,23 @@
                             <constraint firstAttribute="centerX" secondItem="HXR-Qr-QiH" secondAttribute="centerX" id="2s5-9u-krs"/>
                             <constraint firstItem="CfI-It-6d2" firstAttribute="height" secondItem="Fok-lZ-fok" secondAttribute="height" multiplier="1:2" id="Iwt-XD-SDM"/>
                             <constraint firstAttribute="centerX" secondItem="CfI-It-6d2" secondAttribute="centerX" id="Sdd-B6-tpU"/>
+                            <constraint firstItem="CfI-It-6d2" firstAttribute="top" secondItem="4Ui-V1-gXW" secondAttribute="top" constant="-10" id="UWY-vm-1x7"/>
+                            <constraint firstItem="qSa-b1-XVc" firstAttribute="top" secondItem="4Ui-V1-gXW" secondAttribute="bottom" constant="10" id="VeA-Y5-elK"/>
                             <constraint firstItem="CfI-It-6d2" firstAttribute="width" secondItem="Fok-lZ-fok" secondAttribute="width" id="Voc-k4-SGO"/>
                             <constraint firstItem="qbi-X0-EBo" firstAttribute="top" secondItem="HXR-Qr-QiH" secondAttribute="bottom" id="ctE-vk-bIx"/>
+                            <constraint firstItem="4Ui-V1-gXW" firstAttribute="leading" secondItem="Fok-lZ-fok" secondAttribute="leadingMargin" constant="10" id="hAk-dA-iF3"/>
                             <constraint firstItem="CfI-It-6d2" firstAttribute="top" secondItem="s2B-Xd-nYe" secondAttribute="bottom" id="hIh-Xh-G0a"/>
                             <constraint firstItem="HXR-Qr-QiH" firstAttribute="top" secondItem="CfI-It-6d2" secondAttribute="bottom" id="taF-OO-UgM"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="VeA-Y5-elK"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="CfI-It-6d2" id="FHk-sq-g6e"/>
+                        <outlet property="myLocationButton" destination="4Ui-V1-gXW" id="XLG-DM-XqA"/>
                         <outlet property="speedLabel" destination="Guy-7V-Jyu" id="Fvg-U3-ODw"/>
                         <outlet property="timeLabel" destination="4fZ-An-d2f" id="hVz-Rx-bhG"/>
                         <outlet property="tripSlider" destination="NZi-nR-mzI" id="amQ-YA-RYG"/>
@@ -425,6 +448,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TVK-E4-JeR" userLabel="InfoView">
                                 <rect key="frame" x="0.0" y="451" width="600" height="149"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bluetooth Requried for Car Diagnostics" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGp-35-jsB">
+                                        <rect key="frame" x="99.5" y="64.5" width="400" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lGm-lw-1sE">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="149"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -465,12 +494,6 @@
                                             <outlet property="delegate" destination="vXZ-lx-hvc" id="X6U-gK-dso"/>
                                         </connections>
                                     </collectionView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bluetooth Requried for Car Diagnostics" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGp-35-jsB">
-                                        <rect key="frame" x="149.5" y="64.5" width="301" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.8784313725490196" green="0.89411764705882357" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -479,6 +502,7 @@
                                     <constraint firstItem="lGm-lw-1sE" firstAttribute="width" secondItem="TVK-E4-JeR" secondAttribute="width" id="o5i-kz-qik"/>
                                     <constraint firstAttribute="centerX" secondItem="lGm-lw-1sE" secondAttribute="centerX" id="t34-Fk-68G"/>
                                     <constraint firstAttribute="centerX" secondItem="CGp-35-jsB" secondAttribute="centerX" id="u4F-oz-x0m"/>
+                                    <constraint firstAttribute="width" secondItem="CGp-35-jsB" secondAttribute="width" multiplier="3:2" id="uf4-0j-n5b"/>
                                     <constraint firstAttribute="centerY" secondItem="lGm-lw-1sE" secondAttribute="centerY" id="xYy-yg-vBd"/>
                                 </constraints>
                             </view>
@@ -539,6 +563,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="myLocationIcon" width="48" height="48"/>
         <image name="timeIcon" width="48" height="48"/>
     </resources>
 </document>

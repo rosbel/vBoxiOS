@@ -16,17 +16,17 @@
 @property (strong, nonatomic) GMSMutablePath *pathForTrip;
 @property (strong, nonatomic) GMSMarker *markerForSlider;
 @property (strong, nonatomic) GMSMarker *markerForTap;
+@property (weak, nonatomic) IBOutlet UIButton *myLocationButton;
 
 @end
 
 @implementation TripDetailViewController{
 	GMSCoordinateBounds *cameraBounds;
-	GPSLocation *startLocation;
+//	GPSLocation *startLocation;
 }
 
 @synthesize pathForTrip;
 @synthesize GPSLocationsForTrip;
-//@synthesize camera;
 @synthesize speedDivisions;
 
 #pragma mark - Initialization
@@ -36,9 +36,11 @@
     // Do any additional setup after loading the view.
 	
 	self.speedColors = @[[UIColor redColor],[UIColor orangeColor],[UIColor yellowColor],[UIColor greenColor]];
-	self.speedDivisions = [self calculateSpeedBoundaries];
 	
-	startLocation = [self.trip.gpsLocations objectAtIndex:0];
+	self.myLocationButton.layer.masksToBounds = YES;
+	self.myLocationButton.layer.cornerRadius = 5.0;
+	
+//	startLocation = [self.trip.gpsLocations objectAtIndex:0];
 	
 	[self setUpGoogleMaps];
 	
@@ -55,6 +57,7 @@
 - (void) setUpGoogleMaps
 {
 	[self.mapView setPadding:UIEdgeInsetsMake(10, 0, 0, 0)];
+	
 	GPSLocationsForTrip = self.trip.gpsLocations;
 	
 	pathForTrip = [GMSMutablePath path];
@@ -77,6 +80,8 @@
 	
 	[startMarker setIcon:[UIImage imageNamed:@"startPosition"]];
 	[endMarker setIcon:[UIImage imageNamed:@"endPosition"]];
+	
+	self.speedDivisions = [self calculateSpeedBoundaries];
 	
 	for(GPSLocation *gpsLoc in GPSLocationsForTrip)
 	{
@@ -190,6 +195,14 @@
 	self.distanceLabel.text = [NSString stringWithFormat:@""];
 	
 	[self updateMarkerForSliderWithLocation:loc];
+}
+
+#pragma mark - MyLocationButton Event
+
+- (IBAction)myLocationButtonTapped:(UIButton *)sender
+{
+	GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:cameraBounds withPadding:40];
+	[self.mapView animateWithCameraUpdate:update];
 }
 
 #pragma mark - GoogleMapViewDelegate

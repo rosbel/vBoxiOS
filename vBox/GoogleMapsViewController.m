@@ -279,7 +279,8 @@
 {
 	if(state == BLEStateOn)
 	{
-		[self.bluetoothRequiredLabel removeFromSuperview];
+//		[self.bluetoothRequiredLabel removeFromSuperview];
+		self.bluetoothRequiredLabel.hidden = YES;
 		if(self.bluetoothManager.connected)
 		{
 			[self.bluetoothManager setNotifyValue:YES];
@@ -290,7 +291,8 @@
 		}
 	}else
 	{
-		[self.infoView addSubview:self.bluetoothRequiredLabel];
+		self.bluetoothRequiredLabel.hidden = NO;
+//		[self.infoView addSubview:self.bluetoothRequiredLabel];
 	}
 }
 
