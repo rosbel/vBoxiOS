@@ -194,7 +194,7 @@
 	self.timeLabel.text = [NSString stringWithFormat:@"%02li:%02li:%02li",(long)hours,(long)minutes,(long)seconds];
 	
 	self.RPMLabel.text = loc.bluetoothInfo.rpm ? [NSString stringWithFormat:@"%@ RPM",loc.bluetoothInfo.rpm] : @"";
-	self.speedBLELabel.text = loc.bluetoothInfo.speed ? [NSString stringWithFormat:@"%@ kmph",loc.bluetoothInfo.speed] : @"";
+	self.speedBLELabel.text = loc.bluetoothInfo.speed ? [NSString stringWithFormat:@"%@ mph",loc.bluetoothInfo.speed] : @"";
 	self.fuelLabel.text = loc.bluetoothInfo.fuel ? [NSString stringWithFormat:@"%@ fuel",loc.bluetoothInfo.fuel] : @"";
 	
 	[self updateMarkerForSliderWithLocation:loc];
