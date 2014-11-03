@@ -38,8 +38,8 @@
 	
 	self.trips = [[appDelegate drivingHistory] trips];
 	
-	NSDate *startDate = [self dateAtBeginningOfDayForDate:[NSDate date]];
-	NSDate *endDate = [self dateByAddingYears:1 toDate:startDate];
+//	NSDate *startDate = [self dateAtBeginningOfDayForDate:[NSDate date]];
+//	NSDate *endDate = [self dateByAddingYears:1 toDate:startDate];
 	
 }
 

@@ -17,6 +17,7 @@
 @dynamic startTime;
 @dynamic avgSpeed;
 @dynamic maxSpeed;
+@dynamic minSpeed;
 @dynamic drivingHistory;
 @dynamic gpsLocations;
 

@@ -152,13 +152,22 @@
 	self.markerForTap.snippet = [NSString stringWithFormat:@"Time: %@\nSpeed: %.2f",gpsLoc.timestamp,gpsLoc.speed.doubleValue];
 }
 
+/*
+ // Find the points to divide the line by color
+ var color_division = [];
+ for (i = 0; i < colors.length - 1; i++) {
+ color_division[i] = min + (i + 1) * (max - min) / colors.length;
+ }
+ color_division[color_division.length] = max;
+ */
 -(NSArray *)calculateSpeedBoundaries
 {
 	double max = self.trip.maxSpeed.doubleValue;
+	double min = self.trip.minSpeed.doubleValue;
 	NSMutableArray *colorDivision = [NSMutableArray array];
 	for(int i = 0; i < self.speedColors.count-1; i++)
 	{
-		double bound = (i+1) * max / self.speedColors.count;
+		double bound = (min + (i+1) * (max-min)) / self.speedColors.count;
 		[colorDivision addObject:[NSNumber numberWithDouble:bound]];
 	}
 	[colorDivision addObject:self.trip.maxSpeed];

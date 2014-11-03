@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14A388a" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="BluetoothData" representedClassName="BluetoothData" syncable="YES">
+        <attribute name="accelX" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="accelY" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="accelZ" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="ambientTemp" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="barometric" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="coolantTemp" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="distance" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="engineLoad" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="fuel" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="intakeTemp" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rpm" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="speed" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="throttle" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GPSLocation" inverseName="bluetoothInfo" inverseEntity="GPSLocation" syncable="YES"/>
+    </entity>
+    <entity name="DrivingHistory" representedClassName="DrivingHistory" syncable="YES">
+        <relationship name="trips" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Trip" inverseName="drivingHistory" inverseEntity="Trip" syncable="YES"/>
+    </entity>
+    <entity name="GPSLocation" representedClassName="GPSLocation" syncable="YES">
+        <attribute name="latitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="metersFromStart" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="speed" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="timestamp" attributeType="Date" indexed="YES" syncable="YES"/>
+        <relationship name="bluetoothInfo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="BluetoothData" inverseName="location" inverseEntity="BluetoothData" syncable="YES"/>
+        <relationship name="tripInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="gpsLocations" inverseEntity="Trip" syncable="YES"/>
+    </entity>
+    <entity name="Trip" representedClassName="Trip" syncable="YES">
+        <attribute name="avgSpeed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="maxSpeed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="minSpeed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="startTime" attributeType="Date" indexed="YES" syncable="YES"/>
+        <relationship name="drivingHistory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DrivingHistory" inverseName="trips" inverseEntity="DrivingHistory" syncable="YES"/>
+        <relationship name="gpsLocations" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="GPSLocation" inverseName="tripInfo" inverseEntity="GPSLocation" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="BluetoothData" positionX="-819" positionY="-555" width="128" height="253"/>
+        <element name="DrivingHistory" positionX="-155" positionY="-409" width="128" height="58"/>
+        <element name="GPSLocation" positionX="-558" positionY="-459" width="126" height="148"/>
+        <element name="Trip" positionX="-342" positionY="-466" width="128" height="150"/>
+    </elements>
+</model>

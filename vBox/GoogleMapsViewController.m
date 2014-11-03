@@ -27,6 +27,7 @@
 	Trip *currentTrip;
 	double sumSpeed;
 	double maxSpeed;
+	double minSpeed;
 	double metersFromStart;
 	NSArray *styles;
 }
@@ -49,6 +50,7 @@
 	
 	sumSpeed = 0;
 	maxSpeed = 0;
+	minSpeed = DBL_MAX;
 	metersFromStart = 0;
 	followMe = YES;
 	
@@ -71,8 +73,9 @@
 	[currentTrip setEndTime:[NSDate date]];
 	unsigned long count = currentTrip.gpsLocations.count;
 	double avgSpeed = count > 0 ? sumSpeed / count : 0;
-	[currentTrip setAvgSpeed:[NSNumber numberWithInt:avgSpeed]];
-	[currentTrip setMaxSpeed:[NSNumber numberWithInt:maxSpeed]];
+	[currentTrip setAvgSpeed:[NSNumber numberWithDouble:avgSpeed]];
+	[currentTrip setMaxSpeed:[NSNumber numberWithDouble:maxSpeed]];
+	[currentTrip setMinSpeed:[NSNumber numberWithDouble:minSpeed]];
 	[[appDelegate drivingHistory] addTripsObject:currentTrip];
 	[appDelegate saveContext];
 }
@@ -195,6 +198,10 @@
 	double speedMPH = ([newestLocation speed] * 2.236936284);
 	speedMPH = speedMPH >= 0 ? speedMPH : 0;
 	
+	if(speedMPH < minSpeed)
+	{
+		minSpeed = speedMPH;
+	}
 	if(speedMPH > maxSpeed)
 	{
 		maxSpeed = speedMPH;

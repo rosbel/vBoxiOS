@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSDate * startTime;
 @property (nonatomic, retain) NSNumber * avgSpeed;
 @property (nonatomic, retain) NSNumber * maxSpeed;
+@property (nonatomic, retain) NSNumber * minSpeed;
 @property (nonatomic, retain) DrivingHistory *drivingHistory;
 @property (nonatomic, retain) NSOrderedSet *gpsLocations;
 @end
