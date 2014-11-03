@@ -93,7 +93,7 @@
 {
 	camera = [GMSCameraPosition cameraWithLatitude:39.490179
 										 longitude:-98.081992
-											  zoom:10];
+											  zoom:14];
 	
 	[_MapView setPadding:UIEdgeInsetsMake(40, 0, 0, 0)];
 	[_MapView setCamera:camera];
