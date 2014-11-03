@@ -76,6 +76,7 @@
 	[currentTrip setAvgSpeed:[NSNumber numberWithDouble:avgSpeed]];
 	[currentTrip setMaxSpeed:[NSNumber numberWithDouble:maxSpeed]];
 	[currentTrip setMinSpeed:[NSNumber numberWithDouble:minSpeed]];
+	[currentTrip setTotalMiles:[NSNumber numberWithDouble:metersFromStart*0.000621371]];
 	[[appDelegate drivingHistory] addTripsObject:currentTrip];
 	[appDelegate saveContext];
 }

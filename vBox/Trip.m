@@ -18,6 +18,8 @@
 @dynamic avgSpeed;
 @dynamic maxSpeed;
 @dynamic minSpeed;
+@dynamic totalMiles;
+@dynamic tripName;
 @dynamic drivingHistory;
 @dynamic gpsLocations;
 

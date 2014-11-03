@@ -82,7 +82,7 @@
 	[formatter setDateStyle:NSDateFormatterNoStyle];
 	NSString *endTimeText = [formatter stringFromDate:trip.endTime];
 	cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@",startTimeText,endTimeText];
-	cell.detailTextLabel.text = [NSString stringWithFormat:@"avg: %.2f mph - max: %.2f mph",trip.avgSpeed.doubleValue,trip.maxSpeed.doubleValue];
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"avg: %.2f mph - max: %.2f mph - (%.2f mi)",trip.avgSpeed.doubleValue,trip.maxSpeed.doubleValue,trip.totalMiles.doubleValue];
 	return cell;
 }
 

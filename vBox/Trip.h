@@ -18,6 +18,8 @@
 @property (nonatomic, retain) NSNumber * avgSpeed;
 @property (nonatomic, retain) NSNumber * maxSpeed;
 @property (nonatomic, retain) NSNumber * minSpeed;
+@property (nonatomic, retain) NSNumber * totalMiles;
+@property (nonatomic, retain) NSString * tripName;
 @property (nonatomic, retain) DrivingHistory *drivingHistory;
 @property (nonatomic, retain) NSOrderedSet *gpsLocations;
 @end
