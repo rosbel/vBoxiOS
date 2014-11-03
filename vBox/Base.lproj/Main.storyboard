@@ -337,6 +337,12 @@
                                                     <constraint firstAttribute="width" secondItem="nzQ-Ip-1Xx" secondAttribute="height" multiplier="1:1" id="8A9-Dy-fUO"/>
                                                 </constraints>
                                             </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sw4-S6-5Cb" userLabel="distanceLabel">
+                                                <rect key="frame" x="291" y="3" width="18.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.98039215686274506" green="0.41176470588235292" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -345,7 +351,9 @@
                                             <constraint firstItem="nzQ-Ip-1Xx" firstAttribute="height" secondItem="qSa-b1-XVc" secondAttribute="height" constant="-5" id="EDE-Kk-Qr8"/>
                                             <constraint firstAttribute="centerY" secondItem="Guy-7V-Jyu" secondAttribute="centerY" id="ITe-1U-PKS"/>
                                             <constraint firstAttribute="trailing" secondItem="4fZ-An-d2f" secondAttribute="trailing" constant="10" id="JUk-Tx-cTS"/>
+                                            <constraint firstAttribute="centerX" secondItem="Sw4-S6-5Cb" secondAttribute="centerX" id="KHf-ZR-Rlk"/>
                                             <constraint firstItem="4fZ-An-d2f" firstAttribute="leading" secondItem="nzQ-Ip-1Xx" secondAttribute="trailing" constant="2" id="NOi-4x-RUg"/>
+                                            <constraint firstAttribute="centerY" secondItem="Sw4-S6-5Cb" secondAttribute="centerY" id="ZPX-v5-9q7"/>
                                             <constraint firstItem="Guy-7V-Jyu" firstAttribute="leading" secondItem="qSa-b1-XVc" secondAttribute="leading" constant="10" id="iyh-3f-YwO"/>
                                             <constraint firstAttribute="centerY" secondItem="4fZ-An-d2f" secondAttribute="centerY" id="t2o-iE-aqW"/>
                                         </constraints>
@@ -420,6 +428,7 @@
                     </view>
                     <connections>
                         <outlet property="RPMLabel" destination="Gl8-ZV-1Ia" id="w2b-aJ-U4a"/>
+                        <outlet property="distanceLabel" destination="Sw4-S6-5Cb" id="OVe-Ca-s6s"/>
                         <outlet property="fuelLabel" destination="Tfy-74-0ak" id="4BE-uR-qT1"/>
                         <outlet property="mapView" destination="CfI-It-6d2" id="FHk-sq-g6e"/>
                         <outlet property="myLocationButton" destination="4Ui-V1-gXW" id="XLG-DM-XqA"/>

@@ -27,6 +27,7 @@
 	Trip *currentTrip;
 	double sumSpeed;
 	double maxSpeed;
+	double metersFromStart;
 	NSArray *styles;
 }
 
@@ -48,6 +49,7 @@
 	
 	sumSpeed = 0;
 	maxSpeed = 0;
+	metersFromStart = 0;
 	followMe = YES;
 	
 	self.bluetoothManager = [[BLEManager alloc] init];
@@ -199,7 +201,7 @@
 	}
 	sumSpeed += speedMPH;
 	
-	self.speedLabel.text = [NSString stringWithFormat:@"%.2f mph",speedMPH > 0 ? speedMPH : 0];
+	self.speedLabel.text = [NSString stringWithFormat:@"%.2f mph",speedMPH];
 	
 	//If distance between two points is greater than 200 m, then don't do anything
 	if([newestLocation distanceFromLocation:prevLocation] > 500)
@@ -208,6 +210,7 @@
 				// this causes things to stop working after one time 500m+ difference between location updates
 	}
 	
+	metersFromStart += [newestLocation distanceFromLocation:prevLocation];
 	[self logLocation:newestLocation persistent:YES];
 	
 	[completePath addCoordinate:newestLocation.coordinate];
@@ -317,6 +320,7 @@
 		[newLocation setLatitude:[NSNumber numberWithDouble:lat]];
 		[newLocation setLongitude:[NSNumber numberWithDouble:lng]];
 		[newLocation setSpeed:[NSNumber numberWithDouble:speedMPH]];
+		[newLocation setMetersFromStart:[NSNumber numberWithDouble:metersFromStart]];
 		[newLocation setTimestamp:time];
 		[newLocation setTripInfo:currentTrip];
 		

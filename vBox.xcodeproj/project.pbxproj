@@ -88,6 +88,7 @@
 		C1A87CCC19F98EFC00845C7E /* DrivingHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrivingHistoryViewController.h; sourceTree = "<group>"; };
 		C1A87CCD19F98EFC00845C7E /* DrivingHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrivingHistoryViewController.m; sourceTree = "<group>"; };
 		C1B82C4219F0808E002E6EA4 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		C1C650711A07D76B000186E3 /* GPSInformation 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "GPSInformation 4.xcdatamodel"; sourceTree = "<group>"; };
 		C1CEF69819FA04D600D6E46D /* TripDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripDetailViewController.h; sourceTree = "<group>"; };
 		C1CEF69919FA04D600D6E46D /* TripDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripDetailViewController.m; sourceTree = "<group>"; };
 		C1D6CA4E19F41A5A003FF61C /* BluetoothTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothTableViewController.h; sourceTree = "<group>"; };
@@ -670,10 +671,11 @@
 			isa = XCVersionGroup;
 			children = (
 				C11603331A06A22D0079F2C4 /* GPSInformation 3.xcdatamodel */,
+				C1C650711A07D76B000186E3 /* GPSInformation 4.xcdatamodel */,
 				C186A72E19FEBD9F00016E99 /* GPSInformation 2.xcdatamodel */,
 				C1FAEA4F19F890C3009C623C /* GPSInformation.xcdatamodel */,
 			);
-			currentVersion = C11603331A06A22D0079F2C4 /* GPSInformation 3.xcdatamodel */;
+			currentVersion = C1C650711A07D76B000186E3 /* GPSInformation 4.xcdatamodel */;
 			path = GPSInformation.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

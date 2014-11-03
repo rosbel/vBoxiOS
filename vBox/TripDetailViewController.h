@@ -25,5 +25,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *RPMLabel;
 @property (weak, nonatomic) IBOutlet UILabel *fuelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *speedBLELabel;
+@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 
 @end
