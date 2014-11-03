@@ -93,7 +93,7 @@
 {
 	camera = [GMSCameraPosition cameraWithLatitude:39.490179
 										 longitude:-98.081992
-											  zoom:14];
+											  zoom:10];
 	
 	[_MapView setPadding:UIEdgeInsetsMake(40, 0, 0, 0)];
 	[_MapView setCamera:camera];
@@ -159,6 +159,13 @@
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
 	CLLocation *newestLocation = [locations lastObject];
+	
+	//Ignore bad Accuracy
+	if(newestLocation.horizontalAccuracy > 20) //maybe give user tolerance for bad accuracy?
+	{
+		return;
+	}
+	
 	CLLocation *prevLocation;
 	
 	unsigned long objCount = [locations count];
@@ -318,7 +325,9 @@
 		{
 			
 			BluetoothData *bleData = [NSEntityDescription insertNewObjectForEntityForName:@"BluetoothData" inManagedObjectContext:context];
-			[bleData setSpeed:[self.bluetoothDiagnostics objectForKey:@"Speed"]];
+			NSNumber *speedMPH =[self.bluetoothDiagnostics objectForKey:@"Speed"];
+			speedMPH = speedMPH ? [NSNumber numberWithDouble:(speedMPH.doubleValue * 2.236936284)] : speedMPH;
+			[bleData setSpeed:speedMPH];
 			[bleData setAmbientTemp:[self.bluetoothDiagnostics objectForKey:@"Ambient Temp"]];
 			[bleData setBarometric:[self.bluetoothDiagnostics objectForKey:@"Barometric"]];
 			[bleData setRpm:[self.bluetoothDiagnostics objectForKey:@"RPM"]];
