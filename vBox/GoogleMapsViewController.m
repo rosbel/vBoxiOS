@@ -27,6 +27,7 @@
 	Trip *currentTrip;
 	double sumSpeed;
 	double maxSpeed;
+	NSArray *styles;
 }
 
 #pragma mark - UIView Delegate Methods
@@ -42,6 +43,8 @@
 	
 	completePath = [GMSMutablePath path];
 	pastLocations = [NSMutableArray array];
+	
+	styles = @[[GMSStrokeStyle solidColor:[UIColor colorWithRed:0.2666666667 green:0.4666666667 blue:0.6 alpha:1]],[GMSStrokeStyle solidColor:[UIColor colorWithRed:0.6666666667 green:0.8 blue:0.8 alpha:1]]];
 	
 	sumSpeed = 0;
 	maxSpeed = 0;
@@ -93,7 +96,7 @@
 {
 	camera = [GMSCameraPosition cameraWithLatitude:39.490179
 										 longitude:-98.081992
-											  zoom:14];
+											  zoom:3];
 	
 	[_MapView setPadding:UIEdgeInsetsMake(40, 0, 0, 0)];
 	[_MapView setCamera:camera];
@@ -161,8 +164,12 @@
 	CLLocation *newestLocation = [locations lastObject];
 	
 	//Ignore bad Accuracy
-	if(newestLocation.horizontalAccuracy > 20) //maybe give user tolerance for bad accuracy?
+	if(newestLocation.horizontalAccuracy > 15) //maybe give user tolerance for bad accuracy?
 	{
+		if(newestLocation.horizontalAccuracy < 50)
+			if(followMe)
+				[_MapView animateWithCameraUpdate:[GMSCameraUpdate setTarget:newestLocation.coordinate zoom:14]];
+		
 		return;
 	}
 	
@@ -183,7 +190,6 @@
 	}
 	
 	//Update speed Label
-	
 	double speedMPH = ([newestLocation speed] * 2.236936284);
 	speedMPH = speedMPH >= 0 ? speedMPH : 0;
 	
@@ -208,8 +214,7 @@
 	
 	[polyline setPath:completePath];
 	
-	NSArray *styles = @[[GMSStrokeStyle solidColor:[UIColor colorWithRed:68.0/255.0 green:119.0/255.0 blue:153.0/255.0 alpha:1]],[GMSStrokeStyle solidColor:[UIColor colorWithRed:170.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1]]];
-	int tolerance = (int)powf(10.0,(-0.301*self.MapView.camera.zoom)+9.0731) / 2500;
+	double tolerance = powf(10.0,(-0.301*self.MapView.camera.zoom)+9.0731) / 2500.0;
 	NSArray *lengths = @[@(tolerance),@(tolerance*1.5)];
 	polyline.spans = GMSStyleSpans(polyline.path, styles, lengths, kGMSLengthGeodesic);
 	
