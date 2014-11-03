@@ -240,12 +240,6 @@
 	// Dispose of any resources that can be recreated.
 }
 
-#pragma mark - UIView Delegate
--(BOOL)prefersStatusBarHidden
-{
-	return NO;
-}
-
 #pragma mark - UICollection Data Source Delegate
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView

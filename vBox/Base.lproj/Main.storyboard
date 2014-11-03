@@ -487,8 +487,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TVK-E4-JeR" userLabel="InfoView">
                                 <rect key="frame" x="0.0" y="451" width="600" height="149"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bluetooth Requried for Car Diagnostics" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGp-35-jsB">
-                                        <rect key="frame" x="99.5" y="64.5" width="400" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bluetooth Required!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0F-XX-Pgi">
+                                        <rect key="frame" x="99.5" y="64.5" width="401" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -536,12 +536,12 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.8784313725490196" green="0.89411764705882357" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="C0F-XX-Pgi" firstAttribute="width" secondItem="TVK-E4-JeR" secondAttribute="width" multiplier="2:3" constant="1" id="CQn-2O-uLm"/>
                                     <constraint firstItem="lGm-lw-1sE" firstAttribute="height" secondItem="TVK-E4-JeR" secondAttribute="height" id="MID-zQ-D9W"/>
-                                    <constraint firstAttribute="centerY" secondItem="CGp-35-jsB" secondAttribute="centerY" id="aD1-s7-G7X"/>
+                                    <constraint firstAttribute="centerY" secondItem="C0F-XX-Pgi" secondAttribute="centerY" id="Wy8-PA-BhF"/>
                                     <constraint firstItem="lGm-lw-1sE" firstAttribute="width" secondItem="TVK-E4-JeR" secondAttribute="width" id="o5i-kz-qik"/>
                                     <constraint firstAttribute="centerX" secondItem="lGm-lw-1sE" secondAttribute="centerX" id="t34-Fk-68G"/>
-                                    <constraint firstAttribute="centerX" secondItem="CGp-35-jsB" secondAttribute="centerX" id="u4F-oz-x0m"/>
-                                    <constraint firstAttribute="width" secondItem="CGp-35-jsB" secondAttribute="width" multiplier="3:2" id="uf4-0j-n5b"/>
+                                    <constraint firstAttribute="centerX" secondItem="C0F-XX-Pgi" secondAttribute="centerX" id="tpH-bg-4mM"/>
                                     <constraint firstAttribute="centerY" secondItem="lGm-lw-1sE" secondAttribute="centerY" id="xYy-yg-vBd"/>
                                 </constraints>
                             </view>
@@ -564,10 +564,15 @@
                             <constraint firstAttribute="centerX" secondItem="ski-ZJ-D74" secondAttribute="centerX" id="vHx-YZ-GEq"/>
                             <constraint firstAttribute="width" secondItem="TVK-E4-JeR" secondAttribute="width" id="zLV-j9-VAH"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="nsT-1s-G0W"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="MapView" destination="ski-ZJ-D74" id="cd6-fS-k3X"/>
-                        <outlet property="bluetoothRequiredLabel" destination="CGp-35-jsB" id="jvm-GW-aty"/>
+                        <outlet property="bluetoothRequiredLabel" destination="C0F-XX-Pgi" id="T57-bu-16J"/>
                         <outlet property="collectionView" destination="lGm-lw-1sE" id="rOS-wq-sQI"/>
                         <outlet property="infoView" destination="TVK-E4-JeR" id="iU3-0M-HDj"/>
                         <outlet property="speedLabel" destination="IeI-Jk-IwB" id="7FZ-Aw-U83"/>
