@@ -325,7 +325,7 @@
 			
 			BluetoothData *bleData = [NSEntityDescription insertNewObjectForEntityForName:@"BluetoothData" inManagedObjectContext:context];
 			NSNumber *speedMPH =[self.bluetoothDiagnostics objectForKey:@"Speed"];
-			speedMPH = speedMPH ? [NSNumber numberWithDouble:(speedMPH.doubleValue * 2.236936284)] : speedMPH;
+			speedMPH = speedMPH ? [NSNumber numberWithDouble:(speedMPH.doubleValue * 0.621371)] : speedMPH;
 			[bleData setSpeed:speedMPH];
 			[bleData setAmbientTemp:[self.bluetoothDiagnostics objectForKey:@"Ambient Temp"]];
 			[bleData setBarometric:[self.bluetoothDiagnostics objectForKey:@"Barometric"]];
