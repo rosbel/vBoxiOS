@@ -16,12 +16,14 @@
 @property (strong, nonatomic) GMSMutablePath *pathForTrip;
 @property (strong, nonatomic) GMSMarker *markerForSlider;
 @property (strong, nonatomic) GMSMarker *markerForTap;
-@property (weak, nonatomic) IBOutlet UIButton *myLocationButton;
+@property (weak, nonatomic) IBOutlet UIButton *fullScreenButton;
+@property (weak, nonatomic) IBOutlet UIButton *followMeButton;
 
 @end
 
 @implementation TripDetailViewController{
 	GMSCoordinateBounds *cameraBounds;
+	BOOL followingMe;
 //	GPSLocation *startLocation;
 }
 
@@ -37,8 +39,13 @@
 	
 	self.speedColors = @[[UIColor redColor],[UIColor orangeColor],[UIColor yellowColor],[UIColor greenColor]];
 	
-	self.myLocationButton.layer.masksToBounds = YES;
-	self.myLocationButton.layer.cornerRadius = 5.0;
+	self.fullScreenButton.layer.masksToBounds = YES;
+	self.fullScreenButton.layer.cornerRadius = 5.0;
+	
+	self.followMeButton.layer.masksToBounds = YES;
+	self.followMeButton.layer.cornerRadius = 5.0;
+	
+	followingMe = NO;
 	
 //	startLocation = [self.trip.gpsLocations objectAtIndex:0];
 	
@@ -125,19 +132,23 @@
 #pragma mark - Helper Methods
 -(void)updateMarkerForSliderWithLocation:(GPSLocation *)location
 {
+	CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(location.latitude.doubleValue, location.longitude.doubleValue);
 	if(!self.markerForSlider)
 	{
-		self.markerForSlider = [GMSMarker markerWithPosition:CLLocationCoordinate2DMake(location.latitude.doubleValue, location.longitude.doubleValue)];
+		self.markerForSlider = [GMSMarker markerWithPosition:coordinate];
 		[self.markerForSlider setIcon:[UIImage imageNamed:@"currentLocation"]];
 		[self.markerForSlider setGroundAnchor:CGPointMake(0.5, 0.5)];
 		[self.markerForSlider setMap:self.mapView];
+		self.followMeButton.hidden = NO;
 	}else
 	{
 		[CATransaction begin];
 		[CATransaction setAnimationDuration:0.01];
-		[self.markerForSlider setPosition:CLLocationCoordinate2DMake(location.latitude.doubleValue, location.longitude.doubleValue)];
+		[self.markerForSlider setPosition:coordinate];
 		[CATransaction commit];
 	}
+	if(followingMe)
+		[self.mapView animateToLocation:coordinate];
 }
 
 -(void)updateTapMarkerInMap:(GMSMapView *)myMapView withGPSLocation:(GPSLocation *)gpsLoc
@@ -212,13 +223,38 @@
 
 #pragma mark - MyLocationButton Event
 
-- (IBAction)myLocationButtonTapped:(UIButton *)sender
+- (IBAction)fullScreenButtonTapped:(UIButton *)sender
 {
 	GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:cameraBounds withPadding:40];
 	[self.mapView animateWithCameraUpdate:update];
 }
 
+- (IBAction)followMeButtonTapped:(UIButton *)sender
+{
+	followingMe = !followingMe;
+	if(followingMe)
+	{
+		[sender setImage:[UIImage imageNamed:@"followMeOn"] forState:UIControlStateNormal];
+		[self.mapView animateToLocation:self.markerForSlider.position];
+	}
+	else
+	{
+		[sender setImage:[UIImage imageNamed:@"followMeOff"] forState:UIControlStateNormal];
+	}
+}
+
 #pragma mark - GoogleMapViewDelegate
+
+-(void)mapView:(GMSMapView *)mapView willMove:(BOOL)gesture
+{
+	if(gesture)
+	{
+		if(followingMe)
+		{
+			[self followMeButtonTapped:self.followMeButton];
+		}
+	}
+}
 
 -(void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
 {

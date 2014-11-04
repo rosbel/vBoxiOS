@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CeU-R2-Aeg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CeU-R2-Aeg">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -291,18 +291,16 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ui-V1-gXW">
-                                <rect key="frame" x="26" y="74" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ui-V1-gXW" userLabel="fullScreenButton">
+                                <rect key="frame" x="10" y="74" width="30" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.65000000000000002" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="02y-cr-smg"/>
                                     <constraint firstAttribute="width" constant="30" id="7O9-Xs-I4L"/>
                                 </constraints>
-                                <state key="normal" image="myLocationIcon">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <state key="normal" image="fullScreenIcon"/>
                                 <connections>
-                                    <action selector="myLocationButtonTapped:" destination="ekS-UR-SFw" eventType="touchUpInside" id="Nl8-1s-WbA"/>
+                                    <action selector="fullScreenButtonTapped:" destination="ekS-UR-SFw" eventType="touchUpInside" id="4rQ-wa-g9g"/>
                                 </connections>
                             </button>
                             <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HXR-Qr-QiH" userLabel="InformationView">
@@ -320,13 +318,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="26"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fZ-An-d2f" userLabel="timeLabel">
-                                                <rect key="frame" x="523" y="3" width="66.5" height="20"/>
+                                                <rect key="frame" x="523" y="3" width="67" height="20"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mph" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Guy-7V-Jyu" userLabel="speedLabel">
-                                                <rect key="frame" x="10" y="3" width="34.5" height="20.5"/>
+                                                <rect key="frame" x="10" y="3" width="35" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -405,17 +403,33 @@
                                     <constraint firstItem="qSa-b1-XVc" firstAttribute="top" secondItem="HXR-Qr-QiH" secondAttribute="top" id="y1Q-yE-eNL"/>
                                 </constraints>
                             </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GGA-Q8-Vx7" userLabel="followMeButton">
+                                <rect key="frame" x="560" y="324" width="30" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.65000000000000002" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="9C1-gb-AJX"/>
+                                    <constraint firstAttribute="width" constant="30" id="e8c-9T-GiU"/>
+                                </constraints>
+                                <state key="normal" image="followMeOff">
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="followMeButtonTapped:" destination="ekS-UR-SFw" eventType="touchUpInside" id="NWU-xx-vmd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="HXR-Qr-QiH" secondAttribute="width" id="1cZ-BS-bo7"/>
                             <constraint firstAttribute="centerX" secondItem="HXR-Qr-QiH" secondAttribute="centerX" id="2s5-9u-krs"/>
+                            <constraint firstItem="CfI-It-6d2" firstAttribute="trailing" secondItem="GGA-Q8-Vx7" secondAttribute="trailing" constant="10" id="CDv-g4-4rR"/>
                             <constraint firstItem="CfI-It-6d2" firstAttribute="height" secondItem="Fok-lZ-fok" secondAttribute="height" multiplier="1:2" id="Iwt-XD-SDM"/>
                             <constraint firstAttribute="centerX" secondItem="CfI-It-6d2" secondAttribute="centerX" id="Sdd-B6-tpU"/>
-                            <constraint firstItem="CfI-It-6d2" firstAttribute="top" secondItem="4Ui-V1-gXW" secondAttribute="top" constant="-10" id="UWY-vm-1x7"/>
+                            <constraint firstItem="4Ui-V1-gXW" firstAttribute="leading" secondItem="CfI-It-6d2" secondAttribute="leading" constant="10" id="U6o-l8-vZj"/>
+                            <constraint firstItem="4Ui-V1-gXW" firstAttribute="top" secondItem="CfI-It-6d2" secondAttribute="top" constant="10" id="UWY-vm-1x7"/>
                             <constraint firstItem="qSa-b1-XVc" firstAttribute="top" secondItem="4Ui-V1-gXW" secondAttribute="bottom" constant="10" id="VeA-Y5-elK"/>
                             <constraint firstItem="CfI-It-6d2" firstAttribute="width" secondItem="Fok-lZ-fok" secondAttribute="width" id="Voc-k4-SGO"/>
+                            <constraint firstItem="CfI-It-6d2" firstAttribute="bottom" secondItem="GGA-Q8-Vx7" secondAttribute="bottom" constant="10" id="XoL-Q8-dNK"/>
                             <constraint firstItem="qbi-X0-EBo" firstAttribute="top" secondItem="HXR-Qr-QiH" secondAttribute="bottom" id="ctE-vk-bIx"/>
-                            <constraint firstItem="4Ui-V1-gXW" firstAttribute="leading" secondItem="Fok-lZ-fok" secondAttribute="leadingMargin" constant="10" id="hAk-dA-iF3"/>
                             <constraint firstItem="CfI-It-6d2" firstAttribute="top" secondItem="s2B-Xd-nYe" secondAttribute="bottom" id="hIh-Xh-G0a"/>
                             <constraint firstItem="HXR-Qr-QiH" firstAttribute="top" secondItem="CfI-It-6d2" secondAttribute="bottom" id="taF-OO-UgM"/>
                         </constraints>
@@ -428,9 +442,10 @@
                     <connections>
                         <outlet property="RPMLabel" destination="Gl8-ZV-1Ia" id="w2b-aJ-U4a"/>
                         <outlet property="distanceLabel" destination="Sw4-S6-5Cb" id="OVe-Ca-s6s"/>
+                        <outlet property="followMeButton" destination="GGA-Q8-Vx7" id="UtN-6P-4Mp"/>
                         <outlet property="fuelLabel" destination="Tfy-74-0ak" id="4BE-uR-qT1"/>
+                        <outlet property="fullScreenButton" destination="4Ui-V1-gXW" id="OzH-F3-e2N"/>
                         <outlet property="mapView" destination="CfI-It-6d2" id="FHk-sq-g6e"/>
-                        <outlet property="myLocationButton" destination="4Ui-V1-gXW" id="XLG-DM-XqA"/>
                         <outlet property="speedBLELabel" destination="qyf-fa-meo" id="QFw-p4-3Oi"/>
                         <outlet property="speedLabel" destination="Guy-7V-Jyu" id="Fvg-U3-ODw"/>
                         <outlet property="timeLabel" destination="4fZ-An-d2f" id="hVz-Rx-bhG"/>
@@ -464,7 +479,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mph" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IeI-Jk-IwB">
-                                            <rect key="frame" x="43" y="2" width="34.5" height="20.5"/>
+                                            <rect key="frame" x="43" y="2" width="35" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -496,7 +511,7 @@
                                 <rect key="frame" x="0.0" y="451" width="600" height="149"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bluetooth Required!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0F-XX-Pgi">
-                                        <rect key="frame" x="99.5" y="64.5" width="401" height="20.5"/>
+                                        <rect key="frame" x="100" y="65" width="401" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -616,7 +631,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="myLocationIcon" width="48" height="48"/>
+        <image name="followMeOff" width="48" height="48"/>
+        <image name="fullScreenIcon" width="48" height="48"/>
         <image name="timeIcon" width="48" height="48"/>
     </resources>
 </document>
