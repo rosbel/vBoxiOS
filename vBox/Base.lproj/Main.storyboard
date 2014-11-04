@@ -449,7 +449,7 @@
                         <outlet property="speedBLELabel" destination="qyf-fa-meo" id="QFw-p4-3Oi"/>
                         <outlet property="speedLabel" destination="Guy-7V-Jyu" id="Fvg-U3-ODw"/>
                         <outlet property="timeLabel" destination="4fZ-An-d2f" id="hVz-Rx-bhG"/>
-                        <outlet property="variableTripSlider" destination="NZi-nR-mzI" id="PFR-SG-qsC"/>
+                        <outlet property="tripSlider" destination="NZi-nR-mzI" id="RcU-Wy-rKa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qie-J6-20O" userLabel="First Responder" sceneMemberID="firstResponder"/>
