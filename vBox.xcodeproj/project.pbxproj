@@ -17,6 +17,8 @@
 		C122324819F34021002318DF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C122324719F34021002318DF /* CoreGraphics.framework */; };
 		C122324A19F34030002318DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C122324919F34030002318DF /* UIKit.framework */; };
 		C122324C19F34052002318DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C122324B19F34052002318DF /* Foundation.framework */; };
+		C127A6911A097CF0000CE564 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E4586619DE0C87001A5627 /* GoogleMaps.framework */; };
+		C127A6941A098666000CE564 /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = C127A6931A098666000CE564 /* OBSlider.m */; };
 		C180A30E19F0A04000DE880C /* DebugBluetoothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C180A30D19F0A04000DE880C /* DebugBluetoothViewController.m */; };
 		C181F44419EEA98500FC1D8A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C181F44319EEA98500FC1D8A /* Settings.bundle */; };
 		C186A72A19FEB69200016E99 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = C186A72919FEB69200016E99 /* Trip.m */; };
@@ -32,7 +34,6 @@
 		C1E4584E19DE0C5B001A5627 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1E4584D19DE0C5B001A5627 /* Images.xcassets */; };
 		C1E4585119DE0C5B001A5627 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1E4584F19DE0C5B001A5627 /* LaunchScreen.xib */; };
 		C1E4585D19DE0C5B001A5627 /* vBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E4585C19DE0C5B001A5627 /* vBoxTests.m */; };
-		C1E4586719DE0C87001A5627 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E4586619DE0C87001A5627 /* GoogleMaps.framework */; };
 		C1E4586919DE0D73001A5627 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E4586819DE0D73001A5627 /* AVFoundation.framework */; };
 		C1E4586B19DE0D7A001A5627 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E4586A19DE0D7A001A5627 /* CoreData.framework */; };
 		C1E4586D19DE0D81001A5627 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E4586C19DE0D81001A5627 /* CoreText.framework */; };
@@ -77,6 +78,8 @@
 		C122324719F34021002318DF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C122324919F34030002318DF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C122324B19F34052002318DF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C127A6921A098666000CE564 /* OBSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSlider.h; sourceTree = "<group>"; };
+		C127A6931A098666000CE564 /* OBSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSlider.m; sourceTree = "<group>"; };
 		C17E14EC1A080C95009DDF24 /* GPSInformation 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "GPSInformation 5.xcdatamodel"; sourceTree = "<group>"; };
 		C180A30C19F0A04000DE880C /* DebugBluetoothViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugBluetoothViewController.h; sourceTree = "<group>"; };
 		C180A30D19F0A04000DE880C /* DebugBluetoothViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugBluetoothViewController.m; sourceTree = "<group>"; };
@@ -132,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C127A6911A097CF0000CE564 /* GoogleMaps.framework in Frameworks */,
 				C122324C19F34052002318DF /* Foundation.framework in Frameworks */,
 				C122324A19F34030002318DF /* UIKit.framework in Frameworks */,
 				C122324819F34021002318DF /* CoreGraphics.framework in Frameworks */,
@@ -148,7 +152,6 @@
 				C1E4586D19DE0D81001A5627 /* CoreText.framework in Frameworks */,
 				C1E4586B19DE0D7A001A5627 /* CoreData.framework in Frameworks */,
 				C1E4586919DE0D73001A5627 /* AVFoundation.framework in Frameworks */,
-				C1E4586719DE0C87001A5627 /* GoogleMaps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +187,8 @@
 			isa = PBXGroup;
 			children = (
 				C122324019F33F2E002318DF /* SlideOutMenu */,
+				C127A6921A098666000CE564 /* OBSlider.h */,
+				C127A6931A098666000CE564 /* OBSlider.m */,
 			);
 			name = ThirdParty;
 			sourceTree = "<group>";
@@ -446,6 +451,7 @@
 				C11603361A06A6CE0079F2C4 /* BluetoothData.m in Sources */,
 				C11603391A06A7350079F2C4 /* GPSLocation.m in Sources */,
 				C1D6CA5019F41A5A003FF61C /* BluetoothTableViewController.m in Sources */,
+				C127A6941A098666000CE564 /* OBSlider.m in Sources */,
 				C1E4584319DE0C5B001A5627 /* main.m in Sources */,
 				C1FE69D01A041A1200DA15BD /* BLEManager.m in Sources */,
 				C180A30E19F0A04000DE880C /* DebugBluetoothViewController.m in Sources */,
@@ -577,6 +583,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"/Users/rosbelsanroman/Desktop/GoogleMaps-iOS-1.9.0",
 				);
 				INFOPLIST_FILE = vBox/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -594,6 +601,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"/Users/rosbelsanroman/Desktop/GoogleMaps-iOS-1.9.0",
 				);
 				INFOPLIST_FILE = vBox/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

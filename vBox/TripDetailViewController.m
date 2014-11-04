@@ -261,7 +261,7 @@
 	//Proceed only if Tap is in path
 	float tolerance = powf(10.0,(-0.301*mapView.camera.zoom)+9.0731) / 500;
 	
-	if(!GMSGeometryIsLocationOnPath(coordinate, pathForTrip, NO,tolerance))
+	if(!GMSGeometryIsLocationOnPathTolerance(coordinate, pathForTrip, NO, tolerance))
 		return;
 	
 	GPSLocation *closestLocation = nil;
