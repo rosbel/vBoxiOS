@@ -306,7 +306,7 @@
                             <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HXR-Qr-QiH" userLabel="InformationView">
                                 <rect key="frame" x="0.0" y="364" width="600" height="236"/>
                                 <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="NZi-nR-mzI">
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="NZi-nR-mzI" customClass="OBSlider">
                                         <rect key="frame" x="48" y="103" width="504" height="31"/>
                                         <color key="minimumTrackTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="maximumTrackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -449,7 +449,7 @@
                         <outlet property="speedBLELabel" destination="qyf-fa-meo" id="QFw-p4-3Oi"/>
                         <outlet property="speedLabel" destination="Guy-7V-Jyu" id="Fvg-U3-ODw"/>
                         <outlet property="timeLabel" destination="4fZ-An-d2f" id="hVz-Rx-bhG"/>
-                        <outlet property="tripSlider" destination="NZi-nR-mzI" id="amQ-YA-RYG"/>
+                        <outlet property="variableTripSlider" destination="NZi-nR-mzI" id="PFR-SG-qsC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qie-J6-20O" userLabel="First Responder" sceneMemberID="firstResponder"/>

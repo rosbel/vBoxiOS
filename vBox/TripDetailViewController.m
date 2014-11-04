@@ -50,8 +50,7 @@
 //	startLocation = [self.trip.gpsLocations objectAtIndex:0];
 	
 	[self setUpGoogleMaps];
-	
-	[self.tripSlider setMaximumValue:self.trip.gpsLocations.count-1];
+	[self.variableTripSlider setMaximumValue:self.trip.gpsLocations.count-1];
 }
 
 -(void)viewDidAppear:(BOOL)animated

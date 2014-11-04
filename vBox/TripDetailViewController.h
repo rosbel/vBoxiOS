@@ -13,6 +13,7 @@
 #import "GPSLocation.h"
 #import "DrivingHistory.h"
 #import "BluetoothData.h"
+#import "OBSlider.h"
 
 @interface TripDetailViewController : UIViewController <GMSMapViewDelegate>
 
@@ -20,6 +21,7 @@
 @property (strong, nonatomic) NSArray *speedColors;
 @property (strong, nonatomic) Trip *trip;
 @property (weak, nonatomic) IBOutlet UISlider *tripSlider;
+@property (weak, nonatomic) IBOutlet OBSlider *variableTripSlider;
 @property (weak, nonatomic) IBOutlet UILabel *speedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *RPMLabel;
