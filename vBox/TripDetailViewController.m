@@ -242,6 +242,26 @@
 	}
 }
 
+#pragma mark - Sharing Event
+
+- (IBAction)shareButtonTapped:(id)sender
+{
+	
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	[formatter setDateFormat:@"yyyyMMddHHmmssSSS"];
+	
+	NSString *log = @"";
+	log = [log stringByAppendingString:@"Timestamp Lat Long Speed-MPH! \n"];
+	for(GPSLocation *loc in self.trip.gpsLocations)
+	{
+		NSString *date = [formatter stringFromDate:loc.timestamp];
+		log = [log stringByAppendingFormat:@"%@ %lf %lf %lf \n",date,loc.latitude.doubleValue,loc.longitude.doubleValue,loc.speed.doubleValue];
+	}
+	UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[log] applicationActivities:nil];
+	
+	[self presentViewController:activityViewController animated:YES completion:nil];
+}
+
 #pragma mark - GoogleMapViewDelegate
 
 -(void)mapView:(GMSMapView *)mapView willMove:(BOOL)gesture

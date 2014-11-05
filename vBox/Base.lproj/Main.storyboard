@@ -7,7 +7,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Driving History View Controller-->
+        <!--Driving History-->
         <scene sceneID="GPV-d6-dKD">
             <objects>
                 <viewController id="b7j-K0-kyU" customClass="DrivingHistoryViewController" sceneMemberID="viewController">
@@ -62,7 +62,7 @@
                             <constraint firstAttribute="centerY" secondItem="34r-bF-cDr" secondAttribute="centerY" id="u42-b0-tPZ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Hzi-nh-nZo"/>
+                    <navigationItem key="navigationItem" title="Driving History" id="Hzi-nh-nZo"/>
                     <connections>
                         <outlet property="tableView" destination="34r-bF-cDr" id="Zs4-B8-bEG"/>
                     </connections>
@@ -164,9 +164,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Menu" id="Ajm-yB-w7l"/>
-                    <connections>
-                        <outlet property="tableView" destination="cib-D2-bJM" id="6fo-ol-Sf0"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BS9-7F-4t4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -439,6 +436,14 @@
                             </mask>
                         </variation>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="UWZ-wg-imM">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="h7V-un-qMD" userLabel="shareButton">
+                            <connections>
+                                <action selector="shareButtonTapped:" destination="ekS-UR-SFw" id="3Hw-Cf-Hq4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="RPMLabel" destination="Gl8-ZV-1Ia" id="w2b-aJ-U4a"/>
                         <outlet property="distanceLabel" destination="Sw4-S6-5Cb" id="OVe-Ca-s6s"/>
