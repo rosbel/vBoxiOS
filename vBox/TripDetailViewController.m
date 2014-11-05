@@ -24,7 +24,6 @@
 @implementation TripDetailViewController{
 	GMSCoordinateBounds *cameraBounds;
 	BOOL followingMe;
-//	GPSLocation *startLocation;
 }
 
 @synthesize pathForTrip;
@@ -47,10 +46,10 @@
 	
 	followingMe = NO;
 	
-//	startLocation = [self.trip.gpsLocations objectAtIndex:0];
+	self.GPSLocationsForTrip = self.trip.gpsLocations;
 	
 	[self setUpGoogleMaps];
-	[self.tripSlider setMaximumValue:self.trip.gpsLocations.count-1];
+	[self.tripSlider setMaximumValue:self.GPSLocationsForTrip.count-1];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -63,8 +62,6 @@
 - (void) setUpGoogleMaps
 {
 	[self.mapView setPadding:UIEdgeInsetsMake(10, 0, 0, 0)];
-	
-	GPSLocationsForTrip = self.trip.gpsLocations;
 	
 	pathForTrip = [GMSMutablePath path];
 	
@@ -200,7 +197,7 @@
 {
 	unsigned long value = lround(sender.value);
 	
-	GPSLocation *loc = [self.trip.gpsLocations objectAtIndex:value];
+	GPSLocation *loc = [self.GPSLocationsForTrip objectAtIndex:value];
 	
 	NSTimeInterval timeSinceStart = [loc.timestamp timeIntervalSinceDate:self.trip.startTime];
 	
@@ -250,12 +247,12 @@
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateFormat:@"yyyyMMddHHmmssSSS"];
 	
-	NSString *log = @"";
-	log = [log stringByAppendingString:@"Timestamp Lat Long Speed-MPH! \n"];
-	for(GPSLocation *loc in self.trip.gpsLocations)
+	NSMutableString *log = [[NSMutableString alloc] init];
+	[log appendFormat:@"Timestamp Lat Long Speed-MPH! \n"];
+	for(GPSLocation *loc in self.GPSLocationsForTrip)
 	{
 		NSString *date = [formatter stringFromDate:loc.timestamp];
-		log = [log stringByAppendingFormat:@"%@ %lf %lf %lf \n",date,loc.latitude.doubleValue,loc.longitude.doubleValue,loc.speed.doubleValue];
+		[log appendFormat:@"%@ %lf %lf %lf \n",date,loc.latitude.doubleValue,loc.longitude.doubleValue,loc.speed.doubleValue];
 	}
 	UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[log] applicationActivities:nil];
 	
