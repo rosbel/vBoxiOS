@@ -70,6 +70,13 @@
 	[_MapView clear];
 	_MapView = nil;
 	[_locationManager stopUpdatingLocation];
+	//Delete If no locations were recorded
+	if(currentTrip.gpsLocations.count == 0)
+	{
+		[[appDelegate managedObjectContext] deleteObject:currentTrip];
+		[appDelegate saveContext];
+		return;
+	}
 	[currentTrip setEndTime:[NSDate date]];
 	unsigned long count = currentTrip.gpsLocations.count;
 	double avgSpeed = count > 0 ? sumSpeed / count : 0;
