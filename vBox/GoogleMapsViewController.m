@@ -273,14 +273,40 @@
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionCell" forIndexPath:indexPath];
-	UILabel *key = (UILabel *)[cell viewWithTag:1];
-	UILabel *val = (UILabel *)[cell viewWithTag:2];
-	
 	NSArray *keys = [[self.bluetoothDiagnostics allKeys] sortedArrayUsingSelector:@selector(compare:)];
-	key.text = [keys objectAtIndex:indexPath.row];
+	NSString *key = [keys objectAtIndex:indexPath.row];
 	
-	val.text = [NSString stringWithFormat:@"%@",(NSNumber *)[self.bluetoothDiagnostics objectForKey:key.text]];
+	UICollectionViewCell *cell;
+	
+	if([key isEqualToString:@"Speed"])
+	{
+		cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"gaugeCell" forIndexPath:indexPath];
+		WMGaugeView *gaugeView = (WMGaugeView *)[cell viewWithTag:0];
+		[gaugeView setUpWithUnits:@"MPH" max:150 startAngle:90 endAngle:270];
+	}else if([key isEqualToString:@"RPM"])
+	{
+		cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"gaugeCell" forIndexPath:indexPath];
+		WMGaugeView *gaugeView = (WMGaugeView *)[cell viewWithTag:0];
+		[gaugeView setUpWithUnits:@"RPM" max:10000 startAngle:90 endAngle:270];
+	}else if([key isEqualToString:@"Fuel"])
+	{
+		cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"gaugeCell" forIndexPath:indexPath];
+		WMGaugeView *gaugeView = (WMGaugeView *)[cell viewWithTag:0];
+		[gaugeView setUpWithUnits:@"Fuel %" max:100 startAngle:90 endAngle:270];
+	}else if([key isEqualToString:@"Throttle"])
+	{
+		cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"gaugeCell" forIndexPath:indexPath];
+		WMGaugeView *gaugeView = (WMGaugeView *)[cell viewWithTag:0];
+		[gaugeView setUpWithUnits:@"Throttle %" max:100 startAngle:90 endAngle:270];
+	}
+	else
+	{
+		cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionCell" forIndexPath:indexPath];
+		UILabel *keyLabel = (UILabel *)[cell viewWithTag:1];
+		UILabel *valLabel = (UILabel *)[cell viewWithTag:2];
+		keyLabel.text = key;
+		valLabel.text = [NSString stringWithFormat:@"%@",(NSNumber *)[self.bluetoothDiagnostics objectForKey:key]];
+	}
 
 	return cell;
 }

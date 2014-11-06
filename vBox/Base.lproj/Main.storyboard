@@ -288,6 +288,20 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GGA-Q8-Vx7" userLabel="followMeButton">
+                                <rect key="frame" x="560" y="324" width="30" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.65000000000000002" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="9C1-gb-AJX"/>
+                                    <constraint firstAttribute="width" constant="30" id="e8c-9T-GiU"/>
+                                </constraints>
+                                <state key="normal" image="followMeOff">
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="followMeButtonTapped:" destination="ekS-UR-SFw" eventType="touchUpInside" id="NWU-xx-vmd"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ui-V1-gXW" userLabel="fullScreenButton">
                                 <rect key="frame" x="10" y="74" width="30" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.65000000000000002" colorSpace="calibratedRGB"/>
@@ -303,13 +317,6 @@
                             <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HXR-Qr-QiH" userLabel="InformationView">
                                 <rect key="frame" x="0.0" y="364" width="600" height="236"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPO-CO-SEy" userLabel="speedGauge" customClass="WMGaugeView">
-                                        <rect key="frame" x="241" y="59" width="118" height="118"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="gPO-CO-SEy" secondAttribute="height" multiplier="1:1" id="KR8-ow-KTQ"/>
-                                        </constraints>
-                                    </view>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="NZi-nR-mzI" customClass="OBSlider">
                                         <rect key="frame" x="48" y="103" width="504" height="31"/>
                                         <color key="minimumTrackTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -360,35 +367,56 @@
                                             <constraint firstAttribute="centerY" secondItem="4fZ-An-d2f" secondAttribute="centerY" id="t2o-iE-aqW"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPO-CO-SEy" userLabel="speedGauge" customClass="WMGaugeView">
+                                        <rect key="frame" x="261" y="34" width="79" height="79"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="gPO-CO-SEy" secondAttribute="height" multiplier="1:1" id="KR8-ow-KTQ"/>
+                                        </constraints>
+                                    </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Clh-Ie-ktF" userLabel="RPMGauge" customClass="WMGaugeView">
+                                        <rect key="frame" x="20" y="34" width="79" height="79"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ybO-U3-N2I" userLabel="fuelGauge" customClass="WMGaugeView">
+                                        <rect key="frame" x="501" y="34" width="79" height="79"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.8784313725490196" green="0.89411764705882357" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="qSa-b1-XVc" secondAttribute="width" id="8BO-xk-hbv"/>
+                                    <constraint firstItem="ybO-U3-N2I" firstAttribute="width" secondItem="ybO-U3-N2I" secondAttribute="height" multiplier="1:1" id="8RE-WE-50z"/>
+                                    <constraint firstItem="ybO-U3-N2I" firstAttribute="leading" secondItem="Clh-Ie-ktF" secondAttribute="trailing" constant="27" id="8iY-qn-dyj"/>
+                                    <constraint firstItem="ybO-U3-N2I" firstAttribute="width" secondItem="Clh-Ie-ktF" secondAttribute="width" id="9R7-Hf-abh"/>
+                                    <constraint firstItem="gPO-CO-SEy" firstAttribute="top" secondItem="HXR-Qr-QiH" secondAttribute="top" constant="34" id="CnZ-8r-OZ7"/>
+                                    <constraint firstItem="Clh-Ie-ktF" firstAttribute="width" secondItem="gPO-CO-SEy" secondAttribute="width" id="EV6-Om-VL6"/>
                                     <constraint firstAttribute="centerX" secondItem="NZi-nR-mzI" secondAttribute="centerX" id="HB6-N0-UT4"/>
-                                    <constraint firstAttribute="centerY" secondItem="gPO-CO-SEy" secondAttribute="centerY" id="IG9-08-Izv"/>
-                                    <constraint firstAttribute="centerX" secondItem="gPO-CO-SEy" secondAttribute="centerX" id="OSF-Wg-39Y"/>
-                                    <constraint firstItem="gPO-CO-SEy" firstAttribute="height" secondItem="HXR-Qr-QiH" secondAttribute="height" multiplier="1:2" id="OnM-cm-dFH"/>
+                                    <constraint firstItem="Clh-Ie-ktF" firstAttribute="width" secondItem="Clh-Ie-ktF" secondAttribute="height" multiplier="1:1" id="J8e-Pd-xb4"/>
+                                    <constraint firstItem="gPO-CO-SEy" firstAttribute="leading" secondItem="HXR-Qr-QiH" secondAttribute="leading" constant="20" id="KGQ-4A-mJh"/>
+                                    <constraint firstItem="gPO-CO-SEy" firstAttribute="height" secondItem="HXR-Qr-QiH" secondAttribute="height" multiplier="1:3" id="OnM-cm-dFH"/>
                                     <constraint firstItem="qSa-b1-XVc" firstAttribute="top" secondItem="HXR-Qr-QiH" secondAttribute="top" id="UdA-gG-UGT"/>
+                                    <constraint firstItem="Clh-Ie-ktF" firstAttribute="leading" secondItem="HXR-Qr-QiH" secondAttribute="leading" constant="20" id="Uf2-A6-qEY"/>
+                                    <constraint firstAttribute="trailing" secondItem="ybO-U3-N2I" secondAttribute="trailing" constant="20" id="WwT-iB-SGY"/>
+                                    <constraint firstItem="Clh-Ie-ktF" firstAttribute="top" secondItem="HXR-Qr-QiH" secondAttribute="top" constant="34" id="apt-Iv-XB7"/>
                                     <constraint firstAttribute="centerY" secondItem="NZi-nR-mzI" secondAttribute="centerY" id="bb0-dr-Xux"/>
                                     <constraint firstAttribute="centerX" secondItem="qSa-b1-XVc" secondAttribute="centerX" id="bbm-tu-wur"/>
+                                    <constraint firstAttribute="centerX" secondItem="Clh-Ie-ktF" secondAttribute="centerX" id="boo-hn-fvA"/>
+                                    <constraint firstItem="ybO-U3-N2I" firstAttribute="top" secondItem="HXR-Qr-QiH" secondAttribute="top" constant="34" id="cr5-dt-EsO"/>
+                                    <constraint firstItem="Clh-Ie-ktF" firstAttribute="leading" secondItem="gPO-CO-SEy" secondAttribute="trailing" constant="20" id="dOd-NG-oxh"/>
                                     <constraint firstItem="NZi-nR-mzI" firstAttribute="width" secondItem="HXR-Qr-QiH" secondAttribute="width" multiplier="5:6" id="lFE-3b-uzX"/>
+                                    <constraint firstAttribute="centerX" secondItem="gPO-CO-SEy" secondAttribute="centerX" id="s4e-Uz-Hwr"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="KGQ-4A-mJh"/>
+                                        <exclude reference="boo-hn-fvA"/>
+                                        <exclude reference="dOd-NG-oxh"/>
+                                        <exclude reference="8iY-qn-dyj"/>
+                                    </mask>
+                                </variation>
                             </view>
-                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GGA-Q8-Vx7" userLabel="followMeButton">
-                                <rect key="frame" x="560" y="324" width="30" height="30"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.65000000000000002" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="9C1-gb-AJX"/>
-                                    <constraint firstAttribute="width" constant="30" id="e8c-9T-GiU"/>
-                                </constraints>
-                                <state key="normal" image="followMeOff">
-                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="followMeButtonTapped:" destination="ekS-UR-SFw" eventType="touchUpInside" id="NWU-xx-vmd"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="HXR-Qr-QiH" secondAttribute="width" id="1cZ-BS-bo7"/>
@@ -420,8 +448,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="RPMGauge" destination="Clh-Ie-ktF" id="NM3-aa-gRA"/>
                         <outlet property="distanceLabel" destination="Sw4-S6-5Cb" id="OVe-Ca-s6s"/>
                         <outlet property="followMeButton" destination="GGA-Q8-Vx7" id="UtN-6P-4Mp"/>
+                        <outlet property="fuelGauge" destination="ybO-U3-N2I" id="dRa-dI-Imk"/>
                         <outlet property="fullScreenButton" destination="4Ui-V1-gXW" id="OzH-F3-e2N"/>
                         <outlet property="mapView" destination="CfI-It-6d2" id="FHk-sq-g6e"/>
                         <outlet property="speedGauge" destination="gPO-CO-SEy" id="nod-La-J0m"/>
@@ -498,7 +528,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="149"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sPg-z0-Y8m">
-                                            <size key="itemSize" width="120" height="40"/>
+                                            <size key="itemSize" width="50" height="50"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
@@ -508,17 +538,17 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="40"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="headTruncation" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="1CD-R0-KHd">
-                                                            <rect key="frame" x="8" y="19" width="104" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="headTruncation" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="1CD-R0-KHd">
+                                                            <rect key="frame" x="3" y="29" width="44" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="0.98039215686274506" green="0.41176470588235292" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fRl-Uk-vpo">
-                                                            <rect key="frame" x="8" y="0.0" width="104" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fRl-Uk-vpo">
+                                                            <rect key="frame" x="0.0" y="8" width="50" height="21"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                                             <color key="textColor" red="0.98039215690000003" green="0.41176470590000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -526,7 +556,23 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <size key="customSize" width="120" height="40"/>
+                                                <size key="customSize" width="50" height="50"/>
+                                            </collectionViewCell>
+                                            <collectionViewCell autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" reuseIdentifier="gaugeCell" id="vID-5c-iG1">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OGY-gQ-WCn" userLabel="gaugeView" customClass="WMGaugeView">
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        </view>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <size key="customSize" width="60" height="60"/>
                                             </collectionViewCell>
                                         </cells>
                                         <connections>

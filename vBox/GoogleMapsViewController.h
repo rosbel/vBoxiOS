@@ -15,6 +15,7 @@
 #import "Trip.h"
 #include "BluetoothData.h"
 #import "BLEManager.h"
+#import "WMGaugeView.h"
 
 @protocol GoogleMapsViewControllerDelegate <NSObject>
 

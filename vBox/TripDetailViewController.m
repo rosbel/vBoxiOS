@@ -48,7 +48,9 @@
 	
 	self.GPSLocationsForTrip = self.trip.gpsLocations;
 	[self setUpGoogleMaps];
-	[self setUpGaguge:self.speedGauge withUnits:@"MPH" max:150 startAngle:90 endAngle:270];
+	[self.speedGauge setUpWithUnits:@"MPH" max:150 startAngle:90 endAngle:270];
+	[self.fuelGauge setUpWithUnits:@"Fuel %" max:100 startAngle:90 endAngle:270];
+	[self.RPMGauge setUpWithUnits:@"RPM" max:10000 startAngle:90 endAngle:270];
 	[self.tripSlider setMaximumValue:self.GPSLocationsForTrip.count-1];
 }
 
@@ -60,23 +62,6 @@
 }
 
 #pragma mark - Setup
-
-
-- (void) setUpGaguge:(WMGaugeView *)gauge withUnits:(NSString *)unit max:(float)max startAngle:(float)startAngle endAngle:(float)endAngle
-{
-	gauge.maxValue = max;
-	gauge.scaleStartAngle = startAngle;
-	gauge.scaleEndAngle = endAngle;
-	gauge.unitOfMeasurement = unit;
-	gauge.scaleDivisions = 10;
-	gauge.showUnitOfMeasurement = YES;
-	gauge.showScaleShadow = NO;
-	gauge.needleStyle = WMGaugeViewNeedleStyleFlatThin;
-	gauge.needleScrewStyle = WMGaugeViewNeedleScrewStylePlain;
-	gauge.showScale = YES;
-	gauge.showInnerRim = YES;
-	gauge.innerBackgroundStyle = WMGaugeViewInnerBackgroundStyleFlat;
-}
 
 - (void) setUpGoogleMaps
 {
@@ -158,7 +143,7 @@
 	}else
 	{
 		[CATransaction begin];
-		[CATransaction setAnimationDuration:0.01];
+		[CATransaction setAnimationDuration:0.001];
 		[self.markerForSlider setPosition:coordinate];
 		[CATransaction commit];
 	}
@@ -231,10 +216,20 @@
 	self.timeLabel.text = [NSString stringWithFormat:@"%02li:%02li:%02li",(long)hours,(long)minutes,(long)seconds];
 	self.distanceLabel.text = [NSString stringWithFormat:@"%.2f mi",(loc.metersFromStart.doubleValue * 0.000621371)];
 	
+	
+	//GPS Speed
 	[self.speedGauge setValue:loc.speed.floatValue animated:NO];
-//	self.RPMLabel.text = loc.bluetoothInfo.rpm ? [NSString stringWithFormat:@"%@ RPM",loc.bluetoothInfo.rpm] : @"";
-//	self.speedBLELabel.text = loc.bluetoothInfo.speed ? [NSString stringWithFormat:@"%@ mph",loc.bluetoothInfo.speed] : @"";
-//	self.fuelLabel.text = loc.bluetoothInfo.fuel ? [NSString stringWithFormat:@"%@ fuel",loc.bluetoothInfo.fuel] : @"";
+	
+	if(loc.bluetoothInfo)
+	{
+		if(self.fuelGauge.hidden)
+			self.RPMGauge.hidden = NO;
+		if(self.fuelGauge.hidden)
+			self.fuelGauge.hidden = NO;
+		[self.RPMGauge setValue:loc.bluetoothInfo.rpm.floatValue animated:NO];
+		[self.fuelGauge setValue:loc.bluetoothInfo.fuel.floatValue animated:NO];
+		[self.speedGauge setValue:loc.bluetoothInfo.speed.floatValue animated:NO];
+	}
 	
 	[self updateMarkerForSliderWithLocation:loc];
 }

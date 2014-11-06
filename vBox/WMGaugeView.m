@@ -159,6 +159,27 @@
 						   rangeLabelsRect.size.height - 2 * _scalePosition);
 }
 
+#pragma mark - Rosbel Helper Method
+
+- (void)setUpWithUnits:(NSString *)unit max:(float)max startAngle:(float)startAngle endAngle:(float)endAngle
+{
+	if(!self)
+		return;
+	self.maxValue = max;
+	self.scaleStartAngle = startAngle;
+	self.scaleEndAngle = endAngle;
+	self.unitOfMeasurement = unit;
+	self.scaleDivisions = 10;
+	self.showUnitOfMeasurement = YES;
+	self.showScaleShadow = NO;
+	self.unitOfMeasurementFont = [UIFont systemFontOfSize:0.1];
+	self.needleStyle = WMGaugeViewNeedleStyleFlatThin;
+	self.needleScrewStyle = WMGaugeViewNeedleScrewStylePlain;
+	self.showScale = YES;
+	self.showInnerRim = YES;
+	self.innerBackgroundStyle = WMGaugeViewInnerBackgroundStyleFlat;
+}
+
 #pragma mark - Drawing
 
 /**

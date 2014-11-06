@@ -26,5 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet WMGaugeView *speedGauge;
+@property (weak, nonatomic) IBOutlet WMGaugeView *RPMGauge;
+@property (weak, nonatomic) IBOutlet WMGaugeView *fuelGauge;
 
 @end

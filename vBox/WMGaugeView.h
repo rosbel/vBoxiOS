@@ -96,5 +96,6 @@ WMGaugeViewInnerBackgroundStyle;
 - (void)setValue:(float)value animated:(BOOL)animated completion:(void (^)(BOOL finished))completion;
 - (void)setValue:(float)value animated:(BOOL)animated duration:(NSTimeInterval)duration;
 - (void)setValue:(float)value animated:(BOOL)animated duration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completion;
+- (void)setUpWithUnits:(NSString *)unit max:(float)max startAngle:(float)startAngle endAngle:(float)endAngle;
 
 @end
