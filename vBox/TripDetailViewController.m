@@ -47,8 +47,8 @@
 	followingMe = NO;
 	
 	self.GPSLocationsForTrip = self.trip.gpsLocations;
-	
 	[self setUpGoogleMaps];
+	[self setUpGaguge:self.speedGauge withUnits:@"MPH" max:150 startAngle:90 endAngle:270];
 	[self.tripSlider setMaximumValue:self.GPSLocationsForTrip.count-1];
 }
 
@@ -57,6 +57,25 @@
 	[super viewDidAppear:animated];
 	GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:cameraBounds withPadding:40];
 	[self.mapView animateWithCameraUpdate:update];
+}
+
+#pragma mark - Setup
+
+
+- (void) setUpGaguge:(WMGaugeView *)gauge withUnits:(NSString *)unit max:(float)max startAngle:(float)startAngle endAngle:(float)endAngle
+{
+	gauge.maxValue = max;
+	gauge.scaleStartAngle = startAngle;
+	gauge.scaleEndAngle = endAngle;
+	gauge.unitOfMeasurement = unit;
+	gauge.scaleDivisions = 10;
+	gauge.showUnitOfMeasurement = YES;
+	gauge.showScaleShadow = NO;
+	gauge.needleStyle = WMGaugeViewNeedleStyleFlatThin;
+	gauge.needleScrewStyle = WMGaugeViewNeedleScrewStylePlain;
+	gauge.showScale = YES;
+	gauge.showInnerRim = YES;
+	gauge.innerBackgroundStyle = WMGaugeViewInnerBackgroundStyleFlat;
 }
 
 - (void) setUpGoogleMaps
@@ -205,14 +224,17 @@
 	NSInteger seconds = ti % 60;
 	NSInteger minutes = (ti / 60) % 60;
 	NSInteger hours = (ti / 3600);
+
+	
 	
 	self.speedLabel.text = [NSString stringWithFormat:@"%.2f mph",loc.speed.doubleValue];
 	self.timeLabel.text = [NSString stringWithFormat:@"%02li:%02li:%02li",(long)hours,(long)minutes,(long)seconds];
 	self.distanceLabel.text = [NSString stringWithFormat:@"%.2f mi",(loc.metersFromStart.doubleValue * 0.000621371)];
 	
-	self.RPMLabel.text = loc.bluetoothInfo.rpm ? [NSString stringWithFormat:@"%@ RPM",loc.bluetoothInfo.rpm] : @"";
-	self.speedBLELabel.text = loc.bluetoothInfo.speed ? [NSString stringWithFormat:@"%@ mph",loc.bluetoothInfo.speed] : @"";
-	self.fuelLabel.text = loc.bluetoothInfo.fuel ? [NSString stringWithFormat:@"%@ fuel",loc.bluetoothInfo.fuel] : @"";
+	[self.speedGauge setValue:loc.speed.floatValue animated:NO];
+//	self.RPMLabel.text = loc.bluetoothInfo.rpm ? [NSString stringWithFormat:@"%@ RPM",loc.bluetoothInfo.rpm] : @"";
+//	self.speedBLELabel.text = loc.bluetoothInfo.speed ? [NSString stringWithFormat:@"%@ mph",loc.bluetoothInfo.speed] : @"";
+//	self.fuelLabel.text = loc.bluetoothInfo.fuel ? [NSString stringWithFormat:@"%@ fuel",loc.bluetoothInfo.fuel] : @"";
 	
 	[self updateMarkerForSliderWithLocation:loc];
 }

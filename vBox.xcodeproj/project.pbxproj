@@ -12,6 +12,13 @@
 		C11318CE19EDD3580023A45C /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = C11318CD19EDD3580023A45C /* settings.plist */; };
 		C11603361A06A6CE0079F2C4 /* BluetoothData.m in Sources */ = {isa = PBXBuildFile; fileRef = C11603351A06A6CE0079F2C4 /* BluetoothData.m */; };
 		C11603391A06A7350079F2C4 /* GPSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C11603381A06A7350079F2C4 /* GPSLocation.m */; };
+		C1187E301A0BF974006A08A4 /* WMGaugeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1187E2F1A0BF974006A08A4 /* WMGaugeView.m */; };
+		C1187E411A0BFA7B006A08A4 /* MSAnnotatedGauge.m in Sources */ = {isa = PBXBuildFile; fileRef = C1187E341A0BFA7B006A08A4 /* MSAnnotatedGauge.m */; };
+		C1187E421A0BFA7B006A08A4 /* MSArcLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C1187E361A0BFA7B006A08A4 /* MSArcLayer.m */; };
+		C1187E431A0BFA7B006A08A4 /* MSGradientArcLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C1187E391A0BFA7B006A08A4 /* MSGradientArcLayer.m */; };
+		C1187E441A0BFA7B006A08A4 /* MSNeedleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1187E3B1A0BFA7B006A08A4 /* MSNeedleView.m */; };
+		C1187E451A0BFA7B006A08A4 /* MSRangeGauge.m in Sources */ = {isa = PBXBuildFile; fileRef = C1187E3D1A0BFA7B006A08A4 /* MSRangeGauge.m */; };
+		C1187E461A0BFA7B006A08A4 /* MSSimpleGauge.m in Sources */ = {isa = PBXBuildFile; fileRef = C1187E3F1A0BFA7B006A08A4 /* MSSimpleGauge.m */; };
 		C11D52D619F3339B00FF7542 /* CarDiagnostics.m in Sources */ = {isa = PBXBuildFile; fileRef = C11D52D519F3339B00FF7542 /* CarDiagnostics.m */; };
 		C122324619F33FB7002318DF /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C122324519F33FB7002318DF /* SWRevealViewController.m */; };
 		C122324819F34021002318DF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C122324719F34021002318DF /* CoreGraphics.framework */; };
@@ -71,6 +78,22 @@
 		C11603351A06A6CE0079F2C4 /* BluetoothData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothData.m; sourceTree = "<group>"; };
 		C11603371A06A7350079F2C4 /* GPSLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSLocation.h; sourceTree = "<group>"; };
 		C11603381A06A7350079F2C4 /* GPSLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSLocation.m; sourceTree = "<group>"; };
+		C1187E2E1A0BF974006A08A4 /* WMGaugeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMGaugeView.h; sourceTree = "<group>"; };
+		C1187E2F1A0BF974006A08A4 /* WMGaugeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMGaugeView.m; sourceTree = "<group>"; };
+		C1187E331A0BFA7B006A08A4 /* MSAnnotatedGauge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSAnnotatedGauge.h; sourceTree = "<group>"; };
+		C1187E341A0BFA7B006A08A4 /* MSAnnotatedGauge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSAnnotatedGauge.m; sourceTree = "<group>"; };
+		C1187E351A0BFA7B006A08A4 /* MSArcLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSArcLayer.h; sourceTree = "<group>"; };
+		C1187E361A0BFA7B006A08A4 /* MSArcLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSArcLayer.m; sourceTree = "<group>"; };
+		C1187E371A0BFA7B006A08A4 /* MSArcLayerSubclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSArcLayerSubclass.h; sourceTree = "<group>"; };
+		C1187E381A0BFA7B006A08A4 /* MSGradientArcLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSGradientArcLayer.h; sourceTree = "<group>"; };
+		C1187E391A0BFA7B006A08A4 /* MSGradientArcLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSGradientArcLayer.m; sourceTree = "<group>"; };
+		C1187E3A1A0BFA7B006A08A4 /* MSNeedleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSNeedleView.h; sourceTree = "<group>"; };
+		C1187E3B1A0BFA7B006A08A4 /* MSNeedleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSNeedleView.m; sourceTree = "<group>"; };
+		C1187E3C1A0BFA7B006A08A4 /* MSRangeGauge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSRangeGauge.h; sourceTree = "<group>"; };
+		C1187E3D1A0BFA7B006A08A4 /* MSRangeGauge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSRangeGauge.m; sourceTree = "<group>"; };
+		C1187E3E1A0BFA7B006A08A4 /* MSSimpleGauge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSSimpleGauge.h; sourceTree = "<group>"; };
+		C1187E3F1A0BFA7B006A08A4 /* MSSimpleGauge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSSimpleGauge.m; sourceTree = "<group>"; };
+		C1187E401A0BFA7B006A08A4 /* MSSimpleGaugeSubclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSSimpleGaugeSubclass.h; sourceTree = "<group>"; };
 		C11D52D419F3339B00FF7542 /* CarDiagnostics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDiagnostics.h; sourceTree = "<group>"; };
 		C11D52D519F3339B00FF7542 /* CarDiagnostics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDiagnostics.m; sourceTree = "<group>"; };
 		C122324419F33FB7002318DF /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -165,6 +188,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C1187E2D1A0BF946006A08A4 /* VariableSlider */ = {
+			isa = PBXGroup;
+			children = (
+				C127A6921A098666000CE564 /* OBSlider.h */,
+				C127A6931A098666000CE564 /* OBSlider.m */,
+				C1187E321A0BFA70006A08A4 /* Simple Gauge */,
+				C1187E311A0BF9E2006A08A4 /* Gauges */,
+			);
+			name = VariableSlider;
+			sourceTree = "<group>";
+		};
+		C1187E311A0BF9E2006A08A4 /* Gauges */ = {
+			isa = PBXGroup;
+			children = (
+				C1187E2E1A0BF974006A08A4 /* WMGaugeView.h */,
+				C1187E2F1A0BF974006A08A4 /* WMGaugeView.m */,
+			);
+			name = Gauges;
+			sourceTree = "<group>";
+		};
+		C1187E321A0BFA70006A08A4 /* Simple Gauge */ = {
+			isa = PBXGroup;
+			children = (
+				C1187E331A0BFA7B006A08A4 /* MSAnnotatedGauge.h */,
+				C1187E341A0BFA7B006A08A4 /* MSAnnotatedGauge.m */,
+				C1187E351A0BFA7B006A08A4 /* MSArcLayer.h */,
+				C1187E361A0BFA7B006A08A4 /* MSArcLayer.m */,
+				C1187E371A0BFA7B006A08A4 /* MSArcLayerSubclass.h */,
+				C1187E381A0BFA7B006A08A4 /* MSGradientArcLayer.h */,
+				C1187E391A0BFA7B006A08A4 /* MSGradientArcLayer.m */,
+				C1187E3A1A0BFA7B006A08A4 /* MSNeedleView.h */,
+				C1187E3B1A0BFA7B006A08A4 /* MSNeedleView.m */,
+				C1187E3C1A0BFA7B006A08A4 /* MSRangeGauge.h */,
+				C1187E3D1A0BFA7B006A08A4 /* MSRangeGauge.m */,
+				C1187E3E1A0BFA7B006A08A4 /* MSSimpleGauge.h */,
+				C1187E3F1A0BFA7B006A08A4 /* MSSimpleGauge.m */,
+				C1187E401A0BFA7B006A08A4 /* MSSimpleGaugeSubclass.h */,
+			);
+			name = "Simple Gauge";
+			sourceTree = "<group>";
+		};
 		C11D52D719F333A000FF7542 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,8 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				C122324019F33F2E002318DF /* SlideOutMenu */,
-				C127A6921A098666000CE564 /* OBSlider.h */,
-				C127A6931A098666000CE564 /* OBSlider.m */,
+				C1187E2D1A0BF946006A08A4 /* VariableSlider */,
 			);
 			name = ThirdParty;
 			sourceTree = "<group>";
@@ -438,8 +501,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1187E411A0BFA7B006A08A4 /* MSAnnotatedGauge.m in Sources */,
 				C1E4584919DE0C5B001A5627 /* GoogleMapsViewController.m in Sources */,
 				C103E2BD19EF04070071B659 /* MenuTableViewController.m in Sources */,
+				C1187E301A0BF974006A08A4 /* WMGaugeView.m in Sources */,
 				C122324619F33FB7002318DF /* SWRevealViewController.m in Sources */,
 				C1A87CCE19F98EFC00845C7E /* DrivingHistoryViewController.m in Sources */,
 				C1E4584619DE0C5B001A5627 /* AppDelegate.m in Sources */,
@@ -450,9 +515,14 @@
 				C186A72A19FEB69200016E99 /* Trip.m in Sources */,
 				C11603361A06A6CE0079F2C4 /* BluetoothData.m in Sources */,
 				C11603391A06A7350079F2C4 /* GPSLocation.m in Sources */,
+				C1187E421A0BFA7B006A08A4 /* MSArcLayer.m in Sources */,
 				C1D6CA5019F41A5A003FF61C /* BluetoothTableViewController.m in Sources */,
 				C127A6941A098666000CE564 /* OBSlider.m in Sources */,
+				C1187E451A0BFA7B006A08A4 /* MSRangeGauge.m in Sources */,
+				C1187E441A0BFA7B006A08A4 /* MSNeedleView.m in Sources */,
+				C1187E431A0BFA7B006A08A4 /* MSGradientArcLayer.m in Sources */,
 				C1E4584319DE0C5B001A5627 /* main.m in Sources */,
+				C1187E461A0BFA7B006A08A4 /* MSSimpleGauge.m in Sources */,
 				C1FE69D01A041A1200DA15BD /* BLEManager.m in Sources */,
 				C180A30E19F0A04000DE880C /* DebugBluetoothViewController.m in Sources */,
 			);

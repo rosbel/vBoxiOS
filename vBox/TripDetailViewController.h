@@ -14,6 +14,7 @@
 #import "DrivingHistory.h"
 #import "BluetoothData.h"
 #import "OBSlider.h"
+#import "WMGaugeView.h"
 
 @interface TripDetailViewController : UIViewController <GMSMapViewDelegate>
 
@@ -23,9 +24,7 @@
 @property (weak, nonatomic) IBOutlet OBSlider *tripSlider;
 @property (weak, nonatomic) IBOutlet UILabel *speedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *RPMLabel;
-@property (weak, nonatomic) IBOutlet UILabel *fuelLabel;
-@property (weak, nonatomic) IBOutlet UILabel *speedBLELabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+@property (weak, nonatomic) IBOutlet WMGaugeView *speedGauge;
 
 @end
