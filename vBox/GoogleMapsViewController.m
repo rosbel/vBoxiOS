@@ -28,7 +28,6 @@
 	double sumSpeed;
 	double maxSpeed;
 	double minSpeed;
-	double metersFromStart;
 	NSArray *styles;
 }
 
@@ -51,7 +50,6 @@
 	sumSpeed = 0;
 	maxSpeed = 0;
 	minSpeed = DBL_MAX;
-	metersFromStart = 0;
 	followMe = YES;
 	
 	self.bluetoothManager = [[BLEManager alloc] init];
@@ -83,7 +81,7 @@
 	[currentTrip setAvgSpeed:[NSNumber numberWithDouble:avgSpeed]];
 	[currentTrip setMaxSpeed:[NSNumber numberWithDouble:maxSpeed]];
 	[currentTrip setMinSpeed:[NSNumber numberWithDouble:minSpeed]];
-	[currentTrip setTotalMiles:[NSNumber numberWithDouble:metersFromStart*0.000621371]];
+	[currentTrip setTotalMiles:[NSNumber numberWithDouble:GMSGeometryLength(completePath)*0.000621371]];
 	[[appDelegate drivingHistory] addTripsObject:currentTrip];
 	[appDelegate saveContext];
 }
@@ -218,17 +216,9 @@
 	
 	self.speedLabel.text = [NSString stringWithFormat:@"%.2f mph",speedMPH];
 	
-	//If distance between two points is greater than 200 m, then don't do anything
-	if([newestLocation distanceFromLocation:prevLocation] > 500)
-	{
-		return; //ignore distances greater than 500
-				// this causes things to stop working after one time 500m+ difference between location updates
-	}
-	
-	metersFromStart += [newestLocation distanceFromLocation:prevLocation];
-	[self logLocation:newestLocation persistent:YES];
-	
 	[completePath addCoordinate:newestLocation.coordinate];
+	
+	[self logLocation:newestLocation persistent:YES];
 	
 	[polyline setPath:completePath];
 	
@@ -238,7 +228,7 @@
 	
 	if(followMe)
 	{
-		[_MapView animateWithCameraUpdate:[GMSCameraUpdate setTarget:newestLocation.coordinate]];
+		[_MapView animateToLocation:newestLocation.coordinate];
 	}
 }
 
@@ -361,7 +351,7 @@
 		[newLocation setLatitude:[NSNumber numberWithDouble:lat]];
 		[newLocation setLongitude:[NSNumber numberWithDouble:lng]];
 		[newLocation setSpeed:[NSNumber numberWithDouble:speedMPH]];
-		[newLocation setMetersFromStart:[NSNumber numberWithDouble:metersFromStart]];
+		[newLocation setMetersFromStart:[NSNumber numberWithDouble:GMSGeometryLength(completePath)]];
 		[newLocation setTimestamp:time];
 		[newLocation setTripInfo:currentTrip];
 		

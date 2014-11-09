@@ -265,11 +265,15 @@
 	[formatter setDateFormat:@"yyyyMMddHHmmssSSS"];
 	
 	NSMutableString *log = [[NSMutableString alloc] init];
-	[log appendFormat:@"Timestamp Lat Long Speed-MPH! \n"];
+	[log appendFormat:@"Timestamp Lat Long Speed-MPH Fuel-%% RPM-rev Throttle-%% \n"];
 	for(GPSLocation *loc in self.GPSLocationsForTrip)
 	{
 		NSString *date = [formatter stringFromDate:loc.timestamp];
-		[log appendFormat:@"%@ %lf %lf %lf \n",date,loc.latitude.doubleValue,loc.longitude.doubleValue,loc.speed.doubleValue];
+		[log appendFormat:@"%@ %lf %lf %lf ",date,loc.latitude.doubleValue,loc.longitude.doubleValue,loc.speed.doubleValue];
+		if(loc.bluetoothInfo)
+		{
+			[log appendFormat:@"%@ %@ %@ \n",loc.bluetoothInfo.fuel,loc.bluetoothInfo.rpm,loc.bluetoothInfo.throttle];
+		}
 	}
 	UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[log] applicationActivities:nil];
 	
