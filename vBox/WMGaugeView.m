@@ -321,9 +321,7 @@
 	NSDictionary* stringAttrs = @{ NSFontAttributeName : font, NSForegroundColorAttributeName : color };
 	NSAttributedString* attrStr = [[NSAttributedString alloc] initWithString:_unitOfMeasurement attributes:stringAttrs];
 	CGSize fontWidth;
-	if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-		fontWidth = [_unitOfMeasurement sizeWithFont:font];
-	} else {
+	if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
 		fontWidth = [_unitOfMeasurement sizeWithAttributes:stringAttrs];
 	}
 	
@@ -373,9 +371,7 @@
 			NSDictionary* stringAttrs = @{ NSFontAttributeName : font, NSForegroundColorAttributeName : color };
 			NSAttributedString* attrStr = [[NSAttributedString alloc] initWithString:valueString attributes:stringAttrs];
 			CGSize fontWidth;
-			if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-				fontWidth = [valueString sizeWithFont:font];
-			} else {
+			if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
 				fontWidth = [valueString sizeWithAttributes:stringAttrs];
 			}
 			
@@ -632,9 +628,7 @@
 	UIColor* color = _rangeLabelsFontColor ? _rangeLabelsFontColor : [UIColor whiteColor];
 	NSDictionary* stringAttrs = @{ NSFontAttributeName : font, NSForegroundColorAttributeName : color };
 	CGSize textSize;
-	if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-		textSize = [text sizeWithFont:font];
-	} else {
+	if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
 		textSize = [text sizeWithAttributes:stringAttrs];
 	}
 	float perimeter = 2 * M_PI * radius;
@@ -651,15 +645,10 @@
 		NSString* letter = [text substringWithRange:range];
 		NSAttributedString* attrStr = [[NSAttributedString alloc] initWithString:letter attributes:stringAttrs];
 		CGSize charSize;
-		float totalWidth;
-		float currentLetterWidth;
+		float totalWidth = 0.0;
+		float currentLetterWidth = 0.0;
 		float lastLetterWidth;
-		if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-			charSize = [letter sizeWithFont:font];
-			totalWidth = [[NSString stringWithFormat:@"%@%@", lastLetter, letter] sizeWithFont:font].width;
-			currentLetterWidth = [letter sizeWithFont:font].width;
-			lastLetterWidth = [lastLetter sizeWithFont:font].width;
-		} else {
+		if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
 			charSize = [letter sizeWithAttributes:stringAttrs];
 			totalWidth = [[NSString stringWithFormat:@"%@%@",lastLetter, letter] sizeWithAttributes:stringAttrs].width;
 			currentLetterWidth = [letter sizeWithAttributes:stringAttrs].width;

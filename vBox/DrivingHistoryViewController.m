@@ -76,7 +76,7 @@
 	{
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"trip"];
 	}
-	Trip* trip = (Trip *)[self.trips objectAtIndex:indexPath.row];
+	Trip* trip = (Trip *)[self.trips objectAtIndex:(self.trips.count-1)-indexPath.row];
 	[formatter setDateStyle:NSDateFormatterShortStyle];
 	NSString *startTimeText = [formatter stringFromDate:trip.startTime];
 	[formatter setDateStyle:NSDateFormatterNoStyle];

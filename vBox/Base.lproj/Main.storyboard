@@ -410,9 +410,9 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="KGQ-4A-mJh"/>
                                         <exclude reference="boo-hn-fvA"/>
                                         <exclude reference="dOd-NG-oxh"/>
+                                        <exclude reference="KGQ-4A-mJh"/>
                                         <exclude reference="8iY-qn-dyj"/>
                                     </mask>
                                 </variation>
