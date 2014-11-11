@@ -36,7 +36,9 @@
 	[formatter setTimeStyle:NSDateFormatterMediumStyle];
 	[formatter setTimeZone:[NSTimeZone localTimeZone]];
 	
-	self.trips = [[appDelegate drivingHistory] trips];
+	self.trips = [[[appDelegate drivingHistory] trips] reversedOrderedSet];
+
+//	self.trips = [[appDelegate drivingHistory] trips];
 	
 //	NSDate *startDate = [self dateAtBeginningOfDayForDate:[NSDate date]];
 //	NSDate *endDate = [self dateByAddingYears:1 toDate:startDate];
@@ -76,7 +78,7 @@
 	{
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"trip"];
 	}
-	Trip* trip = (Trip *)[self.trips objectAtIndex:(self.trips.count-1)-indexPath.row];
+	Trip* trip = (Trip *)[self.trips objectAtIndex:indexPath.row];
 	[formatter setDateStyle:NSDateFormatterShortStyle];
 	NSString *startTimeText = [formatter stringFromDate:trip.startTime];
 	[formatter setDateStyle:NSDateFormatterNoStyle];
@@ -96,11 +98,12 @@
 	if(editingStyle == UITableViewCellEditingStyleDelete)
 	{
 		NSManagedObjectContext *context = [appDelegate managedObjectContext];
-		
+
 		[context deleteObject:[self.trips objectAtIndex:indexPath.row]];
 		[appDelegate saveContext];
+		self.trips = appDelegate.drivingHistory.trips; //update
 		
-		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+		[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 	}
 }
 

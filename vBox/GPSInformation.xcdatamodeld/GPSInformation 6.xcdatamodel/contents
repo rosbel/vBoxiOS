@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14A388a" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14B17" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="BluetoothData" representedClassName="BluetoothData" syncable="YES">
         <attribute name="accelX" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="accelY" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -17,7 +17,7 @@
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GPSLocation" inverseName="bluetoothInfo" inverseEntity="GPSLocation" syncable="YES"/>
     </entity>
     <entity name="DrivingHistory" representedClassName="DrivingHistory" syncable="YES">
-        <relationship name="trips" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Trip" inverseName="drivingHistory" inverseEntity="Trip" syncable="YES"/>
+        <relationship name="trips" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Trip" inverseName="drivingHistory" inverseEntity="Trip" syncable="YES"/>
     </entity>
     <entity name="GPSLocation" representedClassName="GPSLocation" syncable="YES">
         <attribute name="latitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
