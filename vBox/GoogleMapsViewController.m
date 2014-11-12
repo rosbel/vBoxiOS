@@ -194,22 +194,23 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-	CLLocation *newestLocation = [locations lastObject];
-	
-	//Ignore bad Accuracy
-	if(newestLocation.horizontalAccuracy > 15) //maybe give user tolerance for bad accuracy?
-	{
-		if(newestLocation.horizontalAccuracy < 50)
-			if(followMe)
-				[_MapView animateWithCameraUpdate:[GMSCameraUpdate setTarget:newestLocation.coordinate zoom:14]];
-		
-		return;
-	}
-	
-	CLLocation *prevLocation;
 	
 	unsigned long objCount = [locations count];
 	unsigned long prevCount = [pastLocations count];
+	
+	CLLocation *newestLocation = [locations lastObject];
+	CLLocation *prevLocation;
+	
+	if(prevCount < 1 && followMe && newestLocation.horizontalAccuracy < 70)
+	{
+		[self.MapView animateToLocation:newestLocation.coordinate];
+		[self.MapView animateToZoom:15];
+	}
+	//Ignore bad Accuracy
+	if(newestLocation.horizontalAccuracy > 30) //maybe give user tolerance for bad accuracy?
+	{
+		return;
+	}
 	
 	if(objCount > 1)
 	{
