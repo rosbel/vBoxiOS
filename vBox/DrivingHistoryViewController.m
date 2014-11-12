@@ -101,7 +101,7 @@
 
 		[context deleteObject:[self.trips objectAtIndex:indexPath.row]];
 		[appDelegate saveContext];
-		self.trips = appDelegate.drivingHistory.trips; //update
+		self.trips = appDelegate.drivingHistory.trips.reversedOrderedSet; //update
 		
 		[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 	}

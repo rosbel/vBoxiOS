@@ -11,8 +11,9 @@
 
 @interface GoogleMapsViewController ()
 
-@property (strong, nonatomic) IBOutlet UILabel *bluetoothRequiredLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bluetoothRequiredLabel;
 @property (weak, nonatomic) IBOutlet UIView *infoView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *mapViewToInfoViewConstraint;
 
 @end
 
@@ -29,6 +30,9 @@
 	double maxSpeed;
 	double minSpeed;
 	NSArray *styles;
+	CGRect infoViewFrame;
+	CGRect mapViewFrame;
+	CGRect infoViewHiddenOffScreen;
 }
 
 #pragma mark - UIView Delegate Methods
@@ -52,15 +56,25 @@
 	minSpeed = DBL_MAX;
 	followMe = YES;
 	
-	self.bluetoothManager = [[BLEManager alloc] init];
-	self.bluetoothManager.delegate = self;
 	self.bluetoothDiagnostics = [NSMutableDictionary dictionary];
+	
+	[self setUpBluetoothManager];//move this after click button
 	
 	[self setUpLocationManager];
 	
 	[self setUpGoogleMaps];
 	
 	[self setUpUIButtons];
+}
+
+-(void)viewDidLayoutSubviews
+{
+	infoViewFrame = self.infoView.frame;
+	mapViewFrame = self.MapView.frame;
+	infoViewHiddenOffScreen = self.infoView.frame;
+	infoViewHiddenOffScreen.origin.y = [[UIScreen mainScreen] bounds].size.height;
+	
+	[self updateViewsBasedOnBluetoothState:self.bluetoothManager.state animate:NO];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -84,9 +98,17 @@
 	[currentTrip setTotalMiles:[NSNumber numberWithDouble:GMSGeometryLength(completePath)*0.000621371]];
 	[[appDelegate drivingHistory] addTripsObject:currentTrip];
 	[appDelegate saveContext];
+	
+	[super viewWillAppear:animated];
 }
 
 #pragma mark - SetUp Methods
+
+-(void)setUpBluetoothManager
+{
+	self.bluetoothManager = [[BLEManager alloc] init];
+	self.bluetoothManager.delegate = self;
+}
 
 -(void)setUpLocationManager
 {
@@ -297,7 +319,6 @@
 		keyLabel.text = key;
 		valLabel.text = [NSString stringWithFormat:@"%@",(NSNumber *)[self.bluetoothDiagnostics objectForKey:key]];
 	}
-
 	return cell;
 }
 
@@ -308,6 +329,7 @@
 	if(state == BLEStateOn)
 	{
 		self.bluetoothRequiredLabel.hidden = YES;
+		
 		if(self.bluetoothManager.connected)
 		{
 			[self.bluetoothManager setNotifyValue:YES];
@@ -318,14 +340,17 @@
 		}
 	}else
 	{
+		
 		self.bluetoothRequiredLabel.hidden = NO;
 	}
+	[self updateViewsBasedOnBluetoothState:state animate:YES];
 }
 
 -(void)didUpdateDebugLogWithString:(NSString *)string
 {
 	
 }
+
 -(void)didUpdateDiagnosticForKey:(NSString *)key withValue:(NSNumber *)value
 {
 	[self.bluetoothDiagnostics setObject:value forKey:key];
@@ -334,6 +359,52 @@
 -(void)didUpdateDiagnosticForKey:(NSString *)key withMultipleValues:(NSArray *)values
 {
 	
+}
+
+#pragma mark - Layout Methods
+
+-(void)updateViewsBasedOnBluetoothState:(BLEState) state animate:(BOOL)animate
+{
+	if(state == BLEStateOn)
+	{
+		[self.infoView setHidden:NO];
+		if(animate)
+		{
+			[UIView beginAnimations:@"ShowInfoView" context:nil];
+			[UIView setAnimationDuration:1];
+		}
+		[self.infoView setFrame:infoViewFrame];
+		[self.MapView setFrame:mapViewFrame];
+		if(animate)
+		{
+			[UIView commitAnimations];
+		}
+	}else
+	{
+		if(animate)
+		{
+			[UIView beginAnimations:@"HideInfoView" context:nil];
+			[UIView setAnimationDelay:1];
+			[UIView setAnimationDuration:1];
+			[UIView setAnimationDelegate:self];
+			[UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
+		}
+		[self.infoView setFrame:infoViewHiddenOffScreen];
+		[self.MapView setFrame:[UIScreen mainScreen].bounds];
+//		[self.infoView setHidden:YES];
+		if(animate)
+		{
+			[UIView commitAnimations];
+		}
+	}
+}
+
+- (void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
+{
+	if([animationID isEqualToString:@"HideInfoView"])
+	{
+		[self.infoView setHidden:YES];
+	}
 }
 
 #pragma mark - Core Data

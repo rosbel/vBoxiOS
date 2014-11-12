@@ -276,6 +276,7 @@
 		}
 	}
 	UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[log] applicationActivities:nil];
+	activityViewController.excludedActivityTypes = @[UIActivityTypeAddToReadingList,UIActivityTypeAirDrop,UIActivityTypeAssignToContact,UIActivityTypePostToFacebook,UIActivityTypePostToTwitter,UIActivityTypeSaveToCameraRoll,UIActivityTypePostToTencentWeibo,UIActivityTypeMessage];
 	
 	[self presentViewController:activityViewController animated:YES completion:nil];
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CeU-R2-Aeg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B23" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CeU-R2-Aeg">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -515,7 +515,7 @@
                                     <action selector="stopRecordingButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Xqa-4t-eKJ"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TVK-E4-JeR" userLabel="InfoView">
+                            <view tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TVK-E4-JeR" userLabel="InfoView">
                                 <rect key="frame" x="0.0" y="451" width="600" height="149"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bluetooth Required!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0F-XX-Pgi">
@@ -566,7 +566,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OGY-gQ-WCn" userLabel="gaugeView" customClass="WMGaugeView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                            <rect key="frame" x="-79" y="-26" width="6" height="97"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         </view>
                                                     </subviews>
@@ -603,25 +603,20 @@
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="TVK-E4-JeR" secondAttribute="bottom" id="RRK-oX-vXq"/>
                             <constraint firstItem="ski-ZJ-D74" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="-20" id="ezT-Yq-gXp"/>
                             <constraint firstItem="X8t-vy-3hi" firstAttribute="top" secondItem="3eW-h8-PRz" secondAttribute="top" id="gUO-rv-Kbp"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="ski-ZJ-D74" secondAttribute="bottom" constant="149" id="nsT-1s-G0W"/>
                             <constraint firstItem="X8t-vy-3hi" firstAttribute="height" secondItem="3eW-h8-PRz" secondAttribute="height" id="nxr-lp-WbT"/>
-                            <constraint firstItem="TVK-E4-JeR" firstAttribute="top" secondItem="ski-ZJ-D74" secondAttribute="bottom" id="scS-O3-Nsc"/>
+                            <constraint firstItem="ski-ZJ-D74" firstAttribute="bottom" secondItem="TVK-E4-JeR" secondAttribute="top" id="scS-O3-Nsc"/>
                             <constraint firstItem="X8t-vy-3hi" firstAttribute="width" secondItem="3eW-h8-PRz" secondAttribute="width" constant="10" id="tmU-sb-5U7"/>
                             <constraint firstAttribute="centerX" secondItem="TVK-E4-JeR" secondAttribute="centerX" id="u6e-Hs-H7T"/>
                             <constraint firstAttribute="centerX" secondItem="ski-ZJ-D74" secondAttribute="centerX" id="vHx-YZ-GEq"/>
                             <constraint firstAttribute="width" secondItem="TVK-E4-JeR" secondAttribute="width" id="zLV-j9-VAH"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="nsT-1s-G0W"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="MapView" destination="ski-ZJ-D74" id="cd6-fS-k3X"/>
                         <outlet property="bluetoothRequiredLabel" destination="C0F-XX-Pgi" id="T57-bu-16J"/>
                         <outlet property="collectionView" destination="lGm-lw-1sE" id="rOS-wq-sQI"/>
                         <outlet property="infoView" destination="TVK-E4-JeR" id="iU3-0M-HDj"/>
+                        <outlet property="mapViewToInfoViewConstraint" destination="scS-O3-Nsc" id="3Pw-X5-pVL"/>
                         <outlet property="speedLabel" destination="IeI-Jk-IwB" id="7FZ-Aw-U83"/>
                         <outlet property="stopRecordingButton" destination="X8t-vy-3hi" id="7Ug-eS-Ekk"/>
                     </connections>

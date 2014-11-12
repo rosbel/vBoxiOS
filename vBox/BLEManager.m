@@ -63,7 +63,8 @@
 	if(self)
 	{
 		dispatch_queue_t centralManagerQueue = dispatch_queue_create("bluetoothThread",DISPATCH_QUEUE_SERIAL); //Performance Enhancement?
-		_centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:centralManagerQueue];
+		_centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:centralManagerQueue options:@{CBCentralManagerOptionShowPowerAlertKey:@NO}];
+//		_centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:centralManagerQueue];
 		_connected = NO;
 	}
 	return self;
