@@ -201,7 +201,7 @@
 	CLLocation *newestLocation = [locations lastObject];
 	CLLocation *prevLocation;
 	
-	if(prevCount < 1 && followMe && newestLocation.horizontalAccuracy < 70)
+	if(followMe && prevCount < 1 && newestLocation.horizontalAccuracy < 70)
 	{
 		[self.MapView animateToLocation:newestLocation.coordinate];
 		if(self.MapView.camera.zoom < 10)
