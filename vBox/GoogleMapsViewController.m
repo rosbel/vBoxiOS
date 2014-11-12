@@ -204,7 +204,8 @@
 	if(prevCount < 1 && followMe && newestLocation.horizontalAccuracy < 70)
 	{
 		[self.MapView animateToLocation:newestLocation.coordinate];
-		[self.MapView animateToZoom:15];
+		if(self.MapView.camera.zoom < 10)
+			[self.MapView animateToZoom:15];
 	}
 	//Ignore bad Accuracy
 	if(newestLocation.horizontalAccuracy > 30) //maybe give user tolerance for bad accuracy?
@@ -283,7 +284,6 @@
 	return self.bluetoothDiagnostics.count;
 }
 
-// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	NSArray *keys = [[self.bluetoothDiagnostics allKeys] sortedArrayUsingSelector:@selector(compare:)];
@@ -341,9 +341,9 @@
 		}
 	}else
 	{
-		
 		self.bluetoothRequiredLabel.hidden = NO;
 	}
+	
 	[self updateViewsBasedOnBluetoothState:state animate:YES];
 }
 
@@ -357,6 +357,7 @@
 	[self.bluetoothDiagnostics setObject:value forKey:key];
 	[self.collectionView reloadData];
 }
+
 -(void)didUpdateDiagnosticForKey:(NSString *)key withMultipleValues:(NSArray *)values
 {
 	
