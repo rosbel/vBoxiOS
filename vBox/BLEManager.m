@@ -62,9 +62,8 @@
 	self = [super init];
 	if(self)
 	{
-		dispatch_queue_t centralManagerQueue = dispatch_queue_create("bluetoothThread",DISPATCH_QUEUE_SERIAL); //Performance Enhancement?
+		dispatch_queue_t centralManagerQueue = dispatch_queue_create("bluetoothThread",DISPATCH_QUEUE_SERIAL);
 		_centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:centralManagerQueue options:@{CBCentralManagerOptionShowPowerAlertKey:@NO}];
-//		_centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:centralManagerQueue];
 		_connected = NO;
 	}
 	return self;
@@ -161,9 +160,6 @@
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
-//	[self.peripheral discoverServices:nil]; //Discover all services
-	if(peripheral == self.peripheral)
-		NSLog(@"SAMEONE");
 	[peripheral setDelegate:self];
 	[peripheral discoverServices:nil];
 	if([self.delegate respondsToSelector:@selector(didConnectPeripheral)])
@@ -198,7 +194,7 @@
 		_peripheral = peripheral;
 		_peripheral.delegate = self;
 		
-		[self.centralManager connectPeripheral:peripheral options:@{CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES,CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES}];
+		[self.centralManager connectPeripheral:peripheral options:@{CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES}];
 	}
 }
 
@@ -206,32 +202,35 @@
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
-	[self asyncToMainThread:^{
-		[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Service count = %lu",(unsigned long)peripheral.services.count]];
-	}];
+	if([self.delegate respondsToSelector:@selector(didUpdateDebugLogWithString:)])
+		[self asyncToMainThread:^{
+			[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Service count = %lu",(unsigned long)peripheral.services.count]];
+		}];
 	
 	for(CBService *service in peripheral.services)
 	{
-		[self asyncToMainThread:^{
-			[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Service UUID = %@",service.UUID]];
-		}];
+		if([self.delegate respondsToSelector:@selector(didUpdateDebugLogWithString:)])
+			[self asyncToMainThread:^{
+				[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Service UUID = %@",service.UUID]];
+			}];
 		[peripheral discoverCharacteristics:nil forService:service];
 	}
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
-	[self asyncToMainThread:^{
-		[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Characteristic count = %lu",(unsigned long)service.characteristics.count]];
-	}];
+	if([self.delegate respondsToSelector:@selector(didUpdateDebugLogWithString:)])
+		[self asyncToMainThread:^{
+			[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Characteristic count = %lu",(unsigned long)service.characteristics.count]];
+		}];
 	
 	for(CBCharacteristic *characteristic in service.characteristics)
 	{
 		[peripheral setNotifyValue:YES forCharacteristic:characteristic];
-//		[peripheral readValueForCharacteristic:characteristic];
-		[self asyncToMainThread:^{
-			[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Characteristic UUID = %@",characteristic.UUID]];
-		}];
+		if([self.delegate respondsToSelector:@selector(didUpdateDebugLogWithString:)])
+			[self asyncToMainThread:^{
+				[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Characteristic UUID = %@",characteristic.UUID]];
+			}];
 	}
 }
 
