@@ -28,11 +28,11 @@
 @property (strong,nonatomic) CLLocationManager *locationManager;
 @property (weak, nonatomic) IBOutlet GMSMapView *MapView;
 @property (weak, nonatomic) IBOutlet UIButton *stopRecordingButton;
-@property (weak, nonatomic) IBOutlet UILabel *speedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *speedOrDistanceLabel;
 @property (weak, nonatomic) id delegate;
 @property (strong, nonatomic) BLEManager *bluetoothManager;
-@property (strong, nonatomic) NSMutableDictionary *bluetoothDiagnostics;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) NSMutableDictionary *bluetoothDiagnostics;
 
 @end
 

@@ -596,7 +596,7 @@
                         <outlet property="collectionView" destination="lGm-lw-1sE" id="rOS-wq-sQI"/>
                         <outlet property="infoView" destination="TVK-E4-JeR" id="iU3-0M-HDj"/>
                         <outlet property="mapViewToInfoViewConstraint" destination="scS-O3-Nsc" id="3Pw-X5-pVL"/>
-                        <outlet property="speedLabel" destination="IeI-Jk-IwB" id="7FZ-Aw-U83"/>
+                        <outlet property="speedOrDistanceLabel" destination="IeI-Jk-IwB" id="1L3-dG-O9F"/>
                         <outlet property="stopRecordingButton" destination="X8t-vy-3hi" id="7Ug-eS-Ekk"/>
                     </connections>
                 </viewController>

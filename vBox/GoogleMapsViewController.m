@@ -24,7 +24,7 @@
 	GMSMutablePath *completePath;
 	GMSPolyline* polyline;
 	NSMutableArray *pastLocations;
-	bool followMe;
+	BOOL followMe;
 	AppDelegate *appDelegate;
 	NSManagedObjectContext *context;
 	Trip *currentTrip;
@@ -35,6 +35,7 @@
 	CGRect infoViewFrame;
 	CGRect mapViewFrame;
 	CGRect infoViewHiddenOffScreen;
+	BOOL showSpeed;
 }
 
 #pragma mark - UIView Delegate Methods
@@ -57,6 +58,11 @@
 	maxSpeed = 0;
 	minSpeed = DBL_MAX;
 	followMe = YES;
+	showSpeed = YES;
+	
+	self.speedOrDistanceLabel.userInteractionEnabled = YES;
+	UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(speedLabelTapped)];
+	[self.speedOrDistanceLabel addGestureRecognizer:tapGesture];
 	
 	self.bluetoothDiagnostics = [NSMutableDictionary dictionary];
 	
@@ -154,8 +160,8 @@
 	self.stopRecordingButton.layer.masksToBounds = YES;
 	self.stopRecordingButton.layer.cornerRadius = 5.0;
 	
-	self.speedLabel.layer.masksToBounds = YES;
-	self.speedLabel.layer.cornerRadius = 5.0;
+	self.speedOrDistanceLabel.layer.masksToBounds = YES;
+	self.speedOrDistanceLabel.layer.cornerRadius = 5.0;
 }
 
 #pragma mark - Google Maps View Delegate
@@ -183,6 +189,28 @@
 	[self.delegate didTapStopRecordingButton];
 }
 
+#pragma mark - Speed Label Methods
+
+-(void)speedLabelTapped
+{
+	showSpeed = !showSpeed;
+	[UIView animateWithDuration:1 animations:^{
+		[self updateSpeedLabelWithLocation:[pastLocations lastObject]];
+	}];
+	
+}
+
+-(void)updateSpeedLabelWithLocation:(CLLocation *)lastLocation
+{
+	if(showSpeed)
+	{
+		self.speedOrDistanceLabel.text = [NSString stringWithFormat:@" %.2f mph",lastLocation.speed];
+	}else
+	{
+		self.speedOrDistanceLabel.text = [NSString stringWithFormat:@" %.2f mi",GMSGeometryLength(completePath) * 0.000621371];
+	}
+}
+
 #pragma mark - CLLocation Delegate
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
@@ -193,7 +221,7 @@
 	
 	CLLocation *newestLocation = [locations lastObject];
 	CLLocation *prevLocation;
-	
+
 	if(followMe && prevCount < 1 && newestLocation.horizontalAccuracy < 70)
 	{
 		[self.MapView animateToLocation:newestLocation.coordinate];
@@ -231,9 +259,10 @@
 	}
 	sumSpeed += speedMPH;
 	
-	self.speedLabel.text = [NSString stringWithFormat:@"%.2f mph",speedMPH];
 	
 	[completePath addCoordinate:newestLocation.coordinate];
+	
+	[self updateSpeedLabelWithLocation:newestLocation];
 	
 	[self logLocation:newestLocation persistent:YES];
 	
@@ -312,7 +341,8 @@
 	{
 		self.bluetoothRequiredLabel.hidden = NO;
 		
-		[SVProgressHUD showErrorWithStatus:@"Bluetooth turned off"];
+//		[SVProgressHUD showErrorWithStatus:@"Bluetooth turned off"];
+		[SVProgressHUD dismiss];
 	}
 	
 	[self updateViewsBasedOnBluetoothState:state animate:YES];
