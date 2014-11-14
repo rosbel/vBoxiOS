@@ -480,8 +480,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="451"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mph" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IeI-Jk-IwB">
-                                <rect key="frame" x="483" y="32" width="100.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0 mph" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IeI-Jk-IwB">
+                                <rect key="frame" x="483.5" y="30.5" width="100.5" height="24"/>
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.41176470590000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="k1H-Of-fbz"/>
@@ -575,6 +575,7 @@
                             <constraint firstItem="X8t-vy-3hi" firstAttribute="centerY" secondItem="IeI-Jk-IwB" secondAttribute="centerY" id="L7h-gj-9c6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="IeI-Jk-IwB" secondAttribute="trailing" id="M55-HH-Dzb"/>
                             <constraint firstItem="X8t-vy-3hi" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="10" id="MOD-NJ-5Yw"/>
+                            <constraint firstItem="X8t-vy-3hi" firstAttribute="height" secondItem="IeI-Jk-IwB" secondAttribute="height" id="Ovt-fZ-vsh"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="TVK-E4-JeR" secondAttribute="bottom" id="RRK-oX-vXq"/>
                             <constraint firstItem="IeI-Jk-IwB" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="10" id="dWT-Wd-tcT"/>
                             <constraint firstItem="ski-ZJ-D74" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="-20" id="ezT-Yq-gXp"/>
