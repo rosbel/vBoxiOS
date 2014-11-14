@@ -19,6 +19,9 @@
 		C122324A19F34030002318DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C122324919F34030002318DF /* UIKit.framework */; };
 		C122324C19F34052002318DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C122324B19F34052002318DF /* Foundation.framework */; };
 		C127A6941A098666000CE564 /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = C127A6931A098666000CE564 /* OBSlider.m */; };
+		C13E8CF11A156A6A00383CB5 /* OLGhostAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C13E8CF01A156A6A00383CB5 /* OLGhostAlertView.m */; };
+		C13E8CF51A15706D00383CB5 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C13E8CF21A15706D00383CB5 /* SVProgressHUD.bundle */; };
+		C13E8CF61A15706D00383CB5 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C13E8CF41A15706D00383CB5 /* SVProgressHUD.m */; };
 		C180A30E19F0A04000DE880C /* DebugBluetoothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C180A30D19F0A04000DE880C /* DebugBluetoothViewController.m */; };
 		C181F44419EEA98500FC1D8A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C181F44319EEA98500FC1D8A /* Settings.bundle */; };
 		C186A72A19FEB69200016E99 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = C186A72919FEB69200016E99 /* Trip.m */; };
@@ -83,6 +86,11 @@
 		C122324B19F34052002318DF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C127A6921A098666000CE564 /* OBSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSlider.h; sourceTree = "<group>"; };
 		C127A6931A098666000CE564 /* OBSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSlider.m; sourceTree = "<group>"; };
+		C13E8CEF1A156A6A00383CB5 /* OLGhostAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLGhostAlertView.h; sourceTree = "<group>"; };
+		C13E8CF01A156A6A00383CB5 /* OLGhostAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLGhostAlertView.m; sourceTree = "<group>"; };
+		C13E8CF21A15706D00383CB5 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		C13E8CF31A15706D00383CB5 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		C13E8CF41A15706D00383CB5 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		C17E14EC1A080C95009DDF24 /* GPSInformation 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "GPSInformation 5.xcdatamodel"; sourceTree = "<group>"; };
 		C180A30C19F0A04000DE880C /* DebugBluetoothViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugBluetoothViewController.h; sourceTree = "<group>"; };
 		C180A30D19F0A04000DE880C /* DebugBluetoothViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugBluetoothViewController.m; sourceTree = "<group>"; };
@@ -207,11 +215,32 @@
 		C122325119F3449F002318DF /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				C13E8CF71A15707700383CB5 /* SVProgressHUD */,
+				C13E8CEE1A156A3E00383CB5 /* OLGhostAlertView */,
 				C1187E311A0BF9E2006A08A4 /* Gauges */,
 				C122324019F33F2E002318DF /* SlideOutMenu */,
 				C1187E2D1A0BF946006A08A4 /* VariableSlider */,
 			);
 			name = ThirdParty;
+			sourceTree = "<group>";
+		};
+		C13E8CEE1A156A3E00383CB5 /* OLGhostAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				C13E8CEF1A156A6A00383CB5 /* OLGhostAlertView.h */,
+				C13E8CF01A156A6A00383CB5 /* OLGhostAlertView.m */,
+			);
+			name = OLGhostAlertView;
+			sourceTree = "<group>";
+		};
+		C13E8CF71A15707700383CB5 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				C13E8CF21A15706D00383CB5 /* SVProgressHUD.bundle */,
+				C13E8CF31A15706D00383CB5 /* SVProgressHUD.h */,
+				C13E8CF41A15706D00383CB5 /* SVProgressHUD.m */,
+			);
+			name = SVProgressHUD;
 			sourceTree = "<group>";
 		};
 		C1A87CB919F983F500845C7E /* CoreData */ = {
@@ -438,6 +467,7 @@
 				C1E4584C19DE0C5B001A5627 /* Main.storyboard in Resources */,
 				C11318CE19EDD3580023A45C /* settings.plist in Resources */,
 				C11318CC19EDCC700023A45C /* logo.png in Resources */,
+				C13E8CF51A15706D00383CB5 /* SVProgressHUD.bundle in Resources */,
 				C1E4585119DE0C5B001A5627 /* LaunchScreen.xib in Resources */,
 				C1E4584E19DE0C5B001A5627 /* Images.xcassets in Resources */,
 				C181F44419EEA98500FC1D8A /* Settings.bundle in Resources */,
@@ -467,6 +497,7 @@
 				C1E4584619DE0C5B001A5627 /* AppDelegate.m in Sources */,
 				C11D52D619F3339B00FF7542 /* CarDiagnostics.m in Sources */,
 				C1FAEA5019F890C3009C623C /* GPSInformation.xcdatamodeld in Sources */,
+				C13E8CF11A156A6A00383CB5 /* OLGhostAlertView.m in Sources */,
 				C186A72D19FEB69200016E99 /* DrivingHistory.m in Sources */,
 				C1CEF69A19FA04D600D6E46D /* TripDetailViewController.m in Sources */,
 				C186A72A19FEB69200016E99 /* Trip.m in Sources */,
@@ -475,6 +506,7 @@
 				C1D6CA5019F41A5A003FF61C /* BluetoothTableViewController.m in Sources */,
 				C127A6941A098666000CE564 /* OBSlider.m in Sources */,
 				C1E4584319DE0C5B001A5627 /* main.m in Sources */,
+				C13E8CF61A15706D00383CB5 /* SVProgressHUD.m in Sources */,
 				C1FE69D01A041A1200DA15BD /* BLEManager.m in Sources */,
 				C180A30E19F0A04000DE880C /* DebugBluetoothViewController.m in Sources */,
 			);

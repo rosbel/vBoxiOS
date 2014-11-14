@@ -8,6 +8,8 @@
 
 #import "GoogleMapsViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import "OLGhostAlertView.h"
+#import "SVProgressHUD.h"
 
 @interface GoogleMapsViewController ()
 
@@ -148,21 +150,12 @@
 
 -(void)setUpUIButtons
 {
-	UIBlurEffect* blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-	UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
 	
-	blurView.layer.masksToBounds = YES;
+	self.stopRecordingButton.layer.masksToBounds = YES;
+	self.stopRecordingButton.layer.cornerRadius = 5.0;
 	
-	blurView.layer.cornerRadius = 5.0;
-	
-	UIView *blurredLabel = [self.view viewWithTag:3];
-	
-	blurredLabel.layer.masksToBounds = YES;
-	blurredLabel.layer.cornerRadius = 5.0;
-	
-	blurView.frame = self.stopRecordingButton.frame;
-	
-	[self.view insertSubview:blurView belowSubview:self.stopRecordingButton];
+	self.speedLabel.layer.masksToBounds = YES;
+	self.speedLabel.layer.cornerRadius = 5.0;
 }
 
 #pragma mark - Google Maps View Delegate
@@ -291,35 +284,11 @@
 	
 	UICollectionViewCell *cell;
 	
-	if([key isEqualToString:@"Speed"])
-	{
-		cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"gaugeCell" forIndexPath:indexPath];
-		WMGaugeView *gaugeView = (WMGaugeView *)[cell viewWithTag:0];
-		[gaugeView setUpWithUnits:@"MPH" max:150 startAngle:90 endAngle:270];
-	}else if([key isEqualToString:@"RPM"])
-	{
-		cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"gaugeCell" forIndexPath:indexPath];
-		WMGaugeView *gaugeView = (WMGaugeView *)[cell viewWithTag:0];
-		[gaugeView setUpWithUnits:@"RPM" max:10000 startAngle:90 endAngle:270];
-	}else if([key isEqualToString:@"Fuel"])
-	{
-		cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"gaugeCell" forIndexPath:indexPath];
-		WMGaugeView *gaugeView = (WMGaugeView *)[cell viewWithTag:0];
-		[gaugeView setUpWithUnits:@"Fuel %" max:100 startAngle:90 endAngle:270];
-	}else if([key isEqualToString:@"Throttle"])
-	{
-		cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"gaugeCell" forIndexPath:indexPath];
-		WMGaugeView *gaugeView = (WMGaugeView *)[cell viewWithTag:0];
-		[gaugeView setUpWithUnits:@"Throttle %" max:100 startAngle:90 endAngle:270];
-	}
-	else
-	{
-		cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionCell" forIndexPath:indexPath];
-		UILabel *keyLabel = (UILabel *)[cell viewWithTag:1];
-		UILabel *valLabel = (UILabel *)[cell viewWithTag:2];
-		keyLabel.text = key;
-		valLabel.text = [NSString stringWithFormat:@"%@",(NSNumber *)[self.bluetoothDiagnostics objectForKey:key]];
-	}
+	cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionCell" forIndexPath:indexPath];
+	UILabel *keyLabel = (UILabel *)[cell viewWithTag:1];
+	UILabel *valLabel = (UILabel *)[cell viewWithTag:2];
+	keyLabel.text = key;
+	valLabel.text = [NSString stringWithFormat:@"%@",(NSNumber *)[self.bluetoothDiagnostics objectForKey:key]];
 	return cell;
 }
 
@@ -342,9 +311,26 @@
 	}else
 	{
 		self.bluetoothRequiredLabel.hidden = NO;
+		
+		[SVProgressHUD showErrorWithStatus:@"Bluetooth turned off"];
 	}
 	
 	[self updateViewsBasedOnBluetoothState:state animate:YES];
+}
+
+-(void)didConnectPeripheral
+{
+	[SVProgressHUD showSuccessWithStatus:@"Connected"];
+}
+
+-(void)didBeginScanningForPeripheral
+{
+	[SVProgressHUD showWithStatus:@"Scanning.."];
+}
+
+-(void)didStopScanning
+{
+	
 }
 
 -(void)didUpdateDebugLogWithString:(NSString *)string
@@ -373,7 +359,8 @@
 		if(animate)
 		{
 			[UIView beginAnimations:@"ShowInfoView" context:nil];
-			[UIView setAnimationDuration:1];
+			[UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+			[UIView setAnimationDuration:0.25];
 		}
 		[self.infoView setFrame:infoViewFrame];
 		[self.MapView setFrame:mapViewFrame];
@@ -387,7 +374,8 @@
 		{
 			[UIView beginAnimations:@"HideInfoView" context:nil];
 			[UIView setAnimationDelay:1];
-			[UIView setAnimationDuration:1];
+			[UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+			[UIView setAnimationDuration:0.25];
 			[UIView setAnimationDelegate:self];
 			[UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
 		}

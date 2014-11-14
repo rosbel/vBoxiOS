@@ -24,6 +24,8 @@
 @implementation TripDetailViewController{
 	GMSCoordinateBounds *cameraBounds;
 	BOOL followingMe;
+	BOOL showRealTime;
+	NSDateFormatter *dateFormatter;
 }
 
 @synthesize pathForTrip;
@@ -43,6 +45,13 @@
 	
 	self.followMeButton.layer.masksToBounds = YES;
 	self.followMeButton.layer.cornerRadius = 5.0;
+	
+	dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"HH:mm:ss"];
+	showRealTime = NO;
+	UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTimeLabel)];
+	self.timeLabel.userInteractionEnabled = YES;
+	[self.timeLabel addGestureRecognizer:tapRecognizer];
 	
 	followingMe = NO;
 	
@@ -203,17 +212,23 @@
 	
 	GPSLocation *loc = [self.GPSLocationsForTrip objectAtIndex:value];
 	
-	NSTimeInterval timeSinceStart = [loc.timestamp timeIntervalSinceDate:self.trip.startTime];
 	
-	NSInteger ti = (NSInteger)timeSinceStart;
-	NSInteger seconds = ti % 60;
-	NSInteger minutes = (ti / 60) % 60;
-	NSInteger hours = (ti / 3600);
-
+	if(showRealTime)
+	{
+		self.timeLabel.text = [dateFormatter stringFromDate:loc.timestamp];
+	}
+	else
+	{
+		NSTimeInterval timeSinceStart = [loc.timestamp timeIntervalSinceDate:self.trip.startTime];
+		NSInteger ti = (NSInteger)timeSinceStart;
+		NSInteger seconds = ti % 60;
+		NSInteger minutes = (ti / 60) % 60;
+		NSInteger hours = (ti / 3600);
+		self.timeLabel.text = [NSString stringWithFormat:@"%02li:%02li:%02li",(long)hours,(long)minutes,(long)seconds];
+	}
 	
 	
 	self.speedLabel.text = [NSString stringWithFormat:@"%.2f mph",loc.speed.doubleValue];
-	self.timeLabel.text = [NSString stringWithFormat:@"%02li:%02li:%02li",(long)hours,(long)minutes,(long)seconds];
 	self.distanceLabel.text = [NSString stringWithFormat:@"%.2f mi",(loc.metersFromStart.doubleValue * 0.000621371)];
 	
 	
@@ -254,6 +269,12 @@
 	{
 		[sender setImage:[UIImage imageNamed:@"followMeOff"] forState:UIControlStateNormal];
 	}
+}
+#pragma mark - Time Label tapped
+-(void) didTapTimeLabel
+{
+	showRealTime = !showRealTime;
+	[self sliderValueChanged:self.tripSlider];
 }
 
 #pragma mark - Sharing Event
