@@ -293,8 +293,9 @@
 		[log appendFormat:@"%@ %lf %lf %lf ",date,loc.latitude.doubleValue,loc.longitude.doubleValue,loc.speed.doubleValue];
 		if(loc.bluetoothInfo)
 		{
-			[log appendFormat:@"%@ %@ %@ \n",loc.bluetoothInfo.fuel,loc.bluetoothInfo.rpm,loc.bluetoothInfo.throttle];
+			[log appendFormat:@"%@ %@ %@ ",loc.bluetoothInfo.fuel,loc.bluetoothInfo.rpm,loc.bluetoothInfo.throttle];
 		}
+		[log appendString:@" \n"];
 	}
 	UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[log] applicationActivities:nil];
 	activityViewController.excludedActivityTypes = @[UIActivityTypeAddToReadingList,UIActivityTypeAirDrop,UIActivityTypeAssignToContact,UIActivityTypePostToFacebook,UIActivityTypePostToTwitter,UIActivityTypeSaveToCameraRoll,UIActivityTypePostToTencentWeibo,UIActivityTypeMessage];

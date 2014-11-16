@@ -204,7 +204,7 @@
 {
 	if(showSpeed)
 	{
-		self.speedOrDistanceLabel.text = [NSString stringWithFormat:@" %.2f mph",lastLocation.speed];
+		self.speedOrDistanceLabel.text = [NSString stringWithFormat:@" %.2f mph",lastLocation.speed * 2.23694];
 	}else
 	{
 		self.speedOrDistanceLabel.text = [NSString stringWithFormat:@" %.2f mi",GMSGeometryLength(completePath) * 0.000621371];
@@ -450,9 +450,9 @@
 		{
 			
 			BluetoothData *bleData = [NSEntityDescription insertNewObjectForEntityForName:@"BluetoothData" inManagedObjectContext:context];
-			NSNumber *speedMPH =[self.bluetoothDiagnostics objectForKey:@"Speed"];
-			speedMPH = speedMPH ? [NSNumber numberWithDouble:(speedMPH.doubleValue * 0.621371)] : speedMPH;
-			[bleData setSpeed:speedMPH];
+			NSNumber *bleSpeedMPH =[self.bluetoothDiagnostics objectForKey:@"Speed"];
+			bleSpeedMPH = bleSpeedMPH ? [NSNumber numberWithDouble:(bleSpeedMPH.doubleValue * 0.621371)] : bleSpeedMPH;
+			[bleData setSpeed:bleSpeedMPH];
 			[bleData setAmbientTemp:[self.bluetoothDiagnostics objectForKey:@"Ambient Temp"]];
 			[bleData setBarometric:[self.bluetoothDiagnostics objectForKey:@"Barometric"]];
 			[bleData setRpm:[self.bluetoothDiagnostics objectForKey:@"RPM"]];
