@@ -7,8 +7,10 @@
 //
 
 #import "TripDetailViewController.h"
+#import <MessageUI/MessageUI.h>
+#import "SVProgressHUD.h"
 
-@interface TripDetailViewController ()
+@interface TripDetailViewController () <MFMailComposeViewControllerDelegate>
 
 //@property (strong, nonatomic) GMSCameraPosition *camera;
 @property (strong, nonatomic) NSArray *speedDivisions;
@@ -281,26 +283,101 @@
 
 - (IBAction)shareButtonTapped:(id)sender
 {
+	NSString *log = [self stringFromCurrentTrip];
 	
+	NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+	path = [path stringByAppendingPathComponent:@"trip.log"];
+	
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	//delete previous file
+	if([fileManager fileExistsAtPath:path])
+	{
+		[fileManager removeItemAtPath:path error:nil];
+	}
+	[log writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
+	
+	if([MFMailComposeViewController canSendMail])
+	{
+		MFMailComposeViewController *composer = [[MFMailComposeViewController alloc] init];
+		[composer setMailComposeDelegate:self];
+		[composer setSubject:@"Trip logged with vBox"];
+		[composer addAttachmentData:[NSData dataWithContentsOfFile:path] mimeType:@"text/plain" fileName:@"myTrip.log"];
+		[composer setMessageBody:@"Click <a href=\"http://students.cse.tamu.edu/crapier\">here</a> and upload your file to view your log in more detail!\nBrought to you by vBox." isHTML:YES];
+		
+		[self presentViewController:composer animated:YES completion:^{
+			NSError *error;
+			[fileManager removeItemAtPath:path error:&error];
+			if(error)
+			{
+				NSLog(@"Error: %@",error);
+			}
+		}];
+	}else
+	{
+		[SVProgressHUD showErrorWithStatus:@"This device cannot send mail!"];
+	}
+}
+
+-(NSString *)stringFromCurrentTrip
+{
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateFormat:@"yyyyMMddHHmmssSSS"];
 	
 	NSMutableString *log = [[NSMutableString alloc] init];
-	[log appendFormat:@"Timestamp Lat Long Speed-MPH Fuel-%% RPM-rev Throttle-%% \n"];
+	//speed, rpm, throttle, engineLoad, fuel, barometric, ambientTemp, coolantTemp, intakeTemp, distance
+	[log appendFormat:@"Timestamp Lat Long Speed-MPH RPM-RPM Throttle-%% EngineLoad-%% Fuel-%% Barometric-C AmbientTemperature-C CoolantTemperature-C, IntakeTemperature-C, Distance-km\n"];
 	for(GPSLocation *loc in self.GPSLocationsForTrip)
 	{
-		NSString *date = [formatter stringFromDate:loc.timestamp];
-		[log appendFormat:@"%@ %lf %lf %lf ",date,loc.latitude.doubleValue,loc.longitude.doubleValue,loc.speed.doubleValue];
+		NSString *timeStamp = [formatter stringFromDate:loc.timestamp];
+		[log appendFormat:@"%@ %lf %lf ",timeStamp,loc.latitude.doubleValue,loc.longitude.doubleValue];
 		if(loc.bluetoothInfo)
 		{
-			[log appendFormat:@"%@ %@ %@ ",loc.bluetoothInfo.fuel,loc.bluetoothInfo.rpm,loc.bluetoothInfo.throttle];
+			NSString *speed = loc.bluetoothInfo.speed ? loc.bluetoothInfo.speed.stringValue : loc.speed.stringValue;
+			NSString *rpm = [self stringFromValue:loc.bluetoothInfo.rpm];
+			NSString *throttle = [self stringFromValue:loc.bluetoothInfo.throttle];
+			NSString *engineLoad = [self stringFromValue:loc.bluetoothInfo.engineLoad];
+			NSString *fuel = [self stringFromValue:loc.bluetoothInfo.fuel];
+			NSString *barometric = [self stringFromValue:loc.bluetoothInfo.barometric];
+			NSString *ambient = [self stringFromValue:loc.bluetoothInfo.ambientTemp];
+			NSString *coolant = [self stringFromValue:loc.bluetoothInfo.coolantTemp];
+			NSString *intake = [self stringFromValue:loc.bluetoothInfo.intakeTemp];
+			NSString *distance = [self stringFromValue:loc.bluetoothInfo.distance];
+			[log appendFormat:@"%@ %@ %@ %@ %@ %@ %@ %@ %@ %@",speed,rpm,throttle,engineLoad,fuel,barometric,ambient,coolant,intake,distance];
+		}else
+		{
+			[log appendFormat:@"%@ XX XX XX XX XX XX XX XX XX",loc.speed];
 		}
-		[log appendString:@" \n"];
+		[log appendString:@"\n"];
 	}
-	UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[log] applicationActivities:nil];
-	activityViewController.excludedActivityTypes = @[UIActivityTypeAddToReadingList,UIActivityTypeAirDrop,UIActivityTypeAssignToContact,UIActivityTypePostToFacebook,UIActivityTypePostToTwitter,UIActivityTypeSaveToCameraRoll,UIActivityTypePostToTencentWeibo,UIActivityTypeMessage];
-	
-	[self presentViewController:activityViewController animated:YES completion:nil];
+	return log;
+}
+
+-(NSString *)stringFromValue:(NSNumber *)val
+{
+	return val ? val.stringValue : @"XX";
+}
+
+#pragma mark - MailMessageDelegate
+
+-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+	[self dismissViewControllerAnimated:YES completion:^{
+		switch(result)
+		{
+			case MFMailComposeResultCancelled:
+				[SVProgressHUD showErrorWithStatus:@"Canceled"];
+				break;
+			case MFMailComposeResultFailed:
+				[SVProgressHUD showErrorWithStatus:@"Something wen't wrong :("];
+				break;
+			case MFMailComposeResultSaved:
+				[SVProgressHUD showSuccessWithStatus:@"Saved!"];
+				break;
+			case MFMailComposeResultSent:
+				[SVProgressHUD showSuccessWithStatus:@"Sent!"];
+				break;
+		}
+	}];
 }
 
 #pragma mark - GoogleMapViewDelegate
