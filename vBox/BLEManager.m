@@ -65,11 +65,17 @@
 	self = [super init];
 	if(self)
 	{
-		dispatch_queue_t centralManagerQueue = dispatch_queue_create("bluetoothThread",DISPATCH_QUEUE_SERIAL);
-		dispatch_queue_t peripheralManagerQueue = dispatch_queue_create("peripheralThread",DISPATCH_QUEUE_SERIAL);
-		_centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:centralManagerQueue options:@{CBCentralManagerOptionShowPowerAlertKey:@NO}];
-		peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:peripheralManagerQueue options:@{CBPeripheralManagerOptionShowPowerAlertKey:@NO}];
 		_connected = NO;
+		
+		dispatch_queue_t centralManagerQueue = dispatch_queue_create("bluetoothThread",DISPATCH_QUEUE_SERIAL);
+		_centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:centralManagerQueue options:@{CBCentralManagerOptionShowPowerAlertKey:@NO}];
+		
+		BOOL connectToBeagleBone = [[NSUserDefaults standardUserDefaults] boolForKey:@"shouldConnectToBeagleBone"];
+		if(connectToBeagleBone)
+		{
+			dispatch_queue_t peripheralManagerQueue = dispatch_queue_create("peripheralThread",DISPATCH_QUEUE_SERIAL);
+			peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:peripheralManagerQueue options:@{CBPeripheralManagerOptionShowPowerAlertKey:@NO}];
+		}
 	}
 	return self;
 }
@@ -97,6 +103,7 @@
 	
 	if([self.delegate respondsToSelector:@selector(didUpdateDebugLogWithString:)])
 		[self.delegate didUpdateDebugLogWithString:@"Scanning for peripheral"];
+	
 	[self.centralManager scanForPeripheralsWithServices:@[self.uid] options:nil];
 	
 	if([self.delegate respondsToSelector:@selector(didBeginScanningForPeripheral)])

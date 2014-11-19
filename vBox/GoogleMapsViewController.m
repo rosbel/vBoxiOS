@@ -140,7 +140,7 @@
 										 longitude:-98.081992
 											  zoom:3];
 	
-	[_MapView setPadding:UIEdgeInsetsMake(40, 0, 0, 0)];
+	[_MapView setPadding:UIEdgeInsetsMake(50, 0, 0, 5)];
 	[_MapView setCamera:camera];
 	_MapView.myLocationEnabled = YES;
 	_MapView.settings.myLocationButton = YES;

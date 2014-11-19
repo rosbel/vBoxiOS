@@ -18,9 +18,9 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Connect to OBD</string>
+			<string>Send BLE data to BeagleBone</string>
 			<key>Key</key>
-			<string>bluetoothConnectionType</string>
+			<string>shouldConnectToBeagleBone</string>
 			<key>DefaultValue</key>
 			<true/>
 		</dict>
