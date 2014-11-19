@@ -145,7 +145,6 @@
 			break;
 		case CBPeripheralManagerStatePoweredOn:
 		{
-			NSLog(@"YUP!");
 			CBMutableService *service = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:@"FFEF"] primary:YES];
 			myCharacteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:@"FFE1"] properties:CBCharacteristicPropertyRead | CBCharacteristicPropertyWrite | CBCharacteristicPropertyNotify | CBCharacteristicPropertyWriteWithoutResponse value:nil permissions:CBAttributePermissionsReadable|CBAttributePermissionsWriteable];
 			service.characteristics = @[myCharacteristic];

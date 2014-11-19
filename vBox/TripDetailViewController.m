@@ -325,7 +325,7 @@
 	
 	NSMutableString *log = [[NSMutableString alloc] init];
 	//speed, rpm, throttle, engineLoad, fuel, barometric, ambientTemp, coolantTemp, intakeTemp, distance
-	[log appendFormat:@"Timestamp Lat Long Speed-MPH RPM-RPM Throttle-%% EngineLoad-%% Fuel-%% Barometric-C AmbientTemperature-C CoolantTemperature-C, IntakeTemperature-C, Distance-km\n"];
+	[log appendFormat:@"Timestamp Lat Long Speed-MPH RPM-RPM Throttle-%% EngineLoad-%% Fuel-%% Barometric-kPa AmbientTemperature-C CoolantTemperature-C, IntakeTemperature-C, Distance-km\n"];
 	for(GPSLocation *loc in self.GPSLocationsForTrip)
 	{
 		NSString *timeStamp = [formatter stringFromDate:loc.timestamp];
