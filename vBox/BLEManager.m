@@ -35,11 +35,12 @@
 #define PID_GYRO 0xF021
 
 #pragma mark - Interface
-@interface BLEManager() <CBCentralManagerDelegate,CBPeripheralDelegate>
+@interface BLEManager() <CBCentralManagerDelegate,CBPeripheralDelegate,CBPeripheralManagerDelegate>
 
 @property (nonatomic, strong, readonly) CBCentralManager *centralManager;
 @property (nonatomic, strong, readonly) CBPeripheral *peripheral;
 @property (nonatomic, strong, readonly) CBUUID *uid;
+
 @end
 
 #pragma mark - Implementation 
@@ -52,6 +53,8 @@
 		uint8_t checksum;
 		float value[3];
 	};
+	CBPeripheralManager *peripheralManager;
+	CBMutableCharacteristic *myCharacteristic;
 }
 
 
@@ -63,7 +66,9 @@
 	if(self)
 	{
 		dispatch_queue_t centralManagerQueue = dispatch_queue_create("bluetoothThread",DISPATCH_QUEUE_SERIAL);
+		dispatch_queue_t peripheralManagerQueue = dispatch_queue_create("peripheralThread",DISPATCH_QUEUE_SERIAL);
 		_centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:centralManagerQueue options:@{CBCentralManagerOptionShowPowerAlertKey:@NO}];
+		peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:peripheralManagerQueue options:@{CBPeripheralManagerOptionShowPowerAlertKey:@NO}];
 		_connected = NO;
 	}
 	return self;
@@ -79,6 +84,7 @@
 		[self.delegate didUpdateDebugLogWithString:@"State was not Powered ON"];
 		return NO;
 	}
+	
 	switch(type)
 	{
 		case PeripheralTypeOBDAdapter:
@@ -88,9 +94,11 @@
 			_uid = [CBUUID UUIDWithString:BeagleBoneServiceUID];
 			break;
 	}
+	
 	if([self.delegate respondsToSelector:@selector(didUpdateDebugLogWithString:)])
 		[self.delegate didUpdateDebugLogWithString:@"Scanning for peripheral"];
 	[self.centralManager scanForPeripheralsWithServices:@[self.uid] options:nil];
+	
 	if([self.delegate respondsToSelector:@selector(didBeginScanningForPeripheral)])
 		[self.delegate didBeginScanningForPeripheral];
 	return YES;
@@ -125,6 +133,61 @@
 			[self.peripheral setNotifyValue:value forCharacteristic:characteristic];
 		}
 	}
+}
+
+#pragma mark - CBPeripheralManager Delegate Methods
+
+-(void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral
+{
+	switch(peripheral.state)
+	{
+		case CBPeripheralManagerStatePoweredOff:
+			break;
+		case CBPeripheralManagerStatePoweredOn:
+		{
+			NSLog(@"YUP!");
+			CBMutableService *service = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:@"FFEF"] primary:YES];
+			myCharacteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:@"FFE1"] properties:CBCharacteristicPropertyRead | CBCharacteristicPropertyWrite | CBCharacteristicPropertyNotify | CBCharacteristicPropertyWriteWithoutResponse value:nil permissions:CBAttributePermissionsReadable|CBAttributePermissionsWriteable];
+			service.characteristics = @[myCharacteristic];
+			[peripheralManager addService:service];
+			[peripheralManager startAdvertising:@{CBAdvertisementDataLocalNameKey:@"vBox",CBAdvertisementDataIsConnectable:@YES,CBAdvertisementDataServiceUUIDsKey:@[service.UUID]}];
+			break;
+		}
+		case CBPeripheralManagerStateResetting:
+			break;
+		case CBPeripheralManagerStateUnauthorized:
+			break;
+		case CBPeripheralManagerStateUnknown:
+			break;
+		case CBPeripheralManagerStateUnsupported:
+			break;
+	}
+}
+
+-(void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didSubscribeToCharacteristic:(CBCharacteristic *)characteristic
+{
+	NSLog(@"HOWDY");
+}
+
+-(void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveReadRequest:(CBATTRequest *)request
+{
+	request.value = myCharacteristic.value ? myCharacteristic.value : [@"Howdy" dataUsingEncoding:NSUTF8StringEncoding];
+	[peripheral respondToRequest:request withResult:CBATTErrorSuccess];
+}
+
+-(void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveWriteRequests:(NSArray *)requests
+{
+	for(CBATTRequest *request in requests)
+	{
+		myCharacteristic.value = request.value;
+		[peripheral respondToRequest:request withResult:CBATTErrorSuccess];
+	}
+}
+
+-(void)peripheralManagerIsReadyToUpdateSubscribers:(CBPeripheralManager *)peripheral
+{
+	if(myCharacteristic.value)
+		[peripheral updateValue:myCharacteristic.value forCharacteristic:myCharacteristic onSubscribedCentrals:nil];
 }
 
 #pragma mark - CBCentralManager Delegate Methods
@@ -162,16 +225,19 @@
 {
 	[peripheral setDelegate:self];
 	[peripheral discoverServices:nil];
+	
+	_connected = YES;
+	
 	if([self.delegate respondsToSelector:@selector(didConnectPeripheral)])
 		[self asyncToMainThread:^{
 			[self.delegate didConnectPeripheral];
 		}];
-	_connected = YES;
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
 	_connected = NO;
+	
 	if([self.delegate respondsToSelector:@selector(didDisconnectPeripheral)])
 	   [self asyncToMainThread:^{
 		   [self.delegate didDisconnectPeripheral];
@@ -180,17 +246,15 @@
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
-	[self asyncToMainThread:^{
-		if([self.delegate respondsToSelector:@selector(didUpdateDebugLogWithString:)])
-			[self.delegate didUpdateDebugLogWithString:@"Discovered Peripheral"];
-	}];
 	NSString *localName = [advertisementData objectForKey:CBAdvertisementDataLocalNameKey];
 	
 	if([localName length] > 0)
 	{
 		[self.centralManager stopScan];
+		
 		if([self.delegate respondsToSelector:@selector(didStopScanning)])
 			[self.delegate didStopScanning];
+		
 		_peripheral = peripheral;
 		_peripheral.delegate = self;
 		
@@ -252,10 +316,12 @@
 	if(prevCheckSum == checkSum)
 	{
 		correctData = receivedData20;
+		[peripheralManager updateValue:[NSData dataWithBytes:&receivedData20 length:20] forCharacteristic:myCharacteristic onSubscribedCentrals:nil];
 	}
 	else if(prevCheckSum12 == checkSum12)
 	{
 		correctData = receivedData12;
+		[peripheralManager updateValue:[NSData dataWithBytes:&receivedData12 length:12] forCharacteristic:myCharacteristic onSubscribedCentrals:nil];
 	}else
 	{
 		return;
@@ -356,17 +422,13 @@
 			break;
 		default:
 			if([self.delegate respondsToSelector:@selector(didUpdateDebugLogWithString:)])
-//				[self asyncToMainThread:^{
 					[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Unkown PID: %x - Val: %f",correctData.pid,correctData.value[0]]];
-//				}];
 			break;
 	}
 	if(error)
 	{
 		if([self.delegate respondsToSelector:@selector(didUpdateDebugLogWithString:)])
-//			[self asyncToMainThread:^{
 				[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Received error: %@",error]];
-//			}];
 	}
 }
 

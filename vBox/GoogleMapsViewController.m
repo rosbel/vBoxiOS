@@ -90,6 +90,7 @@
 	[_MapView clear];
 	_MapView = nil;
 	[_locationManager stopUpdatingLocation];
+	[_bluetoothManager stopScanning];
 	//Delete If no locations were recorded
 	if(currentTrip.gpsLocations.count == 0)
 	{
@@ -107,7 +108,7 @@
 	[[appDelegate drivingHistory] addTripsObject:currentTrip];
 	[appDelegate saveContext];
 	
-	[super viewWillAppear:animated];
+	[super viewWillDisappear:animated];
 }
 
 #pragma mark - SetUp Methods
@@ -340,8 +341,6 @@
 	}else
 	{
 		self.bluetoothRequiredLabel.hidden = NO;
-		
-//		[SVProgressHUD showErrorWithStatus:@"Bluetooth turned off"];
 		[SVProgressHUD dismiss];
 	}
 	
@@ -360,13 +359,14 @@
 
 -(void)didStopScanning
 {
-	
+	if(!self.bluetoothManager.connected)
+		[SVProgressHUD dismiss];
 }
 
--(void)didUpdateDebugLogWithString:(NSString *)string
-{
-	
-}
+//-(void)didUpdateDebugLogWithString:(NSString *)string
+//{
+//	
+//}
 
 -(void)didUpdateDiagnosticForKey:(NSString *)key withValue:(NSNumber *)value
 {
