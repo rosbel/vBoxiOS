@@ -90,7 +90,13 @@
 	[_MapView clear];
 	_MapView = nil;
 	[_locationManager stopUpdatingLocation];
-	[_bluetoothManager stopScanning];
+	
+	if(_bluetoothManager.connected)
+	   [_bluetoothManager disconnect];
+	else
+		[_bluetoothManager stopScanning];
+	
+	[_bluetoothManager stopAdvertisingPeripheral];
 	//Delete If no locations were recorded
 	if(currentTrip.gpsLocations.count == 0)
 	{

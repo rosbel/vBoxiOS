@@ -142,6 +142,16 @@
 	}
 }
 
+//Main Thread
+-(void)stopAdvertisingPeripheral
+{
+	if(peripheralManager)
+	{
+		if([peripheralManager isAdvertising])
+			[peripheralManager stopAdvertising];
+	}
+}
+
 #pragma mark - CBPeripheralManager Delegate Methods
 
 -(void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral
@@ -177,6 +187,7 @@
 
 -(void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveReadRequest:(CBATTRequest *)request
 {
+	NSLog(@"Read Request");
 	request.value = myCharacteristic.value ? myCharacteristic.value : [@"Howdy" dataUsingEncoding:NSUTF8StringEncoding];
 	[peripheral respondToRequest:request withResult:CBATTErrorSuccess];
 }
@@ -185,6 +196,7 @@
 {
 	for(CBATTRequest *request in requests)
 	{
+		NSLog(@"Write request = %@",request.value);
 		myCharacteristic.value = request.value;
 		[peripheral respondToRequest:request withResult:CBATTErrorSuccess];
 	}

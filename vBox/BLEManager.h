@@ -52,6 +52,7 @@ typedef NS_ENUM(NSInteger, BLEState) {
 //! @return NO if Bluetooth is not powered on. YES if Bluetooth is on
 -(BOOL) scanForPeripheralType:(PeripheralType) type;
 -(void) stopScanning;
+-(void) stopAdvertisingPeripheral;
 -(void) setNotifyValue:(BOOL)value;
 -(void) disconnect;
 @end
