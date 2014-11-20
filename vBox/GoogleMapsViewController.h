@@ -33,6 +33,7 @@
 @property (strong, nonatomic) BLEManager *bluetoothManager;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSMutableDictionary *bluetoothDiagnostics;
+@property (weak, nonatomic) IBOutlet UIButton *bleButton;
 
 @end
 

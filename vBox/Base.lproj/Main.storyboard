@@ -480,6 +480,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="451"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evh-sj-pkB" userLabel="bleButton">
+                                <rect key="frame" x="554" y="64" width="30" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Yen-KN-x0t"/>
+                                    <constraint firstAttribute="width" constant="30" id="e1c-6j-sa0"/>
+                                </constraints>
+                                <state key="normal" image="bleOff">
+                                    <color key="titleColor" red="0.1330474421" green="0.29413999400000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="bleButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="nAP-Bq-bqj"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0 mph" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IeI-Jk-IwB">
                                 <rect key="frame" x="484" y="30" width="100" height="24"/>
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.41176470590000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -492,7 +507,7 @@
                             </label>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X8t-vy-3hi">
                                 <rect key="frame" x="16" y="30" width="130" height="24"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="X8t-vy-3hi" secondAttribute="height" multiplier="65:24" constant="65" id="auh-Vh-DiD"/>
@@ -509,7 +524,7 @@
                                 <rect key="frame" x="0.0" y="451" width="600" height="149"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bluetooth Required!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0F-XX-Pgi">
-                                        <rect key="frame" x="100" y="64" width="401" height="21"/>
+                                        <rect key="frame" x="100" y="65" width="401" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -577,6 +592,8 @@
                             <constraint firstItem="X8t-vy-3hi" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="10" id="MOD-NJ-5Yw"/>
                             <constraint firstItem="X8t-vy-3hi" firstAttribute="height" secondItem="IeI-Jk-IwB" secondAttribute="height" id="Ovt-fZ-vsh"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="TVK-E4-JeR" secondAttribute="bottom" id="RRK-oX-vXq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="evh-sj-pkB" secondAttribute="trailing" id="d8a-Ef-2QN"/>
+                            <constraint firstItem="evh-sj-pkB" firstAttribute="top" secondItem="IeI-Jk-IwB" secondAttribute="bottom" constant="10" id="eMp-N8-FJD"/>
                             <constraint firstItem="ski-ZJ-D74" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="-20" id="ezT-Yq-gXp"/>
                             <constraint firstItem="ski-ZJ-D74" firstAttribute="bottom" secondItem="TVK-E4-JeR" secondAttribute="top" id="scS-O3-Nsc"/>
                             <constraint firstAttribute="centerX" secondItem="TVK-E4-JeR" secondAttribute="centerX" id="u6e-Hs-H7T"/>
@@ -586,6 +603,7 @@
                     </view>
                     <connections>
                         <outlet property="MapView" destination="ski-ZJ-D74" id="cd6-fS-k3X"/>
+                        <outlet property="bleButton" destination="evh-sj-pkB" id="nLv-Ku-Qi7"/>
                         <outlet property="bluetoothRequiredLabel" destination="C0F-XX-Pgi" id="T57-bu-16J"/>
                         <outlet property="collectionView" destination="lGm-lw-1sE" id="rOS-wq-sQI"/>
                         <outlet property="infoView" destination="TVK-E4-JeR" id="iU3-0M-HDj"/>
@@ -623,6 +641,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bleOff" width="40" height="40"/>
         <image name="followMeOff" width="48" height="48"/>
         <image name="fullScreenIcon" width="48" height="48"/>
         <image name="timeIcon" width="48" height="48"/>

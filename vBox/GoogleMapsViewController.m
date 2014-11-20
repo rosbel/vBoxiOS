@@ -36,6 +36,7 @@
 	CGRect mapViewFrame;
 	CGRect infoViewHiddenOffScreen;
 	BOOL showSpeed;
+	BOOL bleOn;
 }
 
 #pragma mark - UIView Delegate Methods
@@ -59,6 +60,7 @@
 	minSpeed = DBL_MAX;
 	followMe = YES;
 	showSpeed = YES;
+	bleOn = NO;
 	
 	self.speedOrDistanceLabel.userInteractionEnabled = YES;
 	UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(speedLabelTapped)];
@@ -146,7 +148,7 @@
 										 longitude:-98.081992
 											  zoom:3];
 	
-	[_MapView setPadding:UIEdgeInsetsMake(50, 0, 0, 5)];
+	[_MapView setPadding:UIEdgeInsetsMake(85, 0, 0, 5)];
 	[_MapView setCamera:camera];
 	_MapView.myLocationEnabled = YES;
 	_MapView.settings.myLocationButton = YES;
@@ -163,6 +165,8 @@
 
 -(void)setUpUIButtons
 {
+	self.bleButton.layer.masksToBounds = YES;
+	self.bleButton.layer.cornerRadius = 5.0;
 	
 	self.stopRecordingButton.layer.masksToBounds = YES;
 	self.stopRecordingButton.layer.cornerRadius = 5.0;
@@ -194,6 +198,17 @@
 	
 	[self.navigationController popViewControllerAnimated:YES];
 	[self.delegate didTapStopRecordingButton];
+}
+
+- (IBAction)bleButtonTapped:(UIButton *)sender {
+	bleOn = !bleOn;
+	if(bleOn)
+	{
+		[sender setImage:[UIImage imageNamed:@"bleOn"] forState:UIControlStateNormal];
+	}else
+	{
+		[sender setImage:[UIImage imageNamed:@"bleOff"] forState:UIControlStateNormal];
+	}
 }
 
 #pragma mark - Speed Label Methods
