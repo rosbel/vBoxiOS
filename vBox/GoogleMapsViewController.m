@@ -68,8 +68,6 @@
 	
 	self.bluetoothDiagnostics = [NSMutableDictionary dictionary];
 	
-	[self setUpBluetoothManager];//move this after click button
-	
 	[self setUpLocationManager];
 	
 	[self setUpGoogleMaps];
@@ -84,7 +82,7 @@
 	infoViewHiddenOffScreen = self.infoView.frame;
 	infoViewHiddenOffScreen.origin.y = [[UIScreen mainScreen] bounds].size.height;
 	
-	[self updateViewsBasedOnBluetoothState:self.bluetoothManager.state animate:NO];
+	[self updateViewsBasedOnBLEButtonState:bleOn animate:NO];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -93,12 +91,8 @@
 	_MapView = nil;
 	[_locationManager stopUpdatingLocation];
 	
-	if(_bluetoothManager.connected)
-	   [_bluetoothManager disconnect];
-	else
-		[_bluetoothManager stopScanning];
+	[self cleanUpBluetoothManager];
 	
-	[_bluetoothManager stopAdvertisingPeripheral];
 	//Delete If no locations were recorded
 	if(currentTrip.gpsLocations.count == 0)
 	{
@@ -155,7 +149,6 @@
 	_MapView.settings.compassButton = YES;
 	[_MapView setDelegate:self];
 	
-	
 	polyline = [GMSPolyline polylineWithPath:completePath];
 	polyline.strokeColor = [UIColor grayColor];
 	polyline.strokeWidth = 5.0;
@@ -192,7 +185,7 @@
 }
 
 
-#pragma mark - Button Action
+#pragma mark - Button Action Methods
 
 - (IBAction)stopRecordingButtonTapped:(id)sender {
 	
@@ -205,10 +198,13 @@
 	if(bleOn)
 	{
 		[sender setImage:[UIImage imageNamed:@"bleOn"] forState:UIControlStateNormal];
+		[self setUpBluetoothManager];
 	}else
 	{
 		[sender setImage:[UIImage imageNamed:@"bleOff"] forState:UIControlStateNormal];
+		[self cleanUpBluetoothManager];
 	}
+	[self updateViewsBasedOnBLEButtonState:bleOn animate:YES];
 }
 
 #pragma mark - Speed Label Methods
@@ -347,30 +343,48 @@
 
 -(void)didChangeBluetoothState:(BLEState)state
 {
-	if(state == BLEStateOn)
+	
+	
+	switch(state)
 	{
-		self.bluetoothRequiredLabel.hidden = YES;
-		
-		if(self.bluetoothManager.connected)
-		{
-			[self.bluetoothManager setNotifyValue:YES];
-		}
-		else
-		{
-			[self.bluetoothManager scanForPeripheralType:PeripheralTypeOBDAdapter];
-		}
-	}else
-	{
-		self.bluetoothRequiredLabel.hidden = NO;
-		[SVProgressHUD dismiss];
+		case BLEStateOn:
+			self.bluetoothRequiredLabel.hidden = YES;
+			if([[NSUserDefaults standardUserDefaults] boolForKey:@"connectToOBD"])
+			{
+				[self.bluetoothManager scanForPeripheralType:PeripheralTypeOBDAdapter];
+			}
+			else
+			{
+				[self.bluetoothManager scanForPeripheralType:PeripheralTypeBeagleBone];
+			}
+			break;
+		case BLEStateOff:
+			[SVProgressHUD showErrorWithStatus:@"Bluetooth Off"];
+			break;
+		case BLEStateResetting:
+			[SVProgressHUD showErrorWithStatus:@"Bluetooth Resetting"];
+			break;
+		case BLEStateUnauthorized:
+			[SVProgressHUD showErrorWithStatus:@"Bluetooth Unauthorized"];
+			break;
+		case BLEStateUnkown:
+			[SVProgressHUD showErrorWithStatus:@"Bluetooth State Uknown"];
+			break;
+		case BLEStateUnsupported:
+			[SVProgressHUD showErrorWithStatus:@"Bluetooth Unsupported"];
+			break;
 	}
 	
-	[self updateViewsBasedOnBluetoothState:state animate:YES];
+	if(state != BLEStateOn)
+	{
+		self.bluetoothRequiredLabel.hidden = NO;
+	}
 }
 
 -(void)didConnectPeripheral
 {
 	[SVProgressHUD showSuccessWithStatus:@"Connected"];
+	[self.bluetoothManager setNotifyValue:YES];
 }
 
 -(void)didBeginScanningForPeripheral
@@ -378,16 +392,15 @@
 	[SVProgressHUD showWithStatus:@"Scanning.."];
 }
 
--(void)didStopScanning
+-(void)didDisconnectPeripheral
 {
-	if(!self.bluetoothManager.connected)
-		[SVProgressHUD dismiss];
+	[SVProgressHUD showErrorWithStatus:@"Disconnected"];
 }
 
-//-(void)didUpdateDebugLogWithString:(NSString *)string
-//{
-//	
-//}
+-(void)didStopScanning
+{
+	
+}
 
 -(void)didUpdateDiagnosticForKey:(NSString *)key withValue:(NSNumber *)value
 {
@@ -402,16 +415,20 @@
 
 #pragma mark - Layout Methods
 
--(void)updateViewsBasedOnBluetoothState:(BLEState) state animate:(BOOL)animate
+-(void)updateViewsBasedOnBLEButtonState:(BOOL) state animate:(BOOL)animate
 {
-	if(state == BLEStateOn)
+	if(state)
 	{
-		[self.infoView setHidden:NO];
 		if(animate)
 		{
 			[UIView beginAnimations:@"ShowInfoView" context:nil];
+			[UIView setAnimationBeginsFromCurrentState:NO];
 			[UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+			[UIView setAnimationDelegate:self];
 			[UIView setAnimationDuration:0.25];
+			[UIView setAnimationBeginsFromCurrentState:YES];
+			[UIView setAnimationWillStartSelector:@selector(animationDidStart:context:)];
+			[UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
 		}
 		[self.infoView setFrame:infoViewFrame];
 		[self.MapView setFrame:mapViewFrame];
@@ -424,20 +441,27 @@
 		if(animate)
 		{
 			[UIView beginAnimations:@"HideInfoView" context:nil];
-			[UIView setAnimationDelay:1];
 			[UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
 			[UIView setAnimationDuration:0.25];
 			[UIView setAnimationDelegate:self];
+			[UIView setAnimationWillStartSelector:@selector(animationDidStart:context:)];
 			[UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
 		}
 		[self.infoView setFrame:infoViewHiddenOffScreen];
 		[self.MapView setFrame:[UIScreen mainScreen].bounds];
-//		[self.infoView setHidden:YES];
 		if(animate)
 		{
 			[UIView commitAnimations];
 		}
 	}
+}
+- (void)animationDidStart:(NSString *)animationID context:(void *)context
+{
+	if([animationID isEqualToString:@"ShowInfoView"])
+	{
+		[self.infoView setHidden:NO];
+	}
+	self.bleButton.enabled = NO;
 }
 
 - (void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
@@ -446,6 +470,7 @@
 	{
 		[self.infoView setHidden:YES];
 	}
+	self.bleButton.enabled = YES;
 }
 
 #pragma mark - Core Data
@@ -492,5 +517,24 @@
 	
 	[pastLocations addObject:location];
 }
+
+
+#pragma mark - Clean UP
+
+-(void)cleanUpBluetoothManager
+{
+	
+	if(self.bluetoothManager.connected)
+	{
+		[self.bluetoothManager disconnect];
+	}
+	
+	[self.bluetoothManager stopScanning];
+	[self.bluetoothManager stopAdvertisingPeripheral];
+	self.bluetoothManager = nil;
+	
+	[SVProgressHUD dismiss];
+}
+
 
 @end
