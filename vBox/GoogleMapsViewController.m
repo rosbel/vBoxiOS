@@ -384,7 +384,6 @@
 -(void)didConnectPeripheral
 {
 	[SVProgressHUD showSuccessWithStatus:@"Connected"];
-	[self.bluetoothManager setNotifyValue:YES];
 }
 
 -(void)didBeginScanningForPeripheral
@@ -395,6 +394,7 @@
 -(void)didDisconnectPeripheral
 {
 	[SVProgressHUD showErrorWithStatus:@"Disconnected"];
+	//try reconnecting
 }
 
 -(void)didStopScanning
