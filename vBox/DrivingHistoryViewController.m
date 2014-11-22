@@ -11,6 +11,9 @@
 
 @interface DrivingHistoryViewController ()
 
+@property (strong, nonatomic) NSMutableDictionary *tripsByDate;
+@property (strong, nonatomic) NSArray *sortedDays;
+
 @end
 
 @implementation DrivingHistoryViewController
@@ -34,20 +37,37 @@
 	formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateStyle:NSDateFormatterShortStyle];
 	[formatter setTimeStyle:NSDateFormatterMediumStyle];
-	[formatter setTimeZone:[NSTimeZone localTimeZone]];
+	[formatter setTimeZone:[NSTimeZone systemTimeZone]];
+	[formatter setDateStyle:NSDateFormatterNoStyle];
 	
 	self.trips = [[[appDelegate drivingHistory] trips] reversedOrderedSet];
-
-//	self.trips = [[appDelegate drivingHistory] trips];
-	
-//	NSDate *startDate = [self dateAtBeginningOfDayForDate:[NSDate date]];
-//	NSDate *endDate = [self dateByAddingYears:1 toDate:startDate];
-	
+	[self setupTripsByDate];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)setupTripsByDate
+{
+	if(self.tripsByDate)
+		self.tripsByDate = nil;
+	self.tripsByDate = [NSMutableDictionary dictionary];
+	for(Trip * trip in self.trips)
+	{
+		NSDate *beginningOfDate = [self dateAtBeginningOfDayForDate:trip.startTime];
+		
+		NSMutableArray *tempArray = [self.tripsByDate objectForKey:beginningOfDate];
+		if(!tempArray)
+		{
+			tempArray = [NSMutableArray array];
+			[self.tripsByDate setObject:tempArray forKey:beginningOfDate];
+		}
+		[tempArray addObject:trip];
+	}
+	
+	self.sortedDays = [[[[self.tripsByDate allKeys] sortedArrayUsingSelector:@selector(compare:)] reverseObjectEnumerator] allObjects];
 }
 
 
@@ -66,9 +86,25 @@
 
 #pragma mark - Table View Delegates
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return [self.sortedDays count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+	[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+	
+	return [dateFormatter stringFromDate:[self.sortedDays objectAtIndex:section]];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [self.trips count];
+	NSDate *dateTitle = [self.sortedDays objectAtIndex:section];
+	NSArray *tripsInDate = [self.tripsByDate objectForKey:dateTitle];
+	return [tripsInDate count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -78,10 +114,10 @@
 	{
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"trip"];
 	}
-	Trip* trip = (Trip *)[self.trips objectAtIndex:indexPath.row];
-	[formatter setDateStyle:NSDateFormatterShortStyle];
+	
+	Trip *trip = [self tripFromIndexPath:indexPath];
+	
 	NSString *startTimeText = [formatter stringFromDate:trip.startTime];
-	[formatter setDateStyle:NSDateFormatterNoStyle];
 	NSString *endTimeText = [formatter stringFromDate:trip.endTime];
 	cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@",startTimeText,endTimeText];
 	cell.detailTextLabel.text = [NSString stringWithFormat:@"avg: %.2f mph - max: %.2f mph - (%.2f mi)",trip.avgSpeed.doubleValue,trip.maxSpeed.doubleValue,trip.totalMiles.doubleValue];
@@ -93,21 +129,52 @@
 	[self performSegueWithIdentifier:@"tripDetailSegue" sender:indexPath];
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+	return 30;
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+	UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+	header.textLabel.textColor = [UIColor whiteColor];
+	header.tintColor = [UIColor colorWithRed:250.0/255.0 green:105.0/255.0 blue:0 alpha:1];
+	header.textLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize] + 3];
+	header.textLabel.textAlignment = NSTextAlignmentCenter;
+}
+
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	if(editingStyle == UITableViewCellEditingStyleDelete)
 	{
 		NSManagedObjectContext *context = [appDelegate managedObjectContext];
-
-		[context deleteObject:[self.trips objectAtIndex:indexPath.row]];
+		Trip *tripToDelete = [self tripFromIndexPath:indexPath];
+		[context deleteObject:tripToDelete];
 		[appDelegate saveContext];
+		NSDate *dateTitle = [self.sortedDays objectAtIndex:indexPath.section];
+		NSArray *tripsInDate = [self.tripsByDate objectForKey:dateTitle];
 		self.trips = appDelegate.drivingHistory.trips.reversedOrderedSet; //update
-		
-		[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+		[self setupTripsByDate]; //update dictionary
+		if(tripsInDate.count == 1) //last object to be deleted
+		{
+			[tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
+		}
+		else
+		{
+			[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+		}
 	}
 }
 
 #pragma mark - Helper Methods
+
+- (Trip *)tripFromIndexPath:(NSIndexPath *)indexPath
+{
+	NSDate *dateTitle = [self.sortedDays objectAtIndex:indexPath.section];
+	NSArray *tripsInDate = [self.tripsByDate objectForKey:dateTitle];
+	Trip* trip = [tripsInDate objectAtIndex:indexPath.row];
+	return trip;
+}
 
 - (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate
 {
