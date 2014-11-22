@@ -80,7 +80,7 @@
 	if([segue.identifier  isEqualToString:@"tripDetailSegue"])
 	{
 		TripDetailViewController* destination = (TripDetailViewController *)segue.destinationViewController;
-		destination.trip = (Trip *)[self.trips objectAtIndex:[self.tableView indexPathForSelectedRow].row];
+		destination.trip = [self tripFromIndexPath:((NSIndexPath *)sender)];
 	}
 }
 
