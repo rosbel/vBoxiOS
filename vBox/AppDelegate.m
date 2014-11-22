@@ -25,9 +25,6 @@
 	// Override point for customization after application launch.
 	[GMSServices provideAPIKey:@"AIzaSyBdHnG4e7HZkd3RpXGWU6Sl0T2QL79kkyU"];
 	
-	[[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName, nil]];
-	[[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-	[[UINavigationBar appearance] setBarStyle:UIBarStyleBlackTranslucent];
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	BOOL startWithMap = [defaults boolForKey:@"InitMapView"];
 	if(startWithMap)
