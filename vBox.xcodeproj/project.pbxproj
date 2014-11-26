@@ -262,8 +262,8 @@
 		C1B82C4019F06658002E6EA4 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C1E4584719DE0C5B001A5627 /* GoogleMapsViewController.h */,
 				C1E4584819DE0C5B001A5627 /* GoogleMapsViewController.m */,
+				C1E4584719DE0C5B001A5627 /* GoogleMapsViewController.h */,
 				C103E2BB19EF04070071B659 /* MenuTableViewController.h */,
 				C103E2BC19EF04070071B659 /* MenuTableViewController.m */,
 				C1A87CCC19F98EFC00845C7E /* DrivingHistoryViewController.h */,

@@ -8,16 +8,6 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Begin app on Map View</string>
-			<key>Key</key>
-			<string>InitMapView</string>
-			<key>DefaultValue</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
 			<string>Direct connection to OBD</string>
 			<key>Key</key>
 			<string>connectToOBD</string>

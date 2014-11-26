@@ -25,15 +25,7 @@
 	// Override point for customization after application launch.
 	[GMSServices provideAPIKey:@"AIzaSyBdHnG4e7HZkd3RpXGWU6Sl0T2QL79kkyU"];
 	
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	BOOL startWithMap = [defaults boolForKey:@"InitMapView"];
-	if(startWithMap)
-	{
-		UIStoryboard *storyboard = self.window.rootViewController.storyboard;
-		UIViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"GoogleMapsViewController"];
-		self.window.rootViewController = rootViewController;
-		[self.window makeKeyAndVisible];
-	}
+	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 	
 	return YES;
 }
@@ -61,6 +53,10 @@
 	// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
+
+#pragma mark - Core Data
+
 -(void)saveContext
 {
 	NSError *error = nil;
@@ -74,8 +70,6 @@
 		}
 	}
 }
-
-#pragma mark - Core Data
 
 -(NSManagedObjectContext *)managedObjectContext
 {

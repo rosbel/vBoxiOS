@@ -40,7 +40,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 	
-	self.speedColors = @[[UIColor redColor],[UIColor orangeColor],[UIColor yellowColor],[UIColor greenColor]];
+	self.pathColors = @[[UIColor redColor],[UIColor orangeColor],[UIColor yellowColor],[UIColor greenColor]];
 	
 	self.fullScreenButton.layer.masksToBounds = YES;
 	self.fullScreenButton.layer.cornerRadius = 5.0;
@@ -109,7 +109,7 @@
 		{
 			if(gpsLoc.speed.doubleValue <= bound.doubleValue)
 			{
-				newColor = [self.speedColors objectAtIndex:[self.speedDivisions indexOfObject:bound]];
+				newColor = [self.pathColors objectAtIndex:[self.speedDivisions indexOfObject:bound]];
 				if([newColor isEqual:color])
 				{
 					segments++;
@@ -187,9 +187,9 @@
 	double max = self.trip.maxSpeed.doubleValue;
 	double min = self.trip.minSpeed.doubleValue;
 	NSMutableArray *colorDivision = [NSMutableArray array];
-	for(int i = 0; i < self.speedColors.count-1; i++)
+	for(int i = 0; i < self.pathColors.count-1; i++)
 	{
-		double bound = (min + (i+1) * (max-min)) / self.speedColors.count;
+		double bound = (min + (i+1) * (max-min)) / self.pathColors.count;
 		[colorDivision addObject:[NSNumber numberWithDouble:bound]];
 	}
 	[colorDivision addObject:self.trip.maxSpeed];
