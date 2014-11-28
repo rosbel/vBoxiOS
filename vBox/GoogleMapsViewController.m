@@ -212,10 +212,7 @@
 -(void)speedLabelTapped
 {
 	showSpeed = !showSpeed;
-	[UIView animateWithDuration:1 animations:^{
-		[self updateSpeedLabelWithLocation:[pastLocations lastObject]];
-	}];
-	
+	[self updateSpeedLabelWithLocation:[pastLocations lastObject]];
 }
 
 -(void)updateSpeedLabelWithLocation:(CLLocation *)lastLocation
@@ -343,8 +340,6 @@
 
 -(void)didChangeBluetoothState:(BLEState)state
 {
-	
-	
 	switch(state)
 	{
 		case BLEStateOn:

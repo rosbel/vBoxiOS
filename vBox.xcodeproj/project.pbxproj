@@ -26,6 +26,7 @@
 		C181F44419EEA98500FC1D8A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C181F44319EEA98500FC1D8A /* Settings.bundle */; };
 		C186A72A19FEB69200016E99 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = C186A72919FEB69200016E99 /* Trip.m */; };
 		C186A72D19FEB69200016E99 /* DrivingHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = C186A72C19FEB69200016E99 /* DrivingHistory.m */; };
+		C19E31A71A29084200C22448 /* StyleKitIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = C19E31A61A29084200C22448 /* StyleKitIcons.m */; };
 		C1A87CCE19F98EFC00845C7E /* DrivingHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A87CCD19F98EFC00845C7E /* DrivingHistoryViewController.m */; };
 		C1B82C4319F0808E002E6EA4 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1B82C4219F0808E002E6EA4 /* CoreBluetooth.framework */; };
 		C1CEF69A19FA04D600D6E46D /* TripDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1CEF69919FA04D600D6E46D /* TripDetailViewController.m */; };
@@ -100,6 +101,8 @@
 		C186A72B19FEB69200016E99 /* DrivingHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrivingHistory.h; sourceTree = "<group>"; };
 		C186A72C19FEB69200016E99 /* DrivingHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrivingHistory.m; sourceTree = "<group>"; };
 		C186A72E19FEBD9F00016E99 /* GPSInformation 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "GPSInformation 2.xcdatamodel"; sourceTree = "<group>"; };
+		C19E31A51A29084200C22448 /* StyleKitIcons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyleKitIcons.h; sourceTree = "<group>"; };
+		C19E31A61A29084200C22448 /* StyleKitIcons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyleKitIcons.m; sourceTree = "<group>"; };
 		C1A87CCC19F98EFC00845C7E /* DrivingHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrivingHistoryViewController.h; sourceTree = "<group>"; };
 		C1A87CCD19F98EFC00845C7E /* DrivingHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrivingHistoryViewController.m; sourceTree = "<group>"; };
 		C1B82C4219F0808E002E6EA4 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
@@ -243,6 +246,15 @@
 			name = SVProgressHUD;
 			sourceTree = "<group>";
 		};
+		C19E31A81A290EA900C22448 /* StyleKit */ = {
+			isa = PBXGroup;
+			children = (
+				C19E31A51A29084200C22448 /* StyleKitIcons.h */,
+				C19E31A61A29084200C22448 /* StyleKitIcons.m */,
+			);
+			name = StyleKit;
+			sourceTree = "<group>";
+		};
 		C1A87CB919F983F500845C7E /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,6 +338,7 @@
 		C1E4584019DE0C5B001A5627 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C19E31A81A290EA900C22448 /* StyleKit */,
 				C11318CB19EDCC700023A45C /* logo.png */,
 				C122325119F3449F002318DF /* ThirdParty */,
 				C181F44319EEA98500FC1D8A /* Settings.bundle */,
@@ -490,6 +503,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1E4584919DE0C5B001A5627 /* GoogleMapsViewController.m in Sources */,
+				C19E31A71A29084200C22448 /* StyleKitIcons.m in Sources */,
 				C103E2BD19EF04070071B659 /* MenuTableViewController.m in Sources */,
 				C1187E301A0BF974006A08A4 /* WMGaugeView.m in Sources */,
 				C122324619F33FB7002318DF /* SWRevealViewController.m in Sources */,
