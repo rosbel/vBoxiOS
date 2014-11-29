@@ -21,7 +21,6 @@
 @property (strong, nonatomic) GMSMarker *markerForTap;
 @property (weak, nonatomic) IBOutlet UIButton *fullScreenButton;
 @property (weak, nonatomic) IBOutlet UIButton *followMeButton;
-@property (weak, nonatomic) IBOutlet UIImageView *speedometerIcon;
 
 @end
 
@@ -41,8 +40,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-	
-	[self.speedometerIcon setImage:[StyleKitIcons imageOfSpeedometerWithColor:[UIColor whiteColor]]];
 	
 	self.pathColors = @[[UIColor redColor],[UIColor orangeColor],[UIColor yellowColor],[UIColor greenColor]];
 	

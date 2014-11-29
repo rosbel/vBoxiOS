@@ -335,7 +335,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mph" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Guy-7V-Jyu" userLabel="speedLabel">
-                                                <rect key="frame" x="33" y="3" width="34.5" height="20.5"/>
+                                                <rect key="frame" x="28" y="3" width="34.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -352,8 +352,8 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bby-7y-GWS" userLabel="speedometerIcon">
-                                                <rect key="frame" x="10" y="3" width="21" height="21"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speedometer" translatesAutoresizingMaskIntoConstraints="NO" id="Bby-7y-GWS" userLabel="speedometerIcon">
+                                                <rect key="frame" x="5" y="3" width="21" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Bby-7y-GWS" secondAttribute="height" multiplier="1:1" id="qO1-3Z-mMZ"/>
                                                 </constraints>
@@ -372,7 +372,7 @@
                                             <constraint firstItem="4fZ-An-d2f" firstAttribute="leading" secondItem="nzQ-Ip-1Xx" secondAttribute="trailing" constant="2" id="NOi-4x-RUg"/>
                                             <constraint firstAttribute="centerY" secondItem="Sw4-S6-5Cb" secondAttribute="centerY" id="ZPX-v5-9q7"/>
                                             <constraint firstItem="Guy-7V-Jyu" firstAttribute="leading" secondItem="Bby-7y-GWS" secondAttribute="trailing" constant="2" id="djQ-sE-D2i"/>
-                                            <constraint firstItem="Bby-7y-GWS" firstAttribute="leading" secondItem="qSa-b1-XVc" secondAttribute="leading" constant="10" id="oaL-1a-uyh"/>
+                                            <constraint firstItem="Bby-7y-GWS" firstAttribute="leading" secondItem="qSa-b1-XVc" secondAttribute="leading" constant="5" id="oaL-1a-uyh"/>
                                             <constraint firstAttribute="centerY" secondItem="Bby-7y-GWS" secondAttribute="centerY" id="rRY-qV-AUA"/>
                                             <constraint firstAttribute="centerY" secondItem="4fZ-An-d2f" secondAttribute="centerY" id="t2o-iE-aqW"/>
                                         </constraints>
@@ -466,7 +466,6 @@
                         <outlet property="mapView" destination="CfI-It-6d2" id="FHk-sq-g6e"/>
                         <outlet property="speedGauge" destination="gPO-CO-SEy" id="nod-La-J0m"/>
                         <outlet property="speedLabel" destination="Guy-7V-Jyu" id="Fvg-U3-ODw"/>
-                        <outlet property="speedometerIcon" destination="Bby-7y-GWS" id="pba-42-1rz"/>
                         <outlet property="timeLabel" destination="4fZ-An-d2f" id="hVz-Rx-bhG"/>
                         <outlet property="tripSlider" destination="NZi-nR-mzI" id="RcU-Wy-rKa"/>
                     </connections>
@@ -656,6 +655,7 @@
         <image name="bleOff" width="40" height="40"/>
         <image name="followMeOff" width="48" height="48"/>
         <image name="fullScreenIcon" width="48" height="48"/>
+        <image name="speedometer" width="50" height="50"/>
         <image name="timeIcon" width="48" height="48"/>
     </resources>
 </document>
