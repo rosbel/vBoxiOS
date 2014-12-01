@@ -71,6 +71,75 @@
             </objects>
             <point key="canvasLocation" x="2385" y="838"/>
         </scene>
+        <!--vBox-->
+        <scene sceneID="EEo-rX-aj5">
+            <objects>
+                <viewController id="My1-Qg-Ze8" customClass="MainScreenViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CBE-Ja-P2p"/>
+                        <viewControllerLayoutGuide type="bottom" id="6EA-g8-2Jx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vzE-il-Xhd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HotVsCold.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Dhi-Kb-j8U">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOX-gd-Wds" userLabel="startDriving">
+                                <rect key="frame" x="30" y="285" width="540" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Start Drive">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="vXZ-lx-hvc" kind="presentation" identifier="googleMapsSegue" id="zwH-NK-eVb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zc7-Zy-iRI" userLabel="drivingHistory">
+                                <rect key="frame" x="32" y="335" width="540" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Driving History">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="b7j-K0-kyU" kind="show" id="Jgv-Gy-Sl7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="zc7-Zy-iRI" secondAttribute="centerX" constant="-2.5" id="1CP-RY-9O0"/>
+                            <constraint firstItem="zc7-Zy-iRI" firstAttribute="top" secondItem="yOX-gd-Wds" secondAttribute="bottom" constant="20" id="1mP-QG-P6J"/>
+                            <constraint firstAttribute="width" secondItem="yOX-gd-Wds" secondAttribute="width" multiplier="10:9" id="8Q0-hh-ap4"/>
+                            <constraint firstAttribute="centerY" secondItem="Dhi-Kb-j8U" secondAttribute="centerY" id="8fc-4f-nIT"/>
+                            <constraint firstItem="Dhi-Kb-j8U" firstAttribute="top" secondItem="CBE-Ja-P2p" secondAttribute="bottom" constant="172" id="BIN-hK-3uS"/>
+                            <constraint firstAttribute="centerX" secondItem="yOX-gd-Wds" secondAttribute="centerX" id="POK-Iq-KuE"/>
+                            <constraint firstAttribute="centerY" secondItem="yOX-gd-Wds" secondAttribute="centerY" id="c3Z-Uk-g0S"/>
+                            <constraint firstItem="zc7-Zy-iRI" firstAttribute="width" secondItem="yOX-gd-Wds" secondAttribute="width" id="hb8-wT-qXD"/>
+                            <constraint firstItem="Dhi-Kb-j8U" firstAttribute="height" secondItem="vzE-il-Xhd" secondAttribute="height" id="hrl-gH-r3K"/>
+                            <constraint firstItem="Dhi-Kb-j8U" firstAttribute="width" secondItem="vzE-il-Xhd" secondAttribute="width" id="pXJ-yq-HgP"/>
+                            <constraint firstAttribute="centerX" secondItem="Dhi-Kb-j8U" secondAttribute="centerX" id="txG-Sz-6wP"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="BIN-hK-3uS"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="vBox" id="ZSJ-Nl-ftX"/>
+                    <connections>
+                        <outlet property="drivingHistoryButton" destination="zc7-Zy-iRI" id="WDH-zJ-di2"/>
+                        <outlet property="startDriveButton" destination="yOX-gd-Wds" id="4at-YN-3B3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RHk-Ij-TdP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="8fO-si-Sfc" customClass="StyleKitName"/>
+            </objects>
+            <point key="canvasLocation" x="2391" y="-190"/>
+        </scene>
         <!--Menu-->
         <scene sceneID="byY-yb-7Zc">
             <objects>
@@ -96,9 +165,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="vXZ-lx-hvc" kind="presentation" identifier="googleMapsSegue" id="vV4-JC-o2p"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="rqL-GL-j8C" style="IBUITableViewCellStyleDefault" id="QOP-wk-EGd">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -113,9 +179,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="b7j-K0-kyU" kind="show" id="WOp-UK-T2X"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -167,7 +230,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BS9-7F-4t4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1323" y="432"/>
+            <point key="canvasLocation" x="871" y="896"/>
         </scene>
         <!--Bluetooth Table View Controller-->
         <scene sceneID="r1a-gd-4vA">
@@ -205,7 +268,7 @@
                                 </items>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="r1c-Lm-p2A">
-                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Pwh-Fc-JxT" id="ger-5U-UdY"/>
@@ -232,7 +295,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oqE-C6-TwI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1689" y="1322"/>
+            <point key="canvasLocation" x="1237" y="1786"/>
         </scene>
         <!--Debug Bluetooth View Controller-->
         <scene sceneID="RnV-co-KMl">
@@ -270,7 +333,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zcQ-ec-BTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="903" y="1322"/>
+            <point key="canvasLocation" x="451" y="1786"/>
         </scene>
         <!--Trip Detail View Controller-->
         <scene sceneID="bWb-5D-Rre">
@@ -624,7 +687,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2385.5" y="76"/>
+            <point key="canvasLocation" x="3196" y="-190"/>
         </scene>
         <!--Menu-->
         <scene sceneID="raL-ut-MY3">
@@ -643,15 +706,16 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Njt-th-Z3p" kind="relationship" relationship="rootViewController" id="oVi-cG-7Kn"/>
+                        <segue destination="My1-Qg-Ze8" kind="relationship" relationship="rootViewController" id="vIH-d8-bRB"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJn-uQ-tZj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="519" y="432"/>
+            <point key="canvasLocation" x="1623" y="-190"/>
         </scene>
     </scenes>
     <resources>
+        <image name="HotVsCold.jpg" width="2880" height="1800"/>
         <image name="bleOff" width="40" height="40"/>
         <image name="followMeOff" width="48" height="48"/>
         <image name="fullScreenIcon" width="48" height="48"/>

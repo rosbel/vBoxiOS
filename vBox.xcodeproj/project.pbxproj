@@ -26,7 +26,6 @@
 		C181F44419EEA98500FC1D8A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C181F44319EEA98500FC1D8A /* Settings.bundle */; };
 		C186A72A19FEB69200016E99 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = C186A72919FEB69200016E99 /* Trip.m */; };
 		C186A72D19FEB69200016E99 /* DrivingHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = C186A72C19FEB69200016E99 /* DrivingHistory.m */; };
-		C19E31A71A29084200C22448 /* StyleKitIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = C19E31A61A29084200C22448 /* StyleKitIcons.m */; };
 		C1A87CCE19F98EFC00845C7E /* DrivingHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A87CCD19F98EFC00845C7E /* DrivingHistoryViewController.m */; };
 		C1B82C4319F0808E002E6EA4 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1B82C4219F0808E002E6EA4 /* CoreBluetooth.framework */; };
 		C1CEF69A19FA04D600D6E46D /* TripDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1CEF69919FA04D600D6E46D /* TripDetailViewController.m */; };
@@ -52,6 +51,9 @@
 		C1E4588219DE1262001A5627 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E4588119DE1262001A5627 /* CoreLocation.framework */; };
 		C1EA74501A099024005CBE1C /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1EA744F1A099024005CBE1C /* GoogleMaps.framework */; };
 		C1EA74521A09903E005CBE1C /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C1EA74511A09903E005CBE1C /* GoogleMaps.bundle */; };
+		C1F459611A2BECAA00840D8B /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F459601A2BECAA00840D8B /* MainScreenViewController.m */; };
+		C1F459641A2BEF6900840D8B /* MyStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F459631A2BEF6900840D8B /* MyStyleKit.m */; };
+		C1F459661A2BF44E00840D8B /* HotVsCold.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1F459651A2BF44E00840D8B /* HotVsCold.jpg */; };
 		C1FAEA5019F890C3009C623C /* GPSInformation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C1FAEA4E19F890C3009C623C /* GPSInformation.xcdatamodeld */; };
 		C1FE69D01A041A1200DA15BD /* BLEManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C1FE69CF1A041A1200DA15BD /* BLEManager.m */; };
 /* End PBXBuildFile section */
@@ -101,8 +103,6 @@
 		C186A72B19FEB69200016E99 /* DrivingHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrivingHistory.h; sourceTree = "<group>"; };
 		C186A72C19FEB69200016E99 /* DrivingHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrivingHistory.m; sourceTree = "<group>"; };
 		C186A72E19FEBD9F00016E99 /* GPSInformation 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "GPSInformation 2.xcdatamodel"; sourceTree = "<group>"; };
-		C19E31A51A29084200C22448 /* StyleKitIcons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyleKitIcons.h; sourceTree = "<group>"; };
-		C19E31A61A29084200C22448 /* StyleKitIcons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyleKitIcons.m; sourceTree = "<group>"; };
 		C1A87CCC19F98EFC00845C7E /* DrivingHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrivingHistoryViewController.h; sourceTree = "<group>"; };
 		C1A87CCD19F98EFC00845C7E /* DrivingHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrivingHistoryViewController.m; sourceTree = "<group>"; };
 		C1B82C4219F0808E002E6EA4 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
@@ -139,6 +139,11 @@
 		C1E4588119DE1262001A5627 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C1EA744F1A099024005CBE1C /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		C1EA74511A09903E005CBE1C /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		C1F4595F1A2BECAA00840D8B /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
+		C1F459601A2BECAA00840D8B /* MainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenViewController.m; sourceTree = "<group>"; };
+		C1F459621A2BEF6900840D8B /* MyStyleKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyStyleKit.h; sourceTree = "<group>"; };
+		C1F459631A2BEF6900840D8B /* MyStyleKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyStyleKit.m; sourceTree = "<group>"; };
+		C1F459651A2BF44E00840D8B /* HotVsCold.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = HotVsCold.jpg; sourceTree = "<group>"; };
 		C1FAEA4F19F890C3009C623C /* GPSInformation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GPSInformation.xcdatamodel; sourceTree = "<group>"; };
 		C1FE69CE1A041A1200DA15BD /* BLEManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEManager.h; sourceTree = "<group>"; };
 		C1FE69CF1A041A1200DA15BD /* BLEManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEManager.m; sourceTree = "<group>"; };
@@ -249,8 +254,8 @@
 		C19E31A81A290EA900C22448 /* StyleKit */ = {
 			isa = PBXGroup;
 			children = (
-				C19E31A51A29084200C22448 /* StyleKitIcons.h */,
-				C19E31A61A29084200C22448 /* StyleKitIcons.m */,
+				C1F459621A2BEF6900840D8B /* MyStyleKit.h */,
+				C1F459631A2BEF6900840D8B /* MyStyleKit.m */,
 			);
 			name = StyleKit;
 			sourceTree = "<group>";
@@ -276,6 +281,8 @@
 			children = (
 				C1E4584819DE0C5B001A5627 /* GoogleMapsViewController.m */,
 				C1E4584719DE0C5B001A5627 /* GoogleMapsViewController.h */,
+				C1F4595F1A2BECAA00840D8B /* MainScreenViewController.h */,
+				C1F459601A2BECAA00840D8B /* MainScreenViewController.m */,
 				C103E2BB19EF04070071B659 /* MenuTableViewController.h */,
 				C103E2BC19EF04070071B659 /* MenuTableViewController.m */,
 				C1A87CCC19F98EFC00845C7E /* DrivingHistoryViewController.h */,
@@ -340,6 +347,7 @@
 			children = (
 				C19E31A81A290EA900C22448 /* StyleKit */,
 				C11318CB19EDCC700023A45C /* logo.png */,
+				C1F459651A2BF44E00840D8B /* HotVsCold.jpg */,
 				C122325119F3449F002318DF /* ThirdParty */,
 				C181F44319EEA98500FC1D8A /* Settings.bundle */,
 				C1E4584119DE0C5B001A5627 /* Info.plist */,
@@ -485,6 +493,7 @@
 				C1E4584E19DE0C5B001A5627 /* Images.xcassets in Resources */,
 				C181F44419EEA98500FC1D8A /* Settings.bundle in Resources */,
 				C1EA74521A09903E005CBE1C /* GoogleMaps.bundle in Resources */,
+				C1F459661A2BF44E00840D8B /* HotVsCold.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,7 +512,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1E4584919DE0C5B001A5627 /* GoogleMapsViewController.m in Sources */,
-				C19E31A71A29084200C22448 /* StyleKitIcons.m in Sources */,
 				C103E2BD19EF04070071B659 /* MenuTableViewController.m in Sources */,
 				C1187E301A0BF974006A08A4 /* WMGaugeView.m in Sources */,
 				C122324619F33FB7002318DF /* SWRevealViewController.m in Sources */,
@@ -515,12 +523,14 @@
 				C186A72D19FEB69200016E99 /* DrivingHistory.m in Sources */,
 				C1CEF69A19FA04D600D6E46D /* TripDetailViewController.m in Sources */,
 				C186A72A19FEB69200016E99 /* Trip.m in Sources */,
+				C1F459641A2BEF6900840D8B /* MyStyleKit.m in Sources */,
 				C11603361A06A6CE0079F2C4 /* BluetoothData.m in Sources */,
 				C11603391A06A7350079F2C4 /* GPSLocation.m in Sources */,
 				C1D6CA5019F41A5A003FF61C /* BluetoothTableViewController.m in Sources */,
 				C127A6941A098666000CE564 /* OBSlider.m in Sources */,
 				C1E4584319DE0C5B001A5627 /* main.m in Sources */,
 				C13E8CF61A15706D00383CB5 /* SVProgressHUD.m in Sources */,
+				C1F459611A2BECAA00840D8B /* MainScreenViewController.m in Sources */,
 				C1FE69D01A041A1200DA15BD /* BLEManager.m in Sources */,
 				C180A30E19F0A04000DE880C /* DebugBluetoothViewController.m in Sources */,
 			);

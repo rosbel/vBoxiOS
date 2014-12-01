@@ -9,7 +9,6 @@
 #import "TripDetailViewController.h"
 #import <MessageUI/MessageUI.h>
 #import "SVProgressHUD.h"
-#import "StyleKitIcons.h"
 
 @interface TripDetailViewController () <MFMailComposeViewControllerDelegate>
 
