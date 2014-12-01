@@ -14,16 +14,14 @@
 
 @interface MyStyleKit : NSObject
 
-// iOS Controls Customization Outlets
-@property(strong, nonatomic) IBOutletCollection(NSObject) NSArray* startTripButtonTargets;
-@property(strong, nonatomic) IBOutletCollection(NSObject) NSArray* drivingHistoryButtonTargets;
+// Colors
++ (UIColor*)myOrange;
++ (UIColor*)mySkyBlue;
 
 // Drawing Methods
-+ (void)drawStartTripButton;
-+ (void)drawDrivingHistoryButton;
++ (void)drawVBoxButtonWithButtonColor: (UIColor*)buttonColor;
 
 // Generated Images
-+ (UIImage*)imageOfStartTripButton;
-+ (UIImage*)imageOfDrivingHistoryButton;
++ (UIImage*)imageOfVBoxButtonWithButtonColor: (UIColor*)buttonColor;
 
 @end

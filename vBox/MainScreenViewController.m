@@ -19,8 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-	[self.startDriveButton setBackgroundImage:[MyStyleKit imageOfStartTripButton] forState:UIControlStateNormal];
-	[self.drivingHistoryButton setBackgroundImage:[MyStyleKit imageOfDrivingHistoryButton] forState:UIControlStateNormal];
+	[self.startDriveButton setBackgroundImage:[MyStyleKit imageOfVBoxButtonWithButtonColor:[MyStyleKit mySkyBlue]] forState:UIControlStateNormal];
+	[self.drivingHistoryButton setBackgroundImage:[MyStyleKit imageOfVBoxButtonWithButtonColor:[MyStyleKit myOrange]] forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {

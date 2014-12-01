@@ -10,6 +10,7 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "OLGhostAlertView.h"
 #import "SVProgressHUD.h"
+#import "MyStyleKit.h"
 
 @interface GoogleMapsViewController ()
 
@@ -163,6 +164,8 @@
 	
 	self.stopRecordingButton.layer.masksToBounds = YES;
 	self.stopRecordingButton.layer.cornerRadius = 5.0;
+	
+	[self.stopRecordingButton setBackgroundImage:[MyStyleKit imageOfVBoxButtonWithButtonColor:self.stopRecordingButton.backgroundColor] forState:UIControlStateNormal];
 	
 	self.speedOrDistanceLabel.layer.masksToBounds = YES;
 	self.speedOrDistanceLabel.layer.cornerRadius = 5.0;

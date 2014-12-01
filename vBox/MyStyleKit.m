@@ -15,31 +15,39 @@
 
 #pragma mark Cache
 
-static UIImage* _imageOfStartTripButton = nil;
-static UIImage* _imageOfDrivingHistoryButton = nil;
+static UIColor* _myOrange = nil;
+static UIColor* _mySkyBlue = nil;
 
 #pragma mark Initialization
 
 + (void)initialize
 {
+    // Colors Initialization
+    _myOrange = [UIColor colorWithRed: 0.98 green: 0.412 blue: 0 alpha: 1];
+    _mySkyBlue = [UIColor colorWithRed: 0.412 green: 0.824 blue: 0.906 alpha: 1];
+
 }
+
+#pragma mark Colors
+
++ (UIColor*)myOrange { return _myOrange; }
++ (UIColor*)mySkyBlue { return _mySkyBlue; }
 
 #pragma mark Drawing Methods
 
-+ (void)drawStartTripButton
++ (void)drawVBoxButtonWithButtonColor: (UIColor*)buttonColor
 {
     //// General Declarations
     CGContextRef context = UIGraphicsGetCurrentContext();
 
     //// Color Declarations
-    UIColor* color = [UIColor colorWithRed: 0.412 green: 0.824 blue: 0.906 alpha: 1];
-    CGFloat colorRGBA[4];
-    [color getRed: &colorRGBA[0] green: &colorRGBA[1] blue: &colorRGBA[2] alpha: &colorRGBA[3]];
+    CGFloat buttonColorRGBA[4];
+    [buttonColor getRed: &buttonColorRGBA[0] green: &buttonColorRGBA[1] blue: &buttonColorRGBA[2] alpha: &buttonColorRGBA[3]];
 
-    UIColor* color3 = [UIColor colorWithRed: (colorRGBA[0] * 0.6) green: (colorRGBA[1] * 0.6) blue: (colorRGBA[2] * 0.6) alpha: (colorRGBA[3] * 0.6 + 0.4)];
+    UIColor* buttonShadow = [UIColor colorWithRed: (buttonColorRGBA[0] * 0.6) green: (buttonColorRGBA[1] * 0.6) blue: (buttonColorRGBA[2] * 0.6) alpha: (buttonColorRGBA[3] * 0.6 + 0.4)];
 
     //// Shadow Declarations
-    UIColor* shadow = color3;
+    UIColor* shadow = buttonShadow;
     CGSize shadowOffset = CGSizeMake(0.1, 3.1);
     CGFloat shadowBlurRadius = 0;
 
@@ -52,42 +60,7 @@ static UIImage* _imageOfDrivingHistoryButton = nil;
 
         //// Rectangle Drawing
         UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(0, 0, 221, 30) cornerRadius: 5];
-        [color setFill];
-        [rectanglePath fill];
-
-
-        CGContextEndTransparencyLayer(context);
-        CGContextRestoreGState(context);
-    }
-}
-
-+ (void)drawDrivingHistoryButton
-{
-    //// General Declarations
-    CGContextRef context = UIGraphicsGetCurrentContext();
-
-    //// Color Declarations
-    UIColor* color2 = [UIColor colorWithRed: 0.98 green: 0.412 blue: 0 alpha: 1];
-    CGFloat color2RGBA[4];
-    [color2 getRed: &color2RGBA[0] green: &color2RGBA[1] blue: &color2RGBA[2] alpha: &color2RGBA[3]];
-
-    UIColor* color4 = [UIColor colorWithRed: (color2RGBA[0] * 0.6) green: (color2RGBA[1] * 0.6) blue: (color2RGBA[2] * 0.6) alpha: (color2RGBA[3] * 0.6 + 0.4)];
-
-    //// Shadow Declarations
-    UIColor* shadow2 = color4;
-    CGSize shadow2Offset = CGSizeMake(0.1, 3.1);
-    CGFloat shadow2BlurRadius = 0;
-
-    //// Group
-    {
-        CGContextSaveGState(context);
-        CGContextSetShadowWithColor(context, shadow2Offset, shadow2BlurRadius, [shadow2 CGColor]);
-        CGContextBeginTransparencyLayer(context, NULL);
-
-
-        //// Rectangle Drawing
-        UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(0, 0, 221, 30) cornerRadius: 5];
-        [color2 setFill];
+        [buttonColor setFill];
         [rectanglePath fill];
 
 
@@ -98,51 +71,15 @@ static UIImage* _imageOfDrivingHistoryButton = nil;
 
 #pragma mark Generated Images
 
-+ (UIImage*)imageOfStartTripButton
++ (UIImage*)imageOfVBoxButtonWithButtonColor: (UIColor*)buttonColor
 {
-    if (_imageOfStartTripButton)
-        return _imageOfStartTripButton;
-
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(221, 33), NO, 0.0f);
-    [MyStyleKit drawStartTripButton];
+    [MyStyleKit drawVBoxButtonWithButtonColor: buttonColor];
 
-    _imageOfStartTripButton = [UIGraphicsGetImageFromCurrentImageContext() resizableImageWithCapInsets: UIEdgeInsetsMake(7, 17, 22, 19) resizingMode: UIImageResizingModeStretch];
+    UIImage* imageOfVBoxButton = [UIGraphicsGetImageFromCurrentImageContext() resizableImageWithCapInsets: UIEdgeInsetsMake(7, 17, 10, 19) resizingMode: UIImageResizingModeStretch];
     UIGraphicsEndImageContext();
 
-    return _imageOfStartTripButton;
+    return imageOfVBoxButton;
 }
-
-+ (UIImage*)imageOfDrivingHistoryButton
-{
-    if (_imageOfDrivingHistoryButton)
-        return _imageOfDrivingHistoryButton;
-
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(221, 33), NO, 0.0f);
-    [MyStyleKit drawDrivingHistoryButton];
-
-    _imageOfDrivingHistoryButton = [UIGraphicsGetImageFromCurrentImageContext() resizableImageWithCapInsets: UIEdgeInsetsMake(9, 16, 20, 17) resizingMode: UIImageResizingModeStretch];
-    UIGraphicsEndImageContext();
-
-    return _imageOfDrivingHistoryButton;
-}
-
-#pragma mark Customization Infrastructure
-
-- (void)setStartTripButtonTargets: (NSArray*)startTripButtonTargets
-{
-    _startTripButtonTargets = startTripButtonTargets;
-
-    for (id target in self.startTripButtonTargets)
-        [target setImage: MyStyleKit.imageOfStartTripButton];
-}
-
-- (void)setDrivingHistoryButtonTargets: (NSArray*)drivingHistoryButtonTargets
-{
-    _drivingHistoryButtonTargets = drivingHistoryButtonTargets;
-
-    for (id target in self.drivingHistoryButtonTargets)
-        [target setImage: MyStyleKit.imageOfDrivingHistoryButton];
-}
-
 
 @end
