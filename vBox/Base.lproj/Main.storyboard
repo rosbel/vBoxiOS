@@ -87,7 +87,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOX-gd-Wds" userLabel="startDriving">
-                                <rect key="frame" x="30" y="285" width="540" height="30"/>
+                                <rect key="frame" x="30" y="275" width="540" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Start Drive">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -98,7 +98,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zc7-Zy-iRI" userLabel="drivingHistory">
-                                <rect key="frame" x="30" y="335" width="540" height="30"/>
+                                <rect key="frame" x="30" y="325" width="540" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Driving History">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -113,11 +113,11 @@
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="zc7-Zy-iRI" secondAttribute="centerX" id="1CP-RY-9O0"/>
                             <constraint firstItem="zc7-Zy-iRI" firstAttribute="top" secondItem="yOX-gd-Wds" secondAttribute="bottom" constant="20" id="1mP-QG-P6J"/>
+                            <constraint firstAttribute="centerY" secondItem="yOX-gd-Wds" secondAttribute="centerY" constant="10" id="4BU-oA-I0b"/>
                             <constraint firstAttribute="width" secondItem="yOX-gd-Wds" secondAttribute="width" multiplier="10:9" id="8Q0-hh-ap4"/>
                             <constraint firstAttribute="centerY" secondItem="Dhi-Kb-j8U" secondAttribute="centerY" id="8fc-4f-nIT"/>
-                            <constraint firstItem="Dhi-Kb-j8U" firstAttribute="top" secondItem="CBE-Ja-P2p" secondAttribute="bottom" constant="172" id="BIN-hK-3uS"/>
                             <constraint firstAttribute="centerX" secondItem="yOX-gd-Wds" secondAttribute="centerX" id="POK-Iq-KuE"/>
-                            <constraint firstAttribute="centerY" secondItem="yOX-gd-Wds" secondAttribute="centerY" id="c3Z-Uk-g0S"/>
+                            <constraint firstItem="6EA-g8-2Jx" firstAttribute="top" secondItem="zc7-Zy-iRI" secondAttribute="bottom" constant="50" id="cJG-XJ-aZ6"/>
                             <constraint firstItem="zc7-Zy-iRI" firstAttribute="width" secondItem="yOX-gd-Wds" secondAttribute="width" id="hb8-wT-qXD"/>
                             <constraint firstItem="Dhi-Kb-j8U" firstAttribute="height" secondItem="vzE-il-Xhd" secondAttribute="height" id="hrl-gH-r3K"/>
                             <constraint firstItem="Dhi-Kb-j8U" firstAttribute="width" secondItem="vzE-il-Xhd" secondAttribute="width" id="pXJ-yq-HgP"/>
@@ -125,7 +125,7 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="BIN-hK-3uS"/>
+                                <exclude reference="cJG-XJ-aZ6"/>
                             </mask>
                         </variation>
                     </view>
@@ -136,14 +136,13 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RHk-Ij-TdP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="8fO-si-Sfc" customClass="StyleKitName"/>
             </objects>
             <point key="canvasLocation" x="2391" y="-190"/>
         </scene>
-        <!--Menu-->
+        <!--debugMenu-->
         <scene sceneID="byY-yb-7Zc">
             <objects>
-                <tableViewController id="Njt-th-Z3p" customClass="MenuTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="debugMenu" title="debugMenu" id="Njt-th-Z3p" customClass="MenuTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="black" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="cib-D2-bJM">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -580,7 +579,6 @@
                             </label>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X8t-vy-3hi">
                                 <rect key="frame" x="16" y="30" width="130" height="24"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="X8t-vy-3hi" secondAttribute="height" multiplier="65:24" constant="65" id="auh-Vh-DiD"/>
@@ -599,7 +597,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bluetooth Required!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0F-XX-Pgi">
                                         <rect key="frame" x="100" y="65" width="401" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lGm-lw-1sE">

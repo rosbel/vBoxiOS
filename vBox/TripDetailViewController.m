@@ -9,6 +9,7 @@
 #import "TripDetailViewController.h"
 #import <MessageUI/MessageUI.h>
 #import "SVProgressHUD.h"
+#import "MyStyleKit.h"
 
 @interface TripDetailViewController () <MFMailComposeViewControllerDelegate>
 
@@ -41,6 +42,9 @@
     // Do any additional setup after loading the view.
 	
 	self.pathColors = @[[UIColor redColor],[UIColor orangeColor],[UIColor yellowColor],[UIColor greenColor]];
+	
+	[self.fullScreenButton setBackgroundImage:[MyStyleKit imageOfVBoxButtonWithButtonColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+	[self.followMeButton setBackgroundImage:[MyStyleKit imageOfVBoxButtonWithButtonColor:[UIColor whiteColor]] forState:UIControlStateNormal];
 	
 	self.fullScreenButton.layer.masksToBounds = YES;
 	self.fullScreenButton.layer.cornerRadius = 5.0;

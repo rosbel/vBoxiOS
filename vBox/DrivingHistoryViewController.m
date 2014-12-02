@@ -32,6 +32,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
     // Do any additional setup after loading the view.
+	
 	appDelegate = [[UIApplication sharedApplication] delegate];
 	
 	formatter = [[NSDateFormatter alloc] init];

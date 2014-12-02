@@ -164,11 +164,12 @@
 	
 	self.stopRecordingButton.layer.masksToBounds = YES;
 	self.stopRecordingButton.layer.cornerRadius = 5.0;
-	
-	[self.stopRecordingButton setBackgroundImage:[MyStyleKit imageOfVBoxButtonWithButtonColor:self.stopRecordingButton.backgroundColor] forState:UIControlStateNormal];
+	[self.stopRecordingButton setBackgroundImage:[MyStyleKit imageOfVBoxButtonWithButtonColor:
+												  [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1 alpha:1]] forState:UIControlStateNormal];
 	
 	self.speedOrDistanceLabel.layer.masksToBounds = YES;
 	self.speedOrDistanceLabel.layer.cornerRadius = 5.0;
+	[self.speedOrDistanceLabel setBackgroundColor:[UIColor colorWithPatternImage:[MyStyleKit imageOfVBoxButtonWithButtonColor:[MyStyleKit myOrange]]]];
 }
 
 #pragma mark - Google Maps View Delegate
