@@ -86,6 +86,13 @@
 	[self updateViewsBasedOnBLEButtonState:bleOn animate:NO];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	
+	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+}
+
 -(void)viewWillDisappear:(BOOL)animated
 {
 	[_MapView clear];
@@ -111,6 +118,7 @@
 	[[appDelegate drivingHistory] addTripsObject:currentTrip];
 	[appDelegate saveContext];
 	
+	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 	[super viewWillDisappear:animated];
 }
 

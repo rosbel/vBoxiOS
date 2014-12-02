@@ -14,13 +14,34 @@
 
 @end
 
-@implementation MainScreenViewController
+@implementation MainScreenViewController{
+	BOOL shouldShowNavigationBar;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-	[self.startDriveButton setBackgroundImage:[MyStyleKit imageOfVBoxButtonWithButtonColor:[MyStyleKit mySkyBlue]] forState:UIControlStateNormal];
+	[self.startDriveButton setBackgroundImage:[MyStyleKit imageOfVBoxButtonWithButtonColor:[MyStyleKit gamebookersBlueColor]] forState:UIControlStateNormal];
 	[self.drivingHistoryButton setBackgroundImage:[MyStyleKit imageOfVBoxButtonWithButtonColor:[MyStyleKit myOrange]] forState:UIControlStateNormal];
+	
+	shouldShowNavigationBar = YES;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+	[self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+	
+	if(shouldShowNavigationBar)
+		[self.navigationController setNavigationBarHidden:NO animated:YES];
+	
+	shouldShowNavigationBar = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,6 +58,7 @@
 	// Pass the selected object to the new view controller.
 	if([segue.identifier isEqualToString:@"googleMapsSegue"])
 	{
+		shouldShowNavigationBar = NO;
 		GoogleMapsViewController *googleMaps = segue.destinationViewController;
 		googleMaps.delegate = self;
 	}

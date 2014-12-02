@@ -28,5 +28,6 @@
 @property (weak, nonatomic) IBOutlet WMGaugeView *speedGauge;
 @property (weak, nonatomic) IBOutlet WMGaugeView *RPMGauge;
 @property (weak, nonatomic) IBOutlet WMGaugeView *fuelGauge;
+@property (weak, nonatomic) IBOutlet UIImageView *speedometerIcon;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "DrivingHistoryViewController.h"
 #import "AppDelegate.h"
+#import "MyStyleKit.h"
 
 @interface DrivingHistoryViewController ()
 
@@ -139,7 +140,8 @@
 {
 	UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
 	header.textLabel.textColor = [UIColor whiteColor];
-	header.tintColor = [UIColor colorWithRed:250.0/255.0 green:105.0/255.0 blue:0 alpha:1];
+	header.tintColor = [MyStyleKit myOrange];
+	header.opaque = YES;
 	header.textLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize] + 3];
 	header.textLabel.textAlignment = NSTextAlignmentCenter;
 }

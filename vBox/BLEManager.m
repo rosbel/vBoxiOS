@@ -68,7 +68,7 @@
 		_connected = NO;
 		
 		dispatch_queue_t centralManagerQueue = dispatch_queue_create("bluetoothThread",DISPATCH_QUEUE_SERIAL);
-		_centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:centralManagerQueue options:@{CBCentralManagerOptionShowPowerAlertKey:@NO}];
+		_centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:centralManagerQueue options:@{CBCentralManagerOptionShowPowerAlertKey:@YES}];
 		
 		BOOL connectToBeagleBone = [[NSUserDefaults standardUserDefaults] boolForKey:@"shouldConnectToBeagleBone"];
 		if(connectToBeagleBone)

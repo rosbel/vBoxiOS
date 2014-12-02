@@ -22,6 +22,7 @@
 		C13E8CF11A156A6A00383CB5 /* OLGhostAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C13E8CF01A156A6A00383CB5 /* OLGhostAlertView.m */; };
 		C13E8CF51A15706D00383CB5 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C13E8CF21A15706D00383CB5 /* SVProgressHUD.bundle */; };
 		C13E8CF61A15706D00383CB5 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C13E8CF41A15706D00383CB5 /* SVProgressHUD.m */; };
+		C163E1241A2E45F800AAB153 /* tripTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C163E1231A2E45F800AAB153 /* tripTableCell.xib */; };
 		C180A30E19F0A04000DE880C /* DebugBluetoothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C180A30D19F0A04000DE880C /* DebugBluetoothViewController.m */; };
 		C181F44419EEA98500FC1D8A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C181F44319EEA98500FC1D8A /* Settings.bundle */; };
 		C186A72A19FEB69200016E99 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = C186A72919FEB69200016E99 /* Trip.m */; };
@@ -94,6 +95,7 @@
 		C13E8CF21A15706D00383CB5 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		C13E8CF31A15706D00383CB5 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		C13E8CF41A15706D00383CB5 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		C163E1231A2E45F800AAB153 /* tripTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = tripTableCell.xib; sourceTree = "<group>"; };
 		C17E14EC1A080C95009DDF24 /* GPSInformation 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "GPSInformation 5.xcdatamodel"; sourceTree = "<group>"; };
 		C180A30C19F0A04000DE880C /* DebugBluetoothViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugBluetoothViewController.h; sourceTree = "<group>"; };
 		C180A30D19F0A04000DE880C /* DebugBluetoothViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugBluetoothViewController.m; sourceTree = "<group>"; };
@@ -251,6 +253,14 @@
 			name = SVProgressHUD;
 			sourceTree = "<group>";
 		};
+		C163E1221A2E459E00AAB153 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C163E1231A2E45F800AAB153 /* tripTableCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		C19E31A81A290EA900C22448 /* StyleKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,8 +319,8 @@
 		C1E4583419DE0C5B001A5627 = {
 			isa = PBXGroup;
 			children = (
-				C1E4587E19DE0E53001A5627 /* Frameworks */,
 				C1E4583F19DE0C5B001A5627 /* vBox */,
+				C1E4587E19DE0E53001A5627 /* Frameworks */,
 				C1E4585919DE0C5B001A5627 /* vBoxTests */,
 				C1E4583E19DE0C5B001A5627 /* Products */,
 			);
@@ -337,6 +347,7 @@
 				C1B82C4119F06664002E6EA4 /* Bluetooth */,
 				C11D52D719F333A000FF7542 /* Models */,
 				C1E4584D19DE0C5B001A5627 /* Images.xcassets */,
+				C163E1221A2E459E00AAB153 /* Views */,
 				C1E4584019DE0C5B001A5627 /* Supporting Files */,
 			);
 			path = vBox;
@@ -488,6 +499,7 @@
 				C1E4584C19DE0C5B001A5627 /* Main.storyboard in Resources */,
 				C11318CE19EDD3580023A45C /* settings.plist in Resources */,
 				C11318CC19EDCC700023A45C /* logo.png in Resources */,
+				C163E1241A2E45F800AAB153 /* tripTableCell.xib in Resources */,
 				C13E8CF51A15706D00383CB5 /* SVProgressHUD.bundle in Resources */,
 				C1E4585119DE0C5B001A5627 /* LaunchScreen.xib in Resources */,
 				C1E4584E19DE0C5B001A5627 /* Images.xcassets in Resources */,

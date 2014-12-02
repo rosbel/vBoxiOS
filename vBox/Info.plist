@@ -22,8 +22,6 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Log your drive, even when not using app</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -41,6 +39,10 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
