@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14C68k" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,19 +10,18 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sa8-xP-FSc">
-                    <rect key="frame" x="108" y="108" width="264" height="264"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="Sa8-xP-FSc" secondAttribute="height" multiplier="1:1" id="n4f-Fa-btt"/>
-                    </constraints>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HotVsCold.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="mgm-Yg-DLD">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Sa8-xP-FSc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="108" id="0t3-4a-91I"/>
-                <constraint firstAttribute="bottom" secondItem="Sa8-xP-FSc" secondAttribute="bottom" constant="108" id="Y4B-Gw-YiK"/>
-                <constraint firstAttribute="centerY" secondItem="Sa8-xP-FSc" secondAttribute="centerY" id="dBa-kj-sct"/>
-                <constraint firstAttribute="centerX" secondItem="Sa8-xP-FSc" secondAttribute="centerX" id="dyK-jI-19F"/>
+                <constraint firstAttribute="centerX" secondItem="mgm-Yg-DLD" secondAttribute="centerX" id="7z3-cY-Rse"/>
+                <constraint firstItem="mgm-Yg-DLD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="OLg-rk-xC0"/>
+                <constraint firstItem="mgm-Yg-DLD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QiS-yV-1U8"/>
+                <constraint firstAttribute="centerY" secondItem="mgm-Yg-DLD" secondAttribute="centerY" id="Ujv-JD-2gV"/>
+                <constraint firstAttribute="bottom" secondItem="mgm-Yg-DLD" secondAttribute="bottom" id="ddE-gh-M4s"/>
+                <constraint firstAttribute="trailing" secondItem="mgm-Yg-DLD" secondAttribute="trailing" id="v7F-ZD-Kge"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -31,6 +29,6 @@
         </view>
     </objects>
     <resources>
-        <image name="logo.png" width="805" height="925"/>
+        <image name="HotVsCold.jpg" width="2880" height="1800"/>
     </resources>
 </document>

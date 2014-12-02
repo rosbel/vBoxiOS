@@ -454,7 +454,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.23137254901960785" green="0.2627450980392157" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.87843137250000003" green="0.89411764709999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="qSa-b1-XVc" secondAttribute="width" id="8BO-xk-hbv"/>
@@ -641,7 +641,7 @@
                                         </connections>
                                     </collectionView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.73725490196078436" green="0.73725490196078436" blue="0.73725490196078436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.87843137250000003" green="0.89411764709999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="C0F-XX-Pgi" firstAttribute="width" secondItem="TVK-E4-JeR" secondAttribute="width" multiplier="2:3" constant="1" id="CQn-2O-uLm"/>
                                     <constraint firstItem="lGm-lw-1sE" firstAttribute="height" secondItem="TVK-E4-JeR" secondAttribute="height" id="MID-zQ-D9W"/>

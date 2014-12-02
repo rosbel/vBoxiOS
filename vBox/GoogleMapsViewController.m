@@ -8,7 +8,6 @@
 
 #import "GoogleMapsViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
-#import "OLGhostAlertView.h"
 #import "SVProgressHUD.h"
 #import "MyStyleKit.h"
 

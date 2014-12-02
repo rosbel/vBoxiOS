@@ -13,13 +13,10 @@
 		C11603361A06A6CE0079F2C4 /* BluetoothData.m in Sources */ = {isa = PBXBuildFile; fileRef = C11603351A06A6CE0079F2C4 /* BluetoothData.m */; };
 		C11603391A06A7350079F2C4 /* GPSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C11603381A06A7350079F2C4 /* GPSLocation.m */; };
 		C1187E301A0BF974006A08A4 /* WMGaugeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1187E2F1A0BF974006A08A4 /* WMGaugeView.m */; };
-		C11D52D619F3339B00FF7542 /* CarDiagnostics.m in Sources */ = {isa = PBXBuildFile; fileRef = C11D52D519F3339B00FF7542 /* CarDiagnostics.m */; };
-		C122324619F33FB7002318DF /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C122324519F33FB7002318DF /* SWRevealViewController.m */; };
 		C122324819F34021002318DF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C122324719F34021002318DF /* CoreGraphics.framework */; };
 		C122324A19F34030002318DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C122324919F34030002318DF /* UIKit.framework */; };
 		C122324C19F34052002318DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C122324B19F34052002318DF /* Foundation.framework */; };
 		C127A6941A098666000CE564 /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = C127A6931A098666000CE564 /* OBSlider.m */; };
-		C13E8CF11A156A6A00383CB5 /* OLGhostAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C13E8CF01A156A6A00383CB5 /* OLGhostAlertView.m */; };
 		C13E8CF51A15706D00383CB5 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C13E8CF21A15706D00383CB5 /* SVProgressHUD.bundle */; };
 		C13E8CF61A15706D00383CB5 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C13E8CF41A15706D00383CB5 /* SVProgressHUD.m */; };
 		C163E1241A2E45F800AAB153 /* tripTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C163E1231A2E45F800AAB153 /* tripTableCell.xib */; };
@@ -81,17 +78,11 @@
 		C11603381A06A7350079F2C4 /* GPSLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSLocation.m; sourceTree = "<group>"; };
 		C1187E2E1A0BF974006A08A4 /* WMGaugeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMGaugeView.h; sourceTree = "<group>"; };
 		C1187E2F1A0BF974006A08A4 /* WMGaugeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMGaugeView.m; sourceTree = "<group>"; };
-		C11D52D419F3339B00FF7542 /* CarDiagnostics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDiagnostics.h; sourceTree = "<group>"; };
-		C11D52D519F3339B00FF7542 /* CarDiagnostics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDiagnostics.m; sourceTree = "<group>"; };
-		C122324419F33FB7002318DF /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		C122324519F33FB7002318DF /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		C122324719F34021002318DF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C122324919F34030002318DF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C122324B19F34052002318DF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C127A6921A098666000CE564 /* OBSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSlider.h; sourceTree = "<group>"; };
 		C127A6931A098666000CE564 /* OBSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSlider.m; sourceTree = "<group>"; };
-		C13E8CEF1A156A6A00383CB5 /* OLGhostAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLGhostAlertView.h; sourceTree = "<group>"; };
-		C13E8CF01A156A6A00383CB5 /* OLGhostAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLGhostAlertView.m; sourceTree = "<group>"; };
 		C13E8CF21A15706D00383CB5 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		C13E8CF31A15706D00383CB5 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		C13E8CF41A15706D00383CB5 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
@@ -204,43 +195,14 @@
 			name = Gauges;
 			sourceTree = "<group>";
 		};
-		C11D52D719F333A000FF7542 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				C11D52D419F3339B00FF7542 /* CarDiagnostics.h */,
-				C11D52D519F3339B00FF7542 /* CarDiagnostics.m */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		C122324019F33F2E002318DF /* SlideOutMenu */ = {
-			isa = PBXGroup;
-			children = (
-				C122324419F33FB7002318DF /* SWRevealViewController.h */,
-				C122324519F33FB7002318DF /* SWRevealViewController.m */,
-			);
-			name = SlideOutMenu;
-			sourceTree = "<group>";
-		};
 		C122325119F3449F002318DF /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
 				C13E8CF71A15707700383CB5 /* SVProgressHUD */,
-				C13E8CEE1A156A3E00383CB5 /* OLGhostAlertView */,
 				C1187E311A0BF9E2006A08A4 /* Gauges */,
-				C122324019F33F2E002318DF /* SlideOutMenu */,
 				C1187E2D1A0BF946006A08A4 /* VariableSlider */,
 			);
 			name = ThirdParty;
-			sourceTree = "<group>";
-		};
-		C13E8CEE1A156A3E00383CB5 /* OLGhostAlertView */ = {
-			isa = PBXGroup;
-			children = (
-				C13E8CEF1A156A6A00383CB5 /* OLGhostAlertView.h */,
-				C13E8CF01A156A6A00383CB5 /* OLGhostAlertView.m */,
-			);
-			name = OLGhostAlertView;
 			sourceTree = "<group>";
 		};
 		C13E8CF71A15707700383CB5 /* SVProgressHUD */ = {
@@ -345,8 +307,8 @@
 				C1A87CB919F983F500845C7E /* CoreData */,
 				C1B82C4019F06658002E6EA4 /* View Controllers */,
 				C1B82C4119F06664002E6EA4 /* Bluetooth */,
-				C11D52D719F333A000FF7542 /* Models */,
 				C1E4584D19DE0C5B001A5627 /* Images.xcassets */,
+				C19E31A81A290EA900C22448 /* StyleKit */,
 				C163E1221A2E459E00AAB153 /* Views */,
 				C1E4584019DE0C5B001A5627 /* Supporting Files */,
 			);
@@ -356,10 +318,9 @@
 		C1E4584019DE0C5B001A5627 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C19E31A81A290EA900C22448 /* StyleKit */,
+				C122325119F3449F002318DF /* ThirdParty */,
 				C11318CB19EDCC700023A45C /* logo.png */,
 				C1F459651A2BF44E00840D8B /* HotVsCold.jpg */,
-				C122325119F3449F002318DF /* ThirdParty */,
 				C181F44319EEA98500FC1D8A /* Settings.bundle */,
 				C1E4584119DE0C5B001A5627 /* Info.plist */,
 				C11318CD19EDD3580023A45C /* settings.plist */,
@@ -526,12 +487,9 @@
 				C1E4584919DE0C5B001A5627 /* GoogleMapsViewController.m in Sources */,
 				C103E2BD19EF04070071B659 /* MenuTableViewController.m in Sources */,
 				C1187E301A0BF974006A08A4 /* WMGaugeView.m in Sources */,
-				C122324619F33FB7002318DF /* SWRevealViewController.m in Sources */,
 				C1A87CCE19F98EFC00845C7E /* DrivingHistoryViewController.m in Sources */,
 				C1E4584619DE0C5B001A5627 /* AppDelegate.m in Sources */,
-				C11D52D619F3339B00FF7542 /* CarDiagnostics.m in Sources */,
 				C1FAEA5019F890C3009C623C /* GPSInformation.xcdatamodeld in Sources */,
-				C13E8CF11A156A6A00383CB5 /* OLGhostAlertView.m in Sources */,
 				C186A72D19FEB69200016E99 /* DrivingHistory.m in Sources */,
 				C1CEF69A19FA04D600D6E46D /* TripDetailViewController.m in Sources */,
 				C186A72A19FEB69200016E99 /* Trip.m in Sources */,
