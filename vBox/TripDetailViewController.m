@@ -69,6 +69,7 @@
 	[self.fuelGauge setUpWithUnits:@"Fuel %" max:100 startAngle:90 endAngle:270];
 	[self.RPMGauge setUpWithUnits:@"RPM" max:10000 startAngle:90 endAngle:270];
 	[self.tripSlider setMaximumValue:self.GPSLocationsForTrip.count-1];
+	[[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIInterfaceOrientationPortrait] forKey:@"orientation"];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -76,6 +77,20 @@
 	[super viewDidAppear:animated];
 	GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:cameraBounds withPadding:40];
 	[self.mapView animateWithCameraUpdate:update];
+}
+-(BOOL)shouldAutorotate
+{
+	return YES;
+}
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+	return UIInterfaceOrientationMaskPortrait;
+}
+
+-(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+	return UIInterfaceOrientationPortrait;
 }
 
 #pragma mark - Setup

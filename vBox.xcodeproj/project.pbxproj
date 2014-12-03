@@ -24,6 +24,7 @@
 		C181F44419EEA98500FC1D8A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C181F44319EEA98500FC1D8A /* Settings.bundle */; };
 		C186A72A19FEB69200016E99 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = C186A72919FEB69200016E99 /* Trip.m */; };
 		C186A72D19FEB69200016E99 /* DrivingHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = C186A72C19FEB69200016E99 /* DrivingHistory.m */; };
+		C19806111A2E84D9009AD73F /* UINavigationController+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = C19806101A2E84D9009AD73F /* UINavigationController+Orientation.m */; };
 		C1A87CCE19F98EFC00845C7E /* DrivingHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A87CCD19F98EFC00845C7E /* DrivingHistoryViewController.m */; };
 		C1B82C4319F0808E002E6EA4 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1B82C4219F0808E002E6EA4 /* CoreBluetooth.framework */; };
 		C1CEF69A19FA04D600D6E46D /* TripDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1CEF69919FA04D600D6E46D /* TripDetailViewController.m */; };
@@ -96,6 +97,8 @@
 		C186A72B19FEB69200016E99 /* DrivingHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrivingHistory.h; sourceTree = "<group>"; };
 		C186A72C19FEB69200016E99 /* DrivingHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrivingHistory.m; sourceTree = "<group>"; };
 		C186A72E19FEBD9F00016E99 /* GPSInformation 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "GPSInformation 2.xcdatamodel"; sourceTree = "<group>"; };
+		C198060F1A2E84D9009AD73F /* UINavigationController+Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Orientation.h"; sourceTree = "<group>"; };
+		C19806101A2E84D9009AD73F /* UINavigationController+Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Orientation.m"; sourceTree = "<group>"; };
 		C1A87CCC19F98EFC00845C7E /* DrivingHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrivingHistoryViewController.h; sourceTree = "<group>"; };
 		C1A87CCD19F98EFC00845C7E /* DrivingHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrivingHistoryViewController.m; sourceTree = "<group>"; };
 		C1B82C4219F0808E002E6EA4 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
@@ -325,6 +328,8 @@
 				C1E4584119DE0C5B001A5627 /* Info.plist */,
 				C11318CD19EDD3580023A45C /* settings.plist */,
 				C1E4584219DE0C5B001A5627 /* main.m */,
+				C198060F1A2E84D9009AD73F /* UINavigationController+Orientation.h */,
+				C19806101A2E84D9009AD73F /* UINavigationController+Orientation.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -492,6 +497,7 @@
 				C1FAEA5019F890C3009C623C /* GPSInformation.xcdatamodeld in Sources */,
 				C186A72D19FEB69200016E99 /* DrivingHistory.m in Sources */,
 				C1CEF69A19FA04D600D6E46D /* TripDetailViewController.m in Sources */,
+				C19806111A2E84D9009AD73F /* UINavigationController+Orientation.m in Sources */,
 				C186A72A19FEB69200016E99 /* Trip.m in Sources */,
 				C1F459641A2BEF6900840D8B /* MyStyleKit.m in Sources */,
 				C11603361A06A6CE0079F2C4 /* BluetoothData.m in Sources */,
