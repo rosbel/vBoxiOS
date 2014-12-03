@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C11318CC19EDCC700023A45C /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C11318CB19EDCC700023A45C /* logo.png */; };
-		C11318CE19EDD3580023A45C /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = C11318CD19EDD3580023A45C /* settings.plist */; };
 		C11603361A06A6CE0079F2C4 /* BluetoothData.m in Sources */ = {isa = PBXBuildFile; fileRef = C11603351A06A6CE0079F2C4 /* BluetoothData.m */; };
 		C11603391A06A7350079F2C4 /* GPSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C11603381A06A7350079F2C4 /* GPSLocation.m */; };
 		C1187E301A0BF974006A08A4 /* WMGaugeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1187E2F1A0BF974006A08A4 /* WMGaugeView.m */; };
@@ -68,7 +67,6 @@
 
 /* Begin PBXFileReference section */
 		C11318CB19EDCC700023A45C /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../logo.png; sourceTree = "<group>"; };
-		C11318CD19EDD3580023A45C /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
 		C11603331A06A22D0079F2C4 /* GPSInformation 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "GPSInformation 3.xcdatamodel"; sourceTree = "<group>"; };
 		C11603341A06A6CE0079F2C4 /* BluetoothData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothData.h; sourceTree = "<group>"; };
 		C11603351A06A6CE0079F2C4 /* BluetoothData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothData.m; sourceTree = "<group>"; };
@@ -321,7 +319,6 @@
 				C1F459651A2BF44E00840D8B /* HotVsCold.jpg */,
 				C181F44319EEA98500FC1D8A /* Settings.bundle */,
 				C1E4584119DE0C5B001A5627 /* Info.plist */,
-				C11318CD19EDD3580023A45C /* settings.plist */,
 				C1E4584219DE0C5B001A5627 /* main.m */,
 				C198060F1A2E84D9009AD73F /* UINavigationController+Orientation.h */,
 				C19806101A2E84D9009AD73F /* UINavigationController+Orientation.m */,
@@ -458,7 +455,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1E4584C19DE0C5B001A5627 /* Main.storyboard in Resources */,
-				C11318CE19EDD3580023A45C /* settings.plist in Resources */,
 				C11318CC19EDCC700023A45C /* logo.png in Resources */,
 				C163E1241A2E45F800AAB153 /* tripTableCell.xib in Resources */,
 				C13E8CF51A15706D00383CB5 /* SVProgressHUD.bundle in Resources */,
