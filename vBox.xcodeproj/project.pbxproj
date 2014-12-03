@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C103E2BD19EF04070071B659 /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C103E2BC19EF04070071B659 /* MenuTableViewController.m */; };
 		C11318CC19EDCC700023A45C /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C11318CB19EDCC700023A45C /* logo.png */; };
 		C11318CE19EDD3580023A45C /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = C11318CD19EDD3580023A45C /* settings.plist */; };
 		C11603361A06A6CE0079F2C4 /* BluetoothData.m in Sources */ = {isa = PBXBuildFile; fileRef = C11603351A06A6CE0079F2C4 /* BluetoothData.m */; };
@@ -68,8 +67,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C103E2BB19EF04070071B659 /* MenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewController.h; sourceTree = "<group>"; };
-		C103E2BC19EF04070071B659 /* MenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewController.m; sourceTree = "<group>"; };
 		C11318CB19EDCC700023A45C /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../logo.png; sourceTree = "<group>"; };
 		C11318CD19EDD3580023A45C /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
 		C11603331A06A22D0079F2C4 /* GPSInformation 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "GPSInformation 3.xcdatamodel"; sourceTree = "<group>"; };
@@ -258,8 +255,6 @@
 				C1E4584719DE0C5B001A5627 /* GoogleMapsViewController.h */,
 				C1F4595F1A2BECAA00840D8B /* MainScreenViewController.h */,
 				C1F459601A2BECAA00840D8B /* MainScreenViewController.m */,
-				C103E2BB19EF04070071B659 /* MenuTableViewController.h */,
-				C103E2BC19EF04070071B659 /* MenuTableViewController.m */,
 				C1A87CCC19F98EFC00845C7E /* DrivingHistoryViewController.h */,
 				C1A87CCD19F98EFC00845C7E /* DrivingHistoryViewController.m */,
 				C1CEF69819FA04D600D6E46D /* TripDetailViewController.h */,
@@ -490,7 +485,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1E4584919DE0C5B001A5627 /* GoogleMapsViewController.m in Sources */,
-				C103E2BD19EF04070071B659 /* MenuTableViewController.m in Sources */,
 				C1187E301A0BF974006A08A4 /* WMGaugeView.m in Sources */,
 				C1A87CCE19F98EFC00845C7E /* DrivingHistoryViewController.m in Sources */,
 				C1E4584619DE0C5B001A5627 /* AppDelegate.m in Sources */,

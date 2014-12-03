@@ -11,5 +11,7 @@
 @interface MainScreenViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIButton *startDriveButton;
 @property (weak, nonatomic) IBOutlet UIButton *drivingHistoryButton;
+@property (weak, nonatomic) IBOutlet UIButton *debugBluetoothButton;
+@property (weak, nonatomic) IBOutlet UIButton *bluetoothTableButton;
 
 @end

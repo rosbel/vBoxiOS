@@ -21,8 +21,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+	
+	if([[NSUserDefaults standardUserDefaults] boolForKey:@"debugMode"])
+	{
+		[self.debugBluetoothButton setHidden:NO];
+		[self.bluetoothTableButton setHidden:NO];
+	}
 	[self.startDriveButton setBackgroundImage:[MyStyleKit imageOfVBoxButtonWithButtonColor:[MyStyleKit gamebookersBlueColor]] forState:UIControlStateNormal];
 	[self.drivingHistoryButton setBackgroundImage:[MyStyleKit imageOfVBoxButtonWithButtonColor:[MyStyleKit myOrange]] forState:UIControlStateNormal];
+	
+	[self.debugBluetoothButton setBackgroundImage:[MyStyleKit imageOfVBoxButtonWithButtonColor:[MyStyleKit route66Color]] forState:UIControlStateNormal];
+	[self.bluetoothTableButton setBackgroundImage:[MyStyleKit imageOfVBoxButtonWithButtonColor:[MyStyleKit route66Color]] forState:UIControlStateNormal];
 	
 	shouldShowNavigationBar = YES;
 }
