@@ -99,7 +99,15 @@
 	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
 	[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
 	
-	return [dateFormatter stringFromDate:[self.sortedDays objectAtIndex:section]];
+	double mileSum;
+	NSArray *tripsInDate = [self.tripsByDate objectForKey:[self.sortedDays objectAtIndex:section]];
+	for(Trip *trip in tripsInDate)
+	{
+		mileSum += trip.totalMiles.doubleValue;
+	}
+	
+	return [NSString stringWithFormat:@"%@   (%.2f mi)",[dateFormatter stringFromDate:[self.sortedDays objectAtIndex:section]],mileSum];
+	
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
