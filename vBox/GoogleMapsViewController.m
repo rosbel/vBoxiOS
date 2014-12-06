@@ -176,7 +176,6 @@
 	
 	self.speedOrDistanceLabel.layer.masksToBounds = YES;
 	self.speedOrDistanceLabel.layer.cornerRadius = 5.0;
-	[self.speedOrDistanceLabel setBackgroundColor:[UIColor colorWithPatternImage:[MyStyleKit imageOfVBoxButtonWithButtonColor:[MyStyleKit myOrange]]]];
 }
 
 #pragma mark - Google Maps View Delegate
@@ -318,6 +317,8 @@
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
+	UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Memory Warning" message:@"Received Memory Warning!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+	[errorAlert show];
 }
 
 #pragma mark - UICollection Data Source Delegate
@@ -461,6 +462,7 @@
 		}
 	}
 }
+
 - (void)animationDidStart:(NSString *)animationID context:(void *)context
 {
 	if([animationID isEqualToString:@"ShowInfoView"])
@@ -541,6 +543,5 @@
 	
 	[SVProgressHUD dismiss];
 }
-
 
 @end
