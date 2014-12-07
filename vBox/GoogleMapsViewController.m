@@ -94,6 +94,11 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
+	[super viewWillDisappear:animated];
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
 	[_MapView clear];
 	_MapView = nil;
 	[_locationManager stopUpdatingLocation];
@@ -118,7 +123,7 @@
 	[appDelegate saveContext];
 	
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-	[super viewWillDisappear:animated];
+	[super viewDidDisappear:animated];
 }
 
 #pragma mark - SetUp Methods
@@ -259,6 +264,7 @@
 		return;
 	}
 	
+	//TODO - Check logic here
 	if(objCount > 1)
 	{
 		prevLocation = [locations objectAtIndex:objCount - 2];
