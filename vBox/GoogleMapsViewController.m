@@ -23,7 +23,7 @@
 	GMSCameraPosition *camera;
 	GMSMutablePath *completePath;
 	GMSPolyline* polyline;
-	NSMutableArray *pastLocations;
+	CLLocation *prevLocation;
 	BOOL followMe;
 	AppDelegate *appDelegate;
 	NSManagedObjectContext *context;
@@ -51,7 +51,6 @@
 	[currentTrip setStartTime:[NSDate date]];
 	
 	completePath = [GMSMutablePath path];
-	pastLocations = [NSMutableArray array];
 	
 	styles = @[[GMSStrokeStyle solidColor:[UIColor colorWithRed:0.2666666667 green:0.4666666667 blue:0.6 alpha:1]],[GMSStrokeStyle solidColor:[UIColor colorWithRed:0.6666666667 green:0.8 blue:0.8 alpha:1]]];
 	
@@ -222,7 +221,7 @@
 -(void)speedLabelTapped
 {
 	showSpeed = !showSpeed;
-	[self updateSpeedLabelWithLocation:[pastLocations lastObject]];
+	[self updateSpeedLabelWithLocation:prevLocation];
 }
 
 -(void)updateSpeedLabelWithLocation:(CLLocation *)lastLocation
@@ -240,10 +239,9 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-	unsigned long prevCount = [pastLocations count];
 	CLLocation *newestLocation = locations.lastObject;
 	
-	if(followMe && prevCount < 1 && newestLocation.horizontalAccuracy < 70)
+	if(followMe && !prevLocation && newestLocation.horizontalAccuracy < 70)
 	{
 		[self.MapView animateToLocation:newestLocation.coordinate];
 		if(self.MapView.camera.zoom < 10)
@@ -279,6 +277,8 @@
 	double tolerance = powf(10.0,(-0.301*self.MapView.camera.zoom)+9.0731) / 2500.0;
 	NSArray *lengths = @[@(tolerance),@(tolerance*1.5)];
 	polyline.spans = GMSStyleSpans(polyline.path, styles, lengths, kGMSLengthGeodesic);
+	
+	prevLocation = newestLocation;
 	
 	if(followMe)
 	{
@@ -463,8 +463,7 @@
 {
 	double lat = location.coordinate.latitude;
 	double lng = location.coordinate.longitude;
-	double speedMPH = location.speed >= 0 ? location.speed * 2.236936284 : 0;
-	NSDate *time = location.timestamp;
+	double speedMPH = location.speed >= 0 ? location.speed * 2.236936284 : 0; //speed is given meters/sec
 	
 	if(persist)
 	{
@@ -473,14 +472,14 @@
 		[newLocation setLongitude:[NSNumber numberWithDouble:lng]];
 		[newLocation setSpeed:[NSNumber numberWithDouble:speedMPH]];
 		[newLocation setMetersFromStart:[NSNumber numberWithDouble:GMSGeometryLength(completePath)]];
-		[newLocation setTimestamp:time];
+		[newLocation setTimestamp:location.timestamp];
 		[newLocation setTripInfo:currentTrip];
 		
 		if(self.bluetoothManager.connected)
 		{
 			
 			BluetoothData *bleData = [NSEntityDescription insertNewObjectForEntityForName:@"BluetoothData" inManagedObjectContext:context];
-			NSNumber *bleSpeedMPH =[self.bluetoothDiagnostics objectForKey:@"Speed"];
+			NSNumber *bleSpeedMPH =[self.bluetoothDiagnostics objectForKey:@"Speed"]; //km/h
 			bleSpeedMPH = bleSpeedMPH ? [NSNumber numberWithDouble:(bleSpeedMPH.doubleValue * 0.621371)] : bleSpeedMPH;
 			[bleData setSpeed:bleSpeedMPH];
 			[bleData setAmbientTemp:[self.bluetoothDiagnostics objectForKey:@"Ambient Temp"]];
@@ -498,8 +497,6 @@
 		[appDelegate saveContext];
 		//Check if Bluetooth is on, and populate DB with recent values
 	}
-	
-	[pastLocations addObject:location];
 }
 
 
