@@ -94,11 +94,6 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-	[super viewWillDisappear:animated];
-}
-
--(void)viewDidDisappear:(BOOL)animated
-{
 	[_MapView clear];
 	_MapView = nil;
 	[_locationManager stopUpdatingLocation];
@@ -123,7 +118,7 @@
 	[appDelegate saveContext];
 	
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-	[super viewDidDisappear:animated];
+	[super viewWillDisappear:animated];
 }
 
 #pragma mark - SetUp Methods
@@ -245,59 +240,41 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-	
-	unsigned long objCount = [locations count];
 	unsigned long prevCount = [pastLocations count];
+	CLLocation *newestLocation = locations.lastObject;
 	
-	CLLocation *newestLocation = [locations lastObject];
-	CLLocation *prevLocation;
-
 	if(followMe && prevCount < 1 && newestLocation.horizontalAccuracy < 70)
 	{
 		[self.MapView animateToLocation:newestLocation.coordinate];
 		if(self.MapView.camera.zoom < 10)
 			[self.MapView animateToZoom:15];
 	}
-	//Ignore bad Accuracy
-	if(newestLocation.horizontalAccuracy > 30) //maybe give user tolerance for bad accuracy?
+	
+	for(CLLocation *location in locations)
 	{
-		return;
+		if(location.horizontalAccuracy > 30)
+			return;
+		
+		double speedMPH = ([newestLocation speed] * 2.236936284);
+		speedMPH = speedMPH >= 0 ? speedMPH : 0;
+		
+		if(speedMPH < minSpeed)
+		{
+			minSpeed = speedMPH;
+		}
+		if(speedMPH > maxSpeed)
+		{
+			maxSpeed = speedMPH;
+		}
+		sumSpeed += speedMPH;
+		
+		[completePath addCoordinate:newestLocation.coordinate];
+		[self updateSpeedLabelWithLocation:newestLocation];
+		
+		[self logLocation:newestLocation persistent:YES];
+		
+		[polyline setPath:completePath];
 	}
-	
-	//TODO - Check logic here
-	if(objCount > 1)
-	{
-		prevLocation = [locations objectAtIndex:objCount - 2];
-	}else if (prevCount > 1)
-	{
-		prevLocation = [pastLocations objectAtIndex:prevCount -2];
-	}else
-	{
-		prevLocation = newestLocation;
-	}
-	
-	//Update speed Label
-	double speedMPH = ([newestLocation speed] * 2.236936284);
-	speedMPH = speedMPH >= 0 ? speedMPH : 0;
-	
-	if(speedMPH < minSpeed)
-	{
-		minSpeed = speedMPH;
-	}
-	if(speedMPH > maxSpeed)
-	{
-		maxSpeed = speedMPH;
-	}
-	sumSpeed += speedMPH;
-	
-	
-	[completePath addCoordinate:newestLocation.coordinate];
-	
-	[self updateSpeedLabelWithLocation:newestLocation];
-	
-	[self logLocation:newestLocation persistent:YES];
-	
-	[polyline setPath:completePath];
 	
 	double tolerance = powf(10.0,(-0.301*self.MapView.camera.zoom)+9.0731) / 2500.0;
 	NSArray *lengths = @[@(tolerance),@(tolerance*1.5)];
@@ -317,13 +294,6 @@
 		return; //sometimes I get this error // fix later?
 	}
 	UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:[error localizedDescription] message:@"There was an error retrieving your location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-	[errorAlert show];
-}
-
-- (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
-	UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Memory Warning" message:@"Received Memory Warning!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
 	[errorAlert show];
 }
 
@@ -407,7 +377,7 @@
 -(void)didDisconnectPeripheral
 {
 	[SVProgressHUD showErrorWithStatus:@"Disconnected"];
-	//try reconnecting
+	//try reconnecting?
 }
 
 -(void)didStopScanning
@@ -548,6 +518,13 @@
 	self.bluetoothManager = nil;
 	
 	[SVProgressHUD dismiss];
+}
+
+- (void)didReceiveMemoryWarning {
+	[super didReceiveMemoryWarning];
+	// Dispose of any resources that can be recreated.
+	UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Memory Warning" message:@"Received Memory Warning!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+	[errorAlert show];
 }
 
 @end
