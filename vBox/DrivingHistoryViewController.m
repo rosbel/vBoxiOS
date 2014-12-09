@@ -99,7 +99,7 @@
 	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
 	[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
 	
-	double mileSum;
+	double mileSum = 0;
 	NSArray *tripsInDate = [self.tripsByDate objectForKey:[self.sortedDays objectAtIndex:section]];
 	for(Trip *trip in tripsInDate)
 	{
