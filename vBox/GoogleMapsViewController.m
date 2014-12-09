@@ -266,11 +266,10 @@
 		}
 		sumSpeed += speedMPH;
 		
-		[completePath addCoordinate:newestLocation.coordinate];
 		[self updateSpeedLabelWithLocation:newestLocation];
-		
 		[self logLocation:newestLocation persistent:YES];
 		
+		[completePath addCoordinate:newestLocation.coordinate];
 		[polyline setPath:completePath];
 	}
 	
