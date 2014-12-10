@@ -79,13 +79,6 @@
 	[self.mapView animateWithCameraUpdate:update];
 }
 
--(void)viewDidDisappear:(BOOL)animated
-{
-	[self.mapView clear];
-	[self.mapView removeFromSuperview];
-	self.mapView = nil;
-}
-
 -(BOOL)shouldAutorotate
 {
 	return YES;
