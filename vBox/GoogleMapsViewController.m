@@ -390,11 +390,6 @@
 	[self.collectionView reloadData];
 }
 
--(void)didUpdateDiagnosticForKey:(NSString *)key withMultipleValues:(NSArray *)values
-{
-	
-}
-
 #pragma mark - Layout Methods
 
 -(void)updateViewsBasedOnBLEButtonState:(BOOL) state animate:(BOOL)animate

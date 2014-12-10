@@ -39,7 +39,6 @@ typedef NS_ENUM(NSInteger, BLEState) {
 /** States: BLEStateOn,BLEStateOff,BLEStateUnauthorized,BLEStateResetting,BLEStateUnkown,BLEStateUnsupported*/
 -(void)didChangeBluetoothState:(BLEState)state;
 -(void)didUpdateDiagnosticForKey:(NSString *)key withValue:(NSNumber *)value;
--(void)didUpdateDiagnosticForKey:(NSString *)key withMultipleValues:(NSArray *)values;
 
 @end
 

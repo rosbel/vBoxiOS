@@ -39,12 +39,7 @@
 
 -(void)didUpdateDiagnosticForKey:(NSString *)key withValue:(NSNumber *)value
 {
-	
-}
-
--(void)didUpdateDiagnosticForKey:(NSString *)key withMultipleValues:(NSArray *)values
-{
-	
+	self.textView.text = [self.textView.text stringByAppendingString:[NSString stringWithFormat:@"\n %@ - %@",key,value]];
 }
 
 -(void)didChangeBluetoothState:(BLEState)state

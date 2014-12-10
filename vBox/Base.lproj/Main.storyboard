@@ -262,6 +262,7 @@
                             <constraint firstAttribute="width" secondItem="861-sm-ySC" secondAttribute="width" id="vaF-IM-E6N"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="v7D-fx-t1g"/>
                     <connections>
                         <outlet property="textView" destination="861-sm-ySC" id="tGa-RM-LV6"/>
                     </connections>

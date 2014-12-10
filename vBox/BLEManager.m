@@ -26,7 +26,7 @@
 #define PID_INTAKE_TEMP 0x10F
 #define PID_GPS_LATITUDE 0xF00A
 #define PID_GPS_LONGITUDE 0xF00B
-#define PID_GPS_ALTITUDE 0xF00C
+#define PID_GPS_ALTITUDE 0xC
 #define PID_GPS_SPEED 0xF00D
 #define PID_GPS_HEADING 0xF00E
 #define PID_GPS_SAT_COUNT 0xF00F
@@ -385,7 +385,8 @@
 			//ignore
 			break;
 		case PID_GPS_HEADING:
-			//ignore			break;
+			//ignore
+			break;
 		case PID_GPS_SAT_COUNT:
 			//ignore
 			break;
@@ -434,14 +435,6 @@
 	
 	[self asyncToMainThread:^{
 	[self.delegate didUpdateDiagnosticForKey:key withValue:[NSNumber numberWithFloat:value]];
-	}];
-}
-
--(void) asyncUpdateDiagnosticForKey:(NSString *)key withMultipleValues:(float[])values
-{
-	[self asyncToMainThread:^{
-	NSArray *array = @[[NSNumber numberWithFloat:values[0]],[NSNumber numberWithFloat:values[1]],[NSNumber numberWithFloat:values[2]]];
-	[self.delegate didUpdateDiagnosticForKey:key withMultipleValues:array];
 	}];
 }
 

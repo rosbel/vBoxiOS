@@ -99,16 +99,6 @@
 //	[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 
-//BluetoothThread
--(void)didUpdateDiagnosticForKey:(NSString *)key withMultipleValues:(NSArray *)values
-{
-	[self.diagnostics setObject:values forKey:key];
-	
-	//insert into core data?
-	[self.tableView reloadData];
-//	[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-}
-
 -(void)didUpdateDebugLogWithString:(NSString *)string
 {
 	
