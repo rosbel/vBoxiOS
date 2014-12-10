@@ -74,13 +74,11 @@
 	if(![key isEqualToString:@"Accelerometer"])
 	{
 		NSNumber *value = [self.diagnostics objectForKey:key];
-		NSLog(@"%@ - %@",key,value);
 		text = [text stringByAppendingString:[NSString stringWithFormat:@"%@",value]];
 	}
 	else
 	{
 		NSArray *values = [self.diagnostics objectForKey:key];
-		NSLog(@"%@ - %@",key,values);
 		text = [text stringByAppendingString:[NSString stringWithFormat:@"(%@,%@,%@)",[values objectAtIndex:0],[values objectAtIndex:1],[values objectAtIndex:2]]];
 	}
 	

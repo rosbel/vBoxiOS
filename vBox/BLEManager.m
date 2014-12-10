@@ -87,7 +87,7 @@
 {
 	if(self.centralManager.state != CBCentralManagerStatePoweredOn)
 	{
-		[self.delegate didUpdateDebugLogWithString:@"State was not Powered ON"];
+		[self asyncDebugLogWithString:@"State != ON"];
 		return NO;
 	}
 	
@@ -101,8 +101,7 @@
 			break;
 	}
 	
-	if([self.delegate respondsToSelector:@selector(didUpdateDebugLogWithString:)])
-		[self.delegate didUpdateDebugLogWithString:@"Scanning for peripheral"];
+	[self asyncDebugLogWithString:@"Scanning for peripheral"];
 	
 	[self.centralManager scanForPeripheralsWithServices:@[self.uid] options:nil];
 	
@@ -182,12 +181,12 @@
 
 -(void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didSubscribeToCharacteristic:(CBCharacteristic *)characteristic
 {
-	NSLog(@"HOWDY");
+//	NSLog(@"HOWDY");
 }
 
 -(void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveReadRequest:(CBATTRequest *)request
 {
-	NSLog(@"Read Request");
+//	NSLog(@"Read Request");
 	request.value = myCharacteristic.value ? myCharacteristic.value : [@"Howdy" dataUsingEncoding:NSUTF8StringEncoding];
 	[peripheral respondToRequest:request withResult:CBATTErrorSuccess];
 }
@@ -196,7 +195,7 @@
 {
 	for(CBATTRequest *request in requests)
 	{
-		NSLog(@"Write request = %@",request.value);
+//		NSLog(@"Write request = %@",request.value);
 		myCharacteristic.value = request.value;
 		[peripheral respondToRequest:request withResult:CBATTErrorSuccess];
 	}
@@ -284,10 +283,7 @@
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
-	if([self.delegate respondsToSelector:@selector(didUpdateDebugLogWithString:)])
-		[self asyncToMainThread:^{
-			[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Service count = %lu",(unsigned long)peripheral.services.count]];
-		}];
+	[self asyncDebugLogWithString:[NSString stringWithFormat:@"Service count = %lu",(unsigned long)peripheral.services.count]];
 	
 	for(CBService *service in peripheral.services)
 	{
@@ -301,136 +297,106 @@
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
-	if([self.delegate respondsToSelector:@selector(didUpdateDebugLogWithString:)])
-		[self asyncToMainThread:^{
-			[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Characteristic count = %lu",(unsigned long)service.characteristics.count]];
-		}];
+	[self asyncDebugLogWithString:[NSString stringWithFormat:@"Characteristic count = %lu",(unsigned long)service.characteristics.count]];
 	
 	for(CBCharacteristic *characteristic in service.characteristics)
 	{
 		[peripheral setNotifyValue:YES forCharacteristic:characteristic];
-		if([self.delegate respondsToSelector:@selector(didUpdateDebugLogWithString:)])
-			[self asyncToMainThread:^{
-				[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Characteristic UUID = %@",characteristic.UUID]];
-			}];
+		
+		[self asyncDebugLogWithString:[NSString stringWithFormat:@"Characteristic UUID = %@",characteristic.UUID]];
 	}
 }
 
 -(void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
-	struct BLE_DATA receivedData20;
-	struct BLE_DATA receivedData12;
-	[characteristic.value getBytes:&receivedData12 length:12];
-	[characteristic.value getBytes:&receivedData20 length:20];
-	uint8_t prevCheckSum12 = receivedData12.checksum;
-	uint8_t prevCheckSum = receivedData20.checksum;
-	receivedData12.checksum = 0;
-	receivedData20.checksum = 0;
-	uint8_t checkSum12 = [self getCheckSum:(char *)&receivedData12 length:12];
-	uint8_t checkSum = [self getCheckSum:(char *)&receivedData20 length:20];
+	struct BLE_DATA receivedData;
 	
-	struct BLE_DATA correctData;
+	[characteristic.value getBytes:&receivedData length:12];
 	
-	if(prevCheckSum == checkSum)
-	{
-		correctData = receivedData20;
-		[peripheralManager updateValue:[NSData dataWithBytes:&receivedData20 length:20] forCharacteristic:myCharacteristic onSubscribedCentrals:nil];
-	}
-	else if(prevCheckSum12 == checkSum12)
-	{
-		correctData = receivedData12;
-		[peripheralManager updateValue:[NSData dataWithBytes:&receivedData12 length:12] forCharacteristic:myCharacteristic onSubscribedCentrals:nil];
-	}else
+	//check for bad CheckSum
+	if([self getCheckSum:(char *)&receivedData length:12] != 0)
 	{
 		return;
 	}
+	
 	float value;
-	switch(correctData.pid)
+	switch(receivedData.pid)
 	{
 		case PID_FUEL_LEVEL:
-			value = correctData.value[0];
+			value = receivedData.value[0];
 			[self asyncUpdateDiagnosticForKey:@"Fuel" withValue:value ifUnderLimit:150.0];
 			break;
 		case PID_RPM:
-			value = correctData.value[0];
+			value = receivedData.value[0];
 			[self asyncUpdateDiagnosticForKey:@"RPM" withValue:value ifUnderLimit:100000.0];
 			break;
 		case PID_RUNTIME:
-			value = correctData.value[0];
+			value = receivedData.value[0];
 			[self asyncUpdateDiagnosticForKey:@"Runtime" withValue:value ifUnderLimit:FLT_MAX]; //maybe change
 			break;
 		case PID_ENGINE_TORQUE_PERCENTAGE:
-			value = correctData.value[0];
+			value = receivedData.value[0];
 			[self asyncUpdateDiagnosticForKey:@"Engine Torque Percentage" withValue:value ifUnderLimit:150]; //check
 			break;
 		case PID_ENGINE_LOAD:
-			value = correctData.value[0];
+			value = receivedData.value[0];
 			[self asyncUpdateDiagnosticForKey:@"Engine Load" withValue:value ifUnderLimit:150]; //check
 			break;
 		case PID_DISTANCE:
-			value = correctData.value[0];
-			[self asyncUpdateDiagnosticForKey:@"Distance" withValue:value ifUnderLimit:10000000.0]; //check
+			value = receivedData.value[0];
+			if(value >= 0)
+				[self asyncUpdateDiagnosticForKey:@"Distance" withValue:value ifUnderLimit:10000000.0]; //check
 			break;
 		case PID_COOLANT_TEMP:
-			value = correctData.value[0];
+			value = receivedData.value[0];
 			[self asyncUpdateDiagnosticForKey:@"Coolant Temp" withValue:value ifUnderLimit:500.0];
 			break;
 		case PID_BAROMETRIC:
-			value = correctData.value[0];
+			value = receivedData.value[0];
 			[self asyncUpdateDiagnosticForKey:@"Barometric" withValue:value ifUnderLimit:500.0];
 			break;
 		case PID_SPEED:
-			value = correctData.value[0];
+			value = receivedData.value[0];
 			[self asyncUpdateDiagnosticForKey:@"Speed" withValue:value ifUnderLimit:1000.0];
 			break;
 		case PID_ENGINE_FUEL_RATE:
-			value = correctData.value[0];
+			value = receivedData.value[0];
 			[self asyncUpdateDiagnosticForKey:@"Engine Fuel Rate" withValue:value ifUnderLimit:1000.0];
 			break;
 		case PID_AMBIENT_TEMP:
-			value = correctData.value[0];
+			value = receivedData.value[0];
 			[self asyncUpdateDiagnosticForKey:@"Ambient Temp" withValue:value ifUnderLimit:1000.0];
 			break;
 		case PID_THROTTLE:
-			value = correctData.value[0];
+			value = receivedData.value[0];
 			[self asyncUpdateDiagnosticForKey:@"Throttle" withValue:value ifUnderLimit:1000.0];
 			break;
 		case PID_INTAKE_TEMP:
-			value = correctData.value[0];
+			value = receivedData.value[0];
 			[self asyncUpdateDiagnosticForKey:@"Intake Temp" withValue:value ifUnderLimit:1000.0];
 			break;
 		case PID_GPS_ALTITUDE:
-			value = correctData.value[0];
-			[self asyncUpdateDiagnosticForKey:@"GPS Alt" withValue:value ifUnderLimit:FLT_MAX];
+			//ignore
 			break;
 		case PID_GPS_LATITUDE:
-			value = correctData.value[0];
-//			value /= 100; //offset of 100
-			[self asyncUpdateDiagnosticForKey:@"GPS Lat" withValue:value ifUnderLimit:FLT_MAX];
+			//ignore
 			break;
 		case PID_GPS_LONGITUDE:
-			value = correctData.value[0];
-//			value /= 100;
-			[self asyncUpdateDiagnosticForKey:@"GPS Long" withValue:value ifUnderLimit:FLT_MAX];
+			//ignore
 			break;
 		case PID_GPS_HEADING:
-			value = correctData.value[0];
-			[self asyncUpdateDiagnosticForKey:@"GPS Heading" withValue:value ifUnderLimit:FLT_MAX];
-			break;
+			//ignore			break;
 		case PID_GPS_SAT_COUNT:
-			value = correctData.value[0];
-			[self asyncUpdateDiagnosticForKey:@"GPS Sat Count" withValue:value ifUnderLimit:FLT_MAX];
+			//ignore
 			break;
 		case PID_GPS_SPEED:
-			value = correctData.value[0];
-			[self asyncUpdateDiagnosticForKey:@"GPS Speed" withValue:value ifUnderLimit:1000.0];
+			//ignore
 			break;
 		case PID_GPS_TIME:
-			value = correctData.value[0];
-			[self asyncUpdateDiagnosticForKey:@"GPS Time" withValue:value ifUnderLimit:1000000.0];
+			//ignore
 			break;
 		case PID_ACC:
-			[self asyncUpdateDiagnosticForKey:@"Accelerometer" withMultipleValues:correctData.value]; //ALL 3 values are needed
+			//ignore
 			break;
 		case 0:
 			//ignore
@@ -439,19 +405,27 @@
 			//ignore
 			break;
 		default:
-			if([self.delegate respondsToSelector:@selector(didUpdateDebugLogWithString:)])
-					[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Unkown PID: %x - Val: %f",correctData.pid,correctData.value[0]]];
+			[self asyncDebugLogWithString:[NSString stringWithFormat:@"Unkown PID: %x - Val: %f",receivedData.pid,receivedData.value[0]]];
 			break;
 	}
 	if(error)
 	{
-		if([self.delegate respondsToSelector:@selector(didUpdateDebugLogWithString:)])
-				[self.delegate didUpdateDebugLogWithString:[NSString stringWithFormat:@"Received error: %@",error]];
+		[self asyncDebugLogWithString:[NSString stringWithFormat:@"Received Error: %@",error.localizedDescription]];
 	}
 }
 
 
 #pragma mark - Async Helper Methods
+
+-(void) asyncDebugLogWithString:(NSString *)string
+{
+	[self asyncToMainThread:^{
+		if([self.delegate respondsToSelector:@selector(didUpdateDebugLogWithString:)])
+		{
+			[self.delegate didUpdateDebugLogWithString:string];
+		}
+	}];
+}
 
 -(void) asyncUpdateDiagnosticForKey:(NSString *)key withValue:(float) value ifUnderLimit:(float)limit
 {
