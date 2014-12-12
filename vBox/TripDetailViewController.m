@@ -351,7 +351,7 @@
 	for(GPSLocation *loc in self.GPSLocationsForTrip)
 	{
 		NSString *timeStamp = [formatter stringFromDate:loc.timestamp];
-		[log appendFormat:@"%@ %lf %lf %lf ",timeStamp,loc.latitude.doubleValue,loc.longitude.doubleValue,loc.altitude.doubleValue];
+		[log appendFormat:@"%@ %lf %lf ",timeStamp,loc.latitude.doubleValue,loc.longitude.doubleValue];
 		if(loc.bluetoothInfo)
 		{
 			NSString *speed = loc.bluetoothInfo.speed ? loc.bluetoothInfo.speed.stringValue : loc.speed.stringValue;
@@ -364,10 +364,10 @@
 			NSString *coolant = [self stringFromValue:loc.bluetoothInfo.coolantTemp];
 			NSString *intake = [self stringFromValue:loc.bluetoothInfo.intakeTemp];
 			NSString *distance = [self stringFromValue:loc.bluetoothInfo.distance];
-			[log appendFormat:@"%@ %@ %@ %@ %@ %@ %@ %@ %@ %@",speed,rpm,throttle,engineLoad,fuel,barometric,ambient,coolant,intake,distance];
+			[log appendFormat:@"%@ %lf %@ %@ %@ %@ %@ %@ %@ %@ %@",speed,loc.altitude.doubleValue,rpm,throttle,engineLoad,fuel,barometric,ambient,coolant,intake,distance];
 		}else
 		{
-			[log appendFormat:@"%@ XX XX XX XX XX XX XX XX XX",loc.speed];
+			[log appendFormat:@"%@ %lf XX XX XX XX XX XX XX XX XX",loc.speed,loc.altitude.doubleValue];
 		}
 		[log appendString:@"\n"];
 	}
