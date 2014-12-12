@@ -458,6 +458,7 @@
 	double lat = location.coordinate.latitude;
 	double lng = location.coordinate.longitude;
 	double speedMPH = location.speed >= 0 ? location.speed * 2.236936284 : 0; //speed is given meters/sec
+	double altitude = location.altitude * 3.28084;
 	
 	if(persist)
 	{
@@ -468,6 +469,7 @@
 		[newLocation setMetersFromStart:[NSNumber numberWithDouble:GMSGeometryLength(completePath)]];
 		[newLocation setTimestamp:location.timestamp];
 		[newLocation setTripInfo:currentTrip];
+		[newLocation setAltitude:[NSNumber numberWithDouble:altitude]];
 		
 		if(self.bluetoothManager.connected)
 		{

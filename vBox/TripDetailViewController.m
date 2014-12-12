@@ -347,11 +347,11 @@
 	
 	NSMutableString *log = [[NSMutableString alloc] init];
 	//speed, rpm, throttle, engineLoad, fuel, barometric, ambientTemp, coolantTemp, intakeTemp, distance
-	[log appendFormat:@"Timestamp Lat Long Speed-MPH RPM-RPM Throttle-%% EngineLoad-%% Fuel-%% Barometric-kPa AmbientTemperature-C CoolantTemperature-C, IntakeTemperature-C, Distance-km\n"];
+	[log appendFormat:@"Timestamp Lat Long Speed-MPH Altitude-ft RPM-RPM Throttle-%% EngineLoad-%% Fuel-%% Barometric-kPa AmbientTemperature-C CoolantTemperature-C, IntakeTemperature-C, Distance-km\n"];
 	for(GPSLocation *loc in self.GPSLocationsForTrip)
 	{
 		NSString *timeStamp = [formatter stringFromDate:loc.timestamp];
-		[log appendFormat:@"%@ %lf %lf ",timeStamp,loc.latitude.doubleValue,loc.longitude.doubleValue];
+		[log appendFormat:@"%@ %lf %lf %lf ",timeStamp,loc.latitude.doubleValue,loc.longitude.doubleValue,loc.altitude.doubleValue];
 		if(loc.bluetoothInfo)
 		{
 			NSString *speed = loc.bluetoothInfo.speed ? loc.bluetoothInfo.speed.stringValue : loc.speed.stringValue;

@@ -16,6 +16,7 @@
 @dynamic latitude;
 @dynamic longitude;
 @dynamic speed;
+@dynamic altitude;
 @dynamic metersFromStart;
 @dynamic timestamp;
 @dynamic tripInfo;
