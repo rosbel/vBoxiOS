@@ -19,10 +19,10 @@
 
 @implementation DrivingHistoryViewController
 {
-	NSDateFormatter *formatter;
+	NSDateFormatter *dateFormatterWith12HRTime;
+	NSDateFormatter *dateFormatterDateAndNoTime;
 	AppDelegate *appDelegate;
 }
-
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -36,13 +36,18 @@
 	
 	appDelegate = [[UIApplication sharedApplication] delegate];
 	
-	formatter = [[NSDateFormatter alloc] init];
-	[formatter setDateStyle:NSDateFormatterShortStyle];
-	[formatter setTimeStyle:NSDateFormatterMediumStyle];
-	[formatter setTimeZone:[NSTimeZone systemTimeZone]];
-	[formatter setDateStyle:NSDateFormatterNoStyle];
+	dateFormatterDateAndNoTime = [[NSDateFormatter alloc] init];
+	[dateFormatterDateAndNoTime setDateStyle:NSDateFormatterMediumStyle];
+	[dateFormatterDateAndNoTime setTimeStyle:NSDateFormatterNoStyle];
+	
+	dateFormatterWith12HRTime = [[NSDateFormatter alloc] init];
+	[dateFormatterWith12HRTime setDateStyle:NSDateFormatterShortStyle];
+	[dateFormatterWith12HRTime setTimeStyle:NSDateFormatterMediumStyle];
+	[dateFormatterWith12HRTime setTimeZone:[NSTimeZone systemTimeZone]];
+	[dateFormatterWith12HRTime setDateStyle:NSDateFormatterNoStyle];
 	
 	self.trips = [[[appDelegate drivingHistory] trips] reversedOrderedSet];
+	
 	[self setupTripsByDate];
 }
 
@@ -72,7 +77,6 @@
 	self.sortedDays = [[[[self.tripsByDate allKeys] sortedArrayUsingSelector:@selector(compare:)] reverseObjectEnumerator] allObjects];
 }
 
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -95,19 +99,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-	[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-	
-	double mileSum = 0;
-	NSArray *tripsInDate = [self.tripsByDate objectForKey:[self.sortedDays objectAtIndex:section]];
-	for(Trip *trip in tripsInDate)
-	{
-		mileSum += trip.totalMiles.doubleValue;
-	}
-	
-	return [NSString stringWithFormat:@"%@   (%.2f mi)",[dateFormatter stringFromDate:[self.sortedDays objectAtIndex:section]],mileSum];
-	
+	return [self stringForTitleInSection:section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -127,8 +119,8 @@
 	
 	Trip *trip = [self tripFromIndexPath:indexPath];
 	
-	NSString *startTimeText = [formatter stringFromDate:trip.startTime];
-	NSString *endTimeText = [formatter stringFromDate:trip.endTime];
+	NSString *startTimeText = [dateFormatterWith12HRTime stringFromDate:trip.startTime];
+	NSString *endTimeText = [dateFormatterWith12HRTime stringFromDate:trip.endTime];
 	cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@",startTimeText,endTimeText];
 	cell.detailTextLabel.text = [NSString stringWithFormat:@"avg: %.2f mph - max: %.2f mph - (%.2f mi)",trip.avgSpeed.doubleValue,trip.maxSpeed.doubleValue,trip.totalMiles.doubleValue];
 	return cell;
@@ -173,11 +165,36 @@
 		else
 		{
 			[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+			[tableView headerViewForSection:indexPath.section].textLabel.text = [self stringForTitleInSection:indexPath.section];
 		}
 	}
 }
 
 #pragma mark - Helper Methods
+
+- (NSString *)stringOfDateForSection:(NSInteger)section
+{
+	return [dateFormatterDateAndNoTime stringFromDate:[self.sortedDays objectAtIndex:section]];
+}
+
+- (double)totalMilesInSection:(NSInteger)section
+{
+	double mileSum = 0;
+	NSArray *tripsInDate = [self.tripsByDate objectForKey:[self.sortedDays objectAtIndex:section]];
+	for(Trip *trip in tripsInDate)
+	{
+		mileSum += trip.totalMiles.doubleValue;
+	}
+	return mileSum;
+}
+
+-(NSString *)stringForTitleInSection:(NSInteger)section
+{
+	double mileSum = [self totalMilesInSection:section];
+	NSString *date = [self stringOfDateForSection:section];
+	
+	return [NSString stringWithFormat:@"%@   (%.2f mi)",date,mileSum];
+}
 
 - (Trip *)tripFromIndexPath:(NSIndexPath *)indexPath
 {
