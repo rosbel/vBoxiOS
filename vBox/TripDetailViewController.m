@@ -43,7 +43,7 @@
 	
 	self.pathColors = @[[UIColor redColor],[UIColor orangeColor],[UIColor yellowColor],[UIColor greenColor]];
 	
-	[self.speedometerIcon setImage:[MyStyleKit imageOfSpeedometerWithColor:[UIColor whiteColor]]];
+	[self.speedometerIcon setImage:[MyStyleKit imageOfSpeedometerWithStrokeColor:[UIColor whiteColor]]];
 	
 	[self.fullScreenButton setBackgroundImage:[MyStyleKit imageOfVBoxButtonWithButtonColor:[UIColor whiteColor]] forState:UIControlStateNormal];
 	[self.followMeButton setBackgroundImage:[MyStyleKit imageOfVBoxButtonWithButtonColor:[UIColor whiteColor]] forState:UIControlStateNormal];

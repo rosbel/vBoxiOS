@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C11222211A3D31BB0076C17D /* LMDropdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = C11222201A3D31BB0076C17D /* LMDropdownView.m */; };
 		C11318CC19EDCC700023A45C /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C11318CB19EDCC700023A45C /* logo.png */; };
 		C11603361A06A6CE0079F2C4 /* BluetoothData.m in Sources */ = {isa = PBXBuildFile; fileRef = C11603351A06A6CE0079F2C4 /* BluetoothData.m */; };
 		C11603391A06A7350079F2C4 /* GPSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C11603381A06A7350079F2C4 /* GPSLocation.m */; };
@@ -68,8 +67,6 @@
 
 /* Begin PBXFileReference section */
 		C100518F1A3A4DA3009B9C48 /* GPSInformation 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "GPSInformation 7.xcdatamodel"; sourceTree = "<group>"; };
-		C112221F1A3D31BB0076C17D /* LMDropdownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMDropdownView.h; sourceTree = "<group>"; };
-		C11222201A3D31BB0076C17D /* LMDropdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMDropdownView.m; sourceTree = "<group>"; };
 		C11318CB19EDCC700023A45C /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../logo.png; sourceTree = "<group>"; };
 		C11603331A06A22D0079F2C4 /* GPSInformation 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "GPSInformation 3.xcdatamodel"; sourceTree = "<group>"; };
 		C11603341A06A6CE0079F2C4 /* BluetoothData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothData.h; sourceTree = "<group>"; };
@@ -179,15 +176,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C11222221A3D31BF0076C17D /* LMDropdownView */ = {
-			isa = PBXGroup;
-			children = (
-				C112221F1A3D31BB0076C17D /* LMDropdownView.h */,
-				C11222201A3D31BB0076C17D /* LMDropdownView.m */,
-			);
-			name = LMDropdownView;
-			sourceTree = "<group>";
-		};
 		C1187E2D1A0BF946006A08A4 /* VariableSlider */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,7 +197,6 @@
 		C122325119F3449F002318DF /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				C11222221A3D31BF0076C17D /* LMDropdownView */,
 				C13E8CF71A15707700383CB5 /* SVProgressHUD */,
 				C1187E311A0BF9E2006A08A4 /* Gauges */,
 				C1187E2D1A0BF946006A08A4 /* VariableSlider */,
@@ -499,7 +486,6 @@
 				C1187E301A0BF974006A08A4 /* WMGaugeView.m in Sources */,
 				C1A87CCE19F98EFC00845C7E /* DrivingHistoryViewController.m in Sources */,
 				C1E4584619DE0C5B001A5627 /* AppDelegate.m in Sources */,
-				C11222211A3D31BB0076C17D /* LMDropdownView.m in Sources */,
 				C1FAEA5019F890C3009C623C /* GPSInformation.xcdatamodeld in Sources */,
 				C186A72D19FEB69200016E99 /* DrivingHistory.m in Sources */,
 				C1CEF69A19FA04D600D6E46D /* TripDetailViewController.m in Sources */,
@@ -573,8 +559,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Rosbel Sanroman (FKMQK3FUDB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Rosbel Sanroman (FKMQK3FUDB)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -598,8 +584,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Rosbel Sanroman (FKMQK3FUDB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Rosbel Sanroman (FKMQK3FUDB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -646,8 +632,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Rosbel Sanroman (FKMQK3FUDB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Rosbel Sanroman (FKMQK3FUDB)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -690,8 +676,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Rosbel Sanroman (FKMQK3FUDB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Rosbel Sanroman (FKMQK3FUDB)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -715,8 +701,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Rosbel Sanroman (FKMQK3FUDB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Rosbel Sanroman (FKMQK3FUDB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -732,8 +718,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Rosbel Sanroman (FKMQK3FUDB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Rosbel Sanroman (FKMQK3FUDB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
