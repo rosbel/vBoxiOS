@@ -135,7 +135,7 @@
 	{
 		if(self.peripheral.state == CBPeripheralStateConnected)
 		{
-			CBCharacteristic *characteristic = [((CBService *)[self.peripheral.services objectAtIndex:0]).characteristics objectAtIndex:0];
+			CBCharacteristic *characteristic = ((CBService *) self.peripheral.services[0]).characteristics[0];
 			[self.peripheral setNotifyValue:value forCharacteristic:characteristic];
 		}
 	}

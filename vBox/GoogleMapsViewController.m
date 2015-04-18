@@ -109,10 +109,10 @@
 	[currentTrip setEndTime:[NSDate date]];
 	unsigned long count = currentTrip.gpsLocations.count;
 	double avgSpeed = count > 0 ? sumSpeed / count : 0;
-	[currentTrip setAvgSpeed:[NSNumber numberWithDouble:avgSpeed]];
-	[currentTrip setMaxSpeed:[NSNumber numberWithDouble:maxSpeed]];
-	[currentTrip setMinSpeed:[NSNumber numberWithDouble:minSpeed]];
-	[currentTrip setTotalMiles:[NSNumber numberWithDouble:GMSGeometryLength(completePath)*0.000621371]];
+    [currentTrip setAvgSpeed:@(avgSpeed)];
+    [currentTrip setMaxSpeed:@(maxSpeed)];
+    [currentTrip setMinSpeed:@(minSpeed)];
+    [currentTrip setTotalMiles:@(GMSGeometryLength(completePath) * 0.000621371)];
 	[[appDelegate drivingHistory] addTripsObject:currentTrip];
 	[appDelegate saveContext];
 	
@@ -311,7 +311,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	NSArray *keys = [[self.bluetoothDiagnostics allKeys] sortedArrayUsingSelector:@selector(compare:)];
-	NSString *key = [keys objectAtIndex:indexPath.row];
+	NSString *key = keys[indexPath.row];
 	
 	UICollectionViewCell *cell;
 	
@@ -319,7 +319,7 @@
 	UILabel *keyLabel = (UILabel *)[cell viewWithTag:1];
 	UILabel *valLabel = (UILabel *)[cell viewWithTag:2];
 	keyLabel.text = key;
-	valLabel.text = [NSString stringWithFormat:@"%@",(NSNumber *)[self.bluetoothDiagnostics objectForKey:key]];
+	valLabel.text = [NSString stringWithFormat:@"%@", (NSNumber *) self.bluetoothDiagnostics[key]];
 	return cell;
 }
 
@@ -386,7 +386,7 @@
 
 -(void)didUpdateDiagnosticForKey:(NSString *)key withValue:(NSNumber *)value
 {
-	[self.bluetoothDiagnostics setObject:value forKey:key];
+	self.bluetoothDiagnostics[key] = value;
 	[self.collectionView reloadData];
 }
 
@@ -463,30 +463,30 @@
 	if(persist)
 	{
 		GPSLocation *newLocation = [NSEntityDescription insertNewObjectForEntityForName:@"GPSLocation" inManagedObjectContext:context];
-		[newLocation setLatitude:[NSNumber numberWithDouble:lat]];
-		[newLocation setLongitude:[NSNumber numberWithDouble:lng]];
-		[newLocation setSpeed:[NSNumber numberWithDouble:speedMPH]];
-		[newLocation setMetersFromStart:[NSNumber numberWithDouble:GMSGeometryLength(completePath)]];
+        [newLocation setLatitude:@(lat)];
+        [newLocation setLongitude:@(lng)];
+        [newLocation setSpeed:@(speedMPH)];
+        [newLocation setMetersFromStart:@(GMSGeometryLength(completePath))];
 		[newLocation setTimestamp:location.timestamp];
 		[newLocation setTripInfo:currentTrip];
-		[newLocation setAltitude:[NSNumber numberWithDouble:altitude]];
+        [newLocation setAltitude:@(altitude)];
 		
 		if(self.bluetoothManager.connected)
 		{
 			
 			BluetoothData *bleData = [NSEntityDescription insertNewObjectForEntityForName:@"BluetoothData" inManagedObjectContext:context];
-			NSNumber *bleSpeedMPH =[self.bluetoothDiagnostics objectForKey:@"Speed"]; //km/h
-			bleSpeedMPH = bleSpeedMPH ? [NSNumber numberWithDouble:(bleSpeedMPH.doubleValue * 0.621371)] : bleSpeedMPH;
+			NSNumber *bleSpeedMPH = self.bluetoothDiagnostics[@"Speed"]; //km/h
+			bleSpeedMPH = bleSpeedMPH ? @(bleSpeedMPH.doubleValue * 0.621371) : bleSpeedMPH;
 			[bleData setSpeed:bleSpeedMPH];
-			[bleData setAmbientTemp:[self.bluetoothDiagnostics objectForKey:@"Ambient Temp"]];
-			[bleData setBarometric:[self.bluetoothDiagnostics objectForKey:@"Barometric"]];
-			[bleData setRpm:[self.bluetoothDiagnostics objectForKey:@"RPM"]];
-			[bleData setIntakeTemp:[self.bluetoothDiagnostics objectForKey:@"Intake Temp"]];
-			[bleData setFuel:[self.bluetoothDiagnostics objectForKey:@"Fuel"]];
-			[bleData setEngineLoad:[self.bluetoothDiagnostics objectForKey:@"Engine Load"]];
-			[bleData setDistance:[self.bluetoothDiagnostics objectForKey:@"Distance"]];
-			[bleData setCoolantTemp:[self.bluetoothDiagnostics objectForKey:@"Coolant Temp"]];
-			[bleData setThrottle:[self.bluetoothDiagnostics objectForKey:@"Throttle"]];
+            [bleData setAmbientTemp:self.bluetoothDiagnostics[@"Ambient Temp"]];
+            [bleData setBarometric:self.bluetoothDiagnostics[@"Barometric"]];
+            [bleData setRpm:self.bluetoothDiagnostics[@"RPM"]];
+            [bleData setIntakeTemp:self.bluetoothDiagnostics[@"Intake Temp"]];
+            [bleData setFuel:self.bluetoothDiagnostics[@"Fuel"]];
+            [bleData setEngineLoad:self.bluetoothDiagnostics[@"Engine Load"]];
+            [bleData setDistance:self.bluetoothDiagnostics[@"Distance"]];
+            [bleData setCoolantTemp:self.bluetoothDiagnostics[@"Coolant Temp"]];
+            [bleData setThrottle:self.bluetoothDiagnostics[@"Throttle"]];
 			//Set AccelX,Y,Z
 			[newLocation setBluetoothInfo:bleData];
 		}
