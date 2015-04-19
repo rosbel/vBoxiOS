@@ -17,13 +17,6 @@
 		C127A6941A098666000CE564 /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = C127A6931A098666000CE564 /* OBSlider.m */; };
 		C13E8CF51A15706D00383CB5 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C13E8CF21A15706D00383CB5 /* SVProgressHUD.bundle */; };
 		C13E8CF61A15706D00383CB5 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C13E8CF41A15706D00383CB5 /* SVProgressHUD.m */; };
-		C15E76C81AB11DA500ADBBE8 /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = C15E76C71AB11DA500ADBBE8 /* InterfaceController.m */; };
-		C15E76CB1AB11DA500ADBBE8 /* GlanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = C15E76CA1AB11DA500ADBBE8 /* GlanceController.m */; };
-		C15E76CD1AB11DA500ADBBE8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C15E76CC1AB11DA500ADBBE8 /* Images.xcassets */; };
-		C15E76D11AB11DA500ADBBE8 /* vBox WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = C15E76D01AB11DA500ADBBE8 /* vBox WatchKit App.app */; };
-		C15E76D91AB11DA500ADBBE8 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C15E76D71AB11DA500ADBBE8 /* Interface.storyboard */; };
-		C15E76DB1AB11DA500ADBBE8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C15E76DA1AB11DA500ADBBE8 /* Images.xcassets */; };
-		C15E76DE1AB11DA500ADBBE8 /* vBox WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C15E76C21AB11DA500ADBBE8 /* vBox WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C163E1241A2E45F800AAB153 /* tripTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C163E1231A2E45F800AAB153 /* tripTableCell.xib */; };
 		C180A30E19F0A04000DE880C /* DebugBluetoothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C180A30D19F0A04000DE880C /* DebugBluetoothViewController.m */; };
 		C181F44419EEA98500FC1D8A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C181F44319EEA98500FC1D8A /* Settings.bundle */; };
@@ -32,6 +25,19 @@
 		C19806111A2E84D9009AD73F /* UINavigationController+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = C19806101A2E84D9009AD73F /* UINavigationController+Orientation.m */; };
 		C1A87CCE19F98EFC00845C7E /* DrivingHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A87CCD19F98EFC00845C7E /* DrivingHistoryViewController.m */; };
 		C1B82C4319F0808E002E6EA4 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1B82C4219F0808E002E6EA4 /* CoreBluetooth.framework */; };
+		C1C0636B1AE31C7F002D3847 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C063691AE31C7F002D3847 /* Bolts.framework */; };
+		C1C0636C1AE31C7F002D3847 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C0636A1AE31C7F002D3847 /* Parse.framework */; };
+		C1C063731AE31CF2002D3847 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C0636D1AE31CF2002D3847 /* AudioToolbox.framework */; };
+		C1C063741AE31CF2002D3847 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C0636E1AE31CF2002D3847 /* CFNetwork.framework */; };
+		C1C063751AE31CF2002D3847 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C0636F1AE31CF2002D3847 /* libsqlite3.dylib */; };
+		C1C063761AE31CF2002D3847 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C063701AE31CF2002D3847 /* MobileCoreServices.framework */; };
+		C1C063771AE31CF2002D3847 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C063711AE31CF2002D3847 /* Security.framework */; };
+		C1C063781AE31CF2002D3847 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C063721AE31CF2002D3847 /* StoreKit.framework */; };
+		C1C0637B1AE31D44002D3847 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C063791AE31D44002D3847 /* Accounts.framework */; };
+		C1C0637C1AE31D44002D3847 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C0637A1AE31D44002D3847 /* Social.framework */; };
+		C1C0637F1AE32B19002D3847 /* UtilityMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C0637E1AE32B19002D3847 /* UtilityMethods.m */; };
+		C1C063811AE35832002D3847 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C063801AE35832002D3847 /* ParseCrashReporting.framework */; };
+		C1C063841AE35B8B002D3847 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C063831AE35B8B002D3847 /* libstdc++.6.dylib */; };
 		C1CEF69A19FA04D600D6E46D /* TripDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1CEF69919FA04D600D6E46D /* TripDetailViewController.m */; };
 		C1D6CA5019F41A5A003FF61C /* BluetoothTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D6CA4F19F41A5A003FF61C /* BluetoothTableViewController.m */; };
 		C1E4584319DE0C5B001A5627 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E4584219DE0C5B001A5627 /* main.m */; };
@@ -63,20 +69,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C15E76D21AB11DA500ADBBE8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C1E4583519DE0C5B001A5627 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C15E76CF1AB11DA500ADBBE8;
-			remoteInfo = "vBox WatchKit App";
-		};
-		C15E76DC1AB11DA500ADBBE8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C1E4583519DE0C5B001A5627 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C15E76C11AB11DA500ADBBE8;
-			remoteInfo = "vBox WatchKit Extension";
-		};
 		C1E4585719DE0C5B001A5627 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C1E4583519DE0C5B001A5627 /* Project object */;
@@ -93,7 +85,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				C15E76DE1AB11DA500ADBBE8 /* vBox WatchKit Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -118,17 +109,6 @@
 		C13E8CF21A15706D00383CB5 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		C13E8CF31A15706D00383CB5 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		C13E8CF41A15706D00383CB5 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
-		C15E76C21AB11DA500ADBBE8 /* vBox WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "vBox WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C15E76C51AB11DA500ADBBE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C15E76C61AB11DA500ADBBE8 /* InterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceController.h; sourceTree = "<group>"; };
-		C15E76C71AB11DA500ADBBE8 /* InterfaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterfaceController.m; sourceTree = "<group>"; };
-		C15E76C91AB11DA500ADBBE8 /* GlanceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlanceController.h; sourceTree = "<group>"; };
-		C15E76CA1AB11DA500ADBBE8 /* GlanceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlanceController.m; sourceTree = "<group>"; };
-		C15E76CC1AB11DA500ADBBE8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		C15E76D01AB11DA500ADBBE8 /* vBox WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "vBox WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C15E76D61AB11DA500ADBBE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C15E76D81AB11DA500ADBBE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
-		C15E76DA1AB11DA500ADBBE8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C163E1231A2E45F800AAB153 /* tripTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = tripTableCell.xib; sourceTree = "<group>"; };
 		C17E14EC1A080C95009DDF24 /* GPSInformation 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "GPSInformation 5.xcdatamodel"; sourceTree = "<group>"; };
 		C180A30C19F0A04000DE880C /* DebugBluetoothViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugBluetoothViewController.h; sourceTree = "<group>"; };
@@ -144,6 +124,20 @@
 		C1A87CCC19F98EFC00845C7E /* DrivingHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrivingHistoryViewController.h; sourceTree = "<group>"; };
 		C1A87CCD19F98EFC00845C7E /* DrivingHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrivingHistoryViewController.m; sourceTree = "<group>"; };
 		C1B82C4219F0808E002E6EA4 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		C1C063691AE31C7F002D3847 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		C1C0636A1AE31C7F002D3847 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		C1C0636D1AE31CF2002D3847 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		C1C0636E1AE31CF2002D3847 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		C1C0636F1AE31CF2002D3847 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		C1C063701AE31CF2002D3847 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		C1C063711AE31CF2002D3847 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		C1C063721AE31CF2002D3847 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		C1C063791AE31D44002D3847 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		C1C0637A1AE31D44002D3847 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		C1C0637D1AE32B19002D3847 /* UtilityMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilityMethods.h; sourceTree = "<group>"; };
+		C1C0637E1AE32B19002D3847 /* UtilityMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilityMethods.m; sourceTree = "<group>"; };
+		C1C063801AE35832002D3847 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
+		C1C063831AE35B8B002D3847 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		C1C650711A07D76B000186E3 /* GPSInformation 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "GPSInformation 4.xcdatamodel"; sourceTree = "<group>"; };
 		C1CCB1D81A0826CB00F0C3F5 /* GPSInformation 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "GPSInformation 6.xcdatamodel"; sourceTree = "<group>"; };
 		C1CEF69819FA04D600D6E46D /* TripDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripDetailViewController.h; sourceTree = "<group>"; };
@@ -188,32 +182,37 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C15E76BF1AB11DA500ADBBE8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C1E4583A19DE0C5B001A5627 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1C063841AE35B8B002D3847 /* libstdc++.6.dylib in Frameworks */,
+				C1C0637B1AE31D44002D3847 /* Accounts.framework in Frameworks */,
+				C1C0637C1AE31D44002D3847 /* Social.framework in Frameworks */,
+				C1C063731AE31CF2002D3847 /* AudioToolbox.framework in Frameworks */,
+				C1C063741AE31CF2002D3847 /* CFNetwork.framework in Frameworks */,
+				C1C063751AE31CF2002D3847 /* libsqlite3.dylib in Frameworks */,
+				C1C063761AE31CF2002D3847 /* MobileCoreServices.framework in Frameworks */,
+				C1C063771AE31CF2002D3847 /* Security.framework in Frameworks */,
+				C1C063781AE31CF2002D3847 /* StoreKit.framework in Frameworks */,
+				C122324819F34021002318DF /* CoreGraphics.framework in Frameworks */,
+				C1E4588219DE1262001A5627 /* CoreLocation.framework in Frameworks */,
+				C1E4587719DE0DB8001A5627 /* libz.dylib in Frameworks */,
+				C1E4587B19DE0DC7001A5627 /* QuartzCore.framework in Frameworks */,
+				C1E4587D19DE0DCF001A5627 /* SystemConfiguration.framework in Frameworks */,
 				C122324C19F34052002318DF /* Foundation.framework in Frameworks */,
 				C122324A19F34030002318DF /* UIKit.framework in Frameworks */,
-				C122324819F34021002318DF /* CoreGraphics.framework in Frameworks */,
 				C1B82C4319F0808E002E6EA4 /* CoreBluetooth.framework in Frameworks */,
-				C1E4588219DE1262001A5627 /* CoreLocation.framework in Frameworks */,
-				C1E4587D19DE0DCF001A5627 /* SystemConfiguration.framework in Frameworks */,
-				C1E4587B19DE0DC7001A5627 /* QuartzCore.framework in Frameworks */,
 				C1E4587919DE0DC0001A5627 /* OpenGLES.framework in Frameworks */,
-				C1E4587719DE0DB8001A5627 /* libz.dylib in Frameworks */,
 				C1E4587519DE0DAA001A5627 /* libicucore.dylib in Frameworks */,
 				C1E4587319DE0D9C001A5627 /* libc++.dylib in Frameworks */,
+				C1C063811AE35832002D3847 /* ParseCrashReporting.framework in Frameworks */,
 				C1E4587119DE0D92001A5627 /* ImageIO.framework in Frameworks */,
 				C1E4586F19DE0D8A001A5627 /* GLKit.framework in Frameworks */,
+				C1C0636C1AE31C7F002D3847 /* Parse.framework in Frameworks */,
 				C1E4586D19DE0D81001A5627 /* CoreText.framework in Frameworks */,
 				C1EA74501A099024005CBE1C /* GoogleMaps.framework in Frameworks */,
+				C1C0636B1AE31C7F002D3847 /* Bolts.framework in Frameworks */,
 				C1E4586B19DE0D7A001A5627 /* CoreData.framework in Frameworks */,
 				C1E4586919DE0D73001A5627 /* AVFoundation.framework in Frameworks */,
 			);
@@ -265,45 +264,6 @@
 				C13E8CF41A15706D00383CB5 /* SVProgressHUD.m */,
 			);
 			name = SVProgressHUD;
-			sourceTree = "<group>";
-		};
-		C15E76C31AB11DA500ADBBE8 /* vBox WatchKit Extension */ = {
-			isa = PBXGroup;
-			children = (
-				C15E76C61AB11DA500ADBBE8 /* InterfaceController.h */,
-				C15E76C71AB11DA500ADBBE8 /* InterfaceController.m */,
-				C15E76C91AB11DA500ADBBE8 /* GlanceController.h */,
-				C15E76CA1AB11DA500ADBBE8 /* GlanceController.m */,
-				C15E76CC1AB11DA500ADBBE8 /* Images.xcassets */,
-				C15E76C41AB11DA500ADBBE8 /* Supporting Files */,
-			);
-			path = "vBox WatchKit Extension";
-			sourceTree = "<group>";
-		};
-		C15E76C41AB11DA500ADBBE8 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				C15E76C51AB11DA500ADBBE8 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C15E76D41AB11DA500ADBBE8 /* vBox WatchKit App */ = {
-			isa = PBXGroup;
-			children = (
-				C15E76D71AB11DA500ADBBE8 /* Interface.storyboard */,
-				C15E76DA1AB11DA500ADBBE8 /* Images.xcassets */,
-				C15E76D51AB11DA500ADBBE8 /* Supporting Files */,
-			);
-			path = "vBox WatchKit App";
-			sourceTree = "<group>";
-		};
-		C15E76D51AB11DA500ADBBE8 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				C15E76D61AB11DA500ADBBE8 /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		C163E1221A2E459E00AAB153 /* Views */ = {
@@ -371,8 +331,6 @@
 			isa = PBXGroup;
 			children = (
 				C1E4583F19DE0C5B001A5627 /* vBox */,
-				C15E76C31AB11DA500ADBBE8 /* vBox WatchKit Extension */,
-				C15E76D41AB11DA500ADBBE8 /* vBox WatchKit App */,
 				C1E4587E19DE0E53001A5627 /* Frameworks */,
 				C1E4585919DE0C5B001A5627 /* vBoxTests */,
 				C1E4583E19DE0C5B001A5627 /* Products */,
@@ -384,8 +342,6 @@
 			children = (
 				C1E4583D19DE0C5B001A5627 /* vBox.app */,
 				C1E4585619DE0C5B001A5627 /* vBoxTests.xctest */,
-				C15E76C21AB11DA500ADBBE8 /* vBox WatchKit Extension.appex */,
-				C15E76D01AB11DA500ADBBE8 /* vBox WatchKit App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -419,6 +375,8 @@
 				C1E4584219DE0C5B001A5627 /* main.m */,
 				C198060F1A2E84D9009AD73F /* UINavigationController+Orientation.h */,
 				C19806101A2E84D9009AD73F /* UINavigationController+Orientation.m */,
+				C1C0637D1AE32B19002D3847 /* UtilityMethods.h */,
+				C1C0637E1AE32B19002D3847 /* UtilityMethods.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -443,6 +401,18 @@
 		C1E4587E19DE0E53001A5627 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C1C063831AE35B8B002D3847 /* libstdc++.6.dylib */,
+				C1C063801AE35832002D3847 /* ParseCrashReporting.framework */,
+				C1C063791AE31D44002D3847 /* Accounts.framework */,
+				C1C0637A1AE31D44002D3847 /* Social.framework */,
+				C1C0636D1AE31CF2002D3847 /* AudioToolbox.framework */,
+				C1C0636E1AE31CF2002D3847 /* CFNetwork.framework */,
+				C1C0636F1AE31CF2002D3847 /* libsqlite3.dylib */,
+				C1C063701AE31CF2002D3847 /* MobileCoreServices.framework */,
+				C1C063711AE31CF2002D3847 /* Security.framework */,
+				C1C063721AE31CF2002D3847 /* StoreKit.framework */,
+				C1C063691AE31C7F002D3847 /* Bolts.framework */,
+				C1C0636A1AE31C7F002D3847 /* Parse.framework */,
 				C1EA74511A09903E005CBE1C /* GoogleMaps.bundle */,
 				C1EA744F1A099024005CBE1C /* GoogleMaps.framework */,
 				C122324B19F34052002318DF /* Foundation.framework */,
@@ -468,39 +438,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C15E76C11AB11DA500ADBBE8 /* vBox WatchKit Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C15E76E61AB11DA500ADBBE8 /* Build configuration list for PBXNativeTarget "vBox WatchKit Extension" */;
-			buildPhases = (
-				C15E76BE1AB11DA500ADBBE8 /* Sources */,
-				C15E76BF1AB11DA500ADBBE8 /* Frameworks */,
-				C15E76C01AB11DA500ADBBE8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C15E76D31AB11DA500ADBBE8 /* PBXTargetDependency */,
-			);
-			name = "vBox WatchKit Extension";
-			productName = "vBox WatchKit Extension";
-			productReference = C15E76C21AB11DA500ADBBE8 /* vBox WatchKit Extension.appex */;
-			productType = "com.apple.product-type.watchkit-extension";
-		};
-		C15E76CF1AB11DA500ADBBE8 /* vBox WatchKit App */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C15E76E51AB11DA500ADBBE8 /* Build configuration list for PBXNativeTarget "vBox WatchKit App" */;
-			buildPhases = (
-				C15E76CE1AB11DA500ADBBE8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "vBox WatchKit App";
-			productName = "vBox WatchKit App";
-			productReference = C15E76D01AB11DA500ADBBE8 /* vBox WatchKit App.app */;
-			productType = "com.apple.product-type.application.watchapp";
-		};
 		C1E4583C19DE0C5B001A5627 /* vBox */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C1E4586019DE0C5B001A5627 /* Build configuration list for PBXNativeTarget "vBox" */;
@@ -509,11 +446,11 @@
 				C1E4583A19DE0C5B001A5627 /* Frameworks */,
 				C1E4583B19DE0C5B001A5627 /* Resources */,
 				C15E76E71AB11DA500ADBBE8 /* Embed App Extensions */,
+				C1C063821AE35A78002D3847 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C15E76DD1AB11DA500ADBBE8 /* PBXTargetDependency */,
 			);
 			name = vBox;
 			productName = vBox;
@@ -547,13 +484,6 @@
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = rosbelSanroman;
 				TargetAttributes = {
-					C15E76C11AB11DA500ADBBE8 = {
-						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = FKMQK3FUDB;
-					};
-					C15E76CF1AB11DA500ADBBE8 = {
-						CreatedOnToolsVersion = 6.2;
-					};
 					C1E4583C19DE0C5B001A5627 = {
 						CreatedOnToolsVersion = 6.0.1;
 						DevelopmentTeam = FKMQK3FUDB;
@@ -585,31 +515,11 @@
 			targets = (
 				C1E4583C19DE0C5B001A5627 /* vBox */,
 				C1E4585519DE0C5B001A5627 /* vBoxTests */,
-				C15E76C11AB11DA500ADBBE8 /* vBox WatchKit Extension */,
-				C15E76CF1AB11DA500ADBBE8 /* vBox WatchKit App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C15E76C01AB11DA500ADBBE8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C15E76CD1AB11DA500ADBBE8 /* Images.xcassets in Resources */,
-				C15E76D11AB11DA500ADBBE8 /* vBox WatchKit App.app in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C15E76CE1AB11DA500ADBBE8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C15E76D91AB11DA500ADBBE8 /* Interface.storyboard in Resources */,
-				C15E76DB1AB11DA500ADBBE8 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C1E4583B19DE0C5B001A5627 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -635,16 +545,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXSourcesBuildPhase section */
-		C15E76BE1AB11DA500ADBBE8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
+/* Begin PBXShellScriptBuildPhase section */
+		C1C063821AE35A78002D3847 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C15E76C81AB11DA500ADBBE8 /* InterfaceController.m in Sources */,
-				C15E76CB1AB11DA500ADBBE8 /* GlanceController.m in Sources */,
+			);
+			inputPaths = (
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=/usr/local/bin:$PATH\ncd /Users/rosbelsanroman/Developer/Xcode/vBox/parse\n\nparse symbols -p \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"";
 		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
 		C1E4583919DE0C5B001A5627 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -664,6 +581,7 @@
 				C1D6CA5019F41A5A003FF61C /* BluetoothTableViewController.m in Sources */,
 				C127A6941A098666000CE564 /* OBSlider.m in Sources */,
 				C1E4584319DE0C5B001A5627 /* main.m in Sources */,
+				C1C0637F1AE32B19002D3847 /* UtilityMethods.m in Sources */,
 				C13E8CF61A15706D00383CB5 /* SVProgressHUD.m in Sources */,
 				C1F459611A2BECAA00840D8B /* MainScreenViewController.m in Sources */,
 				C1FE69D01A041A1200DA15BD /* BLEManager.m in Sources */,
@@ -682,16 +600,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C15E76D31AB11DA500ADBBE8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C15E76CF1AB11DA500ADBBE8 /* vBox WatchKit App */;
-			targetProxy = C15E76D21AB11DA500ADBBE8 /* PBXContainerItemProxy */;
-		};
-		C15E76DD1AB11DA500ADBBE8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C15E76C11AB11DA500ADBBE8 /* vBox WatchKit Extension */;
-			targetProxy = C15E76DC1AB11DA500ADBBE8 /* PBXContainerItemProxy */;
-		};
 		C1E4585819DE0C5B001A5627 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C1E4583C19DE0C5B001A5627 /* vBox */;
@@ -700,14 +608,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C15E76D71AB11DA500ADBBE8 /* Interface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C15E76D81AB11DA500ADBBE8 /* Base */,
-			);
-			name = Interface.storyboard;
-			sourceTree = "<group>";
-		};
 		C1E4584A19DE0C5B001A5627 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -727,99 +627,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		C15E76DF1AB11DA500ADBBE8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "vBox WatchKit Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		C15E76E01AB11DA500ADBBE8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = "vBox WatchKit Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		C15E76E11AB11DA500ADBBE8 /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = "vBox WatchKit Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SKIP_INSTALL = YES;
-			};
-			name = Distribution;
-		};
-		C15E76E21AB11DA500ADBBE8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				IBSC_MODULE = vBox_WatchKit_Extension;
-				INFOPLIST_FILE = "vBox WatchKit App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
-			};
-			name = Debug;
-		};
-		C15E76E31AB11DA500ADBBE8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				COPY_PHASE_STRIP = NO;
-				IBSC_MODULE = vBox_WatchKit_Extension;
-				INFOPLIST_FILE = "vBox WatchKit App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
-			};
-			name = Release;
-		};
-		C15E76E41AB11DA500ADBBE8 /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				COPY_PHASE_STRIP = NO;
-				IBSC_MODULE = vBox_WatchKit_Extension;
-				INFOPLIST_FILE = "vBox WatchKit App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
-			};
-			name = Distribution;
-		};
 		C18213B51A2FB92A00FE29E2 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -862,11 +669,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/rosbelsanroman/Developer/Xcode/Third,
+					"Party/parse-library-1",
 				);
 				INFOPLIST_FILE = vBox/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -979,11 +788,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/rosbelsanroman/Developer/Xcode/Third,
+					"Party/parse-library-1",
 				);
 				INFOPLIST_FILE = vBox/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -996,11 +807,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/rosbelsanroman/Developer/Xcode/Third,
+					"Party/parse-library-1",
 				);
 				INFOPLIST_FILE = vBox/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1052,24 +865,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C15E76E51AB11DA500ADBBE8 /* Build configuration list for PBXNativeTarget "vBox WatchKit App" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C15E76E21AB11DA500ADBBE8 /* Debug */,
-				C15E76E31AB11DA500ADBBE8 /* Release */,
-				C15E76E41AB11DA500ADBBE8 /* Distribution */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-		C15E76E61AB11DA500ADBBE8 /* Build configuration list for PBXNativeTarget "vBox WatchKit Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C15E76DF1AB11DA500ADBBE8 /* Debug */,
-				C15E76E01AB11DA500ADBBE8 /* Release */,
-				C15E76E11AB11DA500ADBBE8 /* Distribution */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
 		C1E4583819DE0C5B001A5627 /* Build configuration list for PBXProject "vBox" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

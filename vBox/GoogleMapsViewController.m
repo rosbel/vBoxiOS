@@ -10,6 +10,8 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "SVProgressHUD.h"
 #import "MyStyleKit.h"
+#import "UtilityMethods.h"
+#import <Parse/Parse.h>
 
 @interface GoogleMapsViewController ()
 
@@ -72,6 +74,7 @@
 	[self setUpGoogleMaps];
 	
 	[self setUpUIButtons];
+    
 }
 
 -(void)viewDidLayoutSubviews
@@ -116,6 +119,15 @@
 	[[appDelegate drivingHistory] addTripsObject:currentTrip];
 	[appDelegate saveContext];
 	
+    NSDictionary *dimension = @{
+                                @"Started Trip" : [UtilityMethods formattedStringFromDate:currentTrip.startTime],
+                                @"Max Speed" : [NSString stringWithFormat:@"%@ mph",@(maxSpeed)],
+                                @"Avg Speed" : [NSString stringWithFormat:@"%@ mph",@(avgSpeed)],
+                                @"Miles" : [NSString stringWithFormat:@"%@ mi", currentTrip.totalMiles],
+                                @"Ended Trip" : [UtilityMethods formattedStringFromDate:currentTrip.endTime]
+                                };
+    [PFAnalytics trackEventInBackground:@"TripInfo" dimensions:dimension block:nil];
+    
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 	[super viewWillDisappear:animated];
 }

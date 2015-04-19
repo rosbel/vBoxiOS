@@ -10,6 +10,7 @@
 #import <MessageUI/MessageUI.h>
 #import "SVProgressHUD.h"
 #import "MyStyleKit.h"
+#import "UtilityMethods.h"
 
 @interface TripDetailViewController () <MFMailComposeViewControllerDelegate>
 
@@ -243,12 +244,7 @@
 	}
 	else
 	{
-		NSTimeInterval timeSinceStart = [loc.timestamp timeIntervalSinceDate:self.trip.startTime];
-		NSInteger ti = (NSInteger)timeSinceStart;
-		NSInteger seconds = ti % 60;
-		NSInteger minutes = (ti / 60) % 60;
-		NSInteger hours = (ti / 3600);
-		self.timeLabel.text = [NSString stringWithFormat:@"%02li:%02li:%02li",(long)hours,(long)minutes,(long)seconds];
+        self.timeLabel.text = [UtilityMethods durationInStringOfTimeIntervalFrom:self.trip.startTime to:loc.timestamp];
 	}
 	
 	

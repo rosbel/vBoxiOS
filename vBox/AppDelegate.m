@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import <Parse/Parse.h>
+#import <ParseCrashReporting/ParseCrashReporting.h>
+#import "UtilityMethods.h"
 
 @interface AppDelegate ()
 
@@ -20,12 +23,36 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 @synthesize drivingHistory = _drivingHistory;
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// Override point for customization after application launch.
 	[GMSServices provideAPIKey:@"AIzaSyBdHnG4e7HZkd3RpXGWU6Sl0T2QL79kkyU"];
-	
-	return YES;
+    
+    [ParseCrashReporting enable];
+    
+    [Parse setApplicationId:@"qRQ11sLN68WlCb2xIuV7YOfTDtxYKyq8I9rtXW8i"
+                  clientKey:@"2ICp7TF5XM6bO40qS6IW8SD161wOqQ05VnGzmxyG"];
+    
+    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                    UIUserNotificationTypeBadge |
+                                                    UIUserNotificationTypeSound);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes categories:nil];
+    [application registerUserNotificationSettings:settings];
+    [application registerForRemoteNotifications];
+    
+    if (application.applicationState != UIApplicationStateBackground) {
+        // Track an app open here if we launch with a push, unless
+        // "content_available" was used to trigger a background push (introduced
+        // in iOS 7). In that case, we skip tracking here to avoid double
+        // counting the app-open.
+        BOOL preBackgroundPush = ![application respondsToSelector:@selector(backgroundRefreshStatus)];
+        BOOL oldPushHandlerOnly = ![self respondsToSelector:@selector(application:didReceiveRemoteNotification:fetchCompletionHandler:)];
+        BOOL noPushPayload = ![launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
+            [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+        }
+    }
+    
+    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -45,13 +72,37 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    if (currentInstallation.badge != 0)
+    {
+        currentInstallation.badge = 0;
+        [currentInstallation saveEventually];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 	// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
 }
 
+#pragma mark - Remote Notifications
 
+-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+}
+
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    [PFPush handlePush:userInfo];
+    if (application.applicationState == UIApplicationStateInactive) {
+        // The application was just brought from the background to the foreground,
+        // so we consider the app as having been "opened by a push notification."
+        [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
+    }
+}
 
 #pragma mark - Core Data
 
@@ -64,7 +115,7 @@
 		if([managedObjectContext hasChanges] && ![managedObjectContext save:&error])
 		{
 			NSLog(@"Unresolved Error %@, %@", error, [error userInfo]);
-			abort(); //dont use abort in real app, only for debugging
+//			abort(); //dont use abort in real app, only for debugging
 		}
 	}
 }
@@ -107,7 +158,7 @@
 	if(![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:@{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES} error:&error])
 	{
 		NSLog(@"Unresolved Error %@, %@",error,[error userInfo]);
-		abort();
+//		abort();
 	}
 	
 	return _persistentStoreCoordinator;
