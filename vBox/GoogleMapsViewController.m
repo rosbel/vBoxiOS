@@ -118,18 +118,8 @@
     [currentTrip setTotalMiles:@(GMSGeometryLength(completePath) * 0.000621371)];
 	[[appDelegate drivingHistory] addTripsObject:currentTrip];
 	[appDelegate saveContext];
-	
-    NSDictionary *dimension = @{
-                                @"StartTime" : [UtilityMethods formattedStringFromDate:currentTrip.startTime],
-                                @"MaxSpeed" : [NSString stringWithFormat:@"%@ mph",@(maxSpeed)],
-                                @"AvgSpeed" : [NSString stringWithFormat:@"%@ mph",@(avgSpeed)],
-                                @"Miles" : [NSString stringWithFormat:@"%@ mi", currentTrip.totalMiles],
-                                @"EndTime" : [UtilityMethods formattedStringFromDate:currentTrip.endTime]
-                                };
     
-    [PFAnalytics trackEventInBackground:@"TripInfo" dimensions:dimension block:nil];
-    
-    [self reverseGeocodeAndTrackInBackground:prevLocation];
+    [self reverseGeocodeAndTrackInBackground:prevLocation andAvgSpeed:avgSpeed];
     
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 	[super viewWillDisappear:animated];
@@ -536,27 +526,32 @@
                   
 #pragma mark - Helper Methods
 
--(void)reverseGeocodeAndTrackInBackground:(CLLocation *)location
+-(void)reverseGeocodeAndTrackInBackground:(CLLocation *)location andAvgSpeed:(double)avgSpeed
 {
     CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
     [geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
         if(error)
         {
-            //NSLog(@"Error %@",error);
+            [PFAnalytics trackEventInBackground:@"ReverseGeoCodeError" dimensions:@{@"error":error.description} block:nil];
         }
         else
         {
             CLPlacemark *placemark = placemarks.lastObject;
-            NSLog(@"%@",placemark.addressDictionary);
             NSMutableDictionary *dimensions = [[NSMutableDictionary alloc] init];
+            
             dimensions[@"City"] = (NSString *) placemark.addressDictionary[@"City"];
             dimensions[@"State"] = (NSString *) placemark.addressDictionary[@"State"];
-            dimensions[@"ZIP"] = (NSString *) placemark.addressDictionary[@"ZIP"];
             dimensions[@"Country"] = (NSString *) placemark.addressDictionary[@"CountryCode"];
             dimensions[@"Street"] = (NSString *) placemark.addressDictionary[@"Street"];
+            dimensions[@"StartTime"] = [UtilityMethods formattedStringFromDate:currentTrip.startTime];
+            dimensions[@"MaxSpeed"] = [NSString stringWithFormat:@"%@ mph",@(maxSpeed)];
+            dimensions[@"AvgSpeed"] = [NSString stringWithFormat:@"%@ mph",@(avgSpeed)];
+            dimensions[@"Miles"] = [NSString stringWithFormat:@"%@ mi", currentTrip.totalMiles];
+            
             [PFAnalytics trackEventInBackground:@"TripEndDetail" dimensions:dimensions block:nil];
         }
     }];
     
 }
+
 @end
