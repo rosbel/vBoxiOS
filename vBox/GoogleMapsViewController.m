@@ -120,13 +120,16 @@
 	[appDelegate saveContext];
 	
     NSDictionary *dimension = @{
-                                @"Started Trip" : [UtilityMethods formattedStringFromDate:currentTrip.startTime],
-                                @"Max Speed" : [NSString stringWithFormat:@"%@ mph",@(maxSpeed)],
-                                @"Avg Speed" : [NSString stringWithFormat:@"%@ mph",@(avgSpeed)],
+                                @"StartTime" : [UtilityMethods formattedStringFromDate:currentTrip.startTime],
+                                @"MaxSpeed" : [NSString stringWithFormat:@"%@ mph",@(maxSpeed)],
+                                @"AvgSpeed" : [NSString stringWithFormat:@"%@ mph",@(avgSpeed)],
                                 @"Miles" : [NSString stringWithFormat:@"%@ mi", currentTrip.totalMiles],
-                                @"Ended Trip" : [UtilityMethods formattedStringFromDate:currentTrip.endTime]
+                                @"EndTime" : [UtilityMethods formattedStringFromDate:currentTrip.endTime]
                                 };
+    
     [PFAnalytics trackEventInBackground:@"TripInfo" dimensions:dimension block:nil];
+    
+    [self reverseGeocodeAndTrackInBackground:prevLocation];
     
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 	[super viewWillDisappear:animated];
@@ -528,8 +531,32 @@
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
-	UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Memory Warning" message:@"Received Memory Warning!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-	[errorAlert show];
+    [PFAnalytics trackEventInBackground:@"MemoryWarning" dimensions:@{@"ViewController":@"GoogleMapsVC"} block:nil];
 }
+                  
+#pragma mark - Helper Methods
 
+-(void)reverseGeocodeAndTrackInBackground:(CLLocation *)location
+{
+    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
+    [geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+        if(error)
+        {
+            //NSLog(@"Error %@",error);
+        }
+        else
+        {
+            CLPlacemark *placemark = placemarks.lastObject;
+            NSLog(@"%@",placemark.addressDictionary);
+            NSMutableDictionary *dimensions = [[NSMutableDictionary alloc] init];
+            dimensions[@"City"] = (NSString *) placemark.addressDictionary[@"City"];
+            dimensions[@"State"] = (NSString *) placemark.addressDictionary[@"State"];
+            dimensions[@"ZIP"] = (NSString *) placemark.addressDictionary[@"ZIP"];
+            dimensions[@"Country"] = (NSString *) placemark.addressDictionary[@"CountryCode"];
+            dimensions[@"Street"] = (NSString *) placemark.addressDictionary[@"Street"];
+            [PFAnalytics trackEventInBackground:@"TripEndDetail" dimensions:dimensions block:nil];
+        }
+    }];
+    
+}
 @end

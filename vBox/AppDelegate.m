@@ -32,12 +32,7 @@
     [Parse setApplicationId:@"qRQ11sLN68WlCb2xIuV7YOfTDtxYKyq8I9rtXW8i"
                   clientKey:@"2ICp7TF5XM6bO40qS6IW8SD161wOqQ05VnGzmxyG"];
     
-    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
-                                                    UIUserNotificationTypeBadge |
-                                                    UIUserNotificationTypeSound);
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes categories:nil];
-    [application registerUserNotificationSettings:settings];
-    [application registerForRemoteNotifications];
+    [self registerUserForNotifications:application];
     
     if (application.applicationState != UIApplicationStateBackground) {
         // Track an app open here if we launch with a push, unless
@@ -48,7 +43,7 @@
         BOOL oldPushHandlerOnly = ![self respondsToSelector:@selector(application:didReceiveRemoteNotification:fetchCompletionHandler:)];
         BOOL noPushPayload = ![launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
         if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
-            [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+            [PFAnalytics trackAppOpenedWithLaunchOptionsInBackground:launchOptions block:nil];
         }
     }
     
@@ -199,6 +194,16 @@
 - (NSURL *)applicationDocumentsDirectory
 {
 	return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+#pragma mark - Helper Methods
+- (void)registerUserForNotifications:(UIApplication *)application {
+    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                    UIUserNotificationTypeBadge |
+                                                    UIUserNotificationTypeSound);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes categories:nil];
+    [application registerUserNotificationSettings:settings];
+    [application registerForRemoteNotifications];
 }
 
 @end
