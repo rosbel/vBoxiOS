@@ -69,17 +69,17 @@
 	}
 	
 	NSArray *keys = [[self.diagnostics allKeys] sortedArrayUsingSelector:@selector(compare:)];
-	NSString *key = [keys objectAtIndex:indexPath.row];
+	NSString *key = keys[(NSUInteger) indexPath.row];
 	NSString *text = [key stringByAppendingString:@" - "];
 	if(![key isEqualToString:@"Accelerometer"])
 	{
-		NSNumber *value = [self.diagnostics objectForKey:key];
+		NSNumber *value = self.diagnostics[key];
 		text = [text stringByAppendingString:[NSString stringWithFormat:@"%@",value]];
 	}
 	else
 	{
-		NSArray *values = [self.diagnostics objectForKey:key];
-		text = [text stringByAppendingString:[NSString stringWithFormat:@"(%@,%@,%@)",[values objectAtIndex:0],[values objectAtIndex:1],[values objectAtIndex:2]]];
+		NSArray *values = self.diagnostics[key];
+		text = [text stringByAppendingString:[NSString stringWithFormat:@"(%@,%@,%@)", values[0], values[1], values[2]]];
 	}
 	
 	cell.textLabel.text = text;
@@ -92,7 +92,7 @@
 //Bluetooth Thread
 -(void)didUpdateDiagnosticForKey:(NSString *)key withValue:(NSNumber *)value
 {
-	[self.diagnostics setObject:value forKey:key];
+	self.diagnostics[key] = value;
 	
 	//insert into core data?
 	[self.tableView reloadData];

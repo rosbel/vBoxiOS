@@ -7,7 +7,6 @@
 //
 
 #import "GoogleMapsViewController.h"
-#import <GoogleMaps/GoogleMaps.h>
 #import "SVProgressHUD.h"
 #import "MyStyleKit.h"
 #import "UtilityMethods.h"
@@ -54,7 +53,7 @@
 	
 	completePath = [GMSMutablePath path];
 	
-	styles = @[[GMSStrokeStyle solidColor:[UIColor colorWithRed:0.2666666667 green:0.4666666667 blue:0.6 alpha:1]],[GMSStrokeStyle solidColor:[UIColor colorWithRed:0.6666666667 green:0.8 blue:0.8 alpha:1]]];
+	styles = @[[GMSStrokeStyle solidColor:[UIColor colorWithRed:(CGFloat) 0.2666666667 green:(CGFloat) 0.4666666667 blue:0.6 alpha:1]],[GMSStrokeStyle solidColor:[UIColor colorWithRed:(CGFloat) 0.6666666667 green:0.8 blue:0.8 alpha:1]]];
 	
 	sumSpeed = 0;
 	maxSpeed = 0;
@@ -176,7 +175,7 @@
 	self.stopRecordingButton.layer.masksToBounds = YES;
 	self.stopRecordingButton.layer.cornerRadius = 5.0;
 	[self.stopRecordingButton setBackgroundImage:[MyStyleKit imageOfVBoxButtonWithButtonColor:
-												  [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1 alpha:1]] forState:UIControlStateNormal];
+            [UIColor colorWithRed:0.0 green:(CGFloat) (122.0 / 255.0) blue:1 alpha:1]] forState:UIControlStateNormal];
 	
 	self.speedOrDistanceLabel.layer.masksToBounds = YES;
 	self.speedOrDistanceLabel.layer.cornerRadius = 5.0;
@@ -278,7 +277,7 @@
 		[polyline setPath:completePath];
 	}
 	
-	double tolerance = powf(10.0,(-0.301*self.MapView.camera.zoom)+9.0731) / 2500.0;
+	double tolerance = powf(10.0, (float) ((-0.301*self.MapView.camera.zoom)+9.0731)) / 2500.0;
 	NSArray *lengths = @[@(tolerance),@(tolerance*1.5)];
 	polyline.spans = GMSStyleSpans(polyline.path, styles, lengths, kGMSLengthGeodesic);
 	
@@ -316,7 +315,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	NSArray *keys = [[self.bluetoothDiagnostics allKeys] sortedArrayUsingSelector:@selector(compare:)];
-	NSString *key = keys[indexPath.row];
+	NSString *key = keys[(NSUInteger) indexPath.row];
 	
 	UICollectionViewCell *cell;
 	

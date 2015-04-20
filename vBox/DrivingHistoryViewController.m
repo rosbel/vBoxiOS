@@ -7,7 +7,6 @@
 //
 
 #import "DrivingHistoryViewController.h"
-#import "AppDelegate.h"
 #import "MyStyleKit.h"
 
 @interface DrivingHistoryViewController ()
@@ -65,11 +64,11 @@
 	{
 		NSDate *beginningOfDate = [self dateAtBeginningOfDayForDate:trip.startTime];
 		
-		NSMutableArray *tempArray = [self.tripsByDate objectForKey:beginningOfDate];
+		NSMutableArray *tempArray = self.tripsByDate[beginningOfDate];
 		if(!tempArray)
 		{
 			tempArray = [NSMutableArray array];
-			[self.tripsByDate setObject:tempArray forKey:beginningOfDate];
+			self.tripsByDate[beginningOfDate] = tempArray;
 		}
 		[tempArray addObject:trip];
 	}
@@ -104,8 +103,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	NSDate *dateTitle = [self.sortedDays objectAtIndex:section];
-	NSArray *tripsInDate = [self.tripsByDate objectForKey:dateTitle];
+	NSDate *dateTitle = self.sortedDays[section];
+	NSArray *tripsInDate = self.tripsByDate[dateTitle];
 	return [tripsInDate count];
 }
 
@@ -154,13 +153,13 @@
 		Trip *tripToDelete = [self tripFromIndexPath:indexPath];
 		[context deleteObject:tripToDelete];
 		[appDelegate saveContext];
-		NSDate *dateTitle = [self.sortedDays objectAtIndex:indexPath.section];
-		NSArray *tripsInDate = [self.tripsByDate objectForKey:dateTitle];
+		NSDate *dateTitle = self.sortedDays[(NSUInteger) indexPath.section];
+		NSArray *tripsInDate = self.tripsByDate[dateTitle];
 		self.trips = appDelegate.drivingHistory.trips.reversedOrderedSet; //update
 		[self setupTripsByDate]; //update dictionary
 		if(tripsInDate.count == 1) //last object to be deleted
 		{
-			[tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
+			[tableView deleteSections:[NSIndexSet indexSetWithIndex:(NSUInteger) indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
 		}
 		else
 		{
@@ -174,13 +173,13 @@
 
 - (NSString *)stringOfDateForSection:(NSInteger)section
 {
-	return [dateFormatterDateAndNoTime stringFromDate:[self.sortedDays objectAtIndex:section]];
+	return [dateFormatterDateAndNoTime stringFromDate:self.sortedDays[section]];
 }
 
 - (double)totalMilesInSection:(NSInteger)section
 {
 	double mileSum = 0;
-	NSArray *tripsInDate = [self.tripsByDate objectForKey:[self.sortedDays objectAtIndex:section]];
+	NSArray *tripsInDate = self.tripsByDate[self.sortedDays[section]];
 	for(Trip *trip in tripsInDate)
 	{
 		mileSum += trip.totalMiles.doubleValue;
@@ -198,9 +197,9 @@
 
 - (Trip *)tripFromIndexPath:(NSIndexPath *)indexPath
 {
-	NSDate *dateTitle = [self.sortedDays objectAtIndex:indexPath.section];
-	NSArray *tripsInDate = [self.tripsByDate objectForKey:dateTitle];
-	Trip* trip = [tripsInDate objectAtIndex:indexPath.row];
+	NSDate *dateTitle = self.sortedDays[(NSUInteger) indexPath.section];
+	NSArray *tripsInDate = self.tripsByDate[dateTitle];
+	Trip* trip = tripsInDate[(NSUInteger) indexPath.row];
 	return trip;
 }
 
