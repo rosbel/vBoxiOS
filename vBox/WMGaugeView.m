@@ -352,7 +352,7 @@
 		float mod = (int)value % (int)div;
 		
 		// Division
-		if ((abs(mod - 0) < 0.000001) || (abs(mod - div) < 0.000001))
+		if ((fabsf(mod - 0) < 0.000001) || (fabsf(mod - div) < 0.000001))
 		{
 			// Initialize Core Graphics settings
 			UIColor *color = (_rangeValues && _rangeColors) ? [self rangeColorForValue:value] : _scaleDivisionColor;

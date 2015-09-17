@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9DDAE7DA568EF4C4198F030F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C47FEC1B8D5F3A0006A315C0 /* libPods.a */; };
 		C11318CC19EDCC700023A45C /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C11318CB19EDCC700023A45C /* logo.png */; };
 		C11603361A06A6CE0079F2C4 /* BluetoothData.m in Sources */ = {isa = PBXBuildFile; fileRef = C11603351A06A6CE0079F2C4 /* BluetoothData.m */; };
 		C11603391A06A7350079F2C4 /* GPSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C11603381A06A7350079F2C4 /* GPSLocation.m */; };
@@ -17,8 +18,7 @@
 		C127A6941A098666000CE564 /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = C127A6931A098666000CE564 /* OBSlider.m */; };
 		C13E8CF51A15706D00383CB5 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C13E8CF21A15706D00383CB5 /* SVProgressHUD.bundle */; };
 		C13E8CF61A15706D00383CB5 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C13E8CF41A15706D00383CB5 /* SVProgressHUD.m */; };
-		C147FA691AE472D300DC9E2A /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C147FA681AE472D300DC9E2A /* GoogleMaps.framework */; };
-		C147FA6B1AE476EF00DC9E2A /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C147FA6A1AE476EF00DC9E2A /* GoogleMaps.bundle */; };
+		C148ED8E1BAA405800B6A610 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = C148ED8D1BAA405800B6A610 /* Podfile */; settings = {ASSET_TAGS = (); }; };
 		C163E1241A2E45F800AAB153 /* tripTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C163E1231A2E45F800AAB153 /* tripTableCell.xib */; };
 		C180A30E19F0A04000DE880C /* DebugBluetoothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C180A30D19F0A04000DE880C /* DebugBluetoothViewController.m */; };
 		C181F44419EEA98500FC1D8A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C181F44319EEA98500FC1D8A /* Settings.bundle */; };
@@ -92,6 +92,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5910426A87D1365BC698A6F0 /* Pods.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.distribution.xcconfig; path = "Pods/Target Support Files/Pods/Pods.distribution.xcconfig"; sourceTree = "<group>"; };
+		6B08E3FC3D6AD3B459AE8991 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C100518F1A3A4DA3009B9C48 /* GPSInformation 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "GPSInformation 7.xcdatamodel"; sourceTree = "<group>"; };
 		C11318CB19EDCC700023A45C /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../logo.png; sourceTree = "<group>"; };
 		C11603331A06A22D0079F2C4 /* GPSInformation 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "GPSInformation 3.xcdatamodel"; sourceTree = "<group>"; };
@@ -110,7 +112,7 @@
 		C13E8CF31A15706D00383CB5 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		C13E8CF41A15706D00383CB5 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		C147FA681AE472D300DC9E2A /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
-		C147FA6A1AE476EF00DC9E2A /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		C148ED8D1BAA405800B6A610 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		C163E1231A2E45F800AAB153 /* tripTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = tripTableCell.xib; sourceTree = "<group>"; };
 		C17E14EC1A080C95009DDF24 /* GPSInformation 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "GPSInformation 5.xcdatamodel"; sourceTree = "<group>"; };
 		C180A30C19F0A04000DE880C /* DebugBluetoothViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugBluetoothViewController.h; sourceTree = "<group>"; };
@@ -179,6 +181,8 @@
 		C1FAEA4F19F890C3009C623C /* GPSInformation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GPSInformation.xcdatamodel; sourceTree = "<group>"; };
 		C1FE69CE1A041A1200DA15BD /* BLEManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEManager.h; sourceTree = "<group>"; };
 		C1FE69CF1A041A1200DA15BD /* BLEManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEManager.m; sourceTree = "<group>"; };
+		C47FEC1B8D5F3A0006A315C0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F33A7D97ADED57B035B06438 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,8 +217,8 @@
 				C1E4586D19DE0D81001A5627 /* CoreText.framework in Frameworks */,
 				C1C0636B1AE31C7F002D3847 /* Bolts.framework in Frameworks */,
 				C1E4586B19DE0D7A001A5627 /* CoreData.framework in Frameworks */,
-				C147FA691AE472D300DC9E2A /* GoogleMaps.framework in Frameworks */,
 				C1E4586919DE0D73001A5627 /* AVFoundation.framework in Frameworks */,
+				9DDAE7DA568EF4C4198F030F /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +232,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5EA98BCBE7D1A9709FEC4F4F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F33A7D97ADED57B035B06438 /* Pods.debug.xcconfig */,
+				6B08E3FC3D6AD3B459AE8991 /* Pods.release.xcconfig */,
+				5910426A87D1365BC698A6F0 /* Pods.distribution.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		C1187E2D1A0BF946006A08A4 /* VariableSlider */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,10 +344,12 @@
 		C1E4583419DE0C5B001A5627 = {
 			isa = PBXGroup;
 			children = (
+				C148ED8D1BAA405800B6A610 /* Podfile */,
 				C1E4583F19DE0C5B001A5627 /* vBox */,
 				C1E4587E19DE0E53001A5627 /* Frameworks */,
 				C1E4585919DE0C5B001A5627 /* vBoxTests */,
 				C1E4583E19DE0C5B001A5627 /* Products */,
+				5EA98BCBE7D1A9709FEC4F4F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -401,7 +417,6 @@
 		C1E4587E19DE0E53001A5627 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C147FA6A1AE476EF00DC9E2A /* GoogleMaps.bundle */,
 				C1C063831AE35B8B002D3847 /* libstdc++.6.dylib */,
 				C147FA681AE472D300DC9E2A /* GoogleMaps.framework */,
 				C1C063801AE35832002D3847 /* ParseCrashReporting.framework */,
@@ -431,6 +446,7 @@
 				C1E4586C19DE0D81001A5627 /* CoreText.framework */,
 				C1E4586A19DE0D7A001A5627 /* CoreData.framework */,
 				C1E4586819DE0D73001A5627 /* AVFoundation.framework */,
+				C47FEC1B8D5F3A0006A315C0 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -442,11 +458,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C1E4586019DE0C5B001A5627 /* Build configuration list for PBXNativeTarget "vBox" */;
 			buildPhases = (
+				7A4F3AF2005FFD78EB436460 /* Check Pods Manifest.lock */,
 				C1E4583919DE0C5B001A5627 /* Sources */,
 				C1E4583A19DE0C5B001A5627 /* Frameworks */,
 				C1E4583B19DE0C5B001A5627 /* Resources */,
 				C15E76E71AB11DA500ADBBE8 /* Embed App Extensions */,
 				C1C063821AE35A78002D3847 /* ShellScript */,
+				F03C2E43FA9EE505039055EB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -481,7 +499,7 @@
 		C1E4583519DE0C5B001A5627 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = rosbelSanroman;
 				TargetAttributes = {
 					C1E4583C19DE0C5B001A5627 = {
@@ -524,13 +542,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C147FA6B1AE476EF00DC9E2A /* GoogleMaps.bundle in Resources */,
 				C1E4584C19DE0C5B001A5627 /* Main.storyboard in Resources */,
 				C11318CC19EDCC700023A45C /* logo.png in Resources */,
 				C163E1241A2E45F800AAB153 /* tripTableCell.xib in Resources */,
 				C13E8CF51A15706D00383CB5 /* SVProgressHUD.bundle in Resources */,
 				C1E4585119DE0C5B001A5627 /* LaunchScreen.xib in Resources */,
 				C1E4584E19DE0C5B001A5627 /* Images.xcassets in Resources */,
+				C148ED8E1BAA405800B6A610 /* Podfile in Resources */,
 				C181F44419EEA98500FC1D8A /* Settings.bundle in Resources */,
 				C1F459661A2BF44E00840D8B /* HotVsCold.jpg in Resources */,
 			);
@@ -546,6 +564,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7A4F3AF2005FFD78EB436460 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		C1C063821AE35A78002D3847 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -558,6 +591,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export PATH=/usr/local/bin:$PATH\ncd /Users/rosbelsanroman/Developer/Xcode/vBox/parse/\n\nparse symbols -p \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"";
+		};
+		F03C2E43FA9EE505039055EB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -656,7 +704,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "be8aacc9-57c4-44d0-b4ae-fba4456eac54";
@@ -667,6 +715,7 @@
 		};
 		C18213B61A2FB92A00FE29E2 /* Distribution */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5910426A87D1365BC698A6F0 /* Pods.distribution.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Rosbel Sanroman (FKMQK3FUDB)";
@@ -676,7 +725,9 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = vBox/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rosbel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -694,6 +745,7 @@
 				);
 				INFOPLIST_FILE = vBoxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rosbel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vBox.app/vBox";
@@ -721,6 +773,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -735,7 +788,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -773,7 +826,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "be8aacc9-57c4-44d0-b4ae-fba4456eac54";
@@ -784,6 +837,7 @@
 		};
 		C1E4586119DE0C5B001A5627 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F33A7D97ADED57B035B06438 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Rosbel Sanroman (FKMQK3FUDB)";
@@ -793,7 +847,9 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = vBox/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rosbel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -801,6 +857,7 @@
 		};
 		C1E4586219DE0C5B001A5627 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B08E3FC3D6AD3B459AE8991 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Rosbel Sanroman (FKMQK3FUDB)";
@@ -810,7 +867,9 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = vBox/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rosbel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -832,6 +891,7 @@
 				);
 				INFOPLIST_FILE = vBoxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rosbel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vBox.app/vBox";
@@ -850,6 +910,7 @@
 				);
 				INFOPLIST_FILE = vBoxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rosbel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vBox.app/vBox";

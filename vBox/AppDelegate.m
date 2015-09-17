@@ -25,7 +25,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// Override point for customization after application launch.
-	[GMSServices provideAPIKey:@"AIzaSyBdHnG4e7HZkd3RpXGWU6Sl0T2QL79kkyU"];
+	
+    //old
+//    [GMSServices provideAPIKey:@"AIzaSyBdHnG4e7HZkd3RpXGWU6Sl0T2QL79kkyU"];
+    
+    //new
+    [GMSServices provideAPIKey:@"AIzaSyCuezG1N1vEXjN8WweYUhdYGzGhOCkqNsE"];
     
     [ParseCrashReporting enable];
     
@@ -124,7 +129,7 @@
 	NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
 	if(coordinator != nil)
 	{
-		_managedObjectContext = [[NSManagedObjectContext alloc] init];
+        _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
 		[_managedObjectContext setPersistentStoreCoordinator:coordinator];
 	}
 	return _managedObjectContext;
