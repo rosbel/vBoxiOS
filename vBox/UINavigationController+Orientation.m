@@ -25,4 +25,9 @@
 	return [[self topViewController] preferredInterfaceOrientationForPresentation];
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 @end

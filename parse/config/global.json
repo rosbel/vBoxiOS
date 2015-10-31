@@ -1,0 +1,14 @@
+{
+  "global": {
+    "parseVersion": "1.4.2"
+  },
+  "applications": {
+    "_default": {
+      "link": "vBox - Trip logger"
+    },
+    "vBox - Trip logger": {
+      "applicationId": "qRQ11sLN68WlCb2xIuV7YOfTDtxYKyq8I9rtXW8i",
+      "masterKey": "1x9o04bTFKM1KHSbaMB6Ygf59qVYJwyUBw5xjvDk"
+    }
+  }
+}

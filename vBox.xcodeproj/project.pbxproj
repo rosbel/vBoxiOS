@@ -18,7 +18,7 @@
 		C127A6941A098666000CE564 /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = C127A6931A098666000CE564 /* OBSlider.m */; };
 		C13E8CF51A15706D00383CB5 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C13E8CF21A15706D00383CB5 /* SVProgressHUD.bundle */; };
 		C13E8CF61A15706D00383CB5 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C13E8CF41A15706D00383CB5 /* SVProgressHUD.m */; };
-		C148ED8E1BAA405800B6A610 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = C148ED8D1BAA405800B6A610 /* Podfile */; settings = {ASSET_TAGS = (); }; };
+		C148ED8E1BAA405800B6A610 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = C148ED8D1BAA405800B6A610 /* Podfile */; };
 		C163E1241A2E45F800AAB153 /* tripTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C163E1231A2E45F800AAB153 /* tripTableCell.xib */; };
 		C180A30E19F0A04000DE880C /* DebugBluetoothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C180A30D19F0A04000DE880C /* DebugBluetoothViewController.m */; };
 		C181F44419EEA98500FC1D8A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C181F44319EEA98500FC1D8A /* Settings.bundle */; };
@@ -718,8 +718,8 @@
 			baseConfigurationReference = 5910426A87D1365BC698A6F0 /* Pods.distribution.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Rosbel Sanroman (FKMQK3FUDB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Rosbel Sanroman (FKMQK3FUDB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -840,8 +840,8 @@
 			baseConfigurationReference = F33A7D97ADED57B035B06438 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Rosbel Sanroman (FKMQK3FUDB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Rosbel Sanroman (FKMQK3FUDB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -860,8 +860,8 @@
 			baseConfigurationReference = 6B08E3FC3D6AD3B459AE8991 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Rosbel Sanroman (FKMQK3FUDB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Rosbel Sanroman (FKMQK3FUDB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

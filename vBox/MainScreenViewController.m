@@ -39,8 +39,13 @@
 -(void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+//	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 	[self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)viewWillDisappear:(BOOL)animated

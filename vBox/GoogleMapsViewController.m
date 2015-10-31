@@ -90,7 +90,7 @@
 {
 	[super viewWillAppear:animated];
 	
-	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+//	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -120,8 +120,13 @@
     
     [self reverseGeocodeAndTrackInBackground:prevLocation andAvgSpeed:avgSpeed];
     
-	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+//	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 	[super viewWillDisappear:animated];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleDefault;
 }
 
 #pragma mark - SetUp Methods
