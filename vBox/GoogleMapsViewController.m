@@ -10,7 +10,6 @@
 #import "SVProgressHUD.h"
 #import "MyStyleKit.h"
 #import "UtilityMethods.h"
-#import <Parse/Parse.h>
 
 @interface GoogleMapsViewController ()
 
@@ -117,9 +116,7 @@
     [currentTrip setTotalMiles:@(GMSGeometryLength(completePath) * 0.000621371)];
 	[[appDelegate drivingHistory] addTripsObject:currentTrip];
 	[appDelegate saveContext];
-    
-    [self reverseGeocodeAndTrackInBackground:prevLocation andAvgSpeed:avgSpeed];
-    
+
 //	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 	[super viewWillDisappear:animated];
 }
@@ -525,37 +522,6 @@
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
-    [PFAnalytics trackEventInBackground:@"MemoryWarning" dimensions:@{@"ViewController":@"GoogleMapsVC"} block:nil];
-}
-                  
-#pragma mark - Helper Methods
-
--(void)reverseGeocodeAndTrackInBackground:(CLLocation *)location andAvgSpeed:(double)avgSpeed
-{
-    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
-    [geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
-        if(error)
-        {
-            [PFAnalytics trackEventInBackground:@"ReverseGeoCodeError" dimensions:@{@"error":error.description} block:nil];
-        }
-        else
-        {
-            CLPlacemark *placemark = placemarks.lastObject;
-            NSMutableDictionary *dimensions = [[NSMutableDictionary alloc] init];
-            
-            dimensions[@"City"] = (NSString *) placemark.addressDictionary[@"City"];
-            dimensions[@"State"] = (NSString *) placemark.addressDictionary[@"State"];
-            dimensions[@"Country"] = (NSString *) placemark.addressDictionary[@"CountryCode"];
-            dimensions[@"Street"] = (NSString *) placemark.addressDictionary[@"Street"];
-            dimensions[@"StartTime"] = [UtilityMethods formattedStringFromDate:currentTrip.startTime];
-            dimensions[@"MaxSpeed"] = [NSString stringWithFormat:@"%@ mph",@(maxSpeed)];
-            dimensions[@"AvgSpeed"] = [NSString stringWithFormat:@"%@ mph",@(avgSpeed)];
-            dimensions[@"Miles"] = [NSString stringWithFormat:@"%@ mi", currentTrip.totalMiles];
-            
-            [PFAnalytics trackEventInBackground:@"TripEndDetail" dimensions:dimensions block:nil];
-        }
-    }];
-    
 }
 
 @end

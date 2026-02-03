@@ -4,8 +4,8 @@
 
 **vBox** is an iOS application for vehicle trip logging that supports integration with OBD-II (On-Board Diagnostics) adapters via Bluetooth Low Energy (BLE). The app tracks driving metrics including GPS location, speed, distance, and when connected to a compatible OBD adapter, retrieves real-time vehicle diagnostics such as RPM, fuel level, engine load, and temperatures.
 
-- **Platform**: iOS (minimum iOS 8.1)
-- **Language**: Objective-C
+- **Platform**: iOS (minimum iOS 9.0+)
+- **Languages**: Swift 5+ (modern) / Objective-C (legacy)
 - **License**: MIT
 - **Author**: Rosbel Sanroman
 
@@ -14,72 +14,115 @@
 ```
 vBoxiOS/
 ├── vBox/                       # Main application source code
-│   ├── AppDelegate.{h,m}       # App lifecycle, Core Data stack, Push notifications
-│   ├── BLEManager.{h,m}        # Bluetooth Low Energy manager for OBD communication
-│   ├── GoogleMapsViewController.{h,m}  # Main driving view with map and gauges
+│   ├── AppDelegate.{h,m}       # App lifecycle, Core Data stack
+│   │
+│   ├── # Swift Models (Modern)
+│   ├── Models/
+│   │   ├── OBDTypes.swift      # OBD-II protocol types (PIDs, packets, diagnostics)
+│   │   ├── BLETypes.swift      # BLE state, connection types, errors
+│   │   └── CoreData/           # Swift Core Data entity classes
+│   │       ├── TripEntity.swift
+│   │       ├── GPSLocationEntity.swift
+│   │       ├── BluetoothDataEntity.swift
+│   │       └── DrivingHistoryEntity.swift
+│   │
+│   ├── # Swift Managers (Modern)
+│   ├── Managers/
+│   │   └── BLEManagerSwift.swift  # Modern BLE manager with Combine
+│   │
+│   ├── # Swift Utilities (Modern)
+│   ├── Utilities/
+│   │   └── DateFormatting.swift   # Duration and date formatting
+│   │
+│   ├── # Objective-C Legacy (being migrated)
+│   ├── BLEManager.{h,m}        # Legacy BLE manager
+│   ├── GoogleMapsViewController.{h,m}  # Main driving view
 │   ├── MainScreenViewController.{h,m}  # Home screen
-│   ├── TripDetailViewController.{h,m}  # Trip playback and review
-│   ├── DrivingHistoryViewController.{h,m}  # List of recorded trips
+│   ├── TripDetailViewController.{h,m}  # Trip playback
+│   ├── DrivingHistoryViewController.{h,m}  # Trip list
 │   ├── BluetoothTableViewController.{h,m}  # BLE device selection
-│   ├── DebugBluetoothViewController.{h,m}  # BLE debugging interface
+│   ├── DebugBluetoothViewController.{h,m}  # BLE debugging
 │   │
-│   ├── # Data Models (Core Data NSManagedObject subclasses)
-│   ├── Trip.{h,m}              # Trip entity with metadata
-│   ├── GPSLocation.{h,m}       # GPS coordinate entity
-│   ├── BluetoothData.{h,m}     # OBD diagnostic data entity
-│   ├── DrivingHistory.{h,m}    # Root container for trips
+│   ├── # Legacy Data Models (Objective-C)
+│   ├── Trip.{h,m}, GPSLocation.{h,m}, BluetoothData.{h,m}, DrivingHistory.{h,m}
 │   │
-│   ├── # Utilities & Third-Party
-│   ├── UtilityMethods.{h,m}    # Date formatting helpers
-│   ├── WMGaugeView.{h,m}       # Gauge UI component (third-party)
-│   ├── OBSlider.{h,m}          # Scrubber slider (third-party)
-│   ├── SVProgressHUD.{h,m}     # Progress indicator (third-party)
-│   ├── MyStyleKit.{h,m}        # PaintCode-generated drawing code
+│   ├── # Third-Party Libraries
+│   ├── WMGaugeView.{h,m}       # Gauge UI component
+│   ├── OBSlider.{h,m}          # Scrubber slider
+│   ├── SVProgressHUD.{h,m}     # Progress indicator
+│   ├── MyStyleKit.{h,m}        # PaintCode drawings
 │   │
-│   ├── # Resources
-│   ├── Base.lproj/Main.storyboard  # Main UI storyboard
-│   ├── Base.lproj/LaunchScreen.xib # Launch screen
-│   ├── GPSInformation.xcdatamodeld/ # Core Data model
-│   ├── Images.xcassets/        # Image assets
-│   ├── Settings.bundle/        # iOS Settings integration
-│   └── Info.plist              # App configuration
+│   ├── # Bridging Headers
+│   ├── vBox-Bridging-Header.h  # Swift/Obj-C interop
+│   │
+│   └── # Resources
+│       ├── Base.lproj/Main.storyboard
+│       ├── GPSInformation.xcdatamodeld/
+│       ├── Images.xcassets/
+│       └── Info.plist
 │
-├── vBoxTests/                  # Unit tests
+├── vBoxTests/                  # Unit tests (Swift)
+│   ├── OBDTypesTests.swift     # OBD protocol tests
+│   ├── BLETypesTests.swift     # BLE types tests
+│   ├── BLEManagerSwiftTests.swift  # BLE manager tests
+│   ├── CoreDataModelTests.swift    # Core Data tests
+│   ├── DateFormattingTests.swift   # Formatting tests
+│   └── TestHelpers.swift       # Test utilities
+│
 ├── Pods/                       # CocoaPods dependencies
-├── *.framework/                # Vendored frameworks (Parse, Bolts, ParseCrashReporting)
-├── vBox.xcodeproj/             # Xcode project
-├── vBox.xcworkspace/           # Xcode workspace (use this for development)
-├── Podfile                     # CocoaPods dependency specification
-└── Podfile.lock                # Locked dependency versions
+├── vBox.xcworkspace/           # Use this for development
+├── Podfile                     # Dependencies
+└── Podfile.lock
 ```
 
 ## Architecture
 
-### Core Components
+### Modern Swift Components
 
-#### AppDelegate (`AppDelegate.{h,m}`)
-- Manages the Core Data stack (NSManagedObjectContext, NSPersistentStoreCoordinator)
-- Initializes Google Maps SDK and Parse SDK
-- Handles push notification registration and processing
-- Provides access to the singleton `DrivingHistory` object
+#### OBDTypes (`Models/OBDTypes.swift`)
+- `OBDPID` enum - All supported OBD-II parameter IDs with validation
+- `BLEDataPacket` - 12-byte packet parsing with checksum
+- `DiagnosticReading` - Validated diagnostic value with display formatting
+- `VehicleDiagnostics` - Snapshot of all vehicle data
+- `AccelerometerReading` - 3-axis acceleration data
 
-#### BLEManager (`BLEManager.{h,m}`)
-- Singleton-style Bluetooth Low Energy manager
-- Implements `CBCentralManagerDelegate` and `CBPeripheralDelegate`
-- Scans for and connects to OBD adapters (service UUID: `FFE0`)
-- Parses OBD-II PID data from the Freematics adapter
-- Supports PIDs: Speed, RPM, Fuel, Coolant Temp, Engine Load, Throttle, Intake Temp, etc.
-- Uses checksum validation for data integrity
+#### BLETypes (`Models/BLETypes.swift`)
+- `BLEState` - Bluetooth adapter states
+- `PeripheralType` - OBD adapter vs BeagleBone
+- `ConnectionState` - Connection lifecycle
+- `DiscoveredPeripheral` - Discovered device info
+- `SignalStrength` - RSSI categorization
+- `BLEError` - Typed errors with descriptions
+
+#### BLEManagerSwift (`Managers/BLEManagerSwift.swift`)
+- Modern Combine-based BLE manager
+- Publishers: `$state`, `$isConnected`, `$diagnostics`
+- Convenience publishers: `speedPublisher`, `rpmPublisher`, `fuelLevelPublisher`
+- Thread-safe with dedicated dispatch queues
+- Delegate protocol for Objective-C compatibility
+
+#### Core Data Swift Models (`Models/CoreData/`)
+- `TripEntity` - Trip with computed duration, distance, path coordinates
+- `GPSLocationEntity` - Location with CLLocation conversion, distance/bearing
+- `BluetoothDataEntity` - OBD diagnostics with temperature monitoring
+- `DrivingHistoryEntity` - Trip management and statistics
+
+### Legacy Objective-C Components
+
+#### AppDelegate
+- Core Data stack management
+- Google Maps SDK initialization
+- Singleton `DrivingHistory` access
 
 #### View Controllers
 | Controller | Purpose |
 |------------|---------|
-| `MainScreenViewController` | App home screen with navigation buttons |
-| `GoogleMapsViewController` | Live trip recording with map and diagnostic gauges |
-| `TripDetailViewController` | Trip playback with timeline scrubber |
-| `DrivingHistoryViewController` | Table view of all recorded trips |
-| `BluetoothTableViewController` | BLE peripheral discovery and selection |
-| `DebugBluetoothViewController` | Debug console for BLE communication |
+| `GoogleMapsViewController` | Live trip recording with map |
+| `MainScreenViewController` | Home screen navigation |
+| `TripDetailViewController` | Trip playback with scrubber |
+| `DrivingHistoryViewController` | Trip list by date |
+| `BluetoothTableViewController` | OBD diagnostic display |
+| `DebugBluetoothViewController` | BLE debug console |
 
 ### Data Model (Core Data)
 
@@ -103,11 +146,6 @@ DrivingHistory (root)
 **CocoaPods (Podfile)**:
 - `GoogleMaps` - Maps SDK for iOS
 
-**Vendored Frameworks**:
-- `Parse.framework` - Backend-as-a-Service (deprecated)
-- `Bolts.framework` - Task/promise library (Parse dependency)
-- `ParseCrashReporting.framework` - Crash reporting
-
 **Bundled Third-Party Libraries**:
 - `WMGaugeView` - Animated gauge visualization
 - `OBSlider` - Slider with scrubbing support
@@ -117,7 +155,7 @@ DrivingHistory (root)
 
 ### Opening the Project
 ```bash
-# Always use the workspace (not the .xcodeproj) for CocoaPods support
+# Always use the workspace for CocoaPods support
 open vBox.xcworkspace
 ```
 
@@ -127,87 +165,104 @@ open vBox.xcworkspace
 3. Choose a simulator or device target
 4. Build with Cmd+B or Run with Cmd+R
 
+### Running Tests
+```bash
+# Run all tests
+xcodebuild test -workspace vBox.xcworkspace -scheme vBox -destination 'platform=iOS Simulator,name=iPhone 15'
+```
+
 ### Dependencies
 ```bash
-# Install CocoaPods if needed
 gem install cocoapods
-
-# Install/update dependencies
 pod install
 ```
 
-### Requirements
-- Xcode (with iOS SDK)
-- CocoaPods
-- Google Maps API key (configured in AppDelegate.m)
-
 ## Key Conventions
 
-### Objective-C Style
+### Swift Style (Modern Code)
+- Use `@Published` properties with Combine for reactive updates
+- Prefer value types (`struct`, `enum`) over classes where appropriate
+- Use `async/await` for asynchronous operations
+- Create factory methods on types (e.g., `TripEntity.create(in:)`)
+- Add computed properties for common conversions
+
+### Objective-C Style (Legacy Code)
 - Properties use `@synthesize` with underscore prefix ivars
 - Delegate protocols defined in header files
 - `#pragma mark -` sections for code organization
-- Async operations dispatch to main thread for UI updates
 
 ### Bluetooth Communication
-- BLE operations run on dedicated serial queues (`bluetoothThread`, `peripheralThread`)
+- BLE operations run on dedicated serial queues
 - Data validation via checksum before processing
-- PID values defined as hex constants (e.g., `#define PID_RPM 0x10C`)
-- Delegate pattern for communicating state changes
+- PID values defined in `OBDPID` enum (Swift) or hex constants (Obj-C)
 
 ### Core Data
 - Main context uses `NSMainQueueConcurrencyType`
 - Automatic lightweight migration enabled
 - SQLite store at `Documents/GPSInformation.sqlite`
+- Use Swift entity classes for new code
 
-### Background Modes
-The app requires these background capabilities (Info.plist):
-- `bluetooth-central` - BLE communication
-- `bluetooth-peripheral` - BLE advertising
-- `location` - GPS tracking
-- `remote-notification` - Push notifications
+### Testing
+- All new Swift code should have corresponding tests
+- Use in-memory Core Data context for tests
+- Test helpers in `TestHelpers.swift`
 
 ## Important Notes for AI Assistants
 
 ### Code Modifications
-1. **Always use the workspace**: Changes must be made with `vBox.xcworkspace` context
-2. **Objective-C patterns**: Follow existing delegate and category patterns
-3. **Core Data migrations**: Adding model attributes requires a new model version
-4. **API Keys**: The codebase contains hardcoded API keys for Google Maps and Parse - these should be moved to configuration files in production
+1. **Prefer Swift**: Write new code in Swift, not Objective-C
+2. **Use the workspace**: Always work with `vBox.xcworkspace`
+3. **Add tests**: All new Swift code needs test coverage
+4. **Core Data migrations**: Adding model attributes requires a new model version
 
 ### Testing Considerations
 - BLE functionality requires a physical device
 - GPS simulation available in Xcode for location testing
 - OBD adapter integration requires Freematics hardware
-
-### Deprecated Components
-- **Parse SDK**: Parse shut down in 2017; this integration is non-functional
-- Consider removing Parse dependencies and related code if modernizing
+- Use `CoreDataTestCase` base class for database tests
 
 ### File Naming
-- Header/implementation pairs: `ClassName.h` / `ClassName.m`
-- Categories use `+` syntax: `UINavigationController+Orientation.{h,m}`
+- Swift files: `TypeName.swift`
+- Swift tests: `TypeNameTests.swift`
+- Objective-C pairs: `ClassName.h` / `ClassName.m`
 - Core Data model: `GPSInformation.xcdatamodeld`
 
 ### OBD-II Protocol
 The BLEManager supports Freematics OBD adapters with a custom binary protocol:
-- 12-byte packets with checksum validation
-- PIDs map to standard OBD-II parameters
-- Data structure: `{time, pid, flags, checksum, value[3]}`
+- 12-byte packets with XOR checksum validation
+- PIDs defined in `OBDPID` enum with display names and max values
+- Data structure: `{time: UInt32, pid: UInt16, flags: UInt8, checksum: UInt8, value: Float}`
 
 ## Common Tasks
 
-### Adding a New View Controller
-1. Create `NewViewController.h` and `NewViewController.m` in `vBox/`
-2. Add to Main.storyboard or create programmatically
-3. Follow existing patterns for delegate protocols
+### Adding a New Swift Type
+1. Create `TypeName.swift` in appropriate directory
+2. Create `TypeNameTests.swift` in `vBoxTests/`
+3. Add to bridging header if needed for Obj-C access
 
-### Adding a Core Data Entity
-1. Open `GPSInformation.xcdatamodeld`
-2. Add new model version (Editor > Add Model Version)
-3. Create corresponding `NSManagedObject` subclass files
+### Using the Modern BLE Manager
+```swift
+// Subscribe to diagnostics
+BLEManagerSwift.shared.diagnosticsPublisher
+    .sink { diagnostics in
+        print("Speed: \(diagnostics.speed ?? 0)")
+    }
+    .store(in: &cancellables)
 
-### Modifying BLE Data Handling
-1. Add PID constant in `BLEManager.m`
-2. Add case in `peripheral:didUpdateValueForCharacteristic:error:`
-3. Call `asyncUpdateDiagnosticForKey:withValue:ifUnderLimit:`
+// Start scanning
+BLEManagerSwift.shared.scan(for: .obdAdapter)
+```
+
+### Working with Core Data in Swift
+```swift
+// Create a new trip
+let trip = TripEntity.create(in: context)
+trip.tripName = "Morning Commute"
+
+// Add a location
+let location = GPSLocationEntity.create(in: context, from: clLocation)
+trip.addToGpsLocations(location)
+
+// Calculate statistics
+trip.calculateStatistics()
+```
