@@ -4,8 +4,8 @@
 
 **vBox** is an iOS application for vehicle trip logging that supports integration with OBD-II (On-Board Diagnostics) adapters via Bluetooth Low Energy (BLE). The app tracks driving metrics including GPS location, speed, distance, and when connected to a compatible OBD adapter, retrieves real-time vehicle diagnostics such as RPM, fuel level, engine load, and temperatures.
 
-- **Platform**: iOS (minimum iOS 9.0+)
-- **Languages**: Swift 5+ (modern) / Objective-C (legacy)
+- **Platform**: iOS 13.0+ (required for Combine framework)
+- **Languages**: Swift 5.0+ (modern) / Objective-C (legacy, being migrated)
 - **License**: MIT
 - **Author**: Rosbel Sanroman
 
@@ -176,6 +176,11 @@ xcodebuild test -workspace vBox.xcworkspace -scheme vBox -destination 'platform=
 gem install cocoapods
 pod install
 ```
+
+### System Requirements
+- iOS 13.0+ deployment target (for Combine framework support)
+- Xcode 14+ (for Swift 5 and iOS 13+ SDK)
+- CocoaPods 1.10+
 
 ## Key Conventions
 
