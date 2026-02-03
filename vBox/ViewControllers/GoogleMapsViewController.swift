@@ -22,7 +22,7 @@ final class GoogleMapsViewControllerSwift: UIViewController {
 
     // MARK: - IBOutlets
 
-    @IBOutlet private weak var mapView: GMSMapView!
+    @IBOutlet private weak var MapView: GMSMapView!
     @IBOutlet private weak var stopRecordingButton: UIButton!
     @IBOutlet private weak var speedOrDistanceLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -90,7 +90,7 @@ final class GoogleMapsViewControllerSwift: UIViewController {
         super.viewDidLayoutSubviews()
 
         infoViewFrame = infoView.frame
-        mapViewFrame = mapView.frame
+        mapViewFrame = MapView.frame
         infoViewHiddenOffScreen = infoView.frame
         infoViewHiddenOffScreen.origin.y = UIScreen.main.bounds.height
 
@@ -98,7 +98,7 @@ final class GoogleMapsViewControllerSwift: UIViewController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        mapView.clear()
+        MapView.clear()
         locationManager.stopUpdatingLocation()
 
         cleanUpBluetoothManager()
@@ -167,18 +167,18 @@ final class GoogleMapsViewControllerSwift: UIViewController {
     private func setupGoogleMaps() {
         let camera = GMSCameraPosition(latitude: 39.490179, longitude: -98.081992, zoom: 3)
 
-        mapView.padding = UIEdgeInsets(top: 85, left: 0, bottom: 0, right: 5)
-        mapView.camera = camera
-        mapView.isMyLocationEnabled = true
-        mapView.settings.myLocationButton = true
-        mapView.settings.compassButton = true
-        mapView.delegate = self
+        MapView.padding = UIEdgeInsets(top: 85, left: 0, bottom: 0, right: 5)
+        MapView.camera = camera
+        MapView.isMyLocationEnabled = true
+        MapView.settings.myLocationButton = true
+        MapView.settings.compassButton = true
+        MapView.delegate = self
 
         polyline = GMSPolyline(path: completePath)
         polyline.strokeColor = .gray
         polyline.strokeWidth = 5.0
         polyline.geodesic = true
-        polyline.map = mapView
+        polyline.map = MapView
     }
 
     private func setupBluetoothManager() {
@@ -326,11 +326,11 @@ final class GoogleMapsViewControllerSwift: UIViewController {
         let animations: () -> Void = {
             if state {
                 self.infoView.frame = self.infoViewFrame
-                self.mapView.frame = self.mapViewFrame
+                self.MapView.frame = self.mapViewFrame
                 self.infoView.isHidden = false
             } else {
                 self.infoView.frame = self.infoViewHiddenOffScreen
-                self.mapView.frame = UIScreen.main.bounds
+                self.MapView.frame = UIScreen.main.bounds
             }
         }
 
@@ -421,9 +421,9 @@ extension GoogleMapsViewControllerSwift: CLLocationManagerDelegate {
 
         // Initial camera positioning
         if isFollowingMe && prevLocation == nil && newestLocation.horizontalAccuracy < 70 {
-            mapView.animate(toLocation: newestLocation.coordinate)
-            if mapView.camera.zoom < 10 {
-                mapView.animate(toZoom: 15)
+            MapView.animate(toLocation: newestLocation.coordinate)
+            if MapView.camera.zoom < 10 {
+                MapView.animate(toZoom: 15)
             }
         }
 
@@ -450,14 +450,14 @@ extension GoogleMapsViewControllerSwift: CLLocationManagerDelegate {
         }
 
         // Update polyline styling
-        let tolerance = pow(10.0, (-0.301 * Double(mapView.camera.zoom)) + 9.0731) / 2500.0
+        let tolerance = pow(10.0, (-0.301 * Double(MapView.camera.zoom)) + 9.0731) / 2500.0
         let lengths = [NSNumber(value: tolerance), NSNumber(value: tolerance * 1.5)]
         polyline.spans = GMSStyleSpans(polyline.path!, pathStyles, lengths, .geodesic)
 
         prevLocation = newestLocation
 
         if isFollowingMe {
-            mapView.animate(toLocation: newestLocation.coordinate)
+            MapView.animate(toLocation: newestLocation.coordinate)
         }
     }
 

@@ -21,7 +21,7 @@ final class TripDetailViewControllerSwift: UIViewController {
     @IBOutlet private weak var timeLabel: UILabel!
     @IBOutlet private weak var distanceLabel: UILabel!
     @IBOutlet private weak var speedGauge: WMGaugeView!
-    @IBOutlet private weak var rpmGauge: WMGaugeView!
+    @IBOutlet private weak var RPMGauge: WMGaugeView!
     @IBOutlet private weak var fuelGauge: WMGaugeView!
     @IBOutlet private weak var speedometerIcon: UIImageView!
     @IBOutlet private weak var fullScreenButton: UIButton!
@@ -192,7 +192,7 @@ final class TripDetailViewControllerSwift: UIViewController {
     private func setupGauges() {
         speedGauge.setUp(withUnits: "MPH", max: 150, startAngle: 90, endAngle: 270)
         fuelGauge.setUp(withUnits: "Fuel %", max: 100, startAngle: 90, endAngle: 270)
-        rpmGauge.setUp(withUnits: "RPM", max: 10000, startAngle: 90, endAngle: 270)
+        RPMGauge.setUp(withUnits: "RPM", max: 10000, startAngle: 90, endAngle: 270)
     }
 
     private func setupSlider() {
@@ -275,14 +275,14 @@ final class TripDetailViewControllerSwift: UIViewController {
         speedGauge.setValue(Float(speed), animated: false)
 
         if let bluetoothInfo = location.bluetoothInfo {
-            rpmGauge.isHidden = false
+            RPMGauge.isHidden = false
             fuelGauge.isHidden = false
 
             let rpm = bluetoothInfo.rpm?.floatValue ?? 0
             let fuel = bluetoothInfo.fuel?.floatValue ?? 0
             let btSpeed = bluetoothInfo.speed?.floatValue ?? Float(speed)
 
-            rpmGauge.setValue(rpm, animated: false)
+            RPMGauge.setValue(rpm, animated: false)
             fuelGauge.setValue(fuel, animated: false)
             speedGauge.setValue(btSpeed, animated: false)
         }

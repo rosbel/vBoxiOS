@@ -10,7 +10,7 @@
         <!--Driving History-->
         <scene sceneID="GPV-d6-dKD">
             <objects>
-                <viewController id="b7j-K0-kyU" customClass="DrivingHistoryViewController" sceneMemberID="viewController">
+                <viewController id="b7j-K0-kyU" customClass="DrivingHistoryViewControllerSwift" customModule="vBox" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KvG-BW-L3e"/>
                         <viewControllerLayoutGuide type="bottom" id="7qL-74-yQH"/>
@@ -83,7 +83,7 @@
         <!--vBox-->
         <scene sceneID="EEo-rX-aj5">
             <objects>
-                <viewController id="My1-Qg-Ze8" customClass="MainScreenViewController" sceneMemberID="viewController">
+                <viewController id="My1-Qg-Ze8" customClass="MainScreenViewControllerSwift" customModule="vBox" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CBE-Ja-P2p"/>
                         <viewControllerLayoutGuide type="bottom" id="6EA-g8-2Jx"/>
@@ -179,7 +179,7 @@
         <!--Bluetooth Table View Controller-->
         <scene sceneID="r1a-gd-4vA">
             <objects>
-                <viewController id="Pwh-Fc-JxT" customClass="BluetoothTableViewController" sceneMemberID="viewController">
+                <viewController id="Pwh-Fc-JxT" customClass="BluetoothTableViewControllerSwift" customModule="vBox" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eEQ-iO-p2P"/>
                         <viewControllerLayoutGuide type="bottom" id="bxm-Nd-uKc"/>
@@ -254,7 +254,7 @@
         <!--Debug Bluetooth View Controller-->
         <scene sceneID="RnV-co-KMl">
             <objects>
-                <viewController id="zxW-ME-rkp" customClass="DebugBluetoothViewController" sceneMemberID="viewController">
+                <viewController id="zxW-ME-rkp" customClass="DebugBluetoothViewControllerSwift" customModule="vBox" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ldw-yl-xVC"/>
                         <viewControllerLayoutGuide type="bottom" id="P92-3y-nmY"/>
@@ -295,7 +295,7 @@
         <!--Trip Detail View Controller-->
         <scene sceneID="bWb-5D-Rre">
             <objects>
-                <viewController id="ekS-UR-SFw" customClass="TripDetailViewController" sceneMemberID="viewController">
+                <viewController id="ekS-UR-SFw" customClass="TripDetailViewControllerSwift" customModule="vBox" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="s2B-Xd-nYe"/>
                         <viewControllerLayoutGuide type="bottom" id="qbi-X0-EBo"/>
@@ -494,7 +494,7 @@
         <!--Google Maps View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController storyboardIdentifier="GoogleMapsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vXZ-lx-hvc" customClass="GoogleMapsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GoogleMapsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vXZ-lx-hvc" customClass="GoogleMapsViewControllerSwift" customModule="vBox" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
