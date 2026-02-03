@@ -34,14 +34,23 @@ vBoxiOS/
 │   ├── Utilities/
 │   │   └── DateFormatting.swift   # Duration and date formatting
 │   │
-│   ├── # Objective-C Legacy (being migrated)
+│   ├── # Swift View Controllers (Modern)
+│   ├── ViewControllers/
+│   │   ├── GoogleMapsViewController.swift  # Trip recording with map
+│   │   ├── MainScreenViewController.swift  # Home screen navigation
+│   │   ├── TripDetailViewController.swift  # Trip playback with scrubber
+│   │   ├── DrivingHistoryViewController.swift  # Trip list by date
+│   │   ├── BluetoothTableViewController.swift  # OBD diagnostic display
+│   │   └── DebugBluetoothViewController.swift  # BLE debug console
+│   │
+│   ├── # Objective-C Legacy (for reference)
 │   ├── BLEManager.{h,m}        # Legacy BLE manager
-│   ├── GoogleMapsViewController.{h,m}  # Main driving view
-│   ├── MainScreenViewController.{h,m}  # Home screen
-│   ├── TripDetailViewController.{h,m}  # Trip playback
-│   ├── DrivingHistoryViewController.{h,m}  # Trip list
-│   ├── BluetoothTableViewController.{h,m}  # BLE device selection
-│   ├── DebugBluetoothViewController.{h,m}  # BLE debugging
+│   ├── GoogleMapsViewController.{h,m}  # Legacy - see ViewControllers/
+│   ├── MainScreenViewController.{h,m}  # Legacy - see ViewControllers/
+│   ├── TripDetailViewController.{h,m}  # Legacy - see ViewControllers/
+│   ├── DrivingHistoryViewController.{h,m}  # Legacy - see ViewControllers/
+│   ├── BluetoothTableViewController.{h,m}  # Legacy - see ViewControllers/
+│   ├── DebugBluetoothViewController.{h,m}  # Legacy - see ViewControllers/
 │   │
 │   ├── # Legacy Data Models (Objective-C)
 │   ├── Trip.{h,m}, GPSLocation.{h,m}, BluetoothData.{h,m}, DrivingHistory.{h,m}
@@ -107,6 +116,16 @@ vBoxiOS/
 - `BluetoothDataEntity` - OBD diagnostics with temperature monitoring
 - `DrivingHistoryEntity` - Trip management and statistics
 
+#### Swift View Controllers (`ViewControllers/`)
+| Controller | Purpose |
+|------------|---------|
+| `GoogleMapsViewControllerSwift` | Trip recording with GPS and BLE using Combine |
+| `MainScreenViewControllerSwift` | Home screen with button styling |
+| `TripDetailViewControllerSwift` | Trip playback with map, gauges, and scrubber |
+| `DrivingHistoryViewControllerSwift` | Trip list grouped by date |
+| `BluetoothTableViewControllerSwift` | OBD diagnostic display using Combine |
+| `DebugBluetoothViewControllerSwift` | BLE debug console with Combine |
+
 ### Legacy Objective-C Components
 
 #### AppDelegate
@@ -114,15 +133,15 @@ vBoxiOS/
 - Google Maps SDK initialization
 - Singleton `DrivingHistory` access
 
-#### View Controllers
+#### Legacy View Controllers (being replaced)
 | Controller | Purpose |
 |------------|---------|
-| `GoogleMapsViewController` | Live trip recording with map |
-| `MainScreenViewController` | Home screen navigation |
-| `TripDetailViewController` | Trip playback with scrubber |
-| `DrivingHistoryViewController` | Trip list by date |
-| `BluetoothTableViewController` | OBD diagnostic display |
-| `DebugBluetoothViewController` | BLE debug console |
+| `GoogleMapsViewController` | Legacy - use Swift version |
+| `MainScreenViewController` | Legacy - use Swift version |
+| `TripDetailViewController` | Legacy - use Swift version |
+| `DrivingHistoryViewController` | Legacy - use Swift version |
+| `BluetoothTableViewController` | Legacy - use Swift version |
+| `DebugBluetoothViewController` | Legacy - use Swift version |
 
 ### Data Model (Core Data)
 

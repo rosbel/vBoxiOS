@@ -28,6 +28,7 @@
 
 // Utilities
 #import "UtilityMethods.h"
+#import "MyStyleKit.h"
 
 // Third-party
 #import "WMGaugeView.h"
