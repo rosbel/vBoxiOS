@@ -27,8 +27,6 @@
 		C19806111A2E84D9009AD73F /* UINavigationController+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = C19806101A2E84D9009AD73F /* UINavigationController+Orientation.m */; };
 		C1A87CCE19F98EFC00845C7E /* DrivingHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A87CCD19F98EFC00845C7E /* DrivingHistoryViewController.m */; };
 		C1B82C4319F0808E002E6EA4 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1B82C4219F0808E002E6EA4 /* CoreBluetooth.framework */; };
-		C1C0636B1AE31C7F002D3847 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C063691AE31C7F002D3847 /* Bolts.framework */; };
-		C1C0636C1AE31C7F002D3847 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C0636A1AE31C7F002D3847 /* Parse.framework */; };
 		C1C063731AE31CF2002D3847 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C0636D1AE31CF2002D3847 /* AudioToolbox.framework */; };
 		C1C063741AE31CF2002D3847 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C0636E1AE31CF2002D3847 /* CFNetwork.framework */; };
 		C1C063751AE31CF2002D3847 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C0636F1AE31CF2002D3847 /* libsqlite3.dylib */; };
@@ -38,7 +36,6 @@
 		C1C0637B1AE31D44002D3847 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C063791AE31D44002D3847 /* Accounts.framework */; };
 		C1C0637C1AE31D44002D3847 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C0637A1AE31D44002D3847 /* Social.framework */; };
 		C1C0637F1AE32B19002D3847 /* UtilityMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C0637E1AE32B19002D3847 /* UtilityMethods.m */; };
-		C1C063811AE35832002D3847 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C063801AE35832002D3847 /* ParseCrashReporting.framework */; };
 		C1C063841AE35B8B002D3847 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C063831AE35B8B002D3847 /* libstdc++.6.dylib */; };
 		C1CEF69A19FA04D600D6E46D /* TripDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1CEF69919FA04D600D6E46D /* TripDetailViewController.m */; };
 		C1D6CA5019F41A5A003FF61C /* BluetoothTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D6CA4F19F41A5A003FF61C /* BluetoothTableViewController.m */; };
@@ -128,8 +125,6 @@
 		C1A87CCC19F98EFC00845C7E /* DrivingHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrivingHistoryViewController.h; sourceTree = "<group>"; };
 		C1A87CCD19F98EFC00845C7E /* DrivingHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrivingHistoryViewController.m; sourceTree = "<group>"; };
 		C1B82C4219F0808E002E6EA4 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		C1C063691AE31C7F002D3847 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		C1C0636A1AE31C7F002D3847 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		C1C0636D1AE31CF2002D3847 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C1C0636E1AE31CF2002D3847 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		C1C0636F1AE31CF2002D3847 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -140,7 +135,6 @@
 		C1C0637A1AE31D44002D3847 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		C1C0637D1AE32B19002D3847 /* UtilityMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilityMethods.h; sourceTree = "<group>"; };
 		C1C0637E1AE32B19002D3847 /* UtilityMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilityMethods.m; sourceTree = "<group>"; };
-		C1C063801AE35832002D3847 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
 		C1C063831AE35B8B002D3847 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		C1C650711A07D76B000186E3 /* GPSInformation 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "GPSInformation 4.xcdatamodel"; sourceTree = "<group>"; };
 		C1CCB1D81A0826CB00F0C3F5 /* GPSInformation 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "GPSInformation 6.xcdatamodel"; sourceTree = "<group>"; };
@@ -210,12 +204,9 @@
 				C1E4587919DE0DC0001A5627 /* OpenGLES.framework in Frameworks */,
 				C1E4587519DE0DAA001A5627 /* libicucore.dylib in Frameworks */,
 				C1E4587319DE0D9C001A5627 /* libc++.dylib in Frameworks */,
-				C1C063811AE35832002D3847 /* ParseCrashReporting.framework in Frameworks */,
 				C1E4587119DE0D92001A5627 /* ImageIO.framework in Frameworks */,
 				C1E4586F19DE0D8A001A5627 /* GLKit.framework in Frameworks */,
-				C1C0636C1AE31C7F002D3847 /* Parse.framework in Frameworks */,
 				C1E4586D19DE0D81001A5627 /* CoreText.framework in Frameworks */,
-				C1C0636B1AE31C7F002D3847 /* Bolts.framework in Frameworks */,
 				C1E4586B19DE0D7A001A5627 /* CoreData.framework in Frameworks */,
 				C1E4586919DE0D73001A5627 /* AVFoundation.framework in Frameworks */,
 				9DDAE7DA568EF4C4198F030F /* libPods.a in Frameworks */,
@@ -419,7 +410,6 @@
 			children = (
 				C1C063831AE35B8B002D3847 /* libstdc++.6.dylib */,
 				C147FA681AE472D300DC9E2A /* GoogleMaps.framework */,
-				C1C063801AE35832002D3847 /* ParseCrashReporting.framework */,
 				C1C063791AE31D44002D3847 /* Accounts.framework */,
 				C1C0637A1AE31D44002D3847 /* Social.framework */,
 				C1C0636D1AE31CF2002D3847 /* AudioToolbox.framework */,
@@ -428,8 +418,6 @@
 				C1C063701AE31CF2002D3847 /* MobileCoreServices.framework */,
 				C1C063711AE31CF2002D3847 /* Security.framework */,
 				C1C063721AE31CF2002D3847 /* StoreKit.framework */,
-				C1C063691AE31C7F002D3847 /* Bolts.framework */,
-				C1C0636A1AE31C7F002D3847 /* Parse.framework */,
 				C122324B19F34052002318DF /* Foundation.framework */,
 				C122324919F34030002318DF /* UIKit.framework */,
 				C122324719F34021002318DF /* CoreGraphics.framework */,
@@ -463,7 +451,6 @@
 				C1E4583A19DE0C5B001A5627 /* Frameworks */,
 				C1E4583B19DE0C5B001A5627 /* Resources */,
 				C15E76E71AB11DA500ADBBE8 /* Embed App Extensions */,
-				C1C063821AE35A78002D3847 /* ShellScript */,
 				F03C2E43FA9EE505039055EB /* Copy Pods Resources */,
 			);
 			buildRules = (
@@ -579,19 +566,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		C1C063821AE35A78002D3847 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export PATH=/usr/local/bin:$PATH\ncd /Users/rosbelsanroman/Developer/Xcode/vBox/parse/\n\nparse symbols -p \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"";
-		};
 		F03C2E43FA9EE505039055EB /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -704,7 +678,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				SWIFT_VERSION = 5.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "be8aacc9-57c4-44d0-b4ae-fba4456eac54";
@@ -725,7 +700,8 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = vBox/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				SWIFT_VERSION = 5.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rosbel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -788,7 +764,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				SWIFT_VERSION = 5.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -826,7 +803,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				SWIFT_VERSION = 5.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "be8aacc9-57c4-44d0-b4ae-fba4456eac54";
@@ -847,7 +825,8 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = vBox/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				SWIFT_VERSION = 5.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rosbel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -867,7 +846,8 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = vBox/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				SWIFT_VERSION = 5.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rosbel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
